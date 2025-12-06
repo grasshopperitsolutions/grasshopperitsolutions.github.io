@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grasshopper App Center</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Mono for that 'Vibe Coding' feel -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "grass-green": "#00ff41",
+              "cyber-blue": "#00dbde",
+              "deep-space": "#0a0a0a",
+              "code-gray": "#1e1e1e",
+              "card-gray": "#151515",
+            },
+            fontFamily: {
+              mono: ['"Space Mono"', "monospace"],
+              sans: ['"Inter"', "sans-serif"],
+            },
+            animation: {
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom scrollbar for the cyberpunk feel */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e1e1e;
+        border: 1px solid #00ff41;
+      }
+      .neon-glow-green {
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.4),
+          0 0 20px rgba(0, 255, 65, 0.1);
+      }
+      .neon-glow-blue {
+        box-shadow: 0 0 10px rgba(0, 219, 222, 0.4),
+          0 0 20px rgba(0, 219, 222, 0.1);
+      }
+    </style>
+  </head>
+  <body class="bg-deep-space text-gray-300 font-sans antialiased min-h-screen">
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-deep-space/90 backdrop-blur-md border-b border-white/5"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center group cursor-pointer">
+            <span class="text-3xl mr-2 animate-pulse">🦗</span>
+            <span
+              class="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-grass-green transition-colors"
+              >Grasshopper_IT</span
+            >
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <!-- Link back to the main site (assuming index.html is the homepage) -->
+              <a
+                href="index.html"
+                class="border border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black px-4 py-2 rounded-md text-sm font-mono transition-all font-bold"
+              >
+                &lt; Back to Home
+              </a>
+            </div>
+          </div>
+          <!-- Mobile menu button (simplified for this single page) -->
+          <div class="md:hidden">
+            <a
+              href="index.html"
+              class="text-sm font-mono text-cyber-blue border border-cyber-blue p-2 rounded hover:bg-cyber-blue/20 transition-colors"
+            >
+              Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- App Center Header -->
+    <header
+      class="pt-32 pb-20 lg:pt-40 lg:pb-24 border-b border-grass-green/20"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1
+          class="text-4xl md:text-6xl font-bold font-mono tracking-tight mb-4 text-white"
+        >
+          &gt; App_Center
+        </h1>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+          Access self-contained utilities and interactive software developed by
+          the Grasshopper network. Execute with confidence.
+        </p>
+      </div>
+    </header>
+
+    <!-- App Grid Section -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <!-- App 1 Card: Data Utility Theme (Grass Green) -->
+          <div
+            class="bg-card-gray p-8 rounded-xl border-t-4 border-grass-green hover:border-b-4 hover:border-grass-green/50 transition-all duration-300 neon-glow-green"
+          >
+            <div class="text-6xl mb-4">🔬</div>
+            <h2 class="text-3xl font-bold font-mono text-grass-green mb-3">
+              App 1: Data Struct Analyzer
+            </h2>
+            <p class="text-gray-400 mb-6">
+              A utility application designed for rapid parsing and structural
+              analysis of large JSON objects. Ideal for pre-production testing
+              and debugging complex APIs.
+            </p>
+            <div class="mb-6">
+              <span
+                class="inline-block bg-grass-green/10 text-grass-green text-xs font-mono px-3 py-1 rounded-full mr-2"
+                >#Utility</span
+              >
+              <span
+                class="inline-block bg-grass-green/10 text-grass-green text-xs font-mono px-3 py-1 rounded-full"
+                >#Parsing</span
+              >
+            </div>
+            <a
+              href="#"
+              class="inline-block bg-grass-green text-black font-bold py-3 px-6 rounded-md hover:bg-white transition-all shadow-md"
+            >
+              Execute App 1 &gt;
+            </a>
+          </div>
+
+          <!-- App 2 Card: Creative/Visualization Theme (Cyber Blue) -->
+          <div
+            class="bg-card-gray p-8 rounded-xl border-t-4 border-cyber-blue hover:border-b-4 hover:border-cyber-blue/50 transition-all duration-300 neon-glow-blue"
+          >
+            <div class="text-6xl mb-4">🎨</div>
+            <h2 class="text-3xl font-bold font-mono text-cyber-blue mb-3">
+              App 2: Vibe Visualizer
+            </h2>
+            <p class="text-gray-400 mb-6">
+              An interactive canvas for dynamic visualization of real-time data
+              streams. Experiment with abstract geometry and color palettes in a
+              responsive environment.
+            </p>
+            <div class="mb-6">
+              <span
+                class="inline-block bg-cyber-blue/10 text-cyber-blue text-xs font-mono px-3 py-1 rounded-full mr-2"
+                >#Creative</span
+              >
+              <span
+                class="inline-block bg-cyber-blue/10 text-cyber-blue text-xs font-mono px-3 py-1 rounded-full"
+                >#WebGL</span
+              >
+            </div>
+            <a
+              href="#"
+              class="inline-block bg-cyber-blue text-black font-bold py-3 px-6 rounded-md hover:bg-white transition-all shadow-md"
+            >
+              Launch App 2 &gt;
+            </a>
+          </div>
+        </div>
+
+        <!-- Future App Placeholder -->
+        <div class="mt-16 text-center pt-10 border-t border-white/5">
+          <p class="text-lg text-gray-500 font-mono">
+            <span class="text-grass-green">&gt;</span> Monitoring_Queue:
+            <span class="text-cyber-blue">2</span> new applications scheduled
+            for deployment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-gray-600 text-sm font-mono mb-2">
+          &copy; 2024 Grasshopper IT Solutions.
+        </p>
+        <p class="text-xs text-gray-700 font-mono">
+          App Center Protocol: <span class="text-grass-green">Secured</span>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
