@@ -1,0 +1,79 @@
+# Void Enigma – Privacy Policy
+
+**Last updated:** 06 December 2025
+
+## 1. Who we are
+
+This privacy policy explains how *Void Enigma* (the “App”) handles information. The App is provided by **[Your Name or Company]**, located in **[Your Country]**. [web:133]
+
+If you have any questions, you can contact us at **[your-contact-email]**. [web:133]
+
+## 2. What data the app collects
+
+The App is designed as a simple riddle generator and **does not require you to create an account, log in, or provide any personal details such as your name, email address, phone number, or location**. [file:87]
+
+The App:
+
+- Does **not** collect or store your contacts, photos, messages, precise location, or payment information. [file:87][web:133]
+- Does **not** include in-app advertising SDKs or third-party tracking libraries, based on the current implementation. [file:87][web:142]
+
+If you later add analytics, crash reporting, or ads, you must update this section to describe exactly what is collected and why. [web:133][web:139]
+
+## 3. Use of the Gemini API
+
+When you request a new riddle, the App sends a text prompt to the **Google Gemini API** to generate a riddle and answer. [file:87][web:25]
+
+- The content sent is limited to generic instructions like “generate a short, fun riddle” and does **not** include personal identifiers about you. [file:87]
+- The AI response (riddle and answer) is displayed on your device and may be temporarily stored in the app’s memory to avoid showing the same riddle repeatedly in the same session. [file:87][web:68]
+
+You should review Google’s own privacy and data handling documentation for the Gemini API for more details on how Google processes prompts and responses. [web:25][web:140]
+
+## 4. How we use and store data
+
+Within the App, we may temporarily store:
+
+- The current riddle and answer.
+- A short in-memory list of previously shown riddles in this session, to reduce repetition. [file:87]
+
+This data:
+
+- Stays on your device’s memory while the app is running.
+- Is cleared when you reset the history or close the app (no long-term persistent user profiles are created from riddles). [file:87][web:137]
+
+We do not use this data for marketing, profiling, or tracking across apps or devices. [web:133][web:142]
+
+## 5. Third-party services
+
+Besides the Google Gemini API used to generate riddle text, the App does not integrate other third-party services such as analytics, advertising networks, or social plugins in its current version. [file:87][web:142]
+
+If additional third-party services are added in future updates, this policy will be updated to describe what data those services receive and for what purpose. [web:133][web:139]
+
+## 6. Children’s privacy
+
+The App is intended for a general audience and generates riddles that are meant to be suitable for all ages. [file:87]
+
+We do not knowingly collect personal information from children. If you believe a child has provided personal information through the App, please contact us so we can delete it. [web:133]
+
+## 7. Data security
+
+Because the App does not create user accounts or store personal data on our own servers, security risks are limited. [file:87]
+
+Data transmitted to the Gemini API uses HTTPS, which helps protect it in transit; however, no method of transmission or storage is completely secure. [web:137][web:140]
+
+## 8. Your choices and rights
+
+Since the App does not collect or store your personal identifiable information on our servers, there is typically no profile for you to access, correct, or delete. [file:87]
+
+If you contact us about privacy or data questions, we will do our best to respond and explain how the App works and what data it touches. [web:133][web:139]
+
+## 9. Changes to this privacy policy
+
+We may update this privacy policy from time to time, for example when we add features like analytics, accounts, or advertising. [web:133][web:136]
+
+When we make changes, we will update the “Last updated” date above and, where appropriate, notify you in the app or on the listing.
+
+## 10. Contact us
+
+If you have questions or concerns about this privacy policy or the App’s data practices, contact us at:
+
+**[your-contact-email]**
