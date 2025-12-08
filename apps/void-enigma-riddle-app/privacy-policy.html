@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       :root {
-        color-scheme: dark light;
-        --bg: #050612;
+        /* Custom Colors from Cypher Grid Landing Page */
+        --bg: #050612; /* Deep background from the app */
         --fg: #f9fafb;
-        --accent: #ff073a;
+        --accent: #ff073a; /* Neon Red */
         --muted: #9ca3af;
       }
 
@@ -26,11 +26,12 @@
       .pp-container {
         max-width: 800px;
         margin: 0 auto;
-        background: rgba(15, 23, 42, 0.85);
+        /* Slightly lighter background for contrast */
+        background: rgba(18, 1, 15, 0.9);
         border-radius: 12px;
         padding: 2rem 1.75rem;
-        border: 1px solid rgba(148, 163, 184, 0.4);
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 7, 58, 0.4);
+        box-shadow: 0 18px 45px rgba(255, 7, 58, 0.15);
       }
 
       h1,
@@ -55,10 +56,10 @@
       }
 
       h2 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         margin-top: 1.75rem;
-        border-left: 3px solid var(--accent);
-        padding-left: 0.5rem;
+        border-left: 4px solid var(--accent);
+        padding-left: 0.75rem;
       }
 
       p {
@@ -73,7 +74,7 @@
       }
 
       li {
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.4rem;
       }
 
       strong {
@@ -90,9 +91,9 @@
       }
 
       .pp-contact {
-        margin-top: 1.25rem;
-        padding-top: 0.75rem;
-        border-top: 1px dashed rgba(148, 163, 184, 0.6);
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 7, 58, 0.2);
         font-size: 0.95rem;
       }
 
@@ -112,139 +113,115 @@
   <body>
     <main class="pp-container">
       <h1>Void Enigma – Privacy Policy</h1>
-      <div class="pp-updated">Last updated: 06 December 2025</div>
+      <div class="pp-updated">Last updated: 08 December 2025</div>
 
-      <h2>1. Who we are</h2>
+      <h2>1. Introduction and Contact</h2>
       <p>
-        This privacy policy explains how <em>Void Enigma</em> (the “App”)
-        handles information. The App is provided by
-        <strong>[Your Name or Company]</strong>, located in
-        <strong>[Your Country]</strong>.
+        This Privacy Policy explains how **Grasshopper IT Solutions, LLC**
+        ("we," "us," or "our") manages information in relation to the **Void
+        Enigma** mobile application (the “App”). We are committed to protecting
+        your privacy by minimizing data collection and maintaining transparency
+        about how the App operates.
       </p>
+      <p>If you have any questions regarding this policy, please contact us:</p>
       <p>
-        If you have any questions, you can contact us at
-        <strong>[your-contact-email]</strong>.
+        **Company:** Grasshopper IT Solutions, LLC<br />
+        **Email:**
+        <a href="mailto:grasshopper.it.solutions@gmail.com"
+          >grasshopper.it.solutions@gmail.com</a
+        >
       </p>
 
-      <h2>2. What data the app collects</h2>
+      <h2>2. Data Collection and Anonymity</h2>
       <p>
-        The App is designed as a simple riddle generator and does
-        <strong>not</strong> require you to create an account, log in, or
-        provide any personal details such as your name, email address, phone
-        number, or location.
+        The App is designed for anonymity and **does not** collect, store, or
+        transmit any Personally Identifiable Information (PII) about you.
       </p>
-      <p>The App:</p>
+      <p>Specifically, the App:</p>
       <ul>
         <li>
-          Does <strong>not</strong> collect or store your contacts, photos,
-          messages, precise location, or payment information.
+          Does **not** require user accounts, registration, names, email
+          addresses, or phone numbers.
         </li>
         <li>
-          Does <strong>not</strong> include in-app advertising SDKs or
-          third-party tracking libraries in its current version.
+          Does **not** collect precise location data, contacts, photos, or
+          messages from your device.
+        </li>
+        <li>
+          Does **not** use third-party analytics or advertising tracking SDKs.
         </li>
       </ul>
-      <p>
-        If you later add analytics, crash reporting, or ads, you must update
-        this policy to describe exactly what is collected and why.
-      </p>
 
       <h2>3. Use of the Gemini API</h2>
       <p>
-        When you request a new riddle, the App sends a text prompt to the
-        <strong>Google Gemini API</strong> to generate a riddle and answer.
+        The core function of the App is to generate riddles using the Google
+        Gemini API. This interaction involves transmitting data outside the App
+        to Google's servers.
       </p>
-      <p>
-        The content sent is limited to generic instructions (for example, asking
-        for a short, fun riddle) and does not include personal identifiers about
-        you. The AI response (riddle and answer) is displayed on your device and
-        may be temporarily stored in the App’s memory to avoid showing the same
-        riddle repeatedly in the same session.
-      </p>
-      <p>
-        For more information about how Google handles data, please review the
-        Gemini API and related privacy documentation provided by Google.
-      </p>
-
-      <h2>4. How we use and store data</h2>
-      <p>Within the App, we may temporarily store:</p>
       <ul>
-        <li>The current riddle and answer.</li>
         <li>
-          A short in-memory list of previously shown riddles in this session, to
-          reduce repetition.
+          <strong>Data Transmitted:</strong> When you request a new riddle, the
+          App sends a brief, non-personal text prompt to the Gemini API (e.g.,
+          "Generate a fun, short riddle"). This request **does not** include any
+          information that identifies you or your device.
+        </li>
+        <li>
+          <strong>API Key Security:</strong> The developer API key used to
+          communicate with Gemini is secured within the application's code and
+          is never exposed to the end-user.
+        </li>
+        <li>
+          <strong>Data Handling by Google:</strong> Your interaction with the
+          Gemini API is subject to Google's privacy policies. We encourage you
+          to review the Google AI Privacy Hub for details on their data
+          practices.
         </li>
       </ul>
+
+      <h2>4. Data Storage and Retention</h2>
+      <p>All data storage related to your activity is minimal and temporary:</p>
+      <ul>
+        <li>
+          <strong>In-App Memory:</strong> The App temporarily stores the current
+          riddle and answer in your device's memory for display purposes. It
+          also maintains an in-memory history of recently seen riddles to
+          minimize repetition within a single session.
+        </li>
+        <li>
+          <strong>Data Deletion:</strong> This temporary session data is
+          immediately cleared when you fully close the App or explicitly reset
+          the history. No long-term persistent storage (like cookies, local
+          storage, or databases) is used to track session history or store
+          riddles between launches.
+        </li>
+      </ul>
+
+      <h2>5. Children’s Privacy</h2>
       <p>
-        This data stays on your device’s memory while the App is running and is
-        cleared when you reset the history or close the App. We do not create
-        long-term user profiles from this information.
-      </p>
-      <p>
-        We do not use this data for marketing, profiling, or tracking across
-        apps or devices.
+        The App is a riddle game intended for a general audience and is designed
+        to generate content suitable for all ages. We do not knowingly collect
+        any personal information from children under the age of 13. If a parent
+        or guardian becomes aware that their child has provided us with personal
+        information, they should contact us immediately at the email provided in
+        Section 1.
       </p>
 
-      <h2>5. Third-party services</h2>
+      <h2>6. Changes to this Privacy Policy</h2>
       <p>
-        Besides the Google Gemini API used to generate riddle text, the App does
-        not integrate other third-party services such as analytics, advertising
-        networks, or social plugins in its current version.
-      </p>
-      <p>
-        If additional third-party services are added in future updates, this
-        policy will be updated to describe what data those services receive and
-        for what purpose.
+        We may update this Privacy Policy from time to time as we add new
+        features or comply with new legal requirements. We will notify you of
+        any changes by posting the new Privacy Policy here and updating the
+        “Last updated” date at the top of this policy.
       </p>
 
-      <h2>6. Children’s privacy</h2>
-      <p>
-        The App is intended for a general audience and generates riddles that
-        are meant to be suitable for all ages. We do not knowingly collect
-        personal information from children.
-      </p>
-      <p>
-        If you believe a child has provided personal information through the
-        App, please contact us so we can delete it.
-      </p>
-
-      <h2>7. Data security</h2>
-      <p>
-        Because the App does not create user accounts or store personal data on
-        our own servers, security risks are limited.
-      </p>
-      <p>
-        Data transmitted to the Gemini API uses HTTPS, which helps protect it in
-        transit; however, no method of transmission or storage is completely
-        secure.
-      </p>
-
-      <h2>8. Your choices and rights</h2>
-      <p>
-        Since the App does not collect or store your personally identifiable
-        information on our servers, there is typically no profile for you to
-        access, correct, or delete.
-      </p>
-      <p>
-        If you contact us about privacy or data questions, we will do our best
-        to respond and explain how the App works and what data it touches.
-      </p>
-
-      <h2>9. Changes to this privacy policy</h2>
-      <p>
-        We may update this privacy policy from time to time, for example when we
-        add features like analytics, accounts, or advertising.
-      </p>
-      <p>
-        When we make changes, we will update the “Last updated” date above and,
-        where appropriate, notify you in the App or on the app store listing.
-      </p>
-
-      <h2>10. Contact us</h2>
+      <h2 id="contact">7. Contact Us</h2>
       <p class="pp-contact">
-        If you have questions or concerns about this privacy policy or the App’s
-        data practices, contact us at:
-        <strong>[your-contact-email]</strong>.
+        If you have any questions or concerns about this privacy policy or our
+        data practices, please reach out to us:
+        <br />
+        <a href="mailto:grasshopper.it.solutions@gmail.com"
+          >grasshopper.it.solutions@gmail.com</a
+        >
       </p>
     </main>
   </body>
