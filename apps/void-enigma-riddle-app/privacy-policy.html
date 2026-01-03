@@ -1,227 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Void Enigma – Privacy Policy</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      :root {
-        --bg: #050612; /* Deep background from the app */
-        --fg: #f9fafb;
-        --accent: #ff073a; /* Neon Red */
-        --muted: #9ca3af;
-      }
-
-      body {
-        margin: 0;
-        padding: 2rem 1.5rem;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          sans-serif;
-        line-height: 1.6;
-        background: var(--bg);
-        color: var(--fg);
-      }
-
-      .pp-container {
-        max-width: 800px;
-        margin: 0 auto;
-        /* Slightly lighter background for contrast */
-        background: rgba(18, 1, 15, 0.9);
-        border-radius: 12px;
-        padding: 2rem 1.75rem;
-        border: 1px solid rgba(255, 7, 58, 0.4);
-        box-shadow: 0 18px 45px rgba(255, 7, 58, 0.15);
-      }
-
-      h1,
-      h2 {
-        font-weight: 700;
-        margin: 0 0 0.75rem;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-        color: var(--accent);
-        text-align: center;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .pp-updated {
-        text-align: center;
-        font-size: 0.9rem;
-        color: var(--muted);
-        margin-bottom: 1.75rem;
-      }
-
-      h2 {
-        font-size: 1.2rem;
-        margin-top: 1.75rem;
-        border-left: 4px solid var(--accent);
-        padding-left: 0.75rem;
-      }
-
-      p {
-        margin: 0 0 0.75rem;
-        font-size: 0.95rem;
-      }
-
-      ul {
-        margin: 0.25rem 0 0.75rem 1.25rem;
-        padding: 0;
-        font-size: 0.95rem;
-      }
-
-      li {
-        margin-bottom: 0.4rem;
-      }
-
-      strong {
-        font-weight: 600;
-      }
-
-      a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      .pp-contact {
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(255, 7, 58, 0.2);
-        font-size: 0.95rem;
-      }
-
-      @media (max-width: 640px) {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-          padding: 1.5rem 1rem;
+            font-family: 'Courier New', monospace;
+            background: #0a0e27;
+            color: #e0e0e0;
+            line-height: 1.7;
+            padding: 40px 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
-        .pp-container {
-          padding: 1.5rem 1.25rem;
+        
+        /* Glitch/neon background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255, 20, 30, 0.03),
+                rgba(255, 20, 30, 0.03) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: -1;
         }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(10, 14, 39, 0.95);
+            border: 2px solid #ff141e;
+            border-radius: 4px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(255, 20, 30, 0.3), inset 0 0 20px rgba(255, 20, 30, 0.05);
+            position: relative;
+        }
+        
         h1 {
-          font-size: 1.5rem;
+            font-size: 32px;
+            color: #ff141e;
+            text-shadow: 0 0 10px #ff141e, 0 0 20px rgba(255, 20, 30, 0.5);
+            margin-bottom: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
-      }
+        
+        h2 {
+            font-size: 20px;
+            color: #ff6b7a;
+            text-shadow: 0 0 8px rgba(255, 20, 30, 0.6);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-left: 3px solid #ff141e;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            font-size: 14px;
+            color: #ff8a95;
+            text-shadow: 0 0 5px rgba(255, 20, 30, 0.4);
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #d0d0d0;
+            font-size: 15px;
+        }
+        
+        strong {
+            color: #ff8a95;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255, 20, 30, 0.3);
+        }
+        
+        ul {
+            margin: 15px 0 15px 30px;
+            list-style: none;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: #d0d0d0;
+        }
+        
+        li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ff141e;
+            text-shadow: 0 0 5px #ff141e;
+            font-weight: bold;
+        }
+        
+        a {
+            color: #ff6b7a;
+            text-decoration: none;
+            text-shadow: 0 0 5px rgba(255, 20, 30, 0.4);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+        
+        a:hover {
+            color: #ff141e;
+            text-shadow: 0 0 15px #ff141e;
+            border-bottom: 1px solid #ff141e;
+        }
+        
+        /* Divider lines between sections */
+        h2:not(:first-of-type) {
+            border-top: 1px solid rgba(255, 20, 30, 0.2);
+            padding-top: 20px;
+        }
+        
+        /* Code-like appearance for technical terms */
+        code {
+            background: rgba(255, 20, 30, 0.1);
+            color: #ff8a95;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            border: 1px solid rgba(255, 20, 30, 0.2);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                border: 1px solid #ff141e;
+            }
+            
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            
+            h2 {
+                font-size: 18px;
+                margin-top: 25px;
+            }
+            
+            p {
+                font-size: 14px;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <main class="pp-container">
-      <h1>Void Enigma – Privacy Policy</h1>
-      <div class="pp-updated">Last updated: 08 December 2025</div>
+</head>
+<body>
+    <div class="container">
+        <h1>▸ VOID ENIGMA ▸ PRIVACY POLICY ▸</h1>
 
-      <h2>1. Introduction and Contact</h2>
-      <p>
-        This Privacy Policy explains how **Grasshopper IT Solutions, LLC**
-        ("we," "us," or "our") manages information in relation to the **Void
-        Enigma** mobile application (the “App”). We are committed to protecting
-        your privacy by minimizing data collection and maintaining transparency
-        about how the App operates.
-      </p>
-      <p>If you have any questions regarding this policy, please contact us:</p>
-      <p>
-        **Company:** Grasshopper IT Solutions, LLC<br />
-        **Email:**
-        <a href="mailto:grasshopper.it.solutions@gmail.com"
-          >grasshopper.it.solutions@gmail.com</a
-        >
-      </p>
+        <h2>1. INTRODUCTION AND CONTACT</h2>
+        <p>This Privacy Policy explains how <strong>Grasshopper IT Solutions, LLC</strong> ("we," "us," or "our") manages information in relation to the <strong>Void Enigma</strong> mobile application (the "App"). We are committed to protecting your privacy by minimizing data collection and maintaining transparency about how the App operates.</p>
+        
+        <p>If you have any questions regarding this policy, please contact us:</p>
+        <p><strong>Company:</strong> Grasshopper IT Solutions, LLC</p>
+        <p><strong>Email:</strong> grasshopper.it.solutions@gmail.com</p>
 
-      <h2>2. Data Collection and Anonymity</h2>
-      <p>
-        The App is designed for anonymity and **does not** collect, store, or
-        transmit any Personally Identifiable Information (PII) about you.
-      </p>
-      <p>Specifically, the App:</p>
-      <ul>
-        <li>
-          Does **not** require user accounts, registration, names, email
-          addresses, or phone numbers.
-        </li>
-        <li>
-          Does **not** collect precise location data, contacts, photos, or
-          messages from your device.
-        </li>
-        <li>
-          Does **not** use third-party analytics or advertising tracking SDKs.
-        </li>
-      </ul>
+        <h2>2. DATA COLLECTION AND ANONYMITY</h2>
+        <p>The App is designed for anonymity and <strong>does not</strong> collect, store, or transmit any Personally Identifiable Information (PII) about you.</p>
+        
+        <p>Specifically, the App:</p>
+        <ul>
+            <li>Does <strong>not</strong> require user accounts, registration, names, email addresses, or phone numbers.</li>
+            <li>Does <strong>not</strong> collect precise location data, contacts, photos, or messages from your device.</li>
+            <li>Does <strong>not</strong> use third-party analytics or user tracking SDKs.</li>
+        </ul>
 
-      <h2>3. Use of the Gemini API</h2>
-      <p>
-        The core function of the App is to generate riddles using the Google
-        Gemini API. This interaction involves transmitting data outside the App
-        to Google's servers.
-      </p>
-      <ul>
-        <li>
-          <strong>Data Transmitted:</strong> When you request a new riddle, the
-          App sends a brief, non-personal text prompt to the Gemini API (e.g.,
-          "Generate a fun, short riddle"). This request **does not** include any
-          information that identifies you or your device.
-        </li>
-        <li>
-          <strong>API Key Security:</strong> The developer API key used to
-          communicate with Gemini is secured within the application's code and
-          is never exposed to the end-user.
-        </li>
-        <li>
-          <strong>Data Handling by Google:</strong> Your interaction with the
-          Gemini API is subject to Google's privacy policies. We encourage you
-          to review the Google AI Privacy Hub for details on their data
-          practices.
-        </li>
-      </ul>
+        <h2>3. USE OF THE PERPLEXITY AI API</h2>
+        <p>The core function of the App is to generate riddles using the Perplexity AI API. This interaction involves transmitting data outside the App to Perplexity's servers.</p>
+        
+        <p><strong>Data Transmitted:</strong> When you request a new riddle, the App sends a brief, non-personal text prompt to the Perplexity API (e.g., "Generate a fun, short riddle"). This request <strong>does not</strong> include any information that identifies you or your device.</p>
+        
+        <p><strong>API Key Security:</strong> The developer API key used to communicate with Perplexity is secured within the application's code and is never exposed to the end-user.</p>
+        
+        <p><strong>Data Handling by Perplexity:</strong> Your interaction with the Perplexity AI API is subject to Perplexity's privacy policies. We encourage you to review <a href="https://www.perplexity.ai/privacy" target="_blank">Perplexity's Privacy Policy</a> for details on their data practices.</p>
 
-      <h2>4. Data Storage and Retention</h2>
-      <p>All data storage related to your activity is minimal and temporary:</p>
-      <ul>
-        <li>
-          <strong>In-App Memory:</strong> The App temporarily stores the current
-          riddle and answer in your device's memory for display purposes. It
-          also maintains an in-memory history of recently seen riddles to
-          minimize repetition within a single session.
-        </li>
-        <li>
-          <strong>Data Deletion:</strong> This temporary session data is
-          immediately cleared when you fully close the App or explicitly reset
-          the history. No long-term persistent storage (like cookies, local
-          storage, or databases) is used to track session history or store
-          riddles between launches.
-        </li>
-      </ul>
+        <h2>4. ADVERTISING AND GOOGLE ADMOB</h2>
+        <p>The App displays advertisements through <strong>Google AdMob</strong> to support ongoing development and operation.</p>
+        
+        <p><strong>What Google AdMob Collects:</strong> Google AdMob may collect limited information to serve relevant ads, including:</p>
+        <ul>
+            <li>Your general location (country, region) based on IP address.</li>
+            <li>Device identifiers and ad-related user identifiers.</li>
+            <li>Advertising preferences and browsing patterns.</li>
+            <li>Interactions with ads shown in the App.</li>
+        </ul>
+        
+        <p><strong>No Personal Information:</strong> Google AdMob <strong>does not</strong> collect your name, email, phone number, or other personally identifiable information through the App. Ad targeting is based on anonymized device data and general demographics, not personal identity.</p>
+        
+        <p><strong>Opting Out:</strong> You can limit ad personalization through your device settings:</p>
+        <ul>
+            <li><strong>Android:</strong> Settings → Google → Manage your Google Account → Data & Privacy → Ad settings</li>
+            <li><strong>iOS:</strong> Settings → Privacy → Apple Advertising → Personalized Ads (toggle off)</li>
+        </ul>
+        
+        <p><strong>Data Handling by Google:</strong> Google's use of ad data is governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>. We encourage you to review it for complete details on ad-related data practices.</p>
 
-      <h2>5. Children’s Privacy</h2>
-      <p>
-        The App is a riddle game intended for a general audience and is designed
-        to generate content suitable for all ages. We do not knowingly collect
-        any personal information from children under the age of 13. If a parent
-        or guardian becomes aware that their child has provided us with personal
-        information, they should contact us immediately at the email provided in
-        Section 1.
-      </p>
+        <h2>5. DATA STORAGE AND RETENTION</h2>
+        <p>All data storage related to your activity is minimal and temporary:</p>
+        
+        <p><strong>In-App Memory:</strong> The App temporarily stores the current riddle and answer in your device's memory for display purposes. It also maintains an in-memory history of recently seen riddles to minimize repetition within a single session.</p>
+        
+        <p><strong>Data Deletion:</strong> This temporary session data is immediately cleared when you fully close the App or explicitly reset the history. No long-term persistent storage (like cookies, local storage, or databases) is used to track session history or store riddles between launches.</p>
 
-      <h2>6. Changes to this Privacy Policy</h2>
-      <p>
-        We may update this Privacy Policy from time to time as we add new
-        features or comply with new legal requirements. We will notify you of
-        any changes by posting the new Privacy Policy here and updating the
-        “Last updated” date at the top of this policy.
-      </p>
+        <h2>6. CHILDREN'S PRIVACY</h2>
+        <p>The App is a riddle game intended for a general audience and is designed to generate content suitable for all ages. We do not knowingly collect any personal information from children under the age of 13. If a parent or guardian becomes aware that their child has provided us with personal information, they should contact us immediately at the email provided in Section 1.</p>
 
-      <h2 id="contact">7. Contact Us</h2>
-      <p class="pp-contact">
-        If you have any questions or concerns about this privacy policy or our
-        data practices, please reach out to us:
-        <br />
-        <a href="mailto:grasshopper.it.solutions@gmail.com"
-          >grasshopper.it.solutions@gmail.com</a
-        >
-      </p>
-    </main>
-  </body>
+        <h2>7. CHANGES TO THIS PRIVACY POLICY</h2>
+        <p>We may update this Privacy Policy from time to time as we add new features or comply with new legal requirements. We will notify you of any changes by posting the new Privacy Policy here and updating the "Last updated" date at the top of this policy.</p>
+
+        <h2>8. CONTACT US</h2>
+        <p>If you have any questions or concerns about this privacy policy or our data practices, please reach out to us:</p>
+        <p><strong>Email:</strong> grasshopper.it.solutions@gmail.com</p>
+    </div>
+</body>
 </html>
