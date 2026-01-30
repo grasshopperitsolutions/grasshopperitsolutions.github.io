@@ -6,11 +6,13 @@
     <title>Grasshopper App Center</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Space Mono for that 'Vibe Coding' feel -->
+    <!-- Google Fonts: Space Mono for Vibe / Inter & Outfit for Professionalism -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
       tailwind.config = {
@@ -20,6 +22,7 @@
               // Original & Primary Grasshopper Colors
               "grass-green": "#00ff41",
               "cyber-blue": "#00dbde",
+              "cyber-red": "#ff003c",
               "deep-space": "#0a0a0a",
               "code-gray": "#1e1e1e",
               "card-gray": "#151515",
@@ -39,9 +42,17 @@
             fontFamily: {
               mono: ['"Space Mono"', "monospace"],
               sans: ['"Inter"', "sans-serif"],
+              heading: ['"Outfit"', "sans-serif"],
             },
             animation: {
               "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              float: "float 3s ease-in-out infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
             },
           },
         },
@@ -58,6 +69,11 @@
       ::-webkit-scrollbar-thumb {
         background: #1e1e1e;
         border: 1px solid #00ff41;
+      }
+      .neon-text {
+        text-shadow:
+          0 0 5px rgba(0, 255, 65, 0.5),
+          0 0 10px rgba(0, 255, 65, 0.3);
       }
       .neon-glow-green {
         box-shadow: 0 0 10px rgba(0, 255, 65, 0.4),
@@ -81,31 +97,29 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           <div class="flex items-center group cursor-pointer">
-            <span class="text-3xl mr-2 animate-pulse">🦗</span>
+            <img
+              src="../assets/logo.svg"
+              alt="Grasshopper Logo"
+              class="w-10 h-10 mr-2 drop-shadow-[0_0_5px_rgba(0,255,65,0.5)] group-hover:scale-110 transition-transform"
+            />
             <span
-              class="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-grass-green transition-colors"
+              class="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-grass-green transition-colors neon-text"
               >Grasshopper IT Solutions</span
             >
           </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-8">
-              <!-- Link back to the main site (assuming index.html is the homepage) -->
-              <a
-                href="../"
-                class="border border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black px-4 py-2 rounded-md text-sm font-mono transition-all font-bold"
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="../"
+              class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
               >
                 &lt; Back to Home
               </a>
             </div>
           </div>
-          <!-- Mobile menu button (simplified for this single page) -->
           <div class="md:hidden">
-            <a
-              href="index.html"
-              class="text-sm font-mono text-cyber-blue border border-cyber-blue p-2 rounded hover:bg-cyber-blue/20 transition-colors"
-            >
-              Home
-            </a>
+            <button id="mobile-menu-btn" class="text-gray-300">
+              <i data-lucide="menu"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -280,5 +294,12 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      lucide.createIcons();
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      btn.addEventListener("click", () => menu.classList.toggle("hidden"));
+    </script>
   </body>
 </html>

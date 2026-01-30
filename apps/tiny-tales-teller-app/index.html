@@ -6,11 +6,13 @@
     <title>Tiny Tales Teller - AI Story Generator</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Kalam (Playful, hand-drawn look) and Inter (Clean text) -->
+    <!-- Google Fonts: Space Mono for Vibe / Inter & Outfit for Professionalism -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
       tailwind.config = {
@@ -19,7 +21,7 @@
             colors: {
               // App Theme Colors (based on TinyTalesTeller.html and apps.html)
               "tales-amber": "#b45309", // Primary Accent (Darker Amber)
-              "tales-green": "#059669", // Action Button Color (Green-600)
+              "tales-action-color": "#991b1b", // New Autumnal Maroon/Rust
               "tales-bg": "#fef3c7", // Light Background (Beige/Yellow-50)
               "tales-card": "#fdf6e3", // Card/Panel Background
               "tales-text": "#374151", // Dark Text
@@ -27,15 +29,28 @@
 
               // Fallback/System Colors
               "grass-green": "#00ff41",
+              "cyber-blue": "#00dbde",
+              "deep-space": "#0a0a0a",
+              "code-gray": "#1e1e1e",
+              "card-gray": "#151515",
             },
             fontFamily: {
-              // Kalam for headers and playful elements
-              headline: ['"Kalam"', "cursive"],
+              // Outfit for headers and playful elements
+              headline: ['"Outfit"', "sans-serif"],
               // Inter for body text (clean and readable)
               sans: ['"Inter"', "sans-serif"],
+              // Space Mono for code elements
+              mono: ['"Space Mono"', "monospace"],
             },
             animation: {
               "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              float: "float 3s ease-in-out infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
             },
           },
         },
@@ -47,10 +62,10 @@
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #fef3c7; /* Light background */
+        background: #0a0a0a; /* Deep space background */
       }
       ::-webkit-scrollbar-thumb {
-        background: #f59e0b; /* Orange/Amber thumb */
+        background: #1e1e1e; /* Code gray thumb */
         border: 1px solid #b45309; /* Dark amber border */
         border-radius: 4px;
       }
@@ -58,6 +73,11 @@
       .soft-glow-amber {
         box-shadow: 0 4px 20px rgba(180, 83, 9, 0.2),
           0 0 8px rgba(180, 83, 9, 0.1);
+      }
+      .neon-text {
+        text-shadow:
+          0 0 5px rgba(180, 83, 9, 0.5),
+          0 0 10px rgba(180, 83, 9, 0.3);
       }
       /* Remove the scroll-smooth from the body to avoid conflicting with the HTML tag, if necessary */
       body {
@@ -73,13 +93,17 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           <div class="flex items-center group cursor-pointer">
-            <span class="text-3xl mr-2 text-tales-green">📚</span>
+            <img
+              src="../../assets/logo.svg"
+              alt="Grasshopper Logo"
+              class="w-10 h-10 mr-2 drop-shadow-[0_0_5px_rgba(180,83,9,0.5)] group-hover:scale-110 transition-transform"
+            />
             <span
-              class="text-2xl font-headline font-bold text-tales-amber transition-colors"
+              class="text-2xl font-headline font-bold text-tales-amber group-hover:text-tales-action-color transition-colors neon-text"
               >Tiny Tales Teller</span
             >
           </div>
-          <div class="md:block">
+          <div class="hidden md:flex items-center space-x-8">
             <a
               href="../../apps/"
               class="border border-tales-green text-tales-green hover:bg-tales-green hover:text-white px-4 py-2 rounded-full text-sm font-sans transition-all font-semibold soft-glow-amber"
@@ -162,10 +186,10 @@
                 </li>
               </ul>
               <a
-                href="TinyTalesTeller.html"
-                class="mt-6 inline-block bg-tales-green text-white font-bold py-3 px-8 rounded-full hover:bg-tales-amber transition-all shadow-lg"
+                href="#"
+                class="mt-6 inline-block bg-tales-green text-white font-bold py-3 px-8 rounded-full hover:bg-tales-amber transition-all shadow-lg cursor-not-allowed opacity-75"
               >
-                Launch Storyteller Now &gt;
+                Coming Soon >
               </a>
             </div>
             <div class="md:w-1/2">
@@ -254,6 +278,11 @@
 
     <!-- JavaScript for Tab Switching -->
     <script>
+      lucide.createIcons();
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      btn.addEventListener("click", () => menu.classList.toggle("hidden"));
+
       function showTab(tabName) {
         const gameDetails = document.getElementById("game-details");
         const privacyPolicy = document.getElementById("privacy-policy");

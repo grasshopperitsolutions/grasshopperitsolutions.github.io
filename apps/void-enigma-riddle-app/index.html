@@ -6,11 +6,13 @@
     <title>Void Enigma Terminal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Space Mono for that 'Vibe Coding' feel -->
+    <!-- Google Fonts: Space Mono for Vibe / Inter & Outfit for Professionalism -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
       tailwind.config = {
@@ -22,13 +24,24 @@
               "answer-neon": "#83ff65" /* Answer Green */,
               "cyber-blue": "#00dbde" /* Secondary Accent */,
               "card-gray": "#12010f",
+              "grass-green": "#00ff41",
+              "deep-space": "#0a0a0a",
+              "code-gray": "#1e1e1e",
             },
             fontFamily: {
               mono: ['"Space Mono"', "monospace"],
               sans: ['"Inter"', "sans-serif"],
+              heading: ['"Outfit"', "sans-serif"],
             },
             animation: {
               "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              float: "float 3s ease-in-out infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
             },
           },
         },
@@ -73,15 +86,20 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           <div class="flex items-center group cursor-pointer">
-            <span class="text-3xl mr-2 animate-pulse text-neon-red">☲</span>
+            <img
+              src="../../assets/logo.svg"
+              alt="Grasshopper Logo"
+              class="w-10 h-10 mr-2 drop-shadow-[0_0_5px_rgba(255,7,58,0.5)] group-hover:scale-110 transition-transform"
+            />
             <span
               class="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-neon-red transition-colors text-shadow-neon"
               >Void Enigma Riddles</span
             >
           </div>
-          <a
+          <div class="hidden md:flex items-center space-x-8">
+            <a
             href="../../apps/"
-            class="border border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black px-4 py-2 rounded-md text-sm font-mono transition-all font-bold"
+              class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
           >
             &lt; Back to App Center
           </a>
@@ -254,6 +272,11 @@
     </footer>
 
     <script>
+      lucide.createIcons();
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      btn.addEventListener("click", () => menu.classList.toggle("hidden"));
+
       // Function to handle tab switching
       function showTab(tabName) {
         const gameDetails = document.getElementById("game-details");
