@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
@@ -6,16 +6,14 @@
     <title>Grasshopper IT Solutions</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Space Mono for that 'Vibe Coding' feel -->
+    <!-- Google Fonts: Space Mono for Vibe / Inter & Outfit for Professionalism -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9372040956225558"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <script>
       tailwind.config = {
         theme: {
@@ -23,6 +21,7 @@
             colors: {
               "grass-green": "#00ff41",
               "cyber-blue": "#00dbde",
+              "cyber-red": "#ff003c",
               "deep-space": "#0a0a0a",
               "code-gray": "#1e1e1e",
               "card-gray": "#151515",
@@ -30,15 +29,26 @@
             fontFamily: {
               mono: ['"Space Mono"', "monospace"],
               sans: ['"Inter"', "sans-serif"],
+              heading: ['"Outfit"', "sans-serif"],
             },
             animation: {
               "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
               float: "float 3s ease-in-out infinite",
+              scroll: "scroll 60s linear infinite",
+              "bounce-x": "bounce-x 1s infinite",
             },
             keyframes: {
               float: {
                 "0%, 100%": { transform: "translateY(0)" },
                 "50%": { transform: "translateY(-10px)" },
+              },
+              scroll: {
+                "0%": { transform: "translateX(0)" },
+                "100%": { transform: "translateX(-50%)" },
+              },
+              "bounce-x": {
+                "0%, 100%": { transform: "translateX(0)" },
+                "50%": { transform: "translateX(5px)" },
               },
             },
           },
@@ -46,7 +56,6 @@
       };
     </script>
     <style>
-      /* Custom scrollbar for the cyberpunk feel */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -58,14 +67,16 @@
         border: 1px solid #00ff41;
       }
       .neon-text {
-        text-shadow: 0 0 5px rgba(0, 255, 65, 0.5),
+        text-shadow:
+          0 0 5px rgba(0, 255, 65, 0.5),
           0 0 10px rgba(0, 255, 65, 0.3);
       }
-      .neon-border:hover {
-        box-shadow: 0 0 10px rgba(0, 219, 222, 0.5);
+      .glass-card {
+        background: rgba(21, 21, 21, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
       }
-
-      /* Glitch Effect */
       .glitch-wrapper {
         position: relative;
       }
@@ -95,18 +106,6 @@
         0% {
           clip: rect(11px, 9999px, 86px, 0);
         }
-        20% {
-          clip: rect(98px, 9999px, 5px, 0);
-        }
-        40% {
-          clip: rect(54px, 9999px, 34px, 0);
-        }
-        60% {
-          clip: rect(12px, 9999px, 68px, 0);
-        }
-        80% {
-          clip: rect(8px, 9999px, 13px, 0);
-        }
         100% {
           clip: rect(48px, 9999px, 73px, 0);
         }
@@ -115,237 +114,208 @@
         0% {
           clip: rect(65px, 9999px, 100px, 0);
         }
-        20% {
-          clip: rect(4px, 9999px, 96px, 0);
-        }
-        40% {
-          clip: rect(87px, 9999px, 13px, 0);
-        }
-        60% {
-          clip: rect(5px, 9999px, 66px, 0);
-        }
-        80% {
-          clip: rect(64px, 9999px, 1px, 0);
-        }
         100% {
           clip: rect(32px, 9999px, 45px, 0);
         }
       }
+      #notification-toast {
+        transform: translateY(100px);
+        transition: transform 0.3s ease-out;
+      }
+      #notification-toast.show {
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body
-    class="bg-deep-space text-gray-300 font-sans antialiased selection:bg-grass-green selection:text-black"
+    class="bg-deep-space text-gray-300 font-sans antialiased selection:bg-grass-green selection:text-black overflow-x-hidden"
   >
+    <!-- Notification Toast -->
+    <div
+      id="notification-toast"
+      class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-cyber-blue text-black font-mono font-bold px-6 py-3 rounded-full shadow-2xl flex items-center gap-3"
+    >
+      <i data-lucide="info" class="w-5 h-5"></i>
+      <span>Module coming soon...</span>
+    </div>
+
+    <!-- Floating AI Agent (Grassy Hopper) -->
+    <div class="fixed bottom-8 right-8 z-[60] flex flex-col items-end">
+      <div
+        id="ai-bubble"
+        class="hidden mb-4 glass-card p-4 rounded-2xl border border-grass-green/30 max-w-[200px] text-xs font-mono text-white animate-fade-in shadow-2xl"
+      >
+        <p class="mb-2 text-grass-green">// GRASSY_HOPPER_v1.0</p>
+        <p>Neural chat interface coming soon to assist your build.</p>
+      </div>
+      <button
+        onclick="toggleAIBubble()"
+        class="w-16 h-16 rounded-full bg-grass-green flex items-center justify-center shadow-[0_0_20px_rgba(0,255,65,0.4)] hover:scale-110 transition-transform group overflow-hidden border-2 border-white/20"
+      >
+        <div
+          class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"
+        ></div>
+        <img
+          src="assets/logo.svg"
+          alt="Grasshopper Logo"
+          class="w-10 h-10 animate-float"
+        />
+      </button>
+    </div>
+
     <!-- Navigation -->
     <nav
-      class="fixed w-full z-50 bg-deep-space/90 backdrop-blur-md border-b border-white/5"
+      class="fixed w-full z-50 bg-deep-space/80 backdrop-blur-xl border-b border-white/5"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
-          <div class="flex items-center group cursor-pointer">
-            <span class="text-3xl mr-2 animate-pulse">🦗</span>
+          <div
+            class="flex items-center group cursor-pointer"
+            onclick="window.scrollTo(0, 0)"
+          >
+            <img
+              src="assets/logo.svg"
+              alt="Grasshopper Logo"
+              class="w-10 h-10 mr-2 drop-shadow-[0_0_5px_rgba(0,255,65,0.5)] group-hover:scale-110 transition-transform"
+            />
             <span
               class="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-grass-green transition-colors neon-text"
-              >Grasshopper IT Solutions</span
+              >Grasshopper_IT</span
             >
           </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-8">
-              <a
-                href="#about"
-                class="hover:text-grass-green px-3 py-2 rounded-md text-sm font-medium transition-colors font-mono"
-                >./About</a
-              >
-              <a
-                href="#services"
-                class="hover:text-cyber-blue px-3 py-2 rounded-md text-sm font-medium transition-colors font-mono"
-                >./Services</a
-              >
-              <a
-                href="./apps/"
-                class="hover:text-grass-green px-3 py-2 rounded-md text-sm font-medium transition-colors font-mono"
-                >./Apps</a
-              >
-              <a
-                href="#contact"
-                class="border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-4 py-2 rounded-md text-sm font-mono transition-all font-bold"
-                >Start_Project</a
-              >
-            </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#about"
+              class="hover:text-grass-green text-sm font-medium transition-colors font-mono"
+              >./About</a
+            >
+            <a
+              href="#services"
+              class="hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
+              >./Services</a
+            >
+            <a
+              href="#stack"
+              class="hover:text-grass-green text-sm font-medium transition-colors font-mono"
+              >./Tech_Stack</a
+            >
+            <a
+              href="#process"
+              class="hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
+              >./Process</a
+            >
+            <a
+              href="./apps/"
+              class="hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
+              >./App_Center</a
+            >
+            <a
+              href="mailto:grasshopper.it.solutions@gmail.com"
+              class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
+              >START_PROJECT</a
+            >
           </div>
-          <!-- Mobile menu button -->
           <div class="md:hidden">
-            <button
-              id="mobile-menu-btn"
-              class="text-gray-300 hover:text-white focus:outline-none"
-            >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+            <button id="mobile-menu-btn" class="text-gray-300">
+              <i data-lucide="menu"></i>
             </button>
           </div>
         </div>
       </div>
-      <!-- Mobile Menu -->
       <div
         id="mobile-menu"
-        class="hidden md:hidden bg-code-gray border-b border-white/10"
+        class="hidden md:hidden bg-code-gray border-b border-white/10 px-4 py-6 space-y-4"
       >
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a
-            href="#about"
-            class="text-gray-300 hover:text-grass-green block px-3 py-2 rounded-md text-base font-medium font-mono"
-            >./About</a
-          >
-          <a
-            href="#services"
-            class="text-gray-300 hover:text-cyber-blue block px-3 py-2 rounded-md text-base font-medium font-mono"
-            >./Services</a
-          >
-          <a
-            href="./apps/"
-            class="text-gray-300 hover:text-grass-green block px-3 py-2 rounded-md text-base font-medium font-mono"
-            >./Apps</a
-          >
-          <a
-            href="#contact"
-            class="text-grass-green block px-3 py-2 rounded-md text-base font-medium font-mono font-bold"
-            >Start_Project</a
-          >
-        </div>
+        <a href="#about" class="block text-gray-300 font-mono">./About</a>
+        <a href="#services" class="block text-gray-300 font-mono">./Services</a>
+        <a href="#stack" class="block text-gray-300 font-mono">./Tech_Stack</a>
+        <a href="#process" class="block text-gray-300 font-mono">./Process</a>
+        <a href="./apps/" class="block text-gray-300 font-mono">./App_Center</a>
       </div>
     </nav>
 
     <!-- Hero Section -->
     <section
-      class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center"
+      class="relative pt-32 pb-20 lg:pt-56 lg:pb-32 overflow-hidden min-h-screen flex items-center"
     >
-      <!-- Background Grid -->
       <div
         class="absolute inset-0 bg-[linear-gradient(to_right,#1e1e1e_1px,transparent_1px),linear-gradient(to_bottom,#1e1e1e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"
       ></div>
-
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <div
-              class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-wider text-cyber-blue uppercase bg-cyber-blue/10 rounded-full border border-cyber-blue/20"
-            >
-              System Status: Online
-            </div>
-            <h1
-              class="text-5xl md:text-7xl font-bold font-mono tracking-tight mb-6 leading-tight"
+              class="inline-flex items-center px-3 py-1 mb-6 text-xs font-mono font-semibold tracking-tighter text-cyber-blue uppercase bg-cyber-blue/10 rounded-full border border-cyber-blue/20"
             >
               <span
-                class="text-white block glitch-wrapper"
-                data-text="High-End Code."
-                >High-End Code.</span
+                class="w-2 h-2 bg-cyber-blue rounded-full mr-2 animate-ping"
+              ></span>
+              Status: Systems Optimal
+            </div>
+            <h1
+              class="text-5xl md:text-8xl font-bold font-heading tracking-tight mb-6 leading-[0.9] text-white"
+            >
+              <span class="block glitch-wrapper" data-text="High-End"
+                >High-End</span
               >
               <span
                 class="text-transparent bg-clip-text bg-gradient-to-r from-grass-green to-cyber-blue"
-                >Grassroots Prices.</span
+                >Code.</span
               >
             </h1>
-            <p class="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
-              Connecting companies with elite freelance developers. From AI
-              automations to blockchain, we build the software you need without
-              the agency bloat.
+            <p
+              class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed font-sans font-light"
+            >
+              Premium software solutions at grassroots rates. We connect
+              forward-thinking businesses with a specialized network of elite
+              freelance developers.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex flex-wrap gap-4 items-center">
               <a
-                href="#contact"
-                class="bg-grass-green text-black font-bold py-4 px-8 rounded hover:bg-white hover:scale-105 transition-all text-center shadow-[0_0_20px_rgba(0,255,65,0.3)]"
+                href="mailto:grasshopper.it.solutions@gmail.com"
+                class="bg-grass-green text-black font-bold py-4 px-10 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)]"
               >
-                Hire a Dev
+                Initiate Build
               </a>
-              <a
-                href="#services"
-                class="border border-gray-600 hover:border-cyber-blue hover:text-cyber-blue text-gray-300 py-4 px-8 rounded transition-all text-center hover:bg-cyber-blue/10"
+              <div
+                class="flex items-center gap-4 px-4 py-2 bg-white/5 rounded-full border border-white/10 ml-2"
               >
-                View Stack
-              </a>
+                <button
+                  onclick="notify()"
+                  class="hover:text-white transition-colors"
+                >
+                  <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </button>
+                <button
+                  onclick="notify()"
+                  class="hover:text-white transition-colors"
+                >
+                  <i data-lucide="github" class="w-5 h-5"></i>
+                </button>
+                <button
+                  onclick="notify()"
+                  class="hover:text-white transition-colors"
+                >
+                  <i data-lucide="instagram" class="w-5 h-5"></i>
+                </button>
+              </div>
             </div>
           </div>
-
-          <!-- Mascot Area -->
-          <div class="relative flex justify-center lg:justify-end">
+          <div class="relative hidden lg:flex justify-end">
             <div class="relative w-80 h-80 md:w-96 md:h-96">
-              <!-- Glowing circles behind -->
               <div
                 class="absolute inset-0 bg-gradient-to-r from-grass-green to-cyber-blue rounded-full blur-3xl opacity-20 animate-pulse-slow"
               ></div>
-
-              <!-- Mascot Card -->
               <div
                 class="relative w-full h-full bg-card-gray/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center animate-float shadow-2xl"
               >
-                <!-- SVG Mascot Placeholder -->
                 <div class="w-48 h-48 mb-6 relative">
-                  <svg
-                    viewBox="0 0 200 200"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-full h-full drop-shadow-[0_0_10px_rgba(0,255,65,0.5)]"
-                  >
-                    <!-- Simple geometric grasshopper representation -->
-                    <circle
-                      cx="100"
-                      cy="100"
-                      r="90"
-                      fill="#0a0a0a"
-                      stroke="#00ff41"
-                      stroke-width="2"
-                    />
-                    <path
-                      d="M60 120 Q 40 80 80 60"
-                      stroke="#00ff41"
-                      stroke-width="4"
-                      fill="none"
-                      stroke-linecap="round"
-                    />
-                    <path
-                      d="M140 120 Q 160 80 120 60"
-                      stroke="#00ff41"
-                      stroke-width="4"
-                      fill="none"
-                      stroke-linecap="round"
-                    />
-                    <circle cx="85" cy="90" r="8" fill="#00dbde" />
-                    <circle cx="115" cy="90" r="8" fill="#00dbde" />
-                    <path
-                      d="M90 120 Q 100 130 110 120"
-                      stroke="#00ff41"
-                      stroke-width="3"
-                      fill="none"
-                    />
-                    <path
-                      d="M50 140 L 150 140"
-                      stroke="#1e1e1e"
-                      stroke-width="2"
-                    />
-                    <!-- Antennae -->
-                    <path
-                      d="M80 60 L 60 30"
-                      stroke="#00ff41"
-                      stroke-width="2"
-                    />
-                    <path
-                      d="M120 60 L 140 30"
-                      stroke="#00ff41"
-                      stroke-width="2"
-                    />
-                  </svg>
+                  <img
+                    src="assets/logo.svg"
+                    alt="Grasshopper Logo"
+                    class="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,65,0.6)]"
+                  />
                 </div>
-
                 <div class="text-center w-full">
                   <h3 class="text-2xl font-mono text-white font-bold">
                     Grassy Hopper
@@ -354,11 +324,9 @@
                     class="h-px w-full bg-gradient-to-r from-transparent via-grass-green to-transparent my-3"
                   ></div>
                   <p class="text-cyber-blue font-mono text-sm">
-                    > System.Ready()
+                    &gt; System.Ready()
                   </p>
                 </div>
-
-                <!-- Floating badge -->
                 <div
                   class="absolute -top-4 -right-4 bg-black border border-grass-green text-grass-green px-3 py-1 rounded-full text-xs font-mono transform rotate-12"
                 >
@@ -371,317 +339,497 @@
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-black relative border-t border-white/5">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:text-center mb-16">
-          <h2
-            class="text-sm text-cyber-blue font-bold tracking-widest uppercase font-mono"
-          >
-            ./Mission_Statement
-          </h2>
-          <p
-            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl"
-          >
-            Democratizing Software Development
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="space-y-6">
-            <div
-              class="bg-card-gray p-8 rounded-xl border-l-4 border-grass-green hover:bg-code-gray transition-colors"
-            >
-              <h3 class="text-2xl font-bold text-white mb-4 font-mono">
-                The Goal
-              </h3>
-              <p class="text-gray-400 leading-relaxed">
-                Grasshopper IT Solutions was founded with a simple directive:
-                provide high-quality software services to those who can't afford
-                massive enterprise applications. We believe technology is a
-                right, not a privilege.
-              </p>
-            </div>
-
-            <div class="flex items-start">
-              <div class="flex-shrink-0">
-                <div
-                  class="flex items-center justify-center h-12 w-12 rounded-md bg-grass-green/20 text-grass-green border border-grass-green"
-                >
-                  <svg
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div class="ml-4">
-                <h4 class="text-lg leading-6 font-bold text-white font-mono">
-                  Fast & Agile
-                </h4>
-                <p class="mt-2 text-base text-gray-500">
-                  Spinning up freelance teams instantly. No corporate red tape,
-                  just code.
-                </p>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="flex-shrink-0">
-                <div
-                  class="flex items-center justify-center h-12 w-12 rounded-md bg-cyber-blue/20 text-cyber-blue border border-cyber-blue"
-                >
-                  <svg
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div class="ml-4">
-                <h4 class="text-lg leading-6 font-bold text-white font-mono">
-                  Cost Effective
-                </h4>
-                <p class="mt-2 text-base text-gray-500">
-                  Value-driven development. We focus on functionality and vibe,
-                  minimizing overhead.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Decorative Code Block -->
-          <div
-            class="bg-card-gray rounded-lg p-6 font-mono text-sm border border-white/10 shadow-2xl overflow-hidden relative group"
-          >
-            <div class="absolute top-0 right-0 p-2 flex space-x-2">
-              <div class="w-3 h-3 rounded-full bg-red-500"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500"></div>
-            </div>
-            <div class="text-gray-500 mb-4">// Grasshopper_Manifesto.ts</div>
-            <div class="text-cyber-blue">const</div>
-            <div class="text-white inline">mission</div>
-            <div class="text-cyber-blue inline">=</div>
-            <div class="text-yellow-300 inline">{</div>
-            <div class="pl-4 text-white">
-              target:
-              <span class="text-grass-green">"Small Business"</span>,<br />
-              strategy:
-              <span class="text-grass-green">"Freelance Network"</span>,<br />
-              bloat: <span class="text-red-400">false</span>,<br />
-              vibe: <span class="text-grass-green">"Cyberpunk"</span>,<br />
-              services: [<br />
-              <span class="pl-4 text-gray-400">"AI"</span>,
-              <span class="text-gray-400">"Blockchain"</span>,
-              <span class="text-gray-400">"Web"</span><br />
-              ]
-            </div>
-            <div class="text-yellow-300 inline">}</div>
-            ; <br /><br />
-            <div class="text-purple-400">function</div>
-            <div class="text-blue-400 inline">scaleUp</div>
-            () {<br />
-            <div class="pl-4 text-white">return mission.success;</div>
-            <br />
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-24 relative bg-deep-space overflow-hidden">
-      <!-- Background decorative elements -->
-      <div
-        class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-grass-green opacity-5 rounded-full blur-3xl"
-      ></div>
-      <div
-        class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-cyber-blue opacity-5 rounded-full blur-3xl"
-      ></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center mb-16">
-          <h2
-            class="text-sm text-grass-green font-bold tracking-widest uppercase font-mono"
-          >
-            ./Capabilities
-          </h2>
-          <p
-            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl"
-          >
-            Vibe Coding & Hard Tech
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Service Cards -->
-          <div
-            class="group bg-card-gray p-8 rounded-lg border border-white/5 hover:border-grass-green transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(0,255,65,0.1)]"
-          >
-            <div
-              class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300"
-            >
-              🤖
-            </div>
-            <div class="text-grass-green font-mono text-xl mb-3 font-bold">
-              ./AI_Automation
-            </div>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Custom AI models, workflow automations, and intelligent chatbots
-              to streamline your business logic.
-            </p>
-          </div>
-
-          <div
-            class="group bg-card-gray p-8 rounded-lg border border-white/5 hover:border-cyber-blue transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(0,219,222,0.1)]"
-          >
-            <div
-              class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300"
-            >
-              🌐
-            </div>
-            <div class="text-cyber-blue font-mono text-xl mb-3 font-bold">
-              ./Web_Dev
-            </div>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              JavaScript, TypeScript, React, and .NET solutions.
-              High-performance landing pages to complex web apps.
-            </p>
-          </div>
-
-          <div
-            class="group bg-card-gray p-8 rounded-lg border border-white/5 hover:border-grass-green transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(0,255,65,0.1)]"
-          >
-            <div
-              class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300"
-            >
-              📊
-            </div>
-            <div class="text-grass-green font-mono text-xl mb-3 font-bold">
-              ./Data_Logic
-            </div>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Advanced Excel sheets, Python data scripting, and business
-              intelligence dashboards.
-            </p>
-          </div>
-
-          <div
-            class="group bg-card-gray p-8 rounded-lg border border-white/5 hover:border-cyber-blue transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(0,219,222,0.1)]"
-          >
-            <div
-              class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300"
-            >
-              🔗
-            </div>
-            <div class="text-cyber-blue font-mono text-xl mb-3 font-bold">
-              ./Blockchain
-            </div>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Smart contracts and decentralized application (DApp) development
-              for the future web.
-            </p>
-          </div>
-
-          <div
-            class="group bg-card-gray p-8 rounded-lg border border-white/5 hover:border-grass-green transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(0,255,65,0.1)]"
-          >
-            <div
-              class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300"
-            >
-              ⚡
-            </div>
-            <div class="text-grass-green font-mono text-xl mb-3 font-bold">
-              ./Vibe_Coding
-            </div>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Rapid prototyping and creative coding that captures the aesthetic
-              and function you need instantly.
-            </p>
-          </div>
-
-          <div
-            class="group bg-card-gray p-8 rounded-lg border border-white/5 hover:border-cyber-blue transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_5px_20px_rgba(0,219,222,0.1)]"
-          >
-            <div
-              class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300"
-            >
-              💼
-            </div>
-            <div class="text-cyber-blue font-mono text-xl mb-3 font-bold">
-              ./Consulting
-            </div>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Expert advice on tech stack selection, architecture, and project
-              management.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Apps Section -->
-    <section id="apps" class="py-24 bg-black border-t border-white/10 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-white mb-12">Developed Apps</h2>
-
-        <div
-          class="max-w-4xl mx-auto bg-card-gray/50 rounded-2xl p-12 border border-dashed border-gray-700 relative overflow-hidden group"
+    <!-- Tech Stack Marquee (Expanded) -->
+    <div
+      class="py-12 bg-black/50 border-y border-white/5 overflow-hidden whitespace-nowrap"
+    >
+      <div class="flex animate-scroll w-max gap-20 items-center">
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >REACT.JS</span
         >
-          <!-- Glitch hover effect container -->
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >PYTHON</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >NODE.JS</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >AZURE</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >OPENAI</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >FIREBASE</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >FLUTTER</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >MONGODB</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >TYPESCRIPT</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >AWS</span
+        >
+        <!-- Duplicated for Infinite Scroll -->
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >REACT.JS</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >PYTHON</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >NODE.JS</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >AZURE</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >OPENAI</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >FIREBASE</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >FLUTTER</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >MONGODB</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >TYPESCRIPT</span
+        >
+        <span
+          class="text-2xl font-heading font-bold text-gray-700 hover:text-white transition-colors"
+          >AWS</span
+        >
+      </div>
+    </div>
+
+    <!-- Services Section (Expanded) -->
+    <section id="services" class="py-32 relative bg-deep-space">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-24">
+          <p
+            class="text-grass-green font-mono text-sm mb-2 tracking-widest uppercase"
+          >
+            // CORE_CAPABILITIES
+          </p>
+          <h2
+            class="text-4xl md:text-6xl font-heading font-bold text-white max-w-3xl"
+          >
+            Comprehensive Solutions for the Digital Frontier.
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service Card 1 -->
           <div
-            class="absolute inset-0 bg-grass-green/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-grass-green/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 text-grass-green group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="layout"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              Web Development
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Building lightning-fast, responsive web applications tailored to
+              your specific business goals. From high-converting landing pages
+              to complex enterprise platforms.
+            </p>
+            <ul class="font-mono text-[10px] text-grass-green space-y-1">
+              <li>> Custom Web Apps</li>
+              <li>> E-commerce Solutions</li>
+              <li>> Landing Pages</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-cyber-blue/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 text-cyber-blue group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="smartphone"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              Mobile Development
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Create seamless mobile experiences with cross-platform excellence.
+              We specialize in high-performance iOS and Android applications
+              using modern frameworks.
+            </p>
+            <ul class="font-mono text-[10px] text-cyber-blue space-y-1">
+              <li>> Native Performance</li>
+              <li>> Cross-Platform (Flutter/React Native)</li>
+              <li>> Mobile UI/UX</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-grass-green/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 text-grass-green group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="cpu"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              AI & Machine Learning
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Integrating intelligence into your workflows. We deploy custom
+              LLMs, predictive models, and automation agents to give you a
+              competitive edge.
+            </p>
+            <ul class="font-mono text-[10px] text-grass-green space-y-1">
+              <li>> Custom LLM Implementation</li>
+              <li>> Predictive Analytics</li>
+              <li>> Intelligent Automation</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 4 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-cyber-blue/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 text-cyber-blue group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="database"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              Backend & APIs
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Architecting the engines behind your applications. Secure,
+              scalable server-side logic and robust API integrations designed
+              for maximum uptime.
+            </p>
+            <ul class="font-mono text-[10px] text-cyber-blue space-y-1">
+              <li>> Microservices Architecture</li>
+              <li>> RESTful & GraphQL APIs</li>
+              <li>> Database Design</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 5 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-grass-green/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 text-grass-green group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="cloud"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              Cloud Infrastructure
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Optimize your environment with expert cloud deployment. We manage
+              AWS, Azure, and Google Cloud setups to ensure your scaling is
+              effortless.
+            </p>
+            <ul class="font-mono text-[10px] text-grass-green space-y-1">
+              <li>> AWS/Azure/GCP Management</li>
+              <li>> Serverless Deployment</li>
+              <li>> DevOps Pipelines</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 6 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-cyber-blue/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 text-cyber-blue group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="palette"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              UX/UI Design
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Modern, intuitive, and accessible designs that convert. We bridge
+              the gap between aesthetics and functionality through rigorous user
+              research.
+            </p>
+            <ul class="font-mono text-[10px] text-cyber-blue space-y-1">
+              <li>> Prototyping (Figma)</li>
+              <li>> User Flow Analysis</li>
+              <li>> Modern Visual Identity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Section (Detailed) -->
+    <section id="stack" class="py-32 bg-black border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <p
+            class="text-cyber-blue font-mono text-sm mb-2 tracking-widest uppercase"
+          >
+            // STACK_OVERVIEW
+          </p>
+          <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
+            Our Engineering Toolkit
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <!-- Frontend -->
+          <div>
+            <h4
+              class="text-white font-mono font-bold mb-6 border-l-2 border-grass-green pl-4"
+            >
+              Front-end
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >React.js</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Next.js</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Vue.js</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Tailwind CSS</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >TypeScript</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >HTML5/CSS3</span
+              >
+            </div>
+          </div>
+          <!-- Backend -->
+          <div>
+            <h4
+              class="text-white font-mono font-bold mb-6 border-l-2 border-cyber-blue pl-4"
+            >
+              Back-end
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Node.js</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Python (Django/Flask)</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Express</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >PHP (Laravel)</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Java (Spring Boot)</span
+              >
+            </div>
+          </div>
+          <!-- Databases & Cloud -->
+          <div>
+            <h4
+              class="text-white font-mono font-bold mb-6 border-l-2 border-grass-green pl-4"
+            >
+              Data & Infrastructure
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >PostgreSQL</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >MongoDB</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Redis</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >AWS</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Azure</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Firebase</span
+              >
+            </div>
+          </div>
+          <!-- AI & Specialized -->
+          <div>
+            <h4
+              class="text-white font-mono font-bold mb-6 border-l-2 border-cyber-blue pl-4"
+            >
+              Specialized
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >OpenAI / GPT-4</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >LangChain</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >PyTorch</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Flutter</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Docker</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-32 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-4xl font-heading font-bold text-white mb-4">
+            The Development Pipeline
+          </h2>
+          <p class="text-gray-500 font-mono text-sm tracking-widest uppercase">
+            From Analysis to Deployment
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+          <div
+            class="hidden md:block absolute top-12 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent"
           ></div>
 
-          <div class="relative z-10">
-            <div class="text-6xl mb-6 animate-bounce">🚀</div>
-            <h3 class="text-2xl text-white font-mono mb-4 font-bold">
-              Project Queue: In Development
-            </h3>
-
-            <h3 class="text-2xl text-white font-mono mb-4 font-bold">
-              Create yours now!
-            </h3>
-            <div class="w-16 h-1 bg-grass-green mx-auto mb-6"></div>
-            <p class="text-gray-400 text-lg max-w-xl mx-auto">
-              We are currently brewing some exciting in-house applications. Stay
-              tuned for tools designed to help small businesses grow.
-            </p>
-
-            <a
-              href="./apps/"
-              class="inline-block bg-cyber-blue text-black font-bold py-3 px-8 rounded-md hover:bg-white transition-all shadow-md hover:scale-105"
-            >
-              See Our Apps &gt;
-            </a>
-
+          <!-- Step 1: Green -->
+          <div class="relative z-10 text-center space-y-4">
             <div
-              class="mt-8 inline-flex items-center text-sm font-mono text-cyber-blue"
+              class="w-24 h-24 mx-auto rounded-full bg-deep-space border border-grass-green flex items-center justify-center text-2xl font-bold font-mono text-grass-green shadow-[0_0_15px_rgba(0,255,65,0.2)]"
             >
-              <span
-                class="w-2 h-2 bg-cyber-blue rounded-full mr-2 animate-ping"
-              ></span>
-              Development in progress...
+              01
             </div>
+            <h4 class="text-white font-heading font-bold">Deep Scan</h4>
+            <p class="text-gray-500 text-sm font-sans px-4 leading-relaxed">
+              We analyze your bottlenecks and map out the tech requirement.
+            </p>
+          </div>
+
+          <!-- Step 2: Blue -->
+          <div class="relative z-10 text-center space-y-4">
+            <div
+              class="w-24 h-24 mx-auto rounded-full bg-deep-space border border-cyber-blue flex items-center justify-center text-2xl font-bold font-mono text-cyber-blue shadow-[0_0_15px_rgba(0,219,222,0.2)]"
+            >
+              02
+            </div>
+            <h4 class="text-white font-heading font-bold">Vibe Design</h4>
+            <p class="text-gray-500 text-sm font-sans px-4 leading-relaxed">
+              Rapid prototyping and UX framing to capture the project's soul.
+            </p>
+          </div>
+
+          <!-- Step 3: Green -->
+          <div class="relative z-10 text-center space-y-4">
+            <div
+              class="w-24 h-24 mx-auto rounded-full bg-deep-space border border-grass-green flex items-center justify-center text-2xl font-bold font-mono text-grass-green shadow-[0_0_15px_rgba(0,255,65,0.2)]"
+            >
+              03
+            </div>
+            <h4 class="text-white font-heading font-bold">Neural Dev</h4>
+            <p class="text-gray-500 text-sm font-sans px-4 leading-relaxed">
+              Our elite freelance mesh builds the core logic using best-in-class
+              stacks.
+            </p>
+          </div>
+
+          <!-- Step 4: Red Neon -->
+          <div class="relative z-10 text-center space-y-4">
+            <div
+              class="w-24 h-24 mx-auto rounded-full bg-deep-space border border-cyber-red flex items-center justify-center text-2xl font-bold font-mono text-cyber-red shadow-[0_0_20px_rgba(255,0,60,0.4)] animate-pulse-slow"
+            >
+              04
+            </div>
+            <h4 class="text-white font-heading font-bold">Go Live</h4>
+            <p class="text-gray-500 text-sm font-sans px-4 leading-relaxed">
+              Smooth deployment, training, and ongoing support for your new
+              system.
+            </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- App Center CTA -->
+    <section
+      id="apps"
+      class="py-24 bg-deep-space border-t border-white/5 relative overflow-hidden"
+    >
+      <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <h2 class="text-3xl md:text-5xl font-heading font-bold text-white mb-8">
+          Visit the App Center
+        </h2>
+        <p class="text-gray-400 mb-10 text-lg">
+          Check out our suite of AI-driven utilities and interactive tools
+          developed for the community.
+        </p>
+        <a
+          href="apps.html"
+          class="inline-block bg-white text-black font-bold py-4 px-12 rounded-full hover:bg-cyber-blue hover:text-white transition-all transform hover:-translate-y-1"
+          >Enter Terminal &gt;</a
+        >
       </div>
     </section>
 
@@ -696,7 +844,6 @@
           Whether you need a quick Python script, a complex .NET architecture,
           or just some vibe coding, we are ready.
         </p>
-
         <div class="relative inline-block group">
           <div
             class="absolute -inset-1 bg-gradient-to-r from-grass-green to-cyber-blue rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-200"
@@ -712,41 +859,74 @@
             <a
               href="mailto:grasshopper.it.solutions@gmail.com"
               class="text-xl md:text-3xl font-bold text-white hover:text-grass-green transition-colors break-all font-mono"
+              >grasshopper.it.solutions@gmail.com</a
             >
-              grasshopper.it.solutions@gmail.com
-            </a>
+            <div class="flex gap-4 mt-4 items-center justify-center">
+              <span
+                class="w-3 h-3 bg-grass-green rounded-full animate-ping"
+              ></span>
+              <span
+                class="text-xs font-mono text-gray-600 uppercase tracking-widest"
+                >Network Awaiting Input</span
+              >
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-white/10">
-      <div class="max-w-7xl mx-auto px-4 text-center">
-        <div class="flex justify-center items-center mb-6">
-          <span class="text-2xl mr-2">🦗</span>
+    <footer class="bg-black py-16 border-t border-white/10">
+      <div
+        class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
+      >
+        <div class="flex items-center group">
+          <img
+            src="assets/logo.svg"
+            alt="Grasshopper Logo"
+            class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
+          />
           <span class="text-xl font-mono font-bold text-white"
-            >Grasshopper IT Solutions</span
+            >Grasshopper_IT</span
           >
         </div>
-        <p class="text-gray-600 text-sm font-mono mb-4">
-          &copy; 2025 Grasshopper IT Solutions, LLC. All rights reserved.
-        </p>
-        <div class="text-xs text-gray-700 font-mono">
-          System Status: <span class="text-grass-green">Operational</span> |
-          Latency: <span class="text-cyber-blue">12ms</span>
+        <div class="flex gap-4 text-gray-600">
+          <button onclick="notify()" class="hover:text-white transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </button>
+          <button onclick="notify()" class="hover:text-white transition-colors">
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </button>
+          <button onclick="notify()" class="hover:text-white transition-colors">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </button>
         </div>
+        <p class="text-gray-700 text-[10px] font-mono">
+          SYSTEM_LOCAL_TIME: <span id="time">00:00:00</span>
+        </p>
       </div>
     </footer>
 
     <script>
-      // Mobile Menu Toggle
+      lucide.createIcons();
       const btn = document.getElementById("mobile-menu-btn");
       const menu = document.getElementById("mobile-menu");
-
-      btn.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-      });
+      btn.addEventListener("click", () => menu.classList.toggle("hidden"));
+      setInterval(() => {
+        const now = new Date();
+        document.getElementById("time").innerText = now
+          .toTimeString()
+          .split(" ")[0];
+      }, 1000);
+      function notify() {
+        const toast = document.getElementById("notification-toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      }
+      function toggleAIBubble() {
+        const bubble = document.getElementById("ai-bubble");
+        bubble.classList.toggle("hidden");
+      }
     </script>
   </body>
 </html>
