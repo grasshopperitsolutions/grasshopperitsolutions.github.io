@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Void Enigma Terminal</title>
+    <title>Void Enigma Terminal | Grasshopper IT</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Space Mono for Vibe / Inter & Outfit for Professionalism -->
+    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
       rel="stylesheet"
@@ -19,14 +19,12 @@
         theme: {
           extend: {
             colors: {
-              "neon-red": "#ff073a" /* Primary App Color */,
-              "deep-bg": "#050612" /* App Background Color */,
-              "answer-neon": "#83ff65" /* Answer Green */,
-              "cyber-blue": "#00dbde" /* Secondary Accent */,
-              "card-gray": "#12010f",
+              "neon-red": "#ff073a",
+              "deep-bg": "#03030a",
+              "answer-neon": "#83ff65",
+              "cyber-blue": "#00dbde",
+              "card-gray": "#0a0b14",
               "grass-green": "#00ff41",
-              "deep-space": "#0a0a0a",
-              "code-gray": "#1e1e1e",
             },
             fontFamily: {
               mono: ['"Space Mono"', "monospace"],
@@ -34,13 +32,22 @@
               heading: ['"Outfit"', "sans-serif"],
             },
             animation: {
-              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-              float: "float 3s ease-in-out infinite",
+              "pulse-fast": "pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              scanline: "scanline 8s linear infinite",
+              glitch: "glitch 1s linear infinite",
             },
             keyframes: {
-              float: {
-                "0%, 100%": { transform: "translateY(0)" },
-                "50%": { transform: "translateY(-10px)" },
+              scanline: {
+                "0%": { transform: "translateY(-100%)" },
+                "100%": { transform: "translateY(100%)" },
+              },
+              glitch: {
+                "0%": { transform: "translate(0)" },
+                "20%": { transform: "translate(-2px, 2px)" },
+                "40%": { transform: "translate(-2px, -2px)" },
+                "60%": { transform: "translate(2px, 2px)" },
+                "80%": { transform: "translate(2px, -2px)" },
+                "100%": { transform: "translate(0)" },
               },
             },
           },
@@ -48,40 +55,63 @@
       };
     </script>
     <style>
-      /* Custom scrollbar for the cyberpunk feel */
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 6px;
       }
       ::-webkit-scrollbar-track {
-        background: #050612;
+        background: #03030a;
       }
       ::-webkit-scrollbar-thumb {
-        background: #1e1e1e;
-        border: 1px solid #ff073a;
+        background: #ff073a;
+        border-radius: 10px;
       }
+
+      .crt-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+          linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.03),
+            rgba(0, 255, 0, 0.01),
+            rgba(0, 0, 255, 0.03)
+          );
+        background-size:
+          100% 2px,
+          3px 100%;
+        pointer-events: none;
+        z-index: 100;
+      }
+
       .text-shadow-neon {
-        text-shadow: 0 0 10px rgba(255, 7, 58, 0.5),
-          0 0 20px rgba(255, 7, 58, 0.2);
+        text-shadow:
+          0 0 8px rgba(255, 7, 58, 0.6),
+          0 0 15px rgba(255, 7, 58, 0.3);
       }
-      .neon-border-red {
-        border-color: #ff073a;
-        box-shadow: 0 0 15px rgba(255, 7, 58, 0.4);
+
+      .terminal-window {
+        background: radial-gradient(circle at center, #12010f 0%, #050612 100%);
+        border: 1px solid rgba(255, 7, 58, 0.3);
       }
-      .neon-glow-green {
-        box-shadow: 0 0 10px rgba(131, 255, 101, 0.5);
-      }
-      .riddle-mockup {
-        /* Mimics the app's internal styles */
-        background-color: #12010f;
-        border: 1px solid #ff3961;
-        box-shadow: 0 0 30px rgba(255, 7, 58, 0.5);
+
+      .btn-glitch:hover {
+        animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+          infinite;
       }
     </style>
   </head>
-  <body class="bg-deep-bg text-gray-300 font-sans antialiased min-h-screen">
+  <body
+    class="bg-deep-bg text-gray-300 font-sans antialiased min-h-screen selection:bg-neon-red selection:text-white"
+  >
+    <div class="crt-overlay"></div>
+
     <!-- Navigation -->
     <nav
-      class="fixed w-full z-50 bg-deep-bg/90 backdrop-blur-md border-b border-white/5"
+      class="fixed w-full z-[60] bg-deep-bg/80 backdrop-blur-xl border-b border-neon-red/10"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
@@ -96,95 +126,159 @@
               >Void Enigma Riddles</span
             >
           </div>
-          <div class="hidden md:flex items-center space-x-8">
+          <div class="flex items-center space-x-6">
             <a
-            href="../../apps/"
+              href="../../apps/"
               class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
-          >
-            &lt; Back to App Center
-          </a>
+            >
+              &lt; Back to App Center
+            </a>
+          </div>
         </div>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <section
-      class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-neon-red/20"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <div
+        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
           <!-- Text Content -->
-          <div>
-            <p
-              class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-wider text-answer-neon uppercase bg-answer-neon/10 rounded-full border border-answer-neon/20"
-            >
-              AI-Powered Mobile Game
-            </p>
-            <h1
-              class="text-5xl md:text-7xl font-bold font-mono tracking-tight mb-4 leading-tight text-white text-shadow-neon"
-            >
-              VOID ENIGMA TERMINAL
-            </h1>
-            <p class="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
-              Access a secure terminal link to the Gemini AI. Your task: solve
-              the endless stream of playful, high-frequency riddles generated by
-              the system. Challenge your logic and unlock the truth behind the
-              static.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
+          <div class="space-y-8">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <span class="h-px w-8 bg-neon-red"></span>
+                <span
+                  class="text-xs font-mono font-bold tracking-[0.3em] text-neon-red uppercase"
+                >
+                  Connection Established
+                </span>
+              </div>
+              <h1
+                class="text-6xl md:text-8xl font-black font-heading tracking-tighter mb-6 leading-none text-white uppercase italic"
+              >
+                Solve <br /><span class="text-neon-red text-shadow-neon"
+                  >The Void.</span
+                >
+              </h1>
+              <p
+                class="text-xl text-gray-400 max-w-lg leading-relaxed font-light"
+              >
+                Decrypt an infinite stream of algorithmic riddles powered by the
+                Perplexity AI. Experience the raw aesthetic of a secure terminal
+                where logic is your only currency.
+              </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-6">
               <a
                 href="https://play.google.com/store/apps/details?id=com.grasshopperitsolutions.voidenigma"
                 target="_blank"
-                rel="noopener noreferrer"
-                class="bg-neon-red text-white font-bold py-4 px-8 rounded hover:bg-white hover:text-black transition-all text-center shadow-[0_0_20px_rgba(255,7,58,0.3)] inline-block"
+                class="group relative bg-neon-red px-10 py-5 rounded-none overflow-hidden transition-all btn-glitch"
               >
-                Download on Google Play
+                <div
+                  class="relative z-10 flex items-center justify-center gap-3 text-white font-bold uppercase tracking-widest text-sm"
+                >
+                  <i data-lucide="play" class="w-5 h-5 fill-current"></i>
+                  Access Terminal
+                </div>
+                <div
+                  class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                ></div>
               </a>
+
+              <div
+                class="flex items-center gap-4 px-6 border border-white/10 bg-white/5 backdrop-blur-sm"
+              >
+                <div class="flex -space-x-2">
+                  <div
+                    class="w-8 h-8 rounded-full border-2 border-deep-bg bg-answer-neon/20 flex items-center justify-center text-[10px] text-answer-neon font-bold"
+                  >
+                    AI
+                  </div>
+                  <div
+                    class="w-8 h-8 rounded-full border-2 border-deep-bg bg-cyber-blue/20 flex items-center justify-center text-[10px] text-cyber-blue font-bold"
+                  >
+                    24/7
+                  </div>
+                </div>
+                <span
+                  class="text-xs font-mono text-gray-500 uppercase tracking-widest"
+                  >Procedural Logic Engine</span
+                >
+              </div>
             </div>
           </div>
 
-          <!-- Mockup/Image Placeholder -->
-          <div class="relative flex justify-center lg:justify-end">
+          <!-- Mockup -->
+          <div class="relative group">
             <div
-              class="w-64 h-auto aspect-[9/16] p-4 bg-gray-900 rounded-3xl neon-border-red border-4 relative"
+              class="absolute -inset-4 bg-neon-red/20 blur-3xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity"
+            ></div>
+
+            <div
+              class="relative mx-auto w-full max-w-[320px] aspect-[9/19.5] border-[12px] border-card-gray rounded-[3rem] shadow-2xl overflow-hidden terminal-window ring-1 ring-neon-red/30"
             >
-              <!-- Phone Screen -->
+              <!-- Internal App Screen -->
               <div
-                class="w-full h-full rounded-2xl bg-deep-bg p-4 flex flex-col justify-between items-center text-center riddle-mockup"
+                class="h-full flex flex-col p-6 font-mono text-sm overflow-hidden relative"
               >
-                <!-- Header -->
-                <div class="w-full">
-                  <p class="text-sm font-mono text-neon-red tracking-widest">
-                    VOID
-                  </p>
-                  <p
-                    class="text-xl font-mono text-white tracking-widest text-shadow-neon"
-                  >
-                    ENIGMA TERMINAL
-                  </p>
-                  <div class="w-3/4 h-px bg-neon-red/50 my-2 mx-auto"></div>
+                <!-- Status Bar -->
+                <div
+                  class="flex justify-between items-center mb-10 opacity-60 text-[10px]"
+                >
+                  <span>SYS_LINK: ACTIVE</span>
+                  <span class="animate-pulse-fast text-neon-red">● REC</span>
                 </div>
 
-                <!-- Riddle Content -->
-                <div class="flex-grow flex items-center">
-                  <p class="text-base font-sans italic text-gray-400">
-                    "I have cities, but no houses. I have mountains, but no
-                    trees. I have water, but no fish. What am I?"
-                  </p>
+                <!-- Riddle Display -->
+                <div class="flex-grow space-y-6">
+                  <div class="p-3 border-l border-neon-red/40 bg-neon-red/5">
+                    <span
+                      class="text-[10px] text-neon-red block mb-2 opacity-50"
+                      >&gt; INCOMING_TRANSMISSION</span
+                    >
+                    <p class="text-white italic leading-relaxed">
+                      "I turn everything but cannot move. I have no legs, but I
+                      am always running. What am I?"
+                    </p>
+                  </div>
+
+                  <div class="space-y-2 opacity-80">
+                    <div
+                      class="h-10 border border-white/10 flex items-center px-4 text-xs text-gray-500"
+                    >
+                      TYPE_ANSWER_HERE...
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                      <div
+                        class="h-10 bg-neon-red/20 border border-neon-red/50 flex items-center justify-center text-neon-red text-[10px] font-bold"
+                      >
+                        SUBMIT
+                      </div>
+                      <div
+                        class="h-10 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 text-[10px]"
+                      >
+                        HINT
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <!-- Controls -->
-                <div class="w-full">
-                  <button
-                    class="w-full bg-neon-red text-black font-bold py-2 rounded-md mb-2 text-sm"
-                  >
-                    OPEN GATE // NEW RIDDLE
-                  </button>
-                  <button
-                    class="w-full border border-gray-600 text-gray-400 py-2 rounded-md text-sm"
-                  >
-                    UNVEIL TRUTH
-                  </button>
+                <!-- Footer Stats -->
+                <div
+                  class="mt-auto pt-6 border-t border-white/5 space-y-2 opacity-40 text-[9px]"
+                >
+                  <div class="flex justify-between">
+                    <span>RIDDLES_SOLVED</span>
+                    <span>442</span>
+                  </div>
+                  <div class="w-full bg-white/10 h-1">
+                    <div class="bg-neon-red w-2/3 h-full"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -193,70 +287,130 @@
       </div>
     </section>
 
+    <!-- Features Section -->
+    <section class="py-24 bg-[#010105] relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="space-y-4 group">
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-neon-red/10 text-neon-red border border-neon-red/20 group-hover:bg-neon-red group-hover:text-black transition-all"
+            >
+              <i data-lucide="cpu"></i>
+            </div>
+            <h3 class="text-lg font-mono font-bold text-white uppercase">
+              Neural Generation
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Every enigma is synthesized by the Perplexity LLM. No repetition, no
+              static patterns. Just pure, evolving logic.
+            </p>
+          </div>
+
+          <div class="space-y-4 group">
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-cyber-blue/10 text-cyber-blue border border-cyber-blue/20 group-hover:bg-cyber-blue group-hover:text-black transition-all"
+            >
+              <i data-lucide="layers"></i>
+            </div>
+            <h3 class="text-lg font-mono font-bold text-white uppercase">
+              Infinite Scaling
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              From simple wordplay to complex abstract paradoxes. The terminal
+              adapts to your solving frequency.
+            </p>
+          </div>
+
+          <div class="space-y-4 group">
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-answer-neon/10 text-answer-neon border border-answer-neon/20 group-hover:bg-answer-neon group-hover:text-black transition-all"
+            >
+              <i data-lucide="shield-check"></i>
+            </div>
+            <h3 class="text-lg font-mono font-bold text-white uppercase">
+              Minimalist Sync
+            </h3>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              A distractions-free environment. No ads, no social fluff. Just you
+              and the machine.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Details and Policy Section -->
-    <section class="py-20 bg-black">
+    <section class="py-20 border-t border-white/5">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Tabs -->
-        <div class="flex border-b border-white/10 mb-8 font-mono">
+        <div
+          class="flex gap-8 border-b border-white/5 mb-12 font-mono uppercase text-xs tracking-widest"
+        >
           <button
             id="tab-game"
             onclick="showTab('game')"
-            class="py-3 px-6 text-lg font-bold border-b-2 border-neon-red text-neon-red transition-all"
+            class="py-4 border-b-2 border-neon-red text-neon-red font-bold"
           >
-            Game Details
+            Terminal_Specs
           </button>
           <button
             id="tab-policy"
             onclick="showTab('policy')"
-            class="py-3 px-6 text-lg font-bold border-b-2 border-transparent text-gray-500 hover:text-cyber-blue transition-all"
+            class="py-4 border-b-2 border-transparent text-gray-600 hover:text-white transition-all"
           >
-            Privacy Policy
+            Privacy_Protocol
           </button>
         </div>
 
-        <!-- Game Details Content -->
-        <div id="game-details" class="space-y-8">
-          <h3 class="text-3xl font-mono text-white font-bold">
-            Protocol Breakdown
-          </h3>
-          <div class="grid md:grid-cols-2 gap-8">
-            <div
-              class="bg-card-gray p-6 rounded-lg border-l-4 border-answer-neon"
-            >
-              <div class="text-3xl mb-3 text-answer-neon">💡</div>
-              <h4 class="text-xl font-bold font-mono text-white mb-2">
-                AI-Powered Enigmas
+        <!-- Game Details -->
+        <div
+          id="game-details"
+          class="animate-in fade-in slide-in-from-bottom-4 duration-500"
+        >
+          <div class="grid gap-12">
+            <div class="space-y-4">
+              <h4 class="text-2xl font-heading font-bold text-white">
+                System Architecture
               </h4>
-              <p class="text-gray-400">
-                Riddles are generated in real-time by a custom large language
-                model (Gemini) running on the Grasshopper network. Fresh content
-                guaranteed.
+              <p
+                class="text-gray-400 font-light italic border-l-2 border-neon-red pl-6 py-2 bg-white/5"
+              >
+                "Void Enigma is not just a game; it's an interface to an
+                intelligence that doesn't sleep."
               </p>
             </div>
-
-            <div
-              class="bg-card-gray p-6 rounded-lg border-l-4 border-cyber-blue"
-            >
-              <div class="text-3xl mb-3 text-cyber-blue">⌁</div>
-              <h4 class="text-xl font-bold font-mono text-white mb-2">
-                Sleek, Minimal Terminal
-              </h4>
-              <p class="text-gray-400">
-                The UI is designed for focus, utilizing a high-contrast,
-                dark-mode terminal interface optimized for mobile use. No
-                clutter, just code.
-              </p>
+            <div class="grid sm:grid-cols-2 gap-8 text-sm">
+              <div class="p-6 bg-card-gray border border-white/5">
+                <span class="text-neon-red font-mono block mb-2 text-[10px]"
+                  >01 // GENERATION</span
+                >
+                <p class="text-gray-300">
+                  Utilizing high-frequency API calls to Perplexity Sonar models to
+                  ensure instant riddle synthesis.
+                </p>
+              </div>
+              <div class="p-6 bg-card-gray border border-white/5">
+                <span class="text-neon-red font-mono block mb-2 text-[10px]"
+                  >02 // INTERFACE</span
+                >
+                <p class="text-gray-300">
+                  Retro-futuristic UX built for high readability in low-light
+                  environments.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Privacy Policy Content -->
-        <div id="privacy-policy" class="hidden space-y-8 text-gray-400 text-sm">
-          <iframe
-            src="./privacy-policy.html"
-            style="width: 100%; height: 70vh; border: none"
-            title="Void Enigma Privacy Policy"
-          ></iframe>
+        <!-- Privacy Policy -->
+        <div id="privacy-policy" class="hidden">
+          <div class="rounded-lg overflow-hidden border border-white/5">
+            <iframe
+              src="./privacy-policy.html"
+              class="w-full h-[600px] grayscale invert contrast-125 opacity-80"
+              title="Void Enigma Privacy Policy"
+            ></iframe>
+          </div>
         </div>
       </div>
     </section>
@@ -300,24 +454,17 @@
 
     <script>
       lucide.createIcons();
-      const btn = document.getElementById("mobile-menu-btn");
-      const menu = document.getElementById("mobile-menu");
-      btn.addEventListener("click", () => menu.classList.toggle("hidden"));
+
       setInterval(() => {
         const now = new Date();
         document.getElementById("time").innerText = now
           .toTimeString()
           .split(" ")[0];
       }, 1000);
-      // Set dynamic year
-      document.getElementById("current-year").innerText = new Date().getFullYear();
-      function notify() {
-        const toast = document.getElementById("notification-toast");
-        toast.classList.add("show");
-        setTimeout(() => toast.classList.remove("show"), 3000);
-      }
 
-      // Function to handle tab switching
+      document.getElementById("current-year").innerText =
+        new Date().getFullYear();
+
       function showTab(tabName) {
         const gameDetails = document.getElementById("game-details");
         const privacyPolicy = document.getElementById("privacy-policy");
@@ -327,37 +474,17 @@
         if (tabName === "game") {
           gameDetails.classList.remove("hidden");
           privacyPolicy.classList.add("hidden");
-
-          tabGame.classList.add("border-neon-red", "text-neon-red");
-          tabGame.classList.remove(
-            "border-transparent",
-            "text-gray-500",
-            "hover:text-cyber-blue"
-          );
-
-          tabPolicy.classList.remove("border-neon-red", "text-neon-red");
-          tabPolicy.classList.add(
-            "border-transparent",
-            "text-gray-500",
-            "hover:text-cyber-blue"
-          );
-        } else if (tabName === "policy") {
+          tabGame.className =
+            "py-4 border-b-2 border-neon-red text-neon-red font-bold";
+          tabPolicy.className =
+            "py-4 border-b-2 border-transparent text-gray-600 hover:text-white transition-all";
+        } else {
           gameDetails.classList.add("hidden");
           privacyPolicy.classList.remove("hidden");
-
-          tabPolicy.classList.add("border-neon-red", "text-neon-red");
-          tabPolicy.classList.remove(
-            "border-transparent",
-            "text-gray-500",
-            "hover:text-cyber-blue"
-          );
-
-          tabGame.classList.remove("border-neon-red", "text-neon-red");
-          tabGame.classList.add(
-            "border-transparent",
-            "text-gray-500",
-            "hover:text-cyber-blue"
-          );
+          tabPolicy.className =
+            "py-4 border-b-2 border-neon-red text-neon-red font-bold";
+          tabGame.className =
+            "py-4 border-b-2 border-transparent text-gray-600 hover:text-white transition-all";
         }
       }
     </script>
