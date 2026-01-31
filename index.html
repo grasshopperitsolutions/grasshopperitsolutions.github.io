@@ -150,16 +150,12 @@
       </div>
       <button
         onclick="toggleAIBubble()"
-        class="w-16 h-16 rounded-full bg-grass-green flex items-center justify-center shadow-[0_0_20px_rgba(0,255,65,0.4)] hover:scale-110 transition-transform group overflow-hidden border-2 border-white/20"
+        class="animate-float w-16 h-16 rounded-full bg-grass-green flex items-center justify-center shadow-[0_0_20px_rgba(0,255,65,0.4)] hover:scale-110 transition-transform group overflow-hidden border-2 border-white/20"
       >
         <div
           class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"
         ></div>
-        <img
-          src="assets/logo.svg"
-          alt="Grasshopper Logo"
-          class="w-10 h-10 animate-float"
-        />
+        <img src="assets/logo.svg" alt="Grasshopper Logo" class="w-10 h-10" />
       </button>
     </div>
 
@@ -889,7 +885,8 @@
             class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
           />
           <span class="text-sm font-mono text-gray-400"
-            >© <span id="current-year">2026</span> Grasshopper IT Solutions, LLC. All Rights Reserved.</span
+            >© <span id="current-year">2026</span> Grasshopper IT Solutions,
+            LLC. All Rights Reserved.</span
           >
         </div>
         <div class="flex gap-4 text-gray-600">
@@ -926,7 +923,8 @@
           .split(" ")[0];
       }, 1000);
       // Set dynamic year
-      document.getElementById("current-year").innerText = new Date().getFullYear();
+      document.getElementById("current-year").innerText =
+        new Date().getFullYear();
       function notify() {
         const toast = document.getElementById("notification-toast");
         toast.classList.add("show");
