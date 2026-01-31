@@ -125,6 +125,15 @@
       #notification-toast.show {
         transform: translateY(0);
       }
+
+      /* Hide scrollbar for carousel but allow functionality */
+      .carousel-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      .carousel-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     </style>
   </head>
   <body
@@ -719,6 +728,242 @@
       </div>
     </section>
 
+    <!-- NEW SECTION: Personal Identities / Portfolio Carousel -->
+    <section
+      id="portfolio"
+      class="py-32 relative bg-deep-space overflow-hidden"
+    >
+      <!-- Background Elements -->
+      <div
+        class="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-grass-green opacity-5 rounded-full blur-[100px]"
+      ></div>
+      <div
+        class="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-cyber-blue opacity-5 rounded-full blur-[100px]"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex justify-between items-end mb-16">
+          <div>
+            <p
+              class="text-grass-green font-mono text-sm mb-2 tracking-widest uppercase"
+            >
+              // DIGITAL_IDENTITIES
+            </p>
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
+              Personal Landing Pages
+            </h2>
+          </div>
+          <!-- Carousel Controls -->
+          <div class="hidden md:flex gap-4">
+            <button
+              id="slide-prev"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-grass-green hover:text-black hover:border-grass-green transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+            <button
+              id="slide-next"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-cyber-blue hover:text-black hover:border-cyber-blue transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div
+          id="carousel-container"
+          class="carousel-scroll flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth"
+        >
+          <!-- Card 1: Ludovica Piro (Real) -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
+          >
+            <!-- Browser Chrome Mockup -->
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                https://ludovicapiro.com
+              </div>
+            </div>
+
+            <!-- Preview Area (Iframe or Image) -->
+            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+              <iframe
+                src="https://ludovicapiro.com"
+                class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
+                loading="lazy"
+                title="Ludovica Piro Portfolio"
+              ></iframe>
+
+              <!-- Hover Overlay with CTA -->
+              <div
+                class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <a
+                  href="https://ludovicapiro.com/"
+                  target="_blank"
+                  class="bg-grass-green text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
+                >
+                  Visit Live Site
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Ludovica Piro
+                  </h3>
+                  <p class="text-xs font-mono text-grass-green">
+                    Professional Portfolio
+                  </p>
+                </div>
+                <span
+                  class="bg-grass-green/10 text-grass-green text-[10px] px-2 py-1 rounded font-mono border border-grass-green/20"
+                  >LIVE</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                A bespoke personal branding site designed to showcase
+                professional achievements and creative portfolio work with a
+                minimalist, high-impact aesthetic.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Placeholder -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-cyber-blue/50 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                local://dev-portfolio-v2
+              </div>
+            </div>
+
+            <div
+              class="h-[300px] relative bg-gradient-to-br from-card-gray to-black flex items-center justify-center overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"
+              ></div>
+              <div class="text-center p-8">
+                <i
+                  data-lucide="code"
+                  class="w-12 h-12 text-gray-700 mx-auto mb-4"
+                ></i>
+                <h4 class="text-gray-500 font-mono text-sm uppercase">
+                  Constructing...
+                </h4>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Dev Identity
+                  </h3>
+                  <p class="text-xs font-mono text-cyber-blue">
+                    Full Stack Portfolio
+                  </p>
+                </div>
+                <span
+                  class="bg-cyber-blue/10 text-cyber-blue text-[10px] px-2 py-1 rounded font-mono border border-cyber-blue/20"
+                  >IN DEV</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                An upcoming template for full-stack developers featuring
+                interactive resume components, GitHub integration, and project
+                spotlighting.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3: Placeholder -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-white/30 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                local://creative-director
+              </div>
+            </div>
+
+            <div
+              class="h-[300px] relative bg-black flex items-center justify-center overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-purple-900/20 to-blue-900/20"
+              ></div>
+              <div class="text-center p-8 relative z-10">
+                <i
+                  data-lucide="palette"
+                  class="w-12 h-12 text-gray-700 mx-auto mb-4"
+                ></i>
+                <h4 class="text-gray-500 font-mono text-sm uppercase">
+                  Awaiting Input
+                </h4>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Creative Suite
+                  </h3>
+                  <p class="text-xs font-mono text-gray-500">
+                    Design Portfolio
+                  </p>
+                </div>
+                <span
+                  class="bg-white/5 text-gray-400 text-[10px] px-2 py-1 rounded font-mono border border-white/10"
+                  >CONCEPT</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                A visually immersive landing page structure for designers and
+                artists, focusing on large imagery, typography, and gallery
+                layouts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Process Section -->
     <section id="process" class="py-32 bg-black">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -866,23 +1111,17 @@
             alt="Grasshopper Logo"
             class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
           />
-          <span class="text-sm font-mono text-gray-400"
-            >© <span id="current-year">2026</span> Grasshopper IT Solutions,
-            LLC. All Rights Reserved.</span
+          <span class="text-xl font-mono font-bold text-white"
+            >Grasshopper_IT</span
           >
         </div>
         <div class="flex gap-4 text-gray-600">
           <button onclick="notify()" class="hover:text-white transition-colors">
             <i data-lucide="linkedin" class="w-4 h-4"></i>
           </button>
-          <a
-            href="https://github.com/grasshopperitsolutions"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-white transition-colors"
-          >
+          <button onclick="notify()" class="hover:text-white transition-colors">
             <i data-lucide="github" class="w-4 h-4"></i>
-          </a>
+          </button>
           <button onclick="notify()" class="hover:text-white transition-colors">
             <i data-lucide="instagram" class="w-4 h-4"></i>
           </button>
@@ -904,9 +1143,6 @@
           .toTimeString()
           .split(" ")[0];
       }, 1000);
-      // Set dynamic year
-      document.getElementById("current-year").innerText =
-        new Date().getFullYear();
       function notify() {
         const toast = document.getElementById("notification-toast");
         toast.classList.add("show");
@@ -915,6 +1151,20 @@
       function toggleAIBubble() {
         const bubble = document.getElementById("ai-bubble");
         bubble.classList.toggle("hidden");
+      }
+
+      // Carousel Logic
+      const container = document.getElementById("carousel-container");
+      const prevBtn = document.getElementById("slide-prev");
+      const nextBtn = document.getElementById("slide-next");
+
+      if (container && prevBtn && nextBtn) {
+        nextBtn.addEventListener("click", () => {
+          container.scrollBy({ left: 400, behavior: "smooth" });
+        });
+        prevBtn.addEventListener("click", () => {
+          container.scrollBy({ left: -400, behavior: "smooth" });
+        });
       }
     </script>
   </body>
