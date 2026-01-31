@@ -265,24 +265,62 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-tales-amber/10 py-12 border-t border-tales-amber/30">
-      <div class="max-w-7xl mx-auto px-4 text-center">
-        <p class="text-tales-muted text-sm font-sans mb-2">
-          &copy; 2025 Grasshopper IT Solutions, LLC. All Rights Reserved.
-        </p>
-        <p class="text-xs text-tales-muted font-sans">
-          A safe space for imagination.
+    <footer class="bg-black py-16 border-t border-white/10">
+      <div
+        class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
+      >
+        <div class="flex items-center group">
+          <img
+            src="../../assets/logo.svg"
+            alt="Grasshopper Logo"
+            class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
+          />
+          <span class="text-sm font-mono text-gray-400"
+            >© <span id="current-year">2026</span> Grasshopper IT Solutions, LLC. All Rights Reserved.</span
+          >
+        </div>
+        <div class="flex gap-4 text-gray-600">
+          <button onclick="notify()" class="hover:text-white transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </button>
+          <a
+            href="https://github.com/grasshopperitsolutions"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-white transition-colors"
+          >
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </a>
+          <button onclick="notify()" class="hover:text-white transition-colors">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <p class="text-gray-700 text-[10px] font-mono">
+          SYSTEM_LOCAL_TIME: <span id="time">00:00:00</span>
         </p>
       </div>
     </footer>
 
-    <!-- JavaScript for Tab Switching -->
     <script>
       lucide.createIcons();
       const btn = document.getElementById("mobile-menu-btn");
       const menu = document.getElementById("mobile-menu");
       btn.addEventListener("click", () => menu.classList.toggle("hidden"));
+      setInterval(() => {
+        const now = new Date();
+        document.getElementById("time").innerText = now
+          .toTimeString()
+          .split(" ")[0];
+      }, 1000);
+      // Set dynamic year
+      document.getElementById("current-year").innerText = new Date().getFullYear();
+      function notify() {
+        const toast = document.getElementById("notification-toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      }
 
+      // JavaScript for Tab Switching
       function showTab(tabName) {
         const gameDetails = document.getElementById("game-details");
         const privacyPolicy = document.getElementById("privacy-policy");

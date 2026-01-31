@@ -286,12 +286,14 @@
                 >
                   <i data-lucide="linkedin" class="w-5 h-5"></i>
                 </button>
-                <button
-                  onclick="notify()"
+                <a
+                  href="https://github.com/grasshopperitsolutions"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   class="hover:text-white transition-colors"
                 >
                   <i data-lucide="github" class="w-5 h-5"></i>
-                </button>
+                </a>
                 <button
                   onclick="notify()"
                   class="hover:text-white transition-colors"
@@ -886,17 +888,22 @@
             alt="Grasshopper Logo"
             class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
           />
-          <span class="text-xl font-mono font-bold text-white"
-            >Grasshopper IT Solutions</span
+          <span class="text-sm font-mono text-gray-400"
+            >© <span id="current-year">2026</span> Grasshopper IT Solutions, LLC. All Rights Reserved.</span
           >
         </div>
         <div class="flex gap-4 text-gray-600">
           <button onclick="notify()" class="hover:text-white transition-colors">
             <i data-lucide="linkedin" class="w-4 h-4"></i>
           </button>
-          <button onclick="notify()" class="hover:text-white transition-colors">
+          <a
+            href="https://github.com/grasshopperitsolutions"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-white transition-colors"
+          >
             <i data-lucide="github" class="w-4 h-4"></i>
-          </button>
+          </a>
           <button onclick="notify()" class="hover:text-white transition-colors">
             <i data-lucide="instagram" class="w-4 h-4"></i>
           </button>
@@ -918,6 +925,8 @@
           .toTimeString()
           .split(" ")[0];
       }, 1000);
+      // Set dynamic year
+      document.getElementById("current-year").innerText = new Date().getFullYear();
       function notify() {
         const toast = document.getElementById("notification-toast");
         toast.classList.add("show");
