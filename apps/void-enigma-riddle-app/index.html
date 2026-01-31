@@ -35,6 +35,7 @@
               "pulse-fast": "pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
               scanline: "scanline 8s linear infinite",
               glitch: "glitch 1s linear infinite",
+              "screenshot-fade": "screenshotFade 12s infinite",
             },
             keyframes: {
               scanline: {
@@ -48,6 +49,28 @@
                 "60%": { transform: "translate(2px, 2px)" },
                 "80%": { transform: "translate(2px, -2px)" },
                 "100%": { transform: "translate(0)" },
+              },
+              screenshotFade: {
+                "0%, 30%": {
+                  opacity: "1",
+                  backgroundImage:
+                    "url('https://play-lh.googleusercontent.com/n_sBUahiarth_h2t8bBHpuk7hnMCxu7Epzaomf8tV3nYP2uFV1NGf-uug8G0FCJEHDHjbHEx5RDUYfAc1CjWDQ')",
+                },
+                "33%, 63%": {
+                  opacity: "1",
+                  backgroundImage:
+                    "url('https://play-lh.googleusercontent.com/UkEDVdGz0L1_NbDlZm07_CfEYEMa5nj6k486K7NX3fMJ4NQItle2-hDfiZvssdSCaTn6YmVoVB5SHw87anKmaW8')",
+                },
+                "66%, 96%": {
+                  opacity: "1",
+                  backgroundImage:
+                    "url('https://play-lh.googleusercontent.com/q2TsmZCZzj6OfmMHbNNVieFqfQVMPwvdUeGQ9QWqkswg9zAvwfzUJZH1O9zlcjqavQz9Z7fvH-QwmARql50pdA')",
+                },
+                "100%": {
+                  opacity: "1",
+                  backgroundImage:
+                    "url('https://play-lh.googleusercontent.com/n_sBUahiarth_h2t8bBHpuk7hnMCxu7Epzaomf8tV3nYP2uFV1NGf-uug8G0FCJEHDHjbHEx5RDUYfAc1CjWDQ')",
+                },
               },
             },
           },
@@ -94,13 +117,23 @@
       }
 
       .terminal-window {
-        background: radial-gradient(circle at center, #12010f 0%, #050612 100%);
+        background-color: #000;
         border: 1px solid rgba(255, 7, 58, 0.3);
       }
 
       .btn-glitch:hover {
         animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
           infinite;
+      }
+
+      .glass-glare {
+        background: linear-gradient(
+          105deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.05) 40%,
+          rgba(255, 255, 255, 0) 60%
+        );
+        pointer-events: none;
       }
     </style>
   </head>
@@ -147,7 +180,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <!-- Text Content -->
-          <div class="space-y-8">
+          <div class="space-y-8 order-2 lg:order-1">
             <div>
               <div class="flex items-center gap-3 mb-6">
                 <span class="h-px w-8 bg-neon-red"></span>
@@ -177,7 +210,7 @@
               <a
                 href="https://play.google.com/store/apps/details?id=com.grasshopperitsolutions.voidenigma"
                 target="_blank"
-                class="group relative bg-neon-red px-10 py-5 rounded-none overflow-hidden transition-all btn-glitch"
+                class="group relative bg-neon-red px-10 py-5 rounded-none overflow-hidden transition-all btn-glitch hover:shadow-[0_0_20px_rgba(255,7,58,0.6)] hover:scale-105"
               >
                 <div
                   class="relative z-10 flex items-center justify-center gap-3 text-white font-bold uppercase tracking-widest text-sm"
@@ -186,7 +219,7 @@
                   Access Terminal
                 </div>
                 <div
-                  class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"
                 ></div>
               </a>
 
@@ -213,73 +246,34 @@
             </div>
           </div>
 
-          <!-- Mockup -->
-          <div class="relative group">
+          <!-- Realistic Landscape Mockup -->
+          <div class="relative group order-1 lg:order-2">
             <div
               class="absolute -inset-4 bg-neon-red/20 blur-3xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity"
             ></div>
 
+            <!-- Portrait Device Frame -->
             <div
-              class="relative mx-auto w-full max-w-[320px] aspect-[9/19.5] border-[12px] border-card-gray rounded-[3rem] shadow-2xl overflow-hidden terminal-window ring-1 ring-neon-red/30"
+              class="relative mx-auto w-full max-w-[320px] aspect-[9/19.5] border-[10px] border-card-gray rounded-3xl shadow-2xl overflow-hidden terminal-window ring-1 ring-neon-red/30"
             >
-              <!-- Internal App Screen -->
+              <!-- Actual Play Store Screenshots Carousel -->
               <div
-                class="h-full flex flex-col p-6 font-mono text-sm overflow-hidden relative"
+                class="absolute inset-0 w-full h-full bg-cover bg-center animate-screenshot-fade"
+              ></div>
+
+              <!-- Glass Glare Overlay -->
+              <div class="absolute inset-0 glass-glare z-20"></div>
+
+              <!-- UI Overlay (Optional Status Bar Mockup) -->
+              <div
+                class="absolute top-0 left-0 w-full p-2 flex justify-between items-center bg-black/50 backdrop-blur-sm z-10 border-b border-white/5"
               >
-                <!-- Status Bar -->
-                <div
-                  class="flex justify-between items-center mb-10 opacity-60 text-[10px]"
+                <span class="text-[8px] font-mono text-neon-red animate-pulse"
+                  >● LIVE_FEED</span
                 >
-                  <span>SYS_LINK: ACTIVE</span>
-                  <span class="animate-pulse-fast text-neon-red">● REC</span>
-                </div>
-
-                <!-- Riddle Display -->
-                <div class="flex-grow space-y-6">
-                  <div class="p-3 border-l border-neon-red/40 bg-neon-red/5">
-                    <span
-                      class="text-[10px] text-neon-red block mb-2 opacity-50"
-                      >&gt; INCOMING_TRANSMISSION</span
-                    >
-                    <p class="text-white italic leading-relaxed">
-                      "I turn everything but cannot move. I have no legs, but I
-                      am always running. What am I?"
-                    </p>
-                  </div>
-
-                  <div class="space-y-2 opacity-80">
-                    <div
-                      class="h-10 border border-white/10 flex items-center px-4 text-xs text-gray-500"
-                    >
-                      TYPE_ANSWER_HERE...
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                      <div
-                        class="h-10 bg-neon-red/20 border border-neon-red/50 flex items-center justify-center text-neon-red text-[10px] font-bold"
-                      >
-                        SUBMIT
-                      </div>
-                      <div
-                        class="h-10 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 text-[10px]"
-                      >
-                        HINT
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Footer Stats -->
-                <div
-                  class="mt-auto pt-6 border-t border-white/5 space-y-2 opacity-40 text-[9px]"
+                <span class="text-[8px] font-mono text-gray-500"
+                  >VOID_OS v2.1</span
                 >
-                  <div class="flex justify-between">
-                    <span>RIDDLES_SOLVED</span>
-                    <span>442</span>
-                  </div>
-                  <div class="w-full bg-white/10 h-1">
-                    <div class="bg-neon-red w-2/3 h-full"></div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -331,7 +325,7 @@
               Minimalist Sync
             </h3>
             <p class="text-sm text-gray-500 leading-relaxed">
-              A distractions-free environment. No ads, no social fluff. Just you
+              A distractions-free environment. No social fluff. Just you
               and the machine.
             </p>
           </div>
