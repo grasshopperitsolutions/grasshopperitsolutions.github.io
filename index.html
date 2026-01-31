@@ -25,6 +25,13 @@
               "deep-space": "#0a0a0a",
               "code-gray": "#1e1e1e",
               "card-gray": "#151515",
+
+              // App Specific Theme Colors
+              "neon-red": "#ff073a",
+              "tales-amber": "#b45309",
+              "tales-action": "#991b1b",
+              "kitchen-orange": "#ea580c",
+              "kitchen-red": "#dc2626",
             },
             fontFamily: {
               mono: ['"Space Mono"', "monospace"],
@@ -195,9 +202,9 @@
               >./Services</a
             >
             <a
-              href="./apps/"
+              href="#apps"
               class="hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
-              >./App_Center</a
+              >./Apps</a
             >
             <a
               href="mailto:grasshopper.it.solutions@gmail.com"
@@ -217,7 +224,7 @@
         class="hidden lg:hidden bg-code-gray border-b border-white/10 px-4 py-6 space-y-4"
       >
         <a href="#services" class="block text-gray-300 font-mono">./Services</a>
-        <a href="./apps/" class="block text-gray-300 font-mono">./App_Center</a>
+        <a href="#apps" class="block text-gray-300 font-mono">./Apps</a>
       </div>
     </nav>
 
@@ -973,6 +980,188 @@
       </div>
     </section>
 
+    <!-- NEW SECTION: App Showcase Carousel -->
+    <section
+      id="apps"
+      class="py-32 relative bg-black overflow-hidden border-t border-white/5"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex justify-between items-end mb-16">
+          <div>
+            <p
+              class="text-neon-red font-mono text-sm mb-2 tracking-widest uppercase"
+            >
+              // APP_SHOWCASE
+            </p>
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
+              Interactive Applications
+            </h2>
+          </div>
+          <!-- Carousel Controls -->
+          <div class="hidden md:flex gap-4">
+            <button
+              id="app-slide-prev"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-neon-red hover:text-black hover:border-neon-red transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+            <button
+              id="app-slide-next"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-neon-red hover:text-black hover:border-neon-red transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div
+          id="app-carousel-container"
+          class="carousel-scroll flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth"
+        >
+          <!-- App 1: Void Enigma -->
+          <div
+            class="min-w-[85vw] md:min-w-[450px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-neon-red/50 transition-all duration-500"
+          >
+            <div
+              class="h-[250px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
+            >
+              <div
+                class="text-6xl mb-4 text-neon-red group-hover:scale-110 transition-transform duration-300"
+              >
+                ☲
+              </div>
+              <h3 class="text-2xl font-bold font-mono text-white mb-2">
+                Void Enigma
+              </h3>
+              <p class="text-xs font-mono text-neon-red">System.Game.Logic</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                An app that creates Riddles from AI-generated data patterns.
+                Input your data set and receive enigmatic puzzles that challenge
+                your analytical skills.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-neon-red/10 text-neon-red rounded"
+                  >#AI</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-neon-red/10 text-neon-red rounded"
+                  >#Puzzle</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-neon-red/10 text-neon-red rounded"
+                  >#Mobile</span
+                >
+              </div>
+              <a
+                href="./apps/void-enigma-riddle-app/index.html"
+                class="block w-full py-3 text-center bg-neon-red text-black font-bold rounded hover:bg-white transition-colors"
+              >
+                Launch Terminal &gt;
+              </a>
+            </div>
+          </div>
+
+          <!-- App 2: Tiny Tales Teller -->
+          <div
+            class="min-w-[85vw] md:min-w-[450px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-tales-amber/50 transition-all duration-500"
+          >
+            <div
+              class="h-[250px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
+            >
+              <div
+                class="text-6xl mb-4 text-tales-amber group-hover:scale-110 transition-transform duration-300"
+              >
+                📚
+              </div>
+              <h3 class="text-2xl font-bold font-mono text-white mb-2">
+                Tiny Tales Teller
+              </h3>
+              <p class="text-xs font-mono text-tales-amber">System.Story.Gen</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                An AI storyteller that generates custom, kid-friendly tales on
+                demand. Choose a character, theme, and language for an endless
+                bedtime story generator.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-tales-amber/10 text-tales-amber rounded"
+                  >#Kids</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-tales-amber/10 text-tales-amber rounded"
+                  >#Storytelling</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-tales-amber/10 text-tales-amber rounded"
+                  >#AI</span
+                >
+              </div>
+              <a
+                href="./apps/tiny-tales-teller-app/"
+                class="block w-full py-3 text-center bg-tales-action text-white font-bold rounded hover:bg-white hover:text-black transition-colors"
+              >
+                Open Library &gt;
+              </a>
+            </div>
+          </div>
+
+          <!-- App 3: AI Kitchen Navigator -->
+          <div
+            class="min-w-[85vw] md:min-w-[450px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-kitchen-orange/50 transition-all duration-500"
+          >
+            <div
+              class="h-[250px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
+            >
+              <div
+                class="text-6xl mb-4 text-kitchen-orange group-hover:scale-110 transition-transform duration-300"
+              >
+                🍳
+              </div>
+              <h3 class="text-2xl font-bold font-mono text-white mb-2">
+                Kitchen Navigator
+              </h3>
+              <p class="text-xs font-mono text-kitchen-orange">
+                System.Food.AI
+              </p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                (Work in Progress) Generate recipes based on ingredients you
+                have, dietary restrictions, or cooking time. Your personal AI
+                culinary consultant.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-kitchen-orange/10 text-kitchen-orange rounded"
+                  >#Recipe</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-kitchen-orange/10 text-kitchen-orange rounded"
+                  >#Utility</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-kitchen-orange/10 text-kitchen-orange rounded"
+                  >#AI</span
+                >
+              </div>
+              <a
+                href="#"
+                class="block w-full py-3 text-center bg-gray-800 text-gray-400 font-bold rounded cursor-not-allowed"
+              >
+                Coming Soon...
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Process Section -->
     <section id="process" class="py-32 bg-black">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1043,27 +1232,6 @@
             </p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- App Center CTA -->
-    <section
-      id="apps"
-      class="py-24 bg-deep-space border-t border-white/5 relative overflow-hidden"
-    >
-      <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-        <h2 class="text-3xl md:text-5xl font-heading font-bold text-white mb-8">
-          Visit the App Center
-        </h2>
-        <p class="text-gray-400 mb-10 text-lg">
-          Check out our suite of AI-driven utilities and interactive tools
-          developed for the community.
-        </p>
-        <a
-          href="apps.html"
-          class="inline-block bg-white text-black font-bold py-4 px-12 rounded-full hover:bg-cyber-blue hover:text-white transition-all transform hover:-translate-y-1"
-          >Enter Terminal &gt;</a
-        >
       </div>
     </section>
 
@@ -1162,7 +1330,7 @@
         bubble.classList.toggle("hidden");
       }
 
-      // Carousel Logic
+      // Identities Carousel Logic
       const container = document.getElementById("carousel-container");
       const prevBtn = document.getElementById("slide-prev");
       const nextBtn = document.getElementById("slide-next");
@@ -1173,6 +1341,20 @@
         });
         prevBtn.addEventListener("click", () => {
           container.scrollBy({ left: -400, behavior: "smooth" });
+        });
+      }
+
+      // App Carousel Logic (New)
+      const appContainer = document.getElementById("app-carousel-container");
+      const appPrevBtn = document.getElementById("app-slide-prev");
+      const appNextBtn = document.getElementById("app-slide-next");
+
+      if (appContainer && appPrevBtn && appNextBtn) {
+        appNextBtn.addEventListener("click", () => {
+          appContainer.scrollBy({ left: 400, behavior: "smooth" });
+        });
+        appPrevBtn.addEventListener("click", () => {
+          appContainer.scrollBy({ left: -400, behavior: "smooth" });
         });
       }
     </script>

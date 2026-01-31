@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
@@ -71,7 +71,8 @@
       }
       /* Soft Glow for the Playful Theme */
       .soft-glow-amber {
-        box-shadow: 0 4px 20px rgba(180, 83, 9, 0.2),
+        box-shadow:
+          0 4px 20px rgba(180, 83, 9, 0.2),
           0 0 8px rgba(180, 83, 9, 0.1);
       }
       .neon-text {
@@ -105,10 +106,10 @@
           </div>
           <div class="hidden md:flex items-center space-x-8">
             <a
-              href="../../apps/"
+              href="../../"
               class="border border-tales-green text-tales-green hover:bg-tales-green hover:text-white px-4 py-2 rounded-full text-sm font-sans transition-all font-semibold soft-glow-amber"
             >
-              &lt; Back to App Center
+              < Back to Home
             </a>
           </div>
         </div>
@@ -276,7 +277,8 @@
             class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
           />
           <span class="text-sm font-mono text-gray-400"
-            >© <span id="current-year">2026</span> Grasshopper IT Solutions, LLC. All Rights Reserved.</span
+            >© <span id="current-year">2026</span> Grasshopper IT Solutions,
+            LLC. All Rights Reserved.</span
           >
         </div>
         <div class="flex gap-4 text-gray-600">
@@ -313,7 +315,8 @@
           .split(" ")[0];
       }, 1000);
       // Set dynamic year
-      document.getElementById("current-year").innerText = new Date().getFullYear();
+      document.getElementById("current-year").innerText =
+        new Date().getFullYear();
       function notify() {
         const toast = document.getElementById("notification-toast");
         toast.classList.add("show");
@@ -331,7 +334,7 @@
         const toggleClasses = (element, addClasses, removeClasses) => {
           element.classList.add(...addClasses.split(" ").filter((c) => c));
           element.classList.remove(
-            ...removeClasses.split(" ").filter((c) => c)
+            ...removeClasses.split(" ").filter((c) => c),
           );
         };
 
@@ -347,12 +350,12 @@
           toggleClasses(
             tabGame,
             `${activeBorder} ${activeText}`,
-            `${inactiveBorder} ${inactiveText}`
+            `${inactiveBorder} ${inactiveText}`,
           );
           toggleClasses(
             tabPolicy,
             `${inactiveBorder} ${inactiveText}`,
-            `${activeBorder} ${activeText}`
+            `${activeBorder} ${activeText}`,
           );
         } else if (tabName === "policy") {
           gameDetails.classList.add("hidden");
@@ -361,12 +364,12 @@
           toggleClasses(
             tabPolicy,
             `${activeBorder} ${activeText}`,
-            `${inactiveBorder} ${inactiveText}`
+            `${inactiveBorder} ${inactiveText}`,
           );
           toggleClasses(
             tabGame,
             `${inactiveBorder} ${inactiveText}`,
-            `${activeBorder} ${activeText}`
+            `${activeBorder} ${activeText}`,
           );
         }
       }
