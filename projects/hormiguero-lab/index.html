@@ -294,9 +294,13 @@
                   class="w-full bg-stone-50 border-b-2 border-stone-200 py-3 px-2 text-sm focus:border-earth-clay outline-none cursor-pointer"
                 >
                   <option value="todas">Todas las categorías</option>
-                  <option value="Ciencia y Tecnología">Ciencia y Tecnología</option>
+                  <option value="Ciencia y Tecnología">
+                    Ciencia y Tecnología
+                  </option>
                   <option value="Educación y Becas">Educación y Becas</option>
-                  <option value="Cooperación y Emprendimiento">Cooperación y Emprendimiento</option>
+                  <option value="Cooperación y Emprendimiento">
+                    Cooperación y Emprendimiento
+                  </option>
                   <option value="Empleo Público">Empleo Público</option>
                   <option value="Vivienda y Social">Vivienda y Social</option>
                   <option value="Gobiernos Locales">Gobiernos Locales</option>
@@ -321,7 +325,6 @@
               >
             </div>
           </div>
-
         </aside>
 
         <!-- Results Grid -->
@@ -547,165 +550,164 @@
     </footer>
 
     <script>
-      const PPLX_KEY = "";
       const SOURCES = [
         // Ciencia y Tecnología
         {
           id: "minciencias",
           url: "https://minciencias.gov.co/convocatorias",
           name: "Minciencias",
-          category: "Ciencia y Tecnología"
+          category: "Ciencia y Tecnología",
         },
         {
           id: "atenea",
           url: "https://agenciaatenea.gov.co/convocatorias",
           name: "ATENEA Bogotá",
-          category: "Ciencia y Tecnología"
+          category: "Ciencia y Tecnología",
         },
         {
           id: "parques-nacionales",
           url: "https://www.parquesnacionales.gov.co/programa-de-estimulo-al-conocimiento/convocatorias-abiertas-categoria-investigacion/",
           name: "Parques Nacionales",
-          category: "Ciencia y Tecnología"
+          category: "Ciencia y Tecnología",
         },
-        
+
         // Educación y Becas
         {
           id: "icetex",
           url: "https://web.icetex.gov.co/becas",
           name: "ICETEX",
-          category: "Educación y Becas"
+          category: "Educación y Becas",
         },
         {
           id: "sena",
           url: "https://www.sena.edu.co/es-co/formacion/Paginas/Estudie-en-el-SENA.aspx",
           name: "SENA",
-          category: "Educación y Becas"
+          category: "Educación y Becas",
         },
         {
           id: "fundacion-sura",
           url: "https://www.fundacionsura.com/iniciativas/beca-nicanor-restrepo-santamaria/",
           name: "Fundación SURA",
-          category: "Educación y Becas"
+          category: "Educación y Becas",
         },
         {
           id: "mineducacion",
           url: "https://www.mineducacion.gov.co/portal/micrositios-institucionales/Cooperacion-Internacional/",
           name: "MinEducación",
-          category: "Educación y Becas"
+          category: "Educación y Becas",
         },
-        
+
         // Cooperación y Emprendimiento
         {
           id: "apc",
           url: "https://www.apccolombia.gov.co/modalidades-de-cooperacion/convocatorias",
           name: "APC Colombia",
-          category: "Cooperación y Emprendimiento"
+          category: "Cooperación y Emprendimiento",
         },
         {
           id: "innpulsa",
           url: "https://www.innpulsacolombia.com/convocatorias",
           name: "INNpulsa",
-          category: "Cooperación y Emprendimiento"
+          category: "Cooperación y Emprendimiento",
         },
         {
           id: "cidei",
           url: "https://cidei.net/convocatorias-para-proyectos-idi/",
           name: "CIDEI",
-          category: "Cooperación y Emprendimiento"
+          category: "Cooperación y Emprendimiento",
         },
-        
+
         // Empleo Público
         {
           id: "cnsC",
           url: "https://www.cnsc.gov.co",
           name: "CNSC",
-          category: "Empleo Público"
+          category: "Empleo Público",
         },
         {
           id: "dnp",
           url: "https://www.dnp.gov.co",
           name: "DNP",
-          category: "Empleo Público"
+          category: "Empleo Público",
         },
         {
           id: "sena-empleo",
           url: "https://ape.sena.edu.co/spe-web/spe/cartelera",
           name: "SENA Empleo",
-          category: "Empleo Público"
+          category: "Empleo Público",
         },
-        
+
         // Vivienda y Social
         {
           id: "minvivienda",
           url: "https://www.minvivienda.gov.co/sala-de-prensa",
           name: "MinVivienda",
-          category: "Vivienda y Social"
+          category: "Vivienda y Social",
         },
         {
           id: "minigualdad",
           url: "https://www.minigualdadyequidad.gov.co/convocatorias",
           name: "MinIgualdad",
-          category: "Vivienda y Social"
+          category: "Vivienda y Social",
         },
-        
+
         // Gobiernos Locales
         {
           id: "bogota",
           url: "https://bogota.gov.co/mi-ciudad/desarrollo-economico",
           name: "Bogotá",
-          category: "Gobiernos Locales"
+          category: "Gobiernos Locales",
         },
         {
           id: "medellin",
           url: "https://www.medellin.gov.co",
           name: "Medellín",
-          category: "Gobiernos Locales"
+          category: "Gobiernos Locales",
         },
         {
           id: "cali",
           url: "https://intranet.cali.gov.co/convocatorias-internas-2025/",
           name: "Cali",
-          category: "Gobiernos Locales"
+          category: "Gobiernos Locales",
         },
         {
           id: "cartagena",
           url: "https://www.cartagena.gov.co/Transparencia/Convocatorias",
           name: "Cartagena",
-          category: "Gobiernos Locales"
+          category: "Gobiernos Locales",
         },
         {
           id: "antioquia",
           url: "https://www.antioquiatic.edu.co",
           name: "Antioquia",
-          category: "Gobiernos Locales"
+          category: "Gobiernos Locales",
         },
         {
           id: "magdalena",
           url: "https://www.gobernaciondelmagdalena.gov.co/convocatorias/",
           name: "Magdalena",
-          category: "Gobiernos Locales"
+          category: "Gobiernos Locales",
         },
-        
+
         // Universidades
         {
           id: "ude-medellin",
           url: "https://investigacion.udemedellin.edu.co/apoyo-al-investigador/convocatorias/",
           name: "U. de Medellín",
-          category: "Universidades"
+          category: "Universidades",
         },
         {
           id: "u-caldas",
           url: "https://www.ucaldas.edu.co/portal/convocatorias/",
           name: "U. de Caldas",
-          category: "Universidades"
+          category: "Universidades",
         },
         {
           id: "sector-universitario",
           url: "https://www.universidad.edu.co/bolsa-de-empleo-en-el-sector-universitario/",
           name: "Sector Universitario",
-          category: "Universidades"
-        }
+          category: "Universidades",
+        },
       ];
 
       let allConvocatorias = [];
@@ -721,7 +723,7 @@
 
         // Agrupar fuentes por categoría
         const categories = {};
-        SOURCES.forEach(s => {
+        SOURCES.forEach((s) => {
           if (!categories[s.category]) {
             categories[s.category] = [];
           }
@@ -730,13 +732,14 @@
 
         // Mostrar fuentes en el sidebar con categorías
         if (list) {
-          Object.keys(categories).forEach(category => {
+          Object.keys(categories).forEach((category) => {
             const categoryHeader = document.createElement("div");
-            categoryHeader.className = "text-[8px] font-bold text-stone-400 uppercase tracking-wider mt-4 mb-2 border-t border-stone-200 pt-4";
+            categoryHeader.className =
+              "text-[8px] font-bold text-stone-400 uppercase tracking-wider mt-4 mb-2 border-t border-stone-200 pt-4";
             categoryHeader.innerText = category;
             list.appendChild(categoryHeader);
 
-            categories[category].forEach(s => {
+            categories[category].forEach((s) => {
               const tag = document.createElement("span");
               tag.className =
                 "bg-stone-100 border border-stone-200 px-3 py-1.5 rounded-lg text-[10px] font-bold text-stone-500 uppercase tracking-tighter hover:bg-stone-200 transition-colors cursor-pointer";
@@ -749,13 +752,14 @@
 
         // Mostrar fuentes en el footer con categorías
         if (footerList) {
-          Object.keys(categories).forEach(category => {
+          Object.keys(categories).forEach((category) => {
             const categoryHeader = document.createElement("li");
-            categoryHeader.className = "text-[10px] font-bold text-stone-400 uppercase tracking-wider mt-4 mb-2 border-t border-stone-800 pt-4";
+            categoryHeader.className =
+              "text-[10px] font-bold text-stone-400 uppercase tracking-wider mt-4 mb-2 border-t border-stone-800 pt-4";
             categoryHeader.innerText = category;
             footerList.appendChild(categoryHeader);
 
-            categories[category].forEach(s => {
+            categories[category].forEach((s) => {
               const footerItem = document.createElement("li");
               footerItem.innerHTML = `<a href="${s.url}" target="_blank" class="hover:text-white transition-colors text-sm block py-1">${s.name}</a>`;
               footerList.appendChild(footerItem);
@@ -840,7 +844,7 @@
         const options = {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${PPLX_KEY}`,
+            // Authorization: `Bearer ${PPLX_KEY}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -851,9 +855,13 @@
 
         try {
           const response = await fetch(
-            "https://api.perplexity.ai/chat/completions",
+            "https://perplexity-api-proxy.vercel.app/api/chat",
             options,
           );
+          // const response = await fetch(
+          // "https://api.perplexity.ai/chat/completions",
+          // options,
+          // );
           const data = await response.json();
           const content = data.choices[0].message.content;
           const jsonStr = content.match(/\{[\s\S]*\}/);
@@ -888,8 +896,10 @@
           const statusClass = `status-${(item.estado || "abierta").toLowerCase()}`;
 
           // Buscar la categoría de la fuente
-          const source = SOURCES.find(s => s.name === item.fuente);
-          const categoryBadge = source ? `<span class="inline-block bg-stone-100 text-[8px] px-2 py-1 rounded-full font-bold text-stone-500 uppercase tracking-tighter">${source.category}</span>` : '';
+          const source = SOURCES.find((s) => s.name === item.fuente);
+          const categoryBadge = source
+            ? `<span class="inline-block bg-stone-100 text-[8px] px-2 py-1 rounded-full font-bold text-stone-500 uppercase tracking-tighter">${source.category}</span>`
+            : "";
 
           card.innerHTML = `
                     <div class="md:w-1/4 space-y-4 border-r border-stone-100 pr-6 w-full">
@@ -921,25 +931,25 @@
         const queryEl = document.getElementById("searchInput");
         const statusEl = document.getElementById("statusFilter");
         const categoryEl = document.getElementById("categoryFilter");
-        
+
         if (!queryEl || !statusEl || !categoryEl) return;
 
         const query = queryEl.value.toLowerCase();
         const status = statusEl.value;
         const category = categoryEl.value;
-        
+
         const filtered = allConvocatorias.filter((c) => {
           // Buscar la fuente en SOURCES para obtener la categoría
-          const source = SOURCES.find(s => s.name === c.fuente);
+          const source = SOURCES.find((s) => s.name === c.fuente);
           const sourceCategory = source ? source.category : "";
-          
+
           const matchesQuery =
             (c.titulo || "").toLowerCase().includes(query) ||
             (c.fuente || "").toLowerCase().includes(query);
-          
+
           const matchesStatus =
             status === "todos" || (c.estado || "").toLowerCase() === status;
-          
+
           const matchesCategory =
             category === "todas" || sourceCategory === category;
 
