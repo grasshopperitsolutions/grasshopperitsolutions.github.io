@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuno | Software Engineer & Entrepreneur</title>
+    <meta
+      name="description"
+      content="Personal landing page of Nuno - Software Developer, Diver, Traveler, and Founder of Grasshopper IT Solutions."
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Space Grotesk", "sans-serif"],
+            },
+            colors: {
+              grasshopper: {
+                400: "#a3e635", // lime-400 equivalent
+                500: "#84cc16", // lime-500 equivalent
+              },
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Custom scrollbar for webkit */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0f172a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #475569;
+      }
+
+      .glass-card {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .text-gradient {
+        background: linear-gradient(to right, #ffffff, #a3e635);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-950 text-slate-200 antialiased selection:bg-grasshopper-500 selection:text-black"
+  >
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+      <div
+        class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-0 right-1/4 w-96 h-96 bg-grasshopper-500/10 rounded-full blur-3xl"
+      ></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md border-b border-white/5 bg-slate-900/80"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div
+            class="flex-shrink-0 font-display font-bold text-xl tracking-wider text-white"
+          >
+            NUNO<span class="text-grasshopper-400">.</span>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="#about"
+                class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium"
+                >About</a
+              >
+              <a
+                href="#ventures"
+                class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium"
+                >Ventures</a
+              >
+              <a
+                href="#gallery"
+                class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium"
+                >Lifestyle</a
+              >
+              <a
+                href="#contact"
+                class="bg-grasshopper-500 hover:bg-grasshopper-400 text-slate-900 px-4 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105"
+                >Let's Connect</a
+              >
+            </div>
+          </div>
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-btn"
+              class="text-gray-300 hover:text-white p-2"
+            >
+              <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Menu Panel -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-slate-900 border-b border-white/5"
+      >
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a
+            href="#about"
+            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >About</a
+          >
+          <a
+            href="#ventures"
+            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Ventures</a
+          >
+          <a
+            href="#gallery"
+            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Lifestyle</a
+          >
+          <a
+            href="#contact"
+            class="text-grasshopper-400 block px-3 py-2 rounded-md text-base font-medium"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="pt-20">
+      <section
+        id="about"
+        class="min-h-[90vh] flex items-center justify-center relative px-4 sm:px-6 lg:px-8"
+      >
+        <div
+          class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        >
+          <div
+            class="order-2 lg:order-1 space-y-8 opacity-0 animate-fade-in-up"
+            style="animation-delay: 0.1s"
+          >
+            <div>
+              <div
+                class="inline-flex items-center px-3 py-1 rounded-full border border-grasshopper-500/30 bg-grasshopper-500/10 text-grasshopper-400 text-xs font-semibold tracking-wide uppercase mb-4"
+              >
+                Scuba Diver, Globetrotter Software Engineer & Entrepreneur
+              </div>
+              <h1
+                class="text-5xl sm:text-7xl font-display font-bold leading-tight"
+              >
+                Hi, I'm <span class="text-gradient">Nuno</span>
+              </h1>
+              <p class="mt-6 text-xl text-slate-400 leading-relaxed max-w-lg">
+                I build scalable digital solutions and explore the world's
+                depths. From crafting code to navigating oceans, I thrive on
+                technical challenges and new adventures.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="#contact"
+                class="px-8 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-gray-100 transition-all transform hover:-translate-y-1 shadow-lg shadow-white/10 flex items-center gap-2"
+              >
+                <span>Get in Touch</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+              <a
+                href="https://github.com/NunoMore"
+                target="_blank"
+                class="px-8 py-4 glass-card text-white rounded-full font-semibold hover:bg-white/10 transition-all border border-white/10 flex items-center gap-2"
+              >
+                <i data-lucide="github" class="w-5 h-5"></i>
+                <span>GitHub</span>
+              </a>
+            </div>
+
+            <div class="flex items-center gap-6 text-slate-500 pt-4">
+              <div class="flex items-center gap-2">
+                <i
+                  data-lucide="code-2"
+                  class="w-5 h-5 text-grasshopper-400"
+                ></i>
+                <span>Developer</span>
+              </div>
+              <div class="w-1 h-1 bg-slate-700 rounded-full"></div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="anchor" class="w-5 h-5 text-blue-400"></i>
+                <span>Diver</span>
+              </div>
+              <div class="w-1 h-1 bg-slate-700 rounded-full"></div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="plane" class="w-5 h-5 text-purple-400"></i>
+                <span>Traveler</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Image (Profile) -->
+          <div
+            class="order-1 lg:order-2 flex justify-center lg:justify-end opacity-0 animate-fade-in-up"
+            style="animation-delay: 0.3s"
+          >
+            <div class="relative w-72 h-72 sm:w-96 sm:h-96">
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-grasshopper-500 to-blue-500 rounded-[2rem] rotate-6 opacity-20 blur-lg animate-pulse"
+              ></div>
+              <!-- Profile Face Picture Placeholder -->
+              <div
+                class="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-white/10 shadow-2xl bg-slate-800"
+              >
+                <!-- REPLACE THIS SRC WITH YOUR PROFILE IMAGE -->
+                <img
+                  src="assets/maui_cinematic.jpeg"
+                  alt="Nuno Profile"
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+
+              <!-- Floating Badges -->
+              <div
+                class="absolute -bottom-6 -left-6 glass-card p-4 rounded-xl flex items-center gap-3 animate-float shadow-xl"
+              >
+                <div class="bg-grasshopper-500/20 p-2 rounded-lg">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-6 h-6 text-grasshopper-400"
+                  ></i>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400">Experience</p>
+                  <p class="font-bold text-white">full-stack developer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Company Section -->
+      <section id="ventures" class="py-24 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2
+              class="text-3xl sm:text-4xl font-display font-bold text-white mb-4"
+            >
+              My Ventures
+            </h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">
+              Bridging the gap between complex problems and elegant solutions.
+            </p>
+          </div>
+
+          <div
+            class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden group hover:border-grasshopper-500/50 transition-colors duration-500"
+          >
+            <div
+              class="absolute top-0 right-0 w-64 h-64 bg-grasshopper-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-grasshopper-500/20 transition-all duration-500"
+            ></div>
+
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10"
+            >
+              <div class="space-y-6">
+                <div
+                  class="w-20 h-20 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10"
+                >
+                  <!-- LOGO PLACEHOLDER: Ensure assets/logo.svg exists or this icon will show -->
+                  <img
+                    src="../../assets/logo.svg"
+                    onerror="
+                      this.style.display = 'none';
+                      this.nextElementSibling.style.display = 'block';
+                    "
+                    alt="Grasshopper Logo"
+                    class="w-12 h-12 object-contain"
+                  />
+                  <i
+                    data-lucide="cpu"
+                    class="w-10 h-10 text-grasshopper-400 hidden"
+                    style="display: none"
+                  ></i>
+                  <!-- Fallback Icon -->
+                </div>
+
+                <div>
+                  <h3 class="text-2xl font-bold text-white mb-2">
+                    Grasshopper IT Solutions, LLC
+                  </h3>
+                  <p class="text-grasshopper-400 font-medium mb-4">
+                    Founder & Owner
+                  </p>
+                  <p class="text-slate-300 leading-relaxed mb-6">
+                    Helping businesses leap forward through innovative
+                    technology. We specialize in custom software development, IT
+                    strategy, and digital transformation.
+                  </p>
+                </div>
+
+                <a
+                  href="https://grasshoppersolutions.online"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 text-white font-semibold hover:text-grasshopper-400 transition-colors group/link"
+                >
+                  Visit Website
+                  <i
+                    data-lucide="external-link"
+                    class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"
+                  ></i>
+                </a>
+              </div>
+
+              <!-- Fancy Work Picture Area -->
+              <div
+                class="h-96 md:h-[32rem] rounded-2xl overflow-hidden bg-slate-800 border border-white/5 relative group-hover:shadow-2xl group-hover:shadow-grasshopper-500/10 transition-all duration-500"
+              >
+                <!-- REPLACE THIS SRC WITH YOUR FANCY/WORK PICTURE -->
+                <img
+                  src="assets/unstable_traveler.jpg"
+                  alt="Professional Shot"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lifestyle Gallery Section -->
+      <section id="gallery" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
+          >
+            <div>
+              <h2
+                class="text-3xl sm:text-4xl font-display font-bold text-white mb-4"
+              >
+                Beyond the Code
+              </h2>
+              <p class="text-slate-400 max-w-xl">
+                When I'm not architecting systems, you'll find me exploring the
+                depths of the ocean or navigating new countries.
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <a
+                href="https://www.instagram.com/nunos.diving/"
+                target="_blank"
+                class="p-3 rounded-full border border-white/10 hover:bg-white/5 hover:border-pink-500/50 transition-all group"
+                title="Diving Instagram"
+              >
+                <i
+                  data-lucide="instagram"
+                  class="w-5 h-5 text-slate-400 group-hover:text-pink-400"
+                ></i>
+              </a>
+              <a
+                href="https://www.instagram.com/unstable_traveler/"
+                target="_blank"
+                class="p-3 rounded-full border border-white/10 hover:bg-white/5 hover:border-purple-500/50 transition-all group"
+                title="Travel Instagram"
+              >
+                <i
+                  data-lucide="camera"
+                  class="w-5 h-5 text-slate-400 group-hover:text-purple-400"
+                ></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Diving Card -->
+            <div
+              class="group relative h-96 rounded-3xl overflow-hidden cursor-pointer"
+            >
+              <div class="absolute inset-0 bg-slate-800">
+                <!-- REPLACE THIS SRC WITH YOUR DIVING PICTURE -->
+                <img
+                  src="assets/diving_pit.jpg"
+                  alt="Diving"
+                  class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                />
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-0 left-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
+              >
+                <div
+                  class="bg-blue-500/20 backdrop-blur-md w-fit px-3 py-1 rounded-full border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider mb-3"
+                >
+                  Underwater
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">
+                  Ocean Explorer
+                </h3>
+                <p
+                  class="text-slate-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100"
+                >
+                  Capturing the silence and beauty of the underwater world.
+                  Check out @nunos.diving for more.
+                </p>
+              </div>
+            </div>
+
+            <!-- Relaxed/Travel Card -->
+            <div
+              class="group relative h-96 rounded-3xl overflow-hidden cursor-pointer"
+            >
+              <div class="absolute inset-0 bg-slate-800">
+                <!-- REPLACE THIS SRC WITH YOUR RELAXED/TRAVEL PICTURE -->
+                <img
+                  src="assets/CV_PIC.jpg"
+                  alt="Travel"
+                  class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                />
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-0 left-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
+              >
+                <div
+                  class="bg-purple-500/20 backdrop-blur-md w-fit px-3 py-1 rounded-full border border-purple-400/30 text-purple-300 text-xs font-bold uppercase tracking-wider mb-3"
+                >
+                  Lifestyle
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">
+                  Unstable Traveler
+                </h3>
+                <p
+                  class="text-slate-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100"
+                >
+                  Documenting journeys and relaxed moments around the globe.
+                  Follow @unstable_traveler.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer / Contact Links -->
+      <footer id="contact" class="bg-slate-950 border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-2xl font-display font-bold text-white mb-4">
+            Connect with me
+          </h2>
+          <p class="text-slate-400 italic font-display mb-8 text-lg">
+            "Without geometry, life would be pointless."
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-6 mb-12">
+            <a
+              href="mailto:nunomoreira16@gmail.com"
+              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-blue-400 hover:text-blue-400 transition-all group"
+            >
+              <i data-lucide="mail" class="w-5 h-5"></i>
+              <span class="font-medium">nunomoreira16@gmail.com</span>
+            </a>
+
+            <a
+              href="https://wa.me/33767834576"
+              target="_blank"
+              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-green-500 hover:text-green-500 transition-all group"
+            >
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              <span class="font-medium">WhatsApp</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/nuno-soft-dev/"
+              target="_blank"
+              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-[#0077b5] hover:text-[#0077b5] transition-all group"
+            >
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+              <span class="font-medium">LinkedIn</span>
+            </a>
+
+            <a
+              href="https://github.com/NunoMore"
+              target="_blank"
+              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-white hover:text-white transition-all group"
+            >
+              <i data-lucide="github" class="w-5 h-5"></i>
+              <span class="font-medium">GitHub</span>
+            </a>
+
+            <a
+              href="https://grasshoppersolutions.online"
+              target="_blank"
+              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-grasshopper-400 hover:text-grasshopper-400 transition-all group"
+            >
+              <i data-lucide="globe" class="w-5 h-5"></i>
+              <span class="font-medium">Company Website</span>
+            </a>
+          </div>
+
+          <div class="text-slate-500 text-sm">
+            <p>
+              &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              Nuno. All rights reserved.
+            </p>
+            <p class="mt-2 text-xs">
+              Founder of Grasshopper IT Solutions, LLC.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
+      // Mobile Menu Toggle
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      // Smooth Scroll for Anchor Links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          menu.classList.add("hidden"); // Close mobile menu if open
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
