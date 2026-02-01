@@ -1,0 +1,3 @@
+[submodule "projects/hormiguero-lab"]
+	path = projects/hormiguero-lab
+	url = https://github.com/grasshopperitsolutions/hormiguero-lab.git
