@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hormiguero Lab | Gestión Profesional de Proyectos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,700;1,400&family=Instrument+Sans:wght@400;600;700&display=swap");
+
+      :root {
+        --earth-dark: #2d241e;
+        --earth-clay: #8c5e45;
+        --earth-accent: #d97706;
+        --earth-bg: #f9f7f2;
+        --nest-chamber: #ffffff;
+        --border-soft: #e5e1d8;
+      }
+
+      body {
+        background-color: var(--earth-bg);
+        color: var(--earth-dark);
+        font-family: "Instrument Sans", sans-serif;
+        background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+        scroll-behavior: smooth;
+      }
+
+      h1,
+      h2,
+      h3,
+      .serif {
+        font-family: "Crimson Pro", serif;
+      }
+
+      .nav-link {
+        position: relative;
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: var(--earth-dark);
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: var(--earth-clay);
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .nest-chamber {
+        background: var(--nest-chamber);
+        border: 1px solid var(--border-soft);
+        border-radius: 24px;
+        box-shadow: 0 4px 20px rgba(45, 36, 30, 0.04);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+
+      .nest-chamber:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(45, 36, 30, 0.08);
+        border-color: var(--earth-clay);
+      }
+
+      .btn-harvest {
+        background-color: var(--earth-dark);
+        color: #fff;
+        border-radius: 12px;
+        transition: all 0.3s;
+        border: 1px solid var(--earth-dark);
+      }
+
+      .btn-harvest:hover {
+        background-color: transparent;
+        color: var(--earth-dark);
+      }
+
+      .status-pill {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .status-abierta {
+        background: #ecfdf5;
+        color: #065f46;
+      }
+      .status-proxima {
+        background: #fffbeb;
+        color: #92400e;
+      }
+      .status-cerrada {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+
+      .loader-ant {
+        animation: walk 1.5s infinite linear;
+      }
+
+      @keyframes walk {
+        0% {
+          transform: translateX(-20px) rotate(0deg);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(20px) rotate(5deg);
+          opacity: 0;
+        }
+      }
+
+      .hidden-section {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="pt-24">
+    <!-- Header & Navigation -->
+    <nav
+      class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-stone-200"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center"
+      >
+        <div
+          class="flex items-center gap-3 cursor-pointer"
+          onclick="showSection('convocatorias')"
+        >
+          <i class="fas fa-mountain-sun text-earth-clay text-2xl"></i>
+          <h1
+            class="text-xl font-bold tracking-tight text-stone-900 leading-none"
+          >
+            Hormiguero
+            <span class="text-earth-clay italic font-normal">Lab</span>
+          </h1>
+        </div>
+
+        <div class="hidden md:flex items-center gap-8">
+          <button onclick="showSection('nosotros')" class="nav-link">
+            Nosotros
+          </button>
+          <button
+            onclick="showSection('convocatorias')"
+            class="nav-link active"
+          >
+            Convocatorias
+          </button>
+          <button onclick="showSection('servicios')" class="nav-link">
+            Servicios
+          </button>
+          <button onclick="showSection('contacto')" class="nav-link">
+            Contáctanos
+          </button>
+        </div>
+
+        <button
+          onclick="startHarvest()"
+          class="btn-harvest px-6 py-2.5 text-xs font-bold uppercase tracking-widest flex items-center gap-2"
+        >
+          <i class="fas fa-sync-alt"></i> Sincronizar
+        </button>
+      </div>
+    </nav>
+
+    <!-- Section: Nosotros -->
+    <section
+      id="nosotros"
+      class="hidden-section max-w-6xl mx-auto px-4 py-16 space-y-12"
+    >
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <h2 class="serif text-5xl font-bold">Nuestra Naturaleza</h2>
+        <p class="text-stone-500 text-lg italic">
+          "En el Hormiguero, cada grano cuenta y cada esfuerzo colectivo
+          construye el futuro de Santander."
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="nest-chamber p-10 space-y-6">
+          <h3 class="serif text-3xl font-bold text-earth-clay">Misión</h3>
+          <p class="text-stone-600 leading-relaxed">
+            Articular el ecosistema de innovación y desarrollo regional mediante
+            el procesamiento inteligente de oportunidades, permitiendo que
+            emprendedores, investigadores y comunidades rurales accedan a
+            recursos de manera equitativa.
+          </p>
+        </div>
+        <div class="nest-chamber p-10 space-y-6">
+          <h3 class="serif text-3xl font-bold text-earth-clay">Visión 2030</h3>
+          <p class="text-stone-600 leading-relaxed">
+            Convertirnos en el nodo de inteligencia más importante del oriente
+            colombiano, reconocido por la transparencia en la gestión de datos y
+            la efectividad en la formulación de proyectos de alto impacto.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Convocatorias (Buscador Principal) -->
+    <section id="convocatorias" class="max-w-6xl mx-auto px-4 py-12">
+      <header
+        class="mb-16 flex flex-col md:flex-row justify-between items-end gap-8 border-b border-stone-200 pb-12"
+      >
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-seedling text-earth-clay text-2xl"></i>
+            <span
+              class="text-sm font-bold uppercase tracking-[0.3em] text-stone-400"
+              >Santander Node</span
+            >
+          </div>
+          <h1
+            class="text-6xl font-bold tracking-tight text-stone-900 leading-none"
+          >
+            Vetas de
+            <span class="text-earth-clay italic font-normal">Oportunidad</span>
+          </h1>
+          <p class="text-xl text-stone-500 max-w-lg font-light italic">
+            Explora las excavaciones de datos en tiempo real de los principales
+            fondos nacionales e internacionales.
+          </p>
+        </div>
+        <div
+          class="flex gap-4 text-[10px] font-bold text-stone-400 uppercase tracking-widest"
+        >
+          <span>Temp: 24°C</span>
+          <span>•</span>
+          <span>Alt: 959m</span>
+        </div>
+      </header>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Sidebar: Filtros -->
+        <aside class="lg:col-span-4 space-y-8">
+          <div class="nest-chamber p-8">
+            <h2 class="serif text-2xl font-bold mb-6 text-stone-800">
+              Cámara de Filtros
+            </h2>
+            <div class="space-y-6">
+              <div>
+                <label
+                  class="text-[11px] font-bold uppercase text-earth-clay mb-2 block"
+                  >Rastro de búsqueda</label
+                >
+                <input
+                  type="text"
+                  id="searchInput"
+                  oninput="applyFilters()"
+                  placeholder="Ej. Tecnología, Agro..."
+                  class="w-full bg-stone-50 border-b-2 border-stone-200 py-3 px-2 text-sm focus:border-earth-clay outline-none transition-all"
+                />
+              </div>
+              <div>
+                <label
+                  class="text-[11px] font-bold uppercase text-earth-clay mb-2 block"
+                  >Estado de la veta</label
+                >
+                <select
+                  id="statusFilter"
+                  onchange="applyFilters()"
+                  class="w-full bg-stone-50 border-b-2 border-stone-200 py-3 px-2 text-sm focus:border-earth-clay outline-none cursor-pointer"
+                >
+                  <option value="todos">Todas las excavaciones</option>
+                  <option value="abierta">Conexión Vigente</option>
+                  <option value="proxima">Próximos Hallazgos</option>
+                  <option value="cerrada">Vetas Agotadas</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  class="text-[11px] font-bold uppercase text-earth-clay mb-2 block"
+                  >Categoría de fuente</label
+                >
+                <select
+                  id="categoryFilter"
+                  onchange="applyFilters()"
+                  class="w-full bg-stone-50 border-b-2 border-stone-200 py-3 px-2 text-sm focus:border-earth-clay outline-none cursor-pointer"
+                >
+                  <option value="todas">Todas las categorías</option>
+                  <option value="Ciencia y Tecnología">Ciencia y Tecnología</option>
+                  <option value="Educación y Becas">Educación y Becas</option>
+                  <option value="Cooperación y Emprendimiento">Cooperación y Emprendimiento</option>
+                  <option value="Empleo Público">Empleo Público</option>
+                  <option value="Vivienda y Social">Vivienda y Social</option>
+                  <option value="Gobiernos Locales">Gobiernos Locales</option>
+                  <option value="Universidades">Universidades</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="nest-chamber p-8 border-l-4 border-l-earth-accent">
+            <h3 class="text-[11px] font-bold uppercase text-stone-500 mb-2">
+              Inventario Total
+            </h3>
+            <div class="flex items-baseline gap-3">
+              <span
+                id="totalCount"
+                class="text-7xl font-bold serif text-stone-900"
+                >00</span
+              >
+              <span class="text-stone-400 font-bold text-sm uppercase"
+                >Items</span
+              >
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- Results Grid -->
+        <div class="lg:col-span-8 relative">
+          <div
+            id="loading"
+            class="hidden flex flex-col items-center justify-center py-32 space-y-6 nest-chamber border-dashed border-2"
+          >
+            <div class="flex gap-2">
+              <i class="fas fa-bug loader-ant text-earth-clay"></i>
+            </div>
+            <h2 class="serif text-2xl italic text-stone-800">
+              Recopilando datos...
+            </h2>
+            <div
+              id="progressLog"
+              class="max-w-md w-full grid grid-cols-2 gap-4 text-[10px] font-bold text-stone-400 uppercase text-center"
+            ></div>
+          </div>
+
+          <div
+            id="emptyState"
+            class="flex flex-col items-center justify-center py-40 bg-stone-100/30 border-2 border-stone-200 rounded-[3rem]"
+          >
+            <i class="fas fa-mountain-sun text-4xl text-stone-200 mb-6"></i>
+            <p class="text-stone-400 font-bold serif italic text-xl">
+              El horizonte está despejado.
+            </p>
+          </div>
+
+          <div id="resultsGrid" class="grid grid-cols-1 gap-8"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Servicios -->
+    <section id="servicios" class="hidden-section max-w-6xl mx-auto px-4 py-16">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="serif text-5xl font-bold">Nuestras Capacidades</h2>
+        <p class="text-stone-500">
+          Servicios profesionales diseñados para la maduración de ecosistemas
+          rurales y urbanos.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="nest-chamber p-8 space-y-4">
+          <div
+            class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center text-earth-clay"
+          >
+            <i class="fas fa-file-signature"></i>
+          </div>
+          <h3 class="serif text-xl font-bold">Formulación de Proyectos</h3>
+          <p class="text-stone-500 text-sm">
+            Acompañamiento técnico en la redacción y estructuración de proyectos
+            bajo metodologías MGA y marcos internacionales.
+          </p>
+        </div>
+        <div class="nest-chamber p-8 space-y-4">
+          <div
+            class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center text-earth-clay"
+          >
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="serif text-xl font-bold">Vigilancia Tecnológica</h3>
+          <p class="text-stone-500 text-sm">
+            Monitoreo constante de tendencias globales y oportunidades
+            financieras adaptadas a su sector productivo.
+          </p>
+        </div>
+        <div class="nest-chamber p-8 space-y-4">
+          <div
+            class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center text-earth-clay"
+          >
+            <i class="fas fa-users-cog"></i>
+          </div>
+          <h3 class="serif text-xl font-bold">Gestión de Alianzas</h3>
+          <p class="text-stone-500 text-sm">
+            Articulación con actores de la triple hélice: Academia, Gobierno e
+            Industria para proyectos de co-financiación.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Contacto -->
+    <section id="contacto" class="hidden-section max-w-4xl mx-auto px-4 py-16">
+      <div class="nest-chamber p-12 grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="space-y-6">
+          <h2 class="serif text-4xl font-bold">Hablemos de su idea</h2>
+          <p class="text-stone-500">
+            Nuestros expertos están listos para ayudarle a navegar por el
+            ecosistema de convocatorias.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 text-sm text-stone-600">
+              <i class="fas fa-map-marker-alt text-earth-clay"></i> Bucaramanga,
+              Santander, Col.
+            </div>
+            <div class="flex items-center gap-4 text-sm text-stone-600">
+              <i class="fas fa-envelope text-earth-clay"></i>
+              info@hormiguerolab.co
+            </div>
+          </div>
+        </div>
+        <form class="space-y-4">
+          <input
+            type="text"
+            placeholder="Nombre"
+            class="w-full bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm outline-none focus:border-earth-clay"
+          />
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            class="w-full bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm outline-none focus:border-earth-clay"
+          />
+          <textarea
+            placeholder="Cuéntenos sobre su proyecto"
+            rows="4"
+            class="w-full bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm outline-none focus:border-earth-clay"
+          ></textarea>
+          <button
+            type="button"
+            class="btn-harvest w-full py-3 font-bold uppercase tracking-widest text-sm"
+          >
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 mt-32 pt-20 pb-12">
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-stone-800 pb-20"
+      >
+        <div class="space-y-6">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-mountain-sun text-earth-accent text-2xl"></i>
+            <h3 class="serif text-2xl font-bold text-white">Hormiguero Lab</h3>
+          </div>
+          <p class="text-xs leading-relaxed">
+            Infraestructura digital diseñada en Santander para el
+            fortalecimiento del tejido productivo a través de la inteligencia de
+            datos y la colaboración profesional.
+          </p>
+          <div class="flex gap-4">
+            <a
+              href="#"
+              class="text-stone-500 hover:text-white transition-colors"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a
+              href="#"
+              class="text-stone-500 hover:text-white transition-colors"
+              ><i class="fab fa-twitter"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <h4
+            class="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500"
+          >
+            Vetas de Datos
+          </h4>
+          <div class="max-h-64 overflow-y-auto pr-2">
+            <ul id="footerSourceList" class="text-xs space-y-3">
+              <!-- Dinámico -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <h4
+            class="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500"
+          >
+            Nuestros Servicios
+          </h4>
+          <ul class="text-xs space-y-3">
+            <li>Formulación de Proyectos MGA</li>
+            <li>Vigilancia Tecnológica</li>
+            <li>Articulación de Ecosistemas</li>
+            <li>Búsqueda de Cofinanciación</li>
+            <li>Informes de Inteligencia Regional</li>
+          </ul>
+        </div>
+
+        <div class="space-y-6">
+          <h4
+            class="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500"
+          >
+            Contacto Directo
+          </h4>
+          <p class="text-xs">
+            Cra. 1 #2-3, Hub de Innovación<br />Bucaramanga, Santander
+          </p>
+          <p class="text-xs font-bold text-white">
+            soporte@grasshoppersolutions.online
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto px-6 pt-12 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="text-center md:text-left">
+          <p class="text-[10px] uppercase font-bold tracking-widest">
+            &copy; 2025 Hormiguero Lab. Todos los derechos reservados.
+          </p>
+        </div>
+        <div
+          class="flex items-center gap-4 text-[10px] uppercase font-bold tracking-widest"
+        >
+          <span>Made by</span>
+          <a
+            href="https://grasshoppersolutions.online"
+            target="_blank"
+            class="text-earth-accent hover:underline"
+            >Grasshopper IT Solutions, LLC</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const PPLX_KEY = "";
+      const SOURCES = [
+        // Ciencia y Tecnología
+        {
+          id: "minciencias",
+          url: "https://minciencias.gov.co/convocatorias",
+          name: "Minciencias",
+          category: "Ciencia y Tecnología"
+        },
+        {
+          id: "atenea",
+          url: "https://agenciaatenea.gov.co/convocatorias",
+          name: "ATENEA Bogotá",
+          category: "Ciencia y Tecnología"
+        },
+        {
+          id: "parques-nacionales",
+          url: "https://www.parquesnacionales.gov.co/programa-de-estimulo-al-conocimiento/convocatorias-abiertas-categoria-investigacion/",
+          name: "Parques Nacionales",
+          category: "Ciencia y Tecnología"
+        },
+        
+        // Educación y Becas
+        {
+          id: "icetex",
+          url: "https://web.icetex.gov.co/becas",
+          name: "ICETEX",
+          category: "Educación y Becas"
+        },
+        {
+          id: "sena",
+          url: "https://www.sena.edu.co/es-co/formacion/Paginas/Estudie-en-el-SENA.aspx",
+          name: "SENA",
+          category: "Educación y Becas"
+        },
+        {
+          id: "fundacion-sura",
+          url: "https://www.fundacionsura.com/iniciativas/beca-nicanor-restrepo-santamaria/",
+          name: "Fundación SURA",
+          category: "Educación y Becas"
+        },
+        {
+          id: "mineducacion",
+          url: "https://www.mineducacion.gov.co/portal/micrositios-institucionales/Cooperacion-Internacional/",
+          name: "MinEducación",
+          category: "Educación y Becas"
+        },
+        
+        // Cooperación y Emprendimiento
+        {
+          id: "apc",
+          url: "https://www.apccolombia.gov.co/modalidades-de-cooperacion/convocatorias",
+          name: "APC Colombia",
+          category: "Cooperación y Emprendimiento"
+        },
+        {
+          id: "innpulsa",
+          url: "https://www.innpulsacolombia.com/convocatorias",
+          name: "INNpulsa",
+          category: "Cooperación y Emprendimiento"
+        },
+        {
+          id: "cidei",
+          url: "https://cidei.net/convocatorias-para-proyectos-idi/",
+          name: "CIDEI",
+          category: "Cooperación y Emprendimiento"
+        },
+        
+        // Empleo Público
+        {
+          id: "cnsC",
+          url: "https://www.cnsc.gov.co",
+          name: "CNSC",
+          category: "Empleo Público"
+        },
+        {
+          id: "dnp",
+          url: "https://www.dnp.gov.co",
+          name: "DNP",
+          category: "Empleo Público"
+        },
+        {
+          id: "sena-empleo",
+          url: "https://ape.sena.edu.co/spe-web/spe/cartelera",
+          name: "SENA Empleo",
+          category: "Empleo Público"
+        },
+        
+        // Vivienda y Social
+        {
+          id: "minvivienda",
+          url: "https://www.minvivienda.gov.co/sala-de-prensa",
+          name: "MinVivienda",
+          category: "Vivienda y Social"
+        },
+        {
+          id: "minigualdad",
+          url: "https://www.minigualdadyequidad.gov.co/convocatorias",
+          name: "MinIgualdad",
+          category: "Vivienda y Social"
+        },
+        
+        // Gobiernos Locales
+        {
+          id: "bogota",
+          url: "https://bogota.gov.co/mi-ciudad/desarrollo-economico",
+          name: "Bogotá",
+          category: "Gobiernos Locales"
+        },
+        {
+          id: "medellin",
+          url: "https://www.medellin.gov.co",
+          name: "Medellín",
+          category: "Gobiernos Locales"
+        },
+        {
+          id: "cali",
+          url: "https://intranet.cali.gov.co/convocatorias-internas-2025/",
+          name: "Cali",
+          category: "Gobiernos Locales"
+        },
+        {
+          id: "cartagena",
+          url: "https://www.cartagena.gov.co/Transparencia/Convocatorias",
+          name: "Cartagena",
+          category: "Gobiernos Locales"
+        },
+        {
+          id: "antioquia",
+          url: "https://www.antioquiatic.edu.co",
+          name: "Antioquia",
+          category: "Gobiernos Locales"
+        },
+        {
+          id: "magdalena",
+          url: "https://www.gobernaciondelmagdalena.gov.co/convocatorias/",
+          name: "Magdalena",
+          category: "Gobiernos Locales"
+        },
+        
+        // Universidades
+        {
+          id: "ude-medellin",
+          url: "https://investigacion.udemedellin.edu.co/apoyo-al-investigador/convocatorias/",
+          name: "U. de Medellín",
+          category: "Universidades"
+        },
+        {
+          id: "u-caldas",
+          url: "https://www.ucaldas.edu.co/portal/convocatorias/",
+          name: "U. de Caldas",
+          category: "Universidades"
+        },
+        {
+          id: "sector-universitario",
+          url: "https://www.universidad.edu.co/bolsa-de-empleo-en-el-sector-universitario/",
+          name: "Sector Universitario",
+          category: "Universidades"
+        }
+      ];
+
+      let allConvocatorias = [];
+
+      // Función para inicializar las listas de fuentes de forma segura
+      function initializeSources() {
+        const list = document.getElementById("sourceList");
+        const footerList = document.getElementById("footerSourceList");
+
+        // Limpiar listas antes de poblar para evitar duplicados en re-render
+        if (list) list.innerHTML = "";
+        if (footerList) footerList.innerHTML = "";
+
+        // Agrupar fuentes por categoría
+        const categories = {};
+        SOURCES.forEach(s => {
+          if (!categories[s.category]) {
+            categories[s.category] = [];
+          }
+          categories[s.category].push(s);
+        });
+
+        // Mostrar fuentes en el sidebar con categorías
+        if (list) {
+          Object.keys(categories).forEach(category => {
+            const categoryHeader = document.createElement("div");
+            categoryHeader.className = "text-[8px] font-bold text-stone-400 uppercase tracking-wider mt-4 mb-2 border-t border-stone-200 pt-4";
+            categoryHeader.innerText = category;
+            list.appendChild(categoryHeader);
+
+            categories[category].forEach(s => {
+              const tag = document.createElement("span");
+              tag.className =
+                "bg-stone-100 border border-stone-200 px-3 py-1.5 rounded-lg text-[10px] font-bold text-stone-500 uppercase tracking-tighter hover:bg-stone-200 transition-colors cursor-pointer";
+              tag.innerText = s.name;
+              tag.title = `${s.name} - ${s.category}`;
+              list.appendChild(tag);
+            });
+          });
+        }
+
+        // Mostrar fuentes en el footer con categorías
+        if (footerList) {
+          Object.keys(categories).forEach(category => {
+            const categoryHeader = document.createElement("li");
+            categoryHeader.className = "text-[10px] font-bold text-stone-400 uppercase tracking-wider mt-4 mb-2 border-t border-stone-800 pt-4";
+            categoryHeader.innerText = category;
+            footerList.appendChild(categoryHeader);
+
+            categories[category].forEach(s => {
+              const footerItem = document.createElement("li");
+              footerItem.innerHTML = `<a href="${s.url}" target="_blank" class="hover:text-white transition-colors text-sm block py-1">${s.name}</a>`;
+              footerList.appendChild(footerItem);
+            });
+          });
+        }
+      }
+
+      window.onload = () => {
+        initializeSources();
+      };
+
+      function showSection(id) {
+        document
+          .querySelectorAll("section")
+          .forEach((s) => s.classList.add("hidden-section"));
+        const activeSection = document.getElementById(id);
+        if (activeSection) activeSection.classList.remove("hidden-section");
+
+        document.querySelectorAll(".nav-link").forEach((l) => {
+          l.classList.remove("active");
+          if (
+            l.innerText.toLowerCase() === (id === "nosotros" ? "nosotros" : id)
+          ) {
+            l.classList.add("active");
+          }
+        });
+
+        // Re-inicializar fuentes si entramos a convocatorias por si el DOM se alteró
+        if (id === "convocatorias") {
+          initializeSources();
+        }
+
+        window.scrollTo(0, 0);
+      }
+
+      async function startHarvest() {
+        showSection("convocatorias");
+        const btn = document.querySelector("nav .btn-harvest");
+        const loading = document.getElementById("loading");
+        const resultsGrid = document.getElementById("resultsGrid");
+        const emptyState = document.getElementById("emptyState");
+        const log = document.getElementById("progressLog");
+
+        if (!loading || !resultsGrid || !emptyState || !log) return;
+
+        btn.disabled = true;
+        loading.classList.remove("hidden");
+        resultsGrid.innerHTML = "";
+        emptyState.classList.add("hidden");
+        allConvocatorias = [];
+        log.innerHTML = "";
+
+        try {
+          const requests = SOURCES.map((source) => fetchFromPerplexity(source));
+          const results = await Promise.allSettled(requests);
+
+          results.forEach((result, index) => {
+            const sourceName = SOURCES[index].name;
+            if (result.status === "fulfilled" && result.value) {
+              allConvocatorias = [...allConvocatorias, ...result.value];
+              log.innerHTML += `<div class="text-stone-600">✓ ${sourceName}</div>`;
+            } else {
+              log.innerHTML += `<div class="text-red-300">✗ ${sourceName}</div>`;
+            }
+          });
+
+          renderResults(allConvocatorias);
+        } catch (error) {
+          console.error("Harvesting failed:", error);
+        } finally {
+          loading.classList.add("hidden");
+          btn.disabled = false;
+          if (allConvocatorias.length === 0)
+            emptyState.classList.remove("hidden");
+        }
+      }
+
+      async function fetchFromPerplexity(source) {
+        const prompt = `Extrae convocatorias vigentes de ${source.name} (${source.url}). JSON: { "convocatorias": [ { "t": "titulo", "d": "descripcion", "f": "fecha_cierre", "s": "abierta/cerrada", "u": "url" } ] }`;
+
+        const options = {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${PPLX_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "sonar-pro",
+            messages: [{ role: "user", content: prompt }],
+          }),
+        };
+
+        try {
+          const response = await fetch(
+            "https://api.perplexity.ai/chat/completions",
+            options,
+          );
+          const data = await response.json();
+          const content = data.choices[0].message.content;
+          const jsonStr = content.match(/\{[\s\S]*\}/);
+          if (!jsonStr) return null;
+          const json = JSON.parse(jsonStr[0]);
+          return (json.convocatorias || []).map((c) => ({
+            titulo: c.t,
+            descripcion: c.d,
+            fecha_cierre: c.f,
+            estado: c.s,
+            url: c.u,
+            fuente: source.name,
+          }));
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function renderResults(data) {
+        const grid = document.getElementById("resultsGrid");
+        const countEl = document.getElementById("totalCount");
+
+        if (!grid || !countEl) return;
+
+        grid.innerHTML = "";
+        countEl.innerText = data.length < 10 ? `0${data.length}` : data.length;
+
+        data.forEach((item) => {
+          const card = document.createElement("div");
+          card.className =
+            "nest-chamber p-10 flex flex-col md:flex-row gap-8 items-start";
+          const statusClass = `status-${(item.estado || "abierta").toLowerCase()}`;
+
+          // Buscar la categoría de la fuente
+          const source = SOURCES.find(s => s.name === item.fuente);
+          const categoryBadge = source ? `<span class="inline-block bg-stone-100 text-[8px] px-2 py-1 rounded-full font-bold text-stone-500 uppercase tracking-tighter">${source.category}</span>` : '';
+
+          card.innerHTML = `
+                    <div class="md:w-1/4 space-y-4 border-r border-stone-100 pr-6 w-full">
+                        <div class="flex items-center gap-2">
+                            <span class="status-pill ${statusClass}">${item.estado || "abierta"}</span>
+                            ${categoryBadge}
+                        </div>
+                        <div class="space-y-1">
+                            <span class="text-[10px] font-black uppercase text-stone-300 block">Fuente</span>
+                            <span class="text-sm font-bold text-earth-clay">${item.fuente}</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 space-y-4">
+                        <h3 class="serif text-3xl font-bold text-stone-900 leading-tight">${item.titulo}</h3>
+                        <p class="text-stone-500 leading-relaxed text-sm">${item.descripcion || "Sin descripción detallada."}</p>
+                        <div class="pt-6 flex items-center justify-between">
+                            <span class="text-xs font-bold text-stone-400 serif italic">${item.fecha_cierre || "TBD"}</span>
+                            <a href="${item.url || "#"}" target="_blank" class="text-earth-dark font-bold text-sm flex items-center gap-2 hover:gap-4 transition-all">
+                                VER DETALLES <i class="fas fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+          grid.appendChild(card);
+        });
+      }
+
+      function applyFilters() {
+        const queryEl = document.getElementById("searchInput");
+        const statusEl = document.getElementById("statusFilter");
+        const categoryEl = document.getElementById("categoryFilter");
+        
+        if (!queryEl || !statusEl || !categoryEl) return;
+
+        const query = queryEl.value.toLowerCase();
+        const status = statusEl.value;
+        const category = categoryEl.value;
+        
+        const filtered = allConvocatorias.filter((c) => {
+          // Buscar la fuente en SOURCES para obtener la categoría
+          const source = SOURCES.find(s => s.name === c.fuente);
+          const sourceCategory = source ? source.category : "";
+          
+          const matchesQuery =
+            (c.titulo || "").toLowerCase().includes(query) ||
+            (c.fuente || "").toLowerCase().includes(query);
+          
+          const matchesStatus =
+            status === "todos" || (c.estado || "").toLowerCase() === status;
+          
+          const matchesCategory =
+            category === "todas" || sourceCategory === category;
+
+          return matchesQuery && matchesStatus && matchesCategory;
+        });
+        renderResults(filtered);
+      }
+    </script>
+  </body>
+</html>
