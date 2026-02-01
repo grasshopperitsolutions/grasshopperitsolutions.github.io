@@ -1,3 +1,6 @@
 [submodule "projects/hormiguero-lab"]
 	path = projects/hormiguero-lab
 	url = https://github.com/grasshopperitsolutions/hormiguero-lab.git
+[submodule "landing-pages/ludovica-piro"]
+	path = landing-pages/ludovica-piro
+	url = https://github.com/grasshopperitsolutions/ludovica-piro-page.git
