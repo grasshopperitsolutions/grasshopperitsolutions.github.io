@@ -4,3 +4,6 @@
 [submodule "landing-pages/ludovica-piro"]
 	path = landing-pages/ludovica-piro
 	url = https://github.com/grasshopperitsolutions/ludovica-piro-page.git
+[submodule "proxies/hormiguero-lab-api"]
+	path = proxies/hormiguero-lab-api
+	url = https://github.com/grasshopperitsolutions/perplexity-api-proxy.git
