@@ -1,4 +1,4 @@
-# <img src="assets/logo.svg" alt="Grasshopper IT Solutions" height="32" style="vertical-align: middle;"> Grasshopper IT Solutions
+# <img src="assets/grasshopper-geometric-logo.svg" alt="Grasshopper IT Solutions" height="32" style="vertical-align: middle;"> Grasshopper IT Solutions
 
 [![Pages Status](https://github.com/grasshopperitsolutions/grasshopperitsolutions.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/grasshopperitsolutions/grasshopperitsolutions.github.io/actions/workflows/pages/pages-build-deployment)
 
