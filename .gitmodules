@@ -7,3 +7,6 @@
 [submodule "proxies/hormiguero-lab-api"]
 	path = proxies/hormiguero-lab-api
 	url = https://github.com/grasshopperitsolutions/perplexity-api-proxy.git
+[submodule "projects/diploma-generator"]
+	path = projects/diploma-generator
+	url = https://github.com/grasshopperitsolutions/diploma-generator.git
