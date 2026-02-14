@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Route des Langues - Premium Language Travel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <style>
+      body {
+        font-family: "Lato", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      .serif-font {
+        font-family: "Playfair Display", serif;
+      }
+      .hero-bg {
+        background-image:
+          linear-gradient(rgba(26, 54, 93, 0.75), rgba(26, 54, 93, 0.6)),
+          url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+        background-size: cover;
+        background-position: center;
+      }
+      .owl-icon {
+        fill: #fbbf24; /* Amber-400 */
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+          <!-- Logo Area -->
+          <div class="flex items-center space-x-3">
+            <!-- Custom SVG Owl Logo based on description -->
+            <svg
+              class="h-10 w-10 text-amber-400"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
+                opacity="0.3"
+              />
+              <path
+                d="M12 6C9.5 6 7.5 7.5 7.5 10C7.5 11.5 8.5 12.8 10 13.5V15H14V13.5C15.5 12.8 16.5 11.5 16.5 10C16.5 7.5 14.5 6 12 6ZM9.5 10C9.5 9.2 10.2 8.5 11 8.5C11.8 8.5 12.5 9.2 12.5 10H9.5ZM13 10C13 9.2 13.7 8.5 14.5 8.5C15.3 8.5 16 9.2 16 10H13Z"
+              />
+              <path d="M7 16H17V18H7V16Z" />
+            </svg>
+            <div class="flex flex-col">
+              <span class="serif-font text-xl font-bold tracking-wide"
+                >La Route des Langues</span
+              >
+              <span
+                class="text-xs text-amber-400 uppercase tracking-widest"
+                data-i18n="tagline_short"
+                >Excellence in Education</span
+              >
+            </div>
+          </div>
+
+          <!-- Desktop Menu & Language Switch -->
+          <div class="flex items-center space-x-8">
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+              <a
+                href="#about"
+                class="hover:text-amber-400 transition"
+                data-i18n="nav_about"
+                >About Us</a
+              >
+              <a
+                href="#programs"
+                class="hover:text-amber-400 transition"
+                data-i18n="nav_programs"
+                >Programs</a
+              >
+              <a
+                href="#destinations"
+                class="hover:text-amber-400 transition"
+                data-i18n="nav_destinations"
+                >Destinations</a
+              >
+              <a
+                href="#contact"
+                class="hover:text-amber-400 transition"
+                data-i18n="nav_contact"
+                >Contact</a
+              >
+            </div>
+
+            <!-- Language Toggle -->
+            <div
+              class="flex items-center bg-slate-800 rounded-full p-1 border border-slate-700"
+            >
+              <button
+                onclick="setLanguage('en')"
+                id="btn-en"
+                class="px-3 py-1 rounded-full text-xs font-bold transition-all bg-amber-500 text-slate-900"
+              >
+                🇺🇸 EN
+              </button>
+              <button
+                onclick="setLanguage('es')"
+                id="btn-es"
+                class="px-3 py-1 rounded-full text-xs font-bold transition-all text-gray-400 hover:text-white"
+              >
+                🇲🇽 ES
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header
+      class="hero-bg h-[600px] flex items-center justify-center text-center px-4"
+    >
+      <div class="max-w-4xl mx-auto text-white">
+        <h1
+          class="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg"
+          data-i18n="hero_title"
+        >
+          Languages: An Asset for Life
+        </h1>
+        <p
+          class="text-xl md:text-2xl mb-10 font-light text-gray-200"
+          data-i18n="hero_subtitle"
+        >
+          Over 30 years of expertise in premium language immersion and academic
+          excellence.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#contact"
+            class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 px-8 rounded-md transition shadow-lg"
+            data-i18n="hero_cta"
+          >
+            Request a Consultation
+          </a>
+          <a
+            href="#programs"
+            class="bg-transparent border-2 border-white hover:bg-white hover:text-slate-900 text-white font-bold py-3 px-8 rounded-md transition"
+            data-i18n="hero_explore"
+          >
+            Explore Programs
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Stats / Trust Section -->
+    <section class="py-12 bg-white border-b border-gray-200">
+      <div
+        class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+      >
+        <div class="p-4">
+          <h3 class="serif-font text-4xl font-bold text-slate-900 mb-2">30+</h3>
+          <p
+            class="text-gray-600 uppercase tracking-wide text-sm"
+            data-i18n="stat_years"
+          >
+            Years of Experience
+          </p>
+        </div>
+        <div
+          class="p-4 border-l-0 md:border-l border-r-0 md:border-r border-gray-100"
+        >
+          <h3 class="serif-font text-4xl font-bold text-slate-900 mb-2">20+</h3>
+          <p
+            class="text-gray-600 uppercase tracking-wide text-sm"
+            data-i18n="stat_countries"
+          >
+            Destinations Worldwide
+          </p>
+        </div>
+        <div class="p-4">
+          <h3 class="serif-font text-4xl font-bold text-slate-900 mb-2">98%</h3>
+          <p
+            class="text-gray-600 uppercase tracking-wide text-sm"
+            data-i18n="stat_satisfaction"
+          >
+            Client Satisfaction
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div
+              class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider"
+              data-i18n="label_about"
+            >
+              Who We Are
+            </div>
+            <h2
+              class="serif-font text-3xl md:text-4xl font-bold text-slate-900 mb-6"
+              data-i18n="about_title"
+            >
+              Tailor-Made Linguistic Excellence
+            </h2>
+            <p
+              class="text-gray-600 mb-6 text-lg leading-relaxed"
+              data-i18n="about_p1"
+            >
+              Founded in 1994, <strong>La Route des Langues</strong> specializes
+              in high-end educational stays. We believe that mastering a
+              language goes beyond the classroom—it requires cultural immersion
+              and personal growth.
+            </p>
+            <p class="text-gray-600 mb-6 leading-relaxed" data-i18n="about_p2">
+              Whether for children, teenagers, or young adults, our mission is
+              to accompany each student personally, preparing them for the
+              international context in which they will evolve. From selection of
+              host families to prestigious boarding schools, we guarantee
+              quality at every step.
+            </p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center text-gray-700">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-amber-500 mr-3"
+                ></i>
+                <span data-i18n="feature_1">UNOSEL Certified Organization</span>
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-amber-500 mr-3"
+                ></i>
+                <span data-i18n="feature_2"
+                  >Personalized Guidance & Follow-up</span
+                >
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-amber-500 mr-3"
+                ></i>
+                <span data-i18n="feature_3">Exclusive Partnership Network</span>
+              </li>
+            </ul>
+          </div>
+          <div class="relative">
+            <div
+              class="absolute -top-4 -left-4 w-24 h-24 bg-amber-400 rounded-full opacity-20"
+            ></div>
+            <img
+              src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Students studying"
+              class="rounded-lg shadow-xl relative z-10 w-full object-cover h-[500px]"
+            />
+            <div
+              class="absolute -bottom-4 -right-4 w-32 h-32 bg-slate-900 rounded-lg -z-0"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs Grid -->
+    <section id="programs" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2
+            class="serif-font text-3xl md:text-4xl font-bold text-slate-900 mb-4"
+            data-i18n="programs_title"
+          >
+            Our Educational Programs
+          </h2>
+          <div class="w-20 h-1 bg-amber-400 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Program 1 -->
+          <div
+            class="group bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300 border border-gray-100 overflow-hidden"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Immersion"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="p-8">
+              <div
+                class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded inline-block mb-3"
+              >
+                Popular
+              </div>
+              <h3
+                class="serif-font text-2xl font-bold text-slate-900 mb-3"
+                data-i18n="prog_1_title"
+              >
+                Total Immersion
+              </h3>
+              <p class="text-gray-600 mb-4" data-i18n="prog_1_desc">
+                Complete cultural integration by living with a carefully
+                selected host family. The most effective way to achieve fluency
+                naturally.
+              </p>
+              <a
+                href="#contact"
+                class="text-slate-900 font-bold hover:text-amber-500 flex items-center transition"
+              >
+                <span data-i18n="learn_more">Learn More</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Program 2 -->
+          <div
+            class="group bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300 border border-gray-100 overflow-hidden"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Summer Schools"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="p-8">
+              <h3
+                class="serif-font text-2xl font-bold text-slate-900 mb-3"
+                data-i18n="prog_2_title"
+              >
+                Summer Schools
+              </h3>
+              <p class="text-gray-600 mb-4" data-i18n="prog_2_desc">
+                Prestigious campus experiences in the UK, USA, or Canada.
+                Combine academic courses with sports, arts, and international
+                friendships.
+              </p>
+              <a
+                href="#contact"
+                class="text-slate-900 font-bold hover:text-amber-500 flex items-center transition"
+              >
+                <span data-i18n="learn_more">Learn More</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Program 3 -->
+          <div
+            class="group bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300 border border-gray-100 overflow-hidden"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="One to One"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="p-8">
+              <h3
+                class="serif-font text-2xl font-bold text-slate-900 mb-3"
+                data-i18n="prog_3_title"
+              >
+                One-to-One
+              </h3>
+              <p class="text-gray-600 mb-4" data-i18n="prog_3_desc">
+                Intensive private tuition living in your teacher's home. A
+                tailored curriculum designed specifically for your goals and
+                pace.
+              </p>
+              <a
+                href="#contact"
+                class="text-slate-900 font-bold hover:text-amber-500 flex items-center transition"
+              >
+                <span data-i18n="learn_more">Learn More</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Destinations Strip -->
+    <section id="destinations" class="py-16 bg-slate-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2
+          class="serif-font text-3xl font-bold mb-10"
+          data-i18n="destinations_title"
+        >
+          Top Destinations
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div class="flex flex-col items-center group cursor-pointer">
+            <div
+              class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:bg-amber-500 transition border border-slate-700"
+            >
+              <span class="text-2xl">🇬🇧</span>
+            </div>
+            <span class="font-medium">England</span>
+          </div>
+          <div class="flex flex-col items-center group cursor-pointer">
+            <div
+              class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:bg-amber-500 transition border border-slate-700"
+            >
+              <span class="text-2xl">🇺🇸</span>
+            </div>
+            <span class="font-medium">USA</span>
+          </div>
+          <div class="flex flex-col items-center group cursor-pointer">
+            <div
+              class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:bg-amber-500 transition border border-slate-700"
+            >
+              <span class="text-2xl">🇨🇦</span>
+            </div>
+            <span class="font-medium">Canada</span>
+          </div>
+          <div class="flex flex-col items-center group cursor-pointer">
+            <div
+              class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:bg-amber-500 transition border border-slate-700"
+            >
+              <span class="text-2xl">🇮🇪</span>
+            </div>
+            <span class="font-medium">Ireland</span>
+          </div>
+          <div class="flex flex-col items-center group cursor-pointer">
+            <div
+              class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:bg-amber-500 transition border border-slate-700"
+            >
+              <span class="text-2xl">🇪🇸</span>
+            </div>
+            <span class="font-medium">Spain</span>
+          </div>
+          <div class="flex flex-col items-center group cursor-pointer">
+            <div
+              class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:bg-amber-500 transition border border-slate-700"
+            >
+              <span class="text-2xl">🇦🇺</span>
+            </div>
+            <span class="font-medium">Australia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <footer id="contact" class="bg-gray-900 text-gray-400 py-16">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12"
+      >
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center space-x-2 mb-6">
+            <svg
+              class="h-8 w-8 text-amber-400"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
+                opacity="0.3"
+              />
+              <path
+                d="M12 6C9.5 6 7.5 7.5 7.5 10C7.5 11.5 8.5 12.8 10 13.5V15H14V13.5C15.5 12.8 16.5 11.5 16.5 10C16.5 7.5 14.5 6 12 6ZM9.5 10C9.5 9.2 10.2 8.5 11 8.5C11.8 8.5 12.5 9.2 12.5 10H9.5ZM13 10C13 9.2 13.7 8.5 14.5 8.5C15.3 8.5 16 9.2 16 10H13Z"
+              />
+            </svg>
+            <span class="serif-font text-2xl font-bold text-white"
+              >La Route des Langues</span
+            >
+          </div>
+          <p class="mb-6 leading-relaxed" data-i18n="footer_desc">
+            Designing exclusive language experiences for over 30 years. We open
+            the world to students through premium immersion and academic rigor.
+          </p>
+        </div>
+
+        <div>
+          <h4
+            class="text-white font-bold uppercase tracking-widest mb-6 text-sm"
+            data-i18n="footer_contact"
+          >
+            Contact Us
+          </h4>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i
+                data-lucide="map-pin"
+                class="w-5 h-5 text-amber-500 mr-3 mt-1"
+              ></i>
+              <span>22 Avenue Victor Hugo,<br />75116 Paris, France</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="phone" class="w-5 h-5 text-amber-500 mr-3"></i>
+              <span>+33 1 44 21 81 32</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="mail" class="w-5 h-5 text-amber-500 mr-3"></i>
+              <span>info@laroutedeslangues.com</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4
+            class="text-white font-bold uppercase tracking-widest mb-6 text-sm"
+            data-i18n="footer_social"
+          >
+            Follow Us
+          </h4>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition"
+            >
+              <i data-lucide="facebook" class="w-5 h-5"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition"
+            >
+              <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition"
+            >
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
+        <p>
+          &copy; 2024 La Route des Langues.
+          <span data-i18n="rights">All rights reserved.</span>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Initialize Icons
+      lucide.createIcons();
+
+      // Language Data
+      const translations = {
+        en: {
+          tagline_short: "Excellence in Education",
+          nav_about: "About Us",
+          nav_programs: "Programs",
+          nav_destinations: "Destinations",
+          nav_contact: "Contact",
+          hero_title: "Languages: An Asset for Life",
+          hero_subtitle:
+            "Over 30 years of expertise in premium language immersion and academic excellence.",
+          hero_cta: "Request a Consultation",
+          hero_explore: "Explore Programs",
+          stat_years: "Years of Experience",
+          stat_countries: "Destinations Worldwide",
+          stat_satisfaction: "Client Satisfaction",
+          label_about: "Who We Are",
+          about_title: "Tailor-Made Linguistic Excellence",
+          about_p1:
+            "Founded in 1994, <strong>La Route des Langues</strong> specializes in high-end educational stays. We believe that mastering a language goes beyond the classroom—it requires cultural immersion and personal growth.",
+          about_p2:
+            "Whether for children, teenagers, or young adults, our mission is to accompany each student personally, preparing them for the international context in which they will evolve. From selection of host families to prestigious boarding schools, we guarantee quality at every step.",
+          feature_1: "UNOSEL Certified Organization",
+          feature_2: "Personalized Guidance & Follow-up",
+          feature_3: "Exclusive Partnership Network",
+          programs_title: "Our Educational Programs",
+          prog_1_title: "Total Immersion",
+          prog_1_desc:
+            "Complete cultural integration by living with a carefully selected host family. The most effective way to achieve fluency naturally.",
+          prog_2_title: "Summer Schools",
+          prog_2_desc:
+            "Prestigious campus experiences in the UK, USA, or Canada. Combine academic courses with sports, arts, and international friendships.",
+          prog_3_title: "One-to-One",
+          prog_3_desc:
+            "Intensive private tuition living in your teacher's home. A tailored curriculum designed specifically for your goals and pace.",
+          learn_more: "Learn More",
+          destinations_title: "Top Destinations",
+          footer_desc:
+            "Designing exclusive language experiences for over 30 years. We open the world to students through premium immersion and academic rigor.",
+          footer_contact: "Contact Us",
+          footer_social: "Follow Us",
+          rights: "All rights reserved.",
+        },
+        es: {
+          tagline_short: "Excelencia en Educación",
+          nav_about: "Nosotros",
+          nav_programs: "Programas",
+          nav_destinations: "Destinos",
+          nav_contact: "Contacto",
+          hero_title: "Idiomas: Un Activo para la Vida",
+          hero_subtitle:
+            "Más de 30 años de experiencia en inmersión lingüística premium y excelencia académica.",
+          hero_cta: "Solicitar Consulta",
+          hero_explore: "Explorar Programas",
+          stat_years: "Años de Experiencia",
+          stat_countries: "Destinos Mundiales",
+          stat_satisfaction: "Satisfacción del Cliente",
+          label_about: "Quiénes Somos",
+          about_title: "Excelencia Lingüística a Medida",
+          about_p1:
+            "Fundada en 1994, <strong>La Route des Langues</strong> se especializa en estancias educativas de alta gama. Creemos que dominar un idioma va más allá del aula: requiere inmersión cultural y crecimiento personal.",
+          about_p2:
+            "Ya sea para niños, adolescentes o jóvenes adultos, nuestra misión es acompañar a cada estudiante personalmente, preparándolos para el contexto internacional en el que evolucionarán. Desde la selección de familias anfitrionas hasta internados de prestigio, garantizamos calidad en cada paso.",
+          feature_1: "Organización Certificada por UNOSEL",
+          feature_2: "Orientación y Seguimiento Personalizado",
+          feature_3: "Red Exclusiva de Asociados",
+          programs_title: "Nuestros Programas Educativos",
+          prog_1_title: "Inmersión Total",
+          prog_1_desc:
+            "Integración cultural completa viviendo con una familia anfitriona cuidadosamente seleccionada. La forma más efectiva de lograr fluidez naturalmente.",
+          prog_2_title: "Escuelas de Verano",
+          prog_2_desc:
+            "Experiencias de campus prestigiosos en Reino Unido, EE. UU. o Canadá. Combina cursos académicos con deportes, arte y amistades internacionales.",
+          prog_3_title: "Clases Particulares (One-to-One)",
+          prog_3_desc:
+            "Tutoría privada intensiva viviendo en la casa de tu profesor. Un plan de estudios diseñado específicamente para tus objetivos y ritmo.",
+          learn_more: "Ver Más",
+          destinations_title: "Destinos Principales",
+          footer_desc:
+            "Diseñando experiencias lingüísticas exclusivas por más de 30 años. Abrimos el mundo a los estudiantes a través de la inmersión premium y el rigor académico.",
+          footer_contact: "Contáctanos",
+          footer_social: "Síguenos",
+          rights: "Todos los derechos reservados.",
+        },
+      };
+
+      function setLanguage(lang) {
+        const elements = document.querySelectorAll("[data-i18n]");
+
+        elements.forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (translations[lang] && translations[lang][key]) {
+            // Check if content has HTML tags (like <strong>)
+            if (translations[lang][key].includes("<")) {
+              el.innerHTML = translations[lang][key];
+            } else {
+              el.textContent = translations[lang][key];
+            }
+          }
+        });
+
+        // Toggle Button Styles
+        if (lang === "en") {
+          document.getElementById("btn-en").className =
+            "px-3 py-1 rounded-full text-xs font-bold transition-all bg-amber-500 text-slate-900";
+          document.getElementById("btn-es").className =
+            "px-3 py-1 rounded-full text-xs font-bold transition-all text-gray-400 hover:text-white";
+        } else {
+          document.getElementById("btn-en").className =
+            "px-3 py-1 rounded-full text-xs font-bold transition-all text-gray-400 hover:text-white";
+          document.getElementById("btn-es").className =
+            "px-3 py-1 rounded-full text-xs font-bold transition-all bg-amber-500 text-slate-900";
+        }
+      }
+
+      // Set default language
+      setLanguage("en");
+    </script>
+  </body>
+</html>
