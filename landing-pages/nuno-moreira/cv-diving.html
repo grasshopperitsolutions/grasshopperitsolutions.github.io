@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuno Moreira | Professional Scuba Diver & Underwater Explorer</title>
+    <meta
+      name="description"
+      content="Professional CV of Nuno Moreira - Certified Scuba Diver, Underwater Photographer, and Ocean Explorer."
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+            colors: {
+              ocean: {
+                300: "#7dd3fc", // light blue
+                400: "#38bdf8", // blue-400
+                500: "#0ea5e9", // blue-500
+                600: "#0284c7", // blue-600
+                700: "#0369a1", // blue-700
+                800: "#075985", // blue-800
+              },
+              coral: {
+                300: "#f97316", // orange-400
+                400: "#fb923c", // orange-500
+                500: "#f59e0b", // amber-500
+                600: "#d97706", // amber-600
+              },
+            },
+            animation: {
+              "swim-left": "swimLeft 15s linear infinite",
+              "swim-right": "swimRight 12s linear infinite",
+              "bubble-rise": "bubbleRise 8s linear infinite",
+              "coral-wave": "coralWave 4s ease-in-out infinite",
+            },
+            keyframes: {
+              swimLeft: {
+                "0%": { transform: "translateX(-100px) translateY(0px) rotate(0deg)" },
+                "25%": { transform: "translateX(100vw) translateY(-50px) rotate(5deg)" },
+                "50%": { transform: "translateX(100vw) translateY(50px) rotate(-5deg)" },
+                "75%": { transform: "translateX(-100px) translateY(100px) rotate(0deg)" },
+                "100%": { transform: "translateX(-100px) translateY(0px) rotate(0deg)" },
+              },
+              swimRight: {
+                "0%": { transform: "translateX(100vw) translateY(0px) rotate(180deg)" },
+                "25%": { transform: "translateX(-100px) translateY(-30px) rotate(175deg)" },
+                "50%": { transform: "translateX(-100px) translateY(70px) rotate(185deg)" },
+                "75%": { transform: "translateX(100vw) translateY(100px) rotate(180deg)" },
+                "100%": { transform: "translateX(100vw) translateY(0px) rotate(180deg)" },
+              },
+              bubbleRise: {
+                "0%": { transform: "translateY(100vh) scale(0)", opacity: "0" },
+                "10%": { opacity: "1" },
+                "90%": { opacity: "1" },
+                "100%": { transform: "translateY(-100px) scale(1.5)", opacity: "0" },
+              },
+              coralWave: {
+                "0%, 100%": { transform: "rotate(0deg)" },
+                "50%": { transform: "rotate(5deg)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Ocean background patterns */
+      .ocean-background {
+        background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        background-image: 
+          radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+          linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
+        background-size: 60px 60px, 80px 80px, 20px 20px, 20px 20px;
+      }
+      
+      .coral-pattern {
+        background: 
+          radial-gradient(circle at 30% 30%, rgba(245, 158, 11, 0.2) 0%, transparent 50%),
+          radial-gradient(circle at 70% 70%, rgba(251, 146, 60, 0.2) 0%, transparent 50%),
+          radial-gradient(circle at 50% 10%, rgba(234, 179, 8, 0.1) 0%, transparent 50%);
+      }
+      
+      .water-ripple {
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+        animation: waterRipple 10s ease-in-out infinite;
+      }
+      
+      .diver-text {
+        background: linear-gradient(135deg, #7dd3fc, #f59e0b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .certification-badge {
+        border: 2px solid rgba(59, 130, 246, 0.3);
+        background: rgba(14, 165, 233, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .certification-badge:hover {
+        border-color: rgba(59, 130, 246, 0.8);
+        background: rgba(14, 165, 233, 0.2);
+        transform: translateY(-5px);
+      }
+      
+      .photo-card {
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        transition: all 0.3s ease;
+      }
+      
+      .photo-card:hover {
+        border-color: rgba(59, 130, 246, 0.6);
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+      }
+      
+      /* Animated fish styles */
+      .fish {
+        position: absolute;
+        width: 60px;
+        height: 30px;
+        opacity: 0.8;
+        filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3));
+      }
+      
+      .bubble {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: rgba(59, 130, 246, 0.6);
+        border-radius: 50%;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-gray-100 antialiased">
+    <!-- Ocean Background Elements -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+      <div class="absolute inset-0 ocean-background"></div>
+      <div class="absolute inset-0 coral-pattern opacity-30"></div>
+      <div class="absolute top-0 left-0 w-full h-full water-ripple opacity-20"></div>
+      
+      <!-- Animated Fish -->
+      <div class="fish" style="top: 20%; left: -100px; animation: swim-left 15s linear infinite;">
+        <svg viewBox="0 0 60 30" fill="none">
+          <path d="M50 15c-5-8-15-8-20 0s-15 8-20 0S5 5 10 0s15 8 20 0 15 8 20 0" fill="#f59e0b"/>
+          <circle cx="45" cy="12" r="2" fill="#ffffff"/>
+          <path d="M10 15l-5 5 5 5z" fill="#0ea5e9"/>
+        </svg>
+      </div>
+      
+      <div class="fish" style="top: 60%; right: -100px; animation: swim-right 12s linear infinite;">
+        <svg viewBox="0 0 60 30" fill="none">
+          <path d="M50 15c-5-8-15-8-20 0s-15 8-20 0S5 5 10 0s15 8 20 0 15 8 20 0" fill="#fb923c"/>
+          <circle cx="45" cy="18" r="2" fill="#ffffff"/>
+          <path d="M10 15l-5-5 5-5z" fill="#0ea5e9"/>
+        </svg>
+      </div>
+      
+      <div class="fish" style="top: 40%; left: -60px; animation: swim-left 18s linear infinite; animation-delay: 2s;">
+        <svg viewBox="0 0 60 30" fill="none">
+          <path d="M50 15c-5-8-15-8-20 0s-15 8-20 0S5 5 10 0s15 8 20 0 15 8 20 0" fill="#f97316"/>
+          <circle cx="45" cy="15" r="2" fill="#ffffff"/>
+          <path d="M10 15l-5 3 5 3z" fill="#0ea5e9"/>
+        </svg>
+      </div>
+      
+      <!-- Animated Bubbles -->
+      <div class="bubble" style="left: 10%; animation: bubble-rise 8s linear infinite; animation-delay: 0s;"></div>
+      <div class="bubble" style="left: 20%; animation: bubble-rise 10s linear infinite; animation-delay: 1s;"></div>
+      <div class="bubble" style="left: 30%; animation: bubble-rise 7s linear infinite; animation-delay: 2s;"></div>
+      <div class="bubble" style="left: 40%; animation: bubble-rise 9s linear infinite; animation-delay: 3s;"></div>
+      <div class="bubble" style="left: 50%; animation: bubble-rise 8s linear infinite; animation-delay: 4s;"></div>
+      <div class="bubble" style="left: 60%; animation: bubble-rise 11s linear infinite; animation-delay: 0.5s;"></div>
+      <div class="bubble" style="left: 70%; animation: bubble-rise 6s linear infinite; animation-delay: 1.5s;"></div>
+      <div class="bubble" style="left: 80%; animation: bubble-rise 10s linear infinite; animation-delay: 2.5s;"></div>
+      <div class="bubble" style="left: 90%; animation: bubble-rise 9s linear infinite; animation-delay: 3.5s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10">
+      <nav class="fixed w-full z-50 backdrop-blur-md border-b border-ocean-600/30 bg-gray-900/80">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-ocean-500 rounded-lg flex items-center justify-center shadow-lg shadow-ocean-500/20">
+                <i data-lucide="anchor" class="w-6 h-6 text-white"></i>
+              </div>
+              <div>
+                <h1 class="text-xl font-bold text-white">Nuno Moreira</h1>
+                <p class="text-ocean-400 font-serif">Professional Diver</p>
+              </div>
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+              <a href="index.html" class="text-gray-300 hover:text-white transition-colors">← Back to Portfolio</a>
+              <a href="#certifications" class="text-gray-300 hover:text-white transition-colors">Certifications</a>
+              <a href="#experience" class="text-gray-300 hover:text-white transition-colors">Experience</a>
+              <a href="#portfolio" class="text-gray-300 hover:text-white transition-colors">Portfolio</a>
+              <a href="#contact" class="bg-ocean-500 hover:bg-ocean-600 text-white px-4 py-2 rounded-md font-semibold transition-all">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="pt-24">
+      <section class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="px-3 py-1 bg-coral-500/20 text-coral-400 text-sm font-semibold border border-coral-500/30 rounded-full">OCEAN EXPLORER</span>
+                <span class="w-2 h-2 bg-coral-400 rounded-full animate-pulse"></span>
+              </div>
+              <h1 class="text-5xl lg:text-7xl font-serif font-bold text-white leading-tight">
+                <span class="diver-text">Dive</span> Deep, 
+                <span class="text-ocean-400">See</span> Far
+              </h1>
+              <p class="text-xl text-gray-300 leading-relaxed">
+                Professional scuba diver and underwater photographer with extensive experience 
+                in cave diving, technical diving, and marine life documentation. 
+                Passionate about ocean conservation and underwater exploration.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="bg-gray-900 p-4 rounded-lg border border-ocean-600/30">
+                <div class="text-2xl font-bold text-ocean-400">500+</div>
+                <div class="text-sm text-gray-400">Dives Completed</div>
+              </div>
+              <div class="bg-gray-900 p-4 rounded-lg border border-ocean-600/30">
+                <div class="text-2xl font-bold text-coral-400">30+</div>
+                <div class="text-sm text-gray-400">Countries Explored</div>
+              </div>
+              <div class="bg-gray-900 p-4 rounded-lg border border-ocean-600/30">
+                <div class="text-2xl font-bold text-blue-400">15+</div>
+                <div class="text-sm text-gray-400">Cave Systems</div>
+              </div>
+              <div class="bg-gray-900 p-4 rounded-lg border border-ocean-600/30">
+                <div class="text-2xl font-bold text-green-400">100%</div>
+                <div class="text-sm text-gray-400">Safety Record</div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+              <a href="https://www.instagram.com/nunos.diving/" target="_blank" class="bg-ocean-500 hover:bg-ocean-600 text-white px-6 py-3 rounded-md font-semibold transition-all transform hover:scale-105 shadow-lg shadow-ocean-500/20">
+                <i data-lucide="instagram" class="w-4 h-4 inline mr-2"></i> Follow Diving
+              </a>
+              <a href="mailto:nunomoreira16@gmail.com" class="border border-gray-600 hover:border-ocean-500 text-gray-300 hover:text-white px-6 py-3 rounded-md font-semibold transition-all">
+                <i data-lucide="mail" class="w-4 h-4 inline mr-2"></i> Contact
+              </a>
+              <a href="https://wa.me/33767834576" target="_blank" class="border border-gray-600 hover:border-coral-500 text-gray-300 hover:text-white px-6 py-3 rounded-md font-semibold transition-all">
+                <i data-lucide="message-circle" class="w-4 h-4 inline mr-2"></i> WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="absolute inset-0 bg-ocean-500/20 rounded-2xl blur-xl"></div>
+            <div class="relative bg-gray-900 rounded-2xl p-8 border border-ocean-600/30">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-3 h-3 bg-coral-500 rounded-full animate-pulse"></div>
+                <div class="w-3 h-3 bg-ocean-400 rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
+                <div class="w-3 h-3 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 1s"></div>
+              </div>
+              <div class="bg-gray-800 rounded p-4 font-mono text-sm">
+                <div class="text-ocean-400 mb-2">$ scuba --profile</div>
+                <div class="text-coral-400">✓ Cave Diver</div>
+                <div class="text-blue-400">✓ Technical Diver</div>
+                <div class="text-green-400">✓ Underwater Photographer</div>
+                <div class="text-purple-400">✓ Marine Conservation</div>
+                <div class="mt-4 text-gray-400">[Ready for your next expedition]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications Section -->
+      <section id="certifications" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-serif font-bold text-white mb-4">Professional Certifications</h2>
+          <p class="text-gray-400">Recognized by international diving organizations</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="certification-badge rounded-xl p-8 border hover:border-ocean-500/50 transition-all">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-12 h-12 bg-ocean-500/20 rounded-full flex items-center justify-center">
+                <i data-lucide="layers" class="w-6 h-6 text-ocean-400"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">Technical Diver</h3>
+                <p class="text-ocean-400 font-mono">TDI Advanced</p>
+              </div>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Advanced technical diving certification including mixed gas diving, 
+              decompression procedures, and deep diving protocols.
+            </p>
+            <div class="text-sm text-gray-400">
+              <div>Max Depth: 60m / 200ft</div>
+              <div>Gases: Trimix, Nitrox, Oxygen</div>
+            </div>
+          </div>
+
+          <div class="certification-badge rounded-xl p-8 border hover:border-coral-500/50 transition-all">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-12 h-12 bg-coral-500/20 rounded-full flex items-center justify-center">
+                <i data-lucide="navigation" class="w-6 h-6 text-coral-400"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">Cave Diver</h3>
+                <p class="text-coral-400 font-mono">NSS-CDS Full Cave</p>
+              </div>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Full cave diving certification with extensive experience in overhead 
+              environment navigation and safety procedures.
+            </p>
+            <div class="text-sm text-gray-400">
+              <div>Overhead Environment Specialist</div>
+              <div>Line Laying & Navigation</div>
+            </div>
+          </div>
+
+          <div class="certification-badge rounded-xl p-8 border hover:border-blue-500/50 transition-all">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <i data-lucide="camera" class="w-6 h-6 text-blue-400"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">Underwater Photographer</h3>
+                <p class="text-blue-400 font-mono">PADI Digital</p>
+              </div>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Professional underwater photography certification with expertise in 
+              marine life documentation and underwater videography.
+            </p>
+            <div class="text-sm text-gray-400">
+              <div>Marine Life Documentation</div>
+              <div>Conservation Photography</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-serif font-bold text-white mb-4">Diving Experience</h2>
+          <p class="text-gray-400">Exploring the depths for over a decade</p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="bg-gray-900 rounded-xl p-8 border border-ocean-600/30 hover:border-ocean-500/50 transition-all">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+              <div>
+                <h3 class="text-2xl font-bold text-white mb-2">Lead Cave Diving Instructor</h3>
+                <p class="text-ocean-400 font-mono mb-2">Caribbean Diving Academy</p>
+                <p class="text-gray-400">2018 - Present</p>
+              </div>
+              <div class="mt-4 md:mt-0">
+                <span class="px-3 py-1 bg-coral-500/20 text-coral-400 text-sm rounded-full border border-coral-500/30">Instructor</span>
+              </div>
+            </div>
+            <p class="text-gray-300 leading-relaxed">
+              Lead instructor for advanced cave diving courses in the Yucatan Peninsula. 
+              Specialized in training technical divers for complex cave systems including 
+              Dos Ojos, Sac Actun, and Ox Bel Ha. Maintained 100% safety record across 
+              200+ training dives.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Cave Systems</span>
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Technical Training</span>
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Safety Protocols</span>
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Overhead Environments</span>
+            </div>
+          </div>
+
+          <div class="bg-gray-900 rounded-xl p-8 border border-ocean-600/30 hover:border-coral-500/50 transition-all">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+              <div>
+                <h3 class="text-2xl font-bold text-white mb-2">Marine Conservation Diver</h3>
+                <p class="text-coral-400 font-mono mb-2">Ocean Preservation Society</p>
+                <p class="text-gray-400">2015 - 2018</p>
+              </div>
+              <div class="mt-4 md:mt-0">
+                <span class="px-3 py-1 bg-ocean-500/20 text-ocean-400 text-sm rounded-full border border-ocean-500/30">Conservation</span>
+              </div>
+            </div>
+            <p class="text-gray-300 leading-relaxed">
+              Conducted underwater surveys and documentation for marine conservation projects 
+              across the Indo-Pacific region. Specialized in coral reef health assessment, 
+              marine species documentation, and underwater cleanup operations.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Coral Reefs</span>
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Marine Life</span>
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Conservation</span>
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Documentation</span>
+            </div>
+          </div>
+
+          <div class="bg-gray-900 rounded-xl p-8 border border-ocean-600/30 hover:border-blue-500/50 transition-all">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+              <div>
+                <h3 class="text-2xl font-bold text-white mb-2">Technical Diving Guide</h3>
+                <p class="text-blue-400 font-mono mb-2">Deep Blue Expeditions</p>
+                <p class="text-gray-400">2012 - 2015</p>
+              </div>
+              <div class="mt-4 md:mt-0">
+                <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm rounded-full border border-blue-500/30">Guide</span>
+              </div>
+            </div>
+            <p class="text-gray-300 leading-relaxed">
+              Led technical diving expeditions to deep wrecks and underwater caves 
+              throughout the Mediterranean and Atlantic. Specialized in trimix diving, 
+              decompression procedures, and expedition planning for challenging dive sites.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Wreck Diving</span>
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Trimix</span>
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Expeditions</span>
+              <span class="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">Decompression</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <section id="portfolio" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-serif font-bold text-white mb-4">Underwater Portfolio</h2>
+          <p class="text-gray-400">Capturing the beauty of the deep blue</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="photo-card rounded-xl overflow-hidden group">
+            <div class="bg-gray-800 p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-white">Cave Exploration</h3>
+                <span class="text-ocean-400 font-mono text-sm">Yucatan, Mexico</span>
+              </div>
+              <div class="w-full h-48 bg-gradient-to-br from-ocean-600 to-blue-800 rounded-lg mb-4 flex items-center justify-center text-white font-bold text-lg">
+                [Cave Image]
+              </div>
+              <p class="text-gray-300 text-sm">
+                Exploring the intricate cave systems of the Yucatan Peninsula, 
+                documenting geological formations and underwater passages.
+              </p>
+            </div>
+          </div>
+
+          <div class="photo-card rounded-xl overflow-hidden group">
+            <div class="bg-gray-800 p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-white">Marine Life</h3>
+                <span class="text-coral-400 font-mono text-sm">Indo-Pacific</span>
+              </div>
+              <div class="w-full h-48 bg-gradient-to-br from-coral-600 to-orange-800 rounded-lg mb-4 flex items-center justify-center text-white font-bold text-lg">
+                [Marine Life]
+              </div>
+              <p class="text-gray-300 text-sm">
+                Documenting diverse marine species and coral reef ecosystems 
+                across the Indo-Pacific region.
+              </p>
+            </div>
+          </div>
+
+          <div class="photo-card rounded-xl overflow-hidden group">
+            <div class="bg-gray-800 p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-white">Wreck Diving</h3>
+                <span class="text-blue-400 font-mono text-sm">Mediterranean</span>
+              </div>
+              <div class="w-full h-48 bg-gradient-to-br from-blue-600 to-indigo-800 rounded-lg mb-4 flex items-center justify-center text-white font-bold text-lg">
+                [Wreck Image]
+              </div>
+              <p class="text-gray-300 text-sm">
+                Technical exploration of historic shipwrecks, documenting 
+                maritime history and underwater archaeology.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="bg-gray-900 rounded-2xl p-8 border border-ocean-600/30">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h2 class="text-3xl font-serif font-bold text-white mb-4">Ready for Your Next Dive?</h2>
+              <p class="text-gray-400 mb-6">
+                Whether you need a technical diving instructor, underwater photographer, 
+                or expedition guide, I'm ready to help you explore the underwater world safely.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3 text-gray-300">
+                  <i data-lucide="mail" class="w-5 h-5 text-ocean-400"></i>
+                  <span>nunomoreira16@gmail.com</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300">
+                  <i data-lucide="phone" class="w-5 h-5 text-coral-400"></i>
+                  <span>+33 7 67 83 45 76</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300">
+                  <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
+                  <span>Global / Based in Europe</span>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <a href="https://www.instagram.com/nunos.diving/" target="_blank" class="block w-full bg-ocean-500 hover:bg-ocean-600 text-white text-center py-4 rounded-md font-semibold transition-all transform hover:scale-105">
+                <i data-lucide="instagram" class="w-4 h-4 inline mr-2"></i> View Diving Portfolio
+              </a>
+              <a href="mailto:nunomoreira16@gmail.com" class="block w-full border border-gray-600 hover:border-ocean-500 text-center py-4 rounded-md font-semibold transition-all text-gray-300 hover:text-white">
+                Send Email
+              </a>
+              <a href="https://wa.me/33767834576" target="_blank" class="block w-full border border-gray-600 hover:border-coral-500 text-center py-4 rounded-md font-semibold transition-all text-gray-300 hover:text-white">
+                WhatsApp Message
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 py-8">
+      <div class="max-w-6xl mx-auto px-6 text-center text-gray-500 text-sm">
+        <p>&copy; 2024 Nuno Moreira. All rights reserved. Respect the ocean, dive safely.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
+      // Animate coral elements on scroll
+      const observerOptions = {
+        threshold: 0.3,
+        rootMargin: "0px 0px -30px 0px"
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.certification-badge').forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+      });
+
+      // Smooth scroll for navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
