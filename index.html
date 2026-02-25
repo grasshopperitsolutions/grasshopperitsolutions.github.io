@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grasshopper IT Solutions</title>
-    <link rel="icon" href="assets/grasshopper-geometric-logo.svg" type="image/svg+xml" />
+    <link
+      rel="icon"
+      href="assets/grasshopper-geometric-logo.svg"
+      type="image/svg+xml"
+    />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Space Mono for Vibe / Inter & Outfit for Professionalism -->
@@ -172,7 +176,11 @@
         <div
           class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"
         ></div>
-        <img src="assets/grasshopper-geometric-logo.svg" alt="Grasshopper Logo" class="w-10 h-10" />
+        <img
+          src="assets/grasshopper-geometric-logo.svg"
+          alt="Grasshopper Logo"
+          class="w-10 h-10"
+        />
       </button>
     </div>
 
@@ -1175,6 +1183,233 @@
       </div>
     </section>
 
+    <!-- NEW SECTION: External Projects Carousel -->
+    <section
+      id="external-projects"
+      class="py-32 relative bg-deep-space overflow-hidden border-t border-white/5"
+    >
+      <!-- Background Elements -->
+      <div
+        class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyber-blue opacity-5 rounded-full blur-[120px]"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex justify-between items-end mb-16">
+          <div>
+            <p
+              class="text-cyber-blue font-mono text-sm mb-2 tracking-widest uppercase"
+            >
+              // EXTERNAL_DEPLOYMENTS
+            </p>
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
+              Partner & Client Projects
+            </h2>
+          </div>
+          <!-- Carousel Controls -->
+          <div class="hidden md:flex gap-4">
+            <button
+              id="ext-slide-prev"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-cyber-blue hover:text-black hover:border-cyber-blue transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+            <button
+              id="ext-slide-next"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-cyber-blue hover:text-black hover:border-cyber-blue transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div
+          id="ext-carousel-container"
+          class="carousel-scroll flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth"
+        >
+          <!-- External Project 1: Hormiguero Lab -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-cyber-blue/50 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                https://grasshoppersolutions.online/hormiguero-lab/
+              </div>
+            </div>
+
+            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+              <iframe
+                src="https://grasshoppersolutions.online/hormiguero-lab/"
+                class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
+                loading="lazy"
+                title="Hormiguero Lab"
+              ></iframe>
+              <div
+                class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <a
+                  href="https://grasshoppersolutions.online/hormiguero-lab/"
+                  target="_blank"
+                  class="bg-cyber-blue text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
+                >
+                  Launch Deployment
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Hormiguero Lab
+                  </h3>
+                  <p class="text-xs font-mono text-cyber-blue">
+                    Client Portal / Landing
+                  </p>
+                </div>
+                <span
+                  class="bg-cyber-blue/10 text-cyber-blue text-[10px] px-2 py-1 rounded font-mono border border-cyber-blue/20"
+                  >LIVE</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                A customized digital presence and engagement portal built for
+                Hormiguero Lab, designed to showcase services and optimize user
+                interaction.
+              </p>
+            </div>
+          </div>
+
+          <!-- External Project 2: Diploma Generator -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                https://grasshoppersolutions.online/diploma-generator/
+              </div>
+            </div>
+
+            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+              <iframe
+                src="https://grasshoppersolutions.online/diploma-generator/"
+                class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
+                loading="lazy"
+                title="Diploma Generator"
+              ></iframe>
+              <div
+                class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <a
+                  href="https://grasshoppersolutions.online/diploma-generator/"
+                  target="_blank"
+                  class="bg-grass-green text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
+                >
+                  Launch Application
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Diploma Generator
+                  </h3>
+                  <p class="text-xs font-mono text-grass-green">
+                    Web Utility Tool
+                  </p>
+                </div>
+                <span
+                  class="bg-grass-green/10 text-grass-green text-[10px] px-2 py-1 rounded font-mono border border-grass-green/20"
+                  >LIVE</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                A dynamic, interactive web tool allowing users to seamlessly
+                generate, preview, customize, and export high-quality
+                certificates and diplomas.
+              </p>
+            </div>
+          </div>
+
+          <!-- External Project 3: Placeholder -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-white/30 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                secure://enterprise-client-03
+              </div>
+            </div>
+            <div
+              class="h-[300px] relative bg-black flex items-center justify-center overflow-hidden"
+            >
+              <div class="text-center p-8 relative z-10">
+                <i
+                  data-lucide="lock"
+                  class="w-12 h-12 text-gray-700 mx-auto mb-4"
+                ></i>
+                <h4 class="text-gray-500 font-mono text-sm uppercase">
+                  NDA Protected
+                </h4>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Enterprise Solution
+                  </h3>
+                  <p class="text-xs font-mono text-gray-500">
+                    Secure Internal Tool
+                  </p>
+                </div>
+                <span
+                  class="bg-white/5 text-gray-400 text-[10px] px-2 py-1 rounded font-mono border border-white/10"
+                  >CLASSIFIED</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                We regularly build confidential, highly secure internal tooling,
+                data pipelines, and ERP integrations for enterprise clients
+                under NDA.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Process Section -->
     <section id="process" class="py-32 bg-black">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1322,54 +1557,6 @@
       </div>
     </footer>
 
-    <script>
-      lucide.createIcons();
-      const btn = document.getElementById("mobile-menu-btn");
-      const menu = document.getElementById("mobile-menu");
-      btn.addEventListener("click", () => menu.classList.toggle("hidden"));
-      setInterval(() => {
-        const now = new Date();
-        document.getElementById("time").innerText = now
-          .toTimeString()
-          .split(" ")[0];
-      }, 1000);
-      function notify() {
-        const toast = document.getElementById("notification-toast");
-        toast.classList.add("show");
-        setTimeout(() => toast.classList.remove("show"), 3000);
-      }
-      function toggleAIBubble() {
-        const bubble = document.getElementById("ai-bubble");
-        bubble.classList.toggle("hidden");
-      }
-
-      // Identities Carousel Logic
-      const container = document.getElementById("carousel-container");
-      const prevBtn = document.getElementById("slide-prev");
-      const nextBtn = document.getElementById("slide-next");
-
-      if (container && prevBtn && nextBtn) {
-        nextBtn.addEventListener("click", () => {
-          container.scrollBy({ left: 400, behavior: "smooth" });
-        });
-        prevBtn.addEventListener("click", () => {
-          container.scrollBy({ left: -400, behavior: "smooth" });
-        });
-      }
-
-      // App Carousel Logic (New)
-      const appContainer = document.getElementById("app-carousel-container");
-      const appPrevBtn = document.getElementById("app-slide-prev");
-      const appNextBtn = document.getElementById("app-slide-next");
-
-      if (appContainer && appPrevBtn && appNextBtn) {
-        appNextBtn.addEventListener("click", () => {
-          appContainer.scrollBy({ left: 400, behavior: "smooth" });
-        });
-        appPrevBtn.addEventListener("click", () => {
-          appContainer.scrollBy({ left: -400, behavior: "smooth" });
-        });
-      }
-    </script>
+    <script src="js/script.js"></script>
   </body>
 </html>
