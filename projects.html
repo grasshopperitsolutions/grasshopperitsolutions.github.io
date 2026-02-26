@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grasshopper IT Solutions - Projects</title>
+    <link
+      rel="icon"
+      href="assets/grasshopper-geometric-logo.svg"
+      type="image/svg+xml"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Mono for Vibe / Inter & Outfit for Professionalism -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "grass-green": "#00ff41",
+              "cyber-blue": "#00dbde",
+              "cyber-red": "#ff003c",
+              "deep-space": "#0a0a0a",
+              "code-gray": "#1e1e1e",
+              "card-gray": "#151515",
+
+              // App Specific Theme Colors
+              "neon-red": "#ff073a",
+              "tales-amber": "#b45309",
+              "tales-action": "#991b1b",
+              "kitchen-orange": "#ea580c",
+              "kitchen-red": "#dc2626",
+            },
+            fontFamily: {
+              mono: ['"Space Mono"', "monospace"],
+              sans: ['"Inter"', "sans-serif"],
+              heading: ['"Outfit"', "sans-serif"],
+            },
+            animation: {
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              float: "float 3s ease-in-out infinite",
+              scroll: "scroll 60s linear infinite",
+              "bounce-x": "bounce-x 1s infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+              scroll: {
+                "0%": { transform: "translateX(0)" },
+                "100%": { transform: "translateX(-50%)" },
+              },
+              "bounce-x": {
+                "0%, 100%": { transform: "translateX(0)" },
+                "50%": { transform: "translateX(5px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e1e1e;
+        border: 1px solid #00ff41;
+      }
+      .neon-text {
+        text-shadow:
+          0 0 5px rgba(0, 255, 65, 0.5),
+          0 0 10px rgba(0, 255, 65, 0.3);
+      }
+      .glass-card {
+        background: rgba(21, 21, 21, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .glitch-wrapper {
+        position: relative;
+      }
+      .glitch-wrapper::before,
+      .glitch-wrapper::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0a0a0a;
+      }
+      .glitch-wrapper::before {
+        left: 2px;
+        text-shadow: -1px 0 #00ff41;
+        clip: rect(24px, 550px, 90px, 0);
+        animation: glitch-anim-2 3s infinite linear alternate-reverse;
+      }
+      .glitch-wrapper::after {
+        left: -2px;
+        text-shadow: -1px 0 #00dbde;
+        clip: rect(85px, 550px, 140px, 0);
+        animation: glitch-anim 2.5s infinite linear alternate-reverse;
+      }
+      @keyframes glitch-anim {
+        0% {
+          clip: rect(11px, 9999px, 86px, 0);
+        }
+        100% {
+          clip: rect(48px, 9999px, 73px, 0);
+        }
+      }
+      @keyframes glitch-anim-2 {
+        0% {
+          clip: rect(65px, 9999px, 100px, 0);
+        }
+        100% {
+          clip: rect(32px, 9999px, 45px, 0);
+        }
+      }
+      #notification-toast {
+        transform: translateY(100px);
+        transition: transform 0.3s ease-out;
+      }
+      #notification-toast.show {
+        transform: translateY(0);
+      }
+
+      /* Hide scrollbar for carousel but allow functionality */
+      .carousel-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      .carousel-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-deep-space text-gray-300 font-sans antialiased selection:bg-grass-green selection:text-black overflow-x-hidden"
+  >
+    <!-- Notification Toast -->
+    <div
+      id="notification-toast"
+      class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-cyber-blue text-black font-mono font-bold px-6 py-3 rounded-full shadow-2xl flex items-center gap-3"
+    >
+      <i data-lucide="info" class="w-5 h-5"></i>
+      <span>Module coming soon...</span>
+    </div>
+
+    <!-- Floating AI Agent (Grassy Hopper) -->
+    <div class="fixed bottom-8 right-8 z-[60] flex flex-col items-end">
+      <div
+        id="ai-bubble"
+        class="hidden mb-4 glass-card p-4 rounded-2xl border border-grass-green/30 max-w-[200px] text-xs font-mono text-white animate-fade-in shadow-2xl"
+      >
+        <p class="mb-2 text-grass-green">// GRASSY_HOPPER_v1.0</p>
+        <p>Neural chat interface coming soon to assist your build.</p>
+      </div>
+      <button
+        onclick="toggleAIBubble()"
+        class="animate-float w-16 h-16 rounded-full bg-grass-green flex items-center justify-center shadow-[0_0_20px_rgba(0,255,65,0.4)] hover:scale-110 transition-transform group overflow-hidden border-2 border-white/20"
+      >
+        <div
+          class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"
+        ></div>
+        <img
+          src="assets/grasshopper-geometric-logo.svg"
+          alt="Grasshopper Logo"
+          class="w-10 h-10"
+        />
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-deep-space/80 backdrop-blur-xl border-b border-white/5"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div
+            class="flex items-center group cursor-pointer"
+            onclick="window.location.href = 'index.html'"
+          >
+            <img
+              src="assets/grasshopper-geometric-logo.svg"
+              alt="Grasshopper Logo"
+              class="w-10 h-10 mr-2 drop-shadow-[0_0_5px_rgba(0,255,65,0.5)] group-hover:scale-110 transition-transform"
+            />
+            <span
+              class="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-grass-green transition-colors neon-text"
+              >Grasshopper IT Solutions</span
+            >
+          </div>
+          <div class="hidden lg:flex items-center space-x-8">
+            <a
+              href="mailto:grasshopper.it.solutions@gmail.com"
+              class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
+              >START_PROJECT</a
+            >
+          </div>
+          <div class="lg:hidden">
+            <button id="mobile-menu-btn" class="text-gray-300">
+              <i data-lucide="menu"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-code-gray border-b border-white/10 px-4 py-6 space-y-4"
+      >
+        <!-- <a href="services.html" class="block text-gray-300 font-mono"
+          >./Services</a
+        >
+        <a href="projects.html" class="block text-gray-300 font-mono"
+          >./Projects</a
+        > -->
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="relative pt-32 pb-20 lg:pt-56 lg:pb-32 overflow-hidden min-h-screen flex items-center"
+    >
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_right,#1e1e1e_1px,transparent_1px),linear-gradient(to_bottom,#1e1e1e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"
+      ></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div
+              class="inline-flex items-center px-3 py-1 mb-6 text-xs font-mono font-semibold tracking-tighter text-cyber-blue uppercase bg-cyber-blue/10 rounded-full border border-cyber-blue/20"
+            >
+              <span
+                class="w-2 h-2 bg-cyber-blue rounded-full mr-2 animate-ping"
+              ></span>
+              Status: Systems Optimal
+            </div>
+            <h1
+              class="text-5xl md:text-8xl font-bold font-heading tracking-tight mb-6 leading-[0.9] text-white"
+            >
+              <span class="block glitch-wrapper" data-text="Project"
+                >Project</span
+              >
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-grass-green to-cyber-blue"
+                >Portfolio.</span
+              >
+            </h1>
+            <p
+              class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed font-sans font-light"
+            >
+              Explore our diverse portfolio of digital solutions, from personal
+              branding sites to enterprise applications and interactive web
+              experiences.
+            </p>
+            <div class="flex flex-wrap gap-4 items-center">
+              <a
+                href="mailto:grasshopper.it.solutions@gmail.com"
+                class="bg-grass-green text-black font-bold py-4 px-10 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)]"
+              >
+                Start Project
+              </a>
+              <div
+                class="flex items-center gap-4 px-4 py-2 bg-white/5 rounded-full border border-white/10 ml-2"
+              >
+                <button
+                  onclick="notify()"
+                  class="hover:text-white transition-colors"
+                >
+                  <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </button>
+                <a
+                  href="https://github.com/grasshopperitsolutions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-white transition-colors"
+                >
+                  <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                <button
+                  onclick="notify()"
+                  class="hover:text-white transition-colors"
+                >
+                  <i data-lucide="instagram" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="relative hidden lg:flex justify-end">
+            <div class="relative w-80 h-80 md:w-96 md:h-96">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-grass-green to-cyber-blue rounded-full blur-3xl opacity-20 animate-pulse-slow"
+              ></div>
+              <div
+                class="relative w-full h-full bg-card-gray/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center animate-float shadow-2xl"
+              >
+                <div class="w-48 h-48 mb-6 relative">
+                  <img
+                    src="assets/grasshopper-geometric-logo.svg"
+                    alt="Grasshopper Logo"
+                    class="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,65,0.6)]"
+                  />
+                </div>
+                <div class="text-center w-full">
+                  <h3 class="text-2xl font-mono text-white font-bold">
+                    Project Archive
+                  </h3>
+                  <div
+                    class="h-px w-full bg-gradient-to-r from-transparent via-grass-green to-transparent my-3"
+                  ></div>
+                  <p class="text-cyber-blue font-mono text-sm">
+                    > Portfolio.View()
+                  </p>
+                </div>
+                <div
+                  class="absolute -top-4 -right-4 bg-black border border-grass-green text-grass-green px-3 py-1 rounded-full text-xs font-mono transform rotate-12"
+                >
+                  V 1.0
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personal Identities / Portfolio Carousel -->
+    <section
+      id="portfolio"
+      class="py-32 relative bg-deep-space overflow-hidden"
+    >
+      <!-- Background Elements -->
+      <div
+        class="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-grass-green opacity-5 rounded-full blur-[100px]"
+      ></div>
+      <div
+        class="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-cyber-blue opacity-5 rounded-full blur-[100px]"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex justify-between items-end mb-16">
+          <div>
+            <p
+              class="text-grass-green font-mono text-sm mb-2 tracking-widest uppercase"
+            >
+              // DIGITAL_IDENTITIES
+            </p>
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
+              Personal Landing Pages
+            </h2>
+          </div>
+          <!-- Carousel Controls -->
+          <div class="hidden md:flex gap-4">
+            <button
+              id="slide-prev"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-grass-green hover:text-black hover:border-grass-green transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+            <button
+              id="slide-next"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-cyber-blue hover:text-black hover:border-cyber-blue transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div
+          id="carousel-container"
+          class="carousel-scroll flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth"
+        >
+          <!-- Card 1: Ludovica Piro (Real) -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
+          >
+            <!-- Browser Chrome Mockup -->
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                https://ludovicapiro.com/
+              </div>
+            </div>
+
+            <!-- Preview Area (Iframe or Image) -->
+            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+              <iframe
+                src="./landing-pages/ludovica-piro/index.html"
+                class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
+                loading="lazy"
+                title="Ludovica Piro Portfolio"
+              ></iframe>
+
+              <!-- Hover Overlay with CTA -->
+              <div
+                class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <a
+                  href="./landing-pages/ludovica-piro/index.html"
+                  target="_blank"
+                  class="bg-grass-green text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
+                >
+                  Visit Live Site
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+                <!-- Commented out for future update -->
+                <!-- <a
+                  href="https://ludovicapiro.com/"
+                  target="_blank"
+                  class="bg-cyber-blue text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2 ml-4"
+                >
+                  Visit Live Site
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a> -->
+              </div>
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Ludovica Piro
+                  </h3>
+                  <p class="text-xs font-mono text-grass-green">
+                    Professional Portfolio
+                  </p>
+                </div>
+                <span
+                  class="bg-grass-green/10 text-grass-green text-[10px] px-2 py-1 rounded font-mono border border-grass-green/20"
+                  >LIVE</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                A bespoke personal branding site designed to showcase
+                professional achievements and creative portfolio work with a
+                minimalist, high-impact aesthetic.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Nuno Moreira (Local) -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-cyber-blue/50 transition-all duration-500"
+          >
+            <!-- Browser Chrome Mockup -->
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                local://landing-pages/nuno-moreira
+              </div>
+            </div>
+
+            <!-- Preview Area (Iframe) -->
+            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+              <iframe
+                src="./landing-pages/nuno-moreira/index.html"
+                class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
+                loading="lazy"
+                title="Nuno Moreira Portfolio"
+              ></iframe>
+
+              <!-- Hover Overlay with CTA -->
+              <div
+                class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <a
+                  href="./landing-pages/nuno-moreira/index.html"
+                  target="_blank"
+                  class="bg-cyber-blue text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
+                >
+                  Visit Live Site
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Nuno Moreira
+                  </h3>
+                  <p class="text-xs font-mono text-cyber-blue">
+                    Full Stack Developer Portfolio
+                  </p>
+                </div>
+                <span
+                  class="bg-cyber-blue/10 text-cyber-blue text-[10px] px-2 py-1 rounded font-mono border border-cyber-blue/20"
+                  >LIVE</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                A comprehensive developer portfolio showcasing technical skills,
+                projects, and professional experience with modern design and
+                interactive elements.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3: Placeholder -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-white/30 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                local://creative-director
+              </div>
+            </div>
+
+            <div
+              class="h-[300px] relative bg-black flex items-center justify-center overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-purple-900/20 to-blue-900/20"
+              ></div>
+              <div class="text-center p-8 relative z-10">
+                <i
+                  data-lucide="palette"
+                  class="w-12 h-12 text-gray-700 mx-auto mb-4"
+                ></i>
+                <h4 class="text-gray-500 font-mono text-sm uppercase">
+                  Awaiting Input
+                </h4>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Creative Suite
+                  </h3>
+                  <p class="text-xs font-mono text-gray-500">
+                    Design Portfolio
+                  </p>
+                </div>
+                <span
+                  class="bg-white/5 text-gray-400 text-[10px] px-2 py-1 rounded font-mono border border-white/10"
+                  >CONCEPT</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                A visually immersive landing page structure for designers and
+                artists, focusing on large imagery, typography, and gallery
+                layouts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Showcase Carousel -->
+    <section
+      id="apps"
+      class="py-32 relative bg-black overflow-hidden border-t border-white/5"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex justify-between items-end mb-16">
+          <div>
+            <p
+              class="text-neon-red font-mono text-sm mb-2 tracking-widest uppercase"
+            >
+              // APP_SHOWCASE
+            </p>
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
+              Interactive Applications
+            </h2>
+          </div>
+          <!-- Carousel Controls -->
+          <div class="hidden md:flex gap-4">
+            <button
+              id="app-slide-prev"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-neon-red hover:text-black hover:border-neon-red transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+            <button
+              id="app-slide-next"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-neon-red hover:text-black hover:border-neon-red transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div
+          id="app-carousel-container"
+          class="carousel-scroll flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth"
+        >
+          <!-- App 1: Void Enigma -->
+          <div
+            class="min-w-[85vw] md:min-w-[450px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-neon-red/50 transition-all duration-500"
+          >
+            <div
+              class="h-[250px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
+            >
+              <div
+                class="text-6xl mb-4 text-neon-red group-hover:scale-110 transition-transform duration-300"
+              >
+                <img
+                  src="./apps/void-enigma-riddle-app/assets/favicon.png"
+                  alt="Void Enigma Favicon"
+                  class="w-20 h-20 mr-2 inline-block"
+                />
+              </div>
+              <h3 class="text-2xl font-bold font-mono text-white mb-2">
+                Void Enigma
+              </h3>
+              <p class="text-xs font-mono text-neon-red">System.Game.Logic</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                An app that creates Riddles from AI-generated data patterns.
+                Input your data set and receive enigmatic puzzles that challenge
+                your analytical skills.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-neon-red/10 text-neon-red rounded"
+                  >#AI</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-neon-red/10 text-neon-red rounded"
+                  >#Puzzle</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-neon-red/10 text-neon-red rounded"
+                  >#Mobile</span
+                >
+              </div>
+              <a
+                href="./apps/void-enigma-riddle-app/index.html"
+                class="block w-full py-3 text-center bg-neon-red text-black font-bold rounded hover:bg-white transition-colors"
+              >
+                Launch Terminal >
+              </a>
+            </div>
+          </div>
+
+          <!-- App 2: Tiny Tales Teller -->
+          <div
+            class="min-w-[85vw] md:min-w-[450px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-tales-amber/50 transition-all duration-500"
+          >
+            <div
+              class="h-[250px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
+            >
+              <div
+                class="text-6xl mb-4 text-tales-amber group-hover:scale-110 transition-transform duration-300"
+              >
+                📚
+              </div>
+              <h3 class="text-2xl font-bold font-mono text-white mb-2">
+                Tiny Tales Teller
+              </h3>
+              <p class="text-xs font-mono text-tales-amber">System.Story.Gen</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                An AI storyteller that generates custom, kid-friendly tales on
+                demand. Choose a character, theme, and language for an endless
+                bedtime story generator.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-tales-amber/10 text-tales-amber rounded"
+                  >#Kids</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-tales-amber/10 text-tales-amber rounded"
+                  >#Storytelling</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-tales-amber/10 text-tales-amber rounded"
+                  >#AI</span
+                >
+              </div>
+              <a
+                href="./apps/tiny-tales-teller-app/"
+                class="block w-full py-3 text-center bg-tales-action text-white font-bold rounded hover:bg-white hover:text-black transition-colors"
+              >
+                Open Library >
+              </a>
+            </div>
+          </div>
+
+          <!-- App 3: AI Kitchen Navigator -->
+          <div
+            class="min-w-[85vw] md:min-w-[450px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-kitchen-orange/50 transition-all duration-500"
+          >
+            <div
+              class="h-[250px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
+            >
+              <div
+                class="text-6xl mb-4 text-kitchen-orange group-hover:scale-110 transition-transform duration-300"
+              >
+                🍳
+              </div>
+              <h3 class="text-2xl font-bold font-mono text-white mb-2">
+                Kitchen Navigator
+              </h3>
+              <p class="text-xs font-mono text-kitchen-orange">
+                System.Food.AI
+              </p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                (Work in Progress) Generate recipes based on ingredients you
+                have, dietary restrictions, or cooking time. Your personal AI
+                culinary consultant.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-kitchen-orange/10 text-kitchen-orange rounded"
+                  >#Recipe</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-kitchen-orange/10 text-kitchen-orange rounded"
+                  >#Utility</span
+                >
+                <span
+                  class="text-[10px] font-mono px-2 py-1 bg-kitchen-orange/10 text-kitchen-orange rounded"
+                  >#AI</span
+                >
+              </div>
+              <a
+                href="#"
+                class="block w-full py-3 text-center bg-gray-800 text-gray-400 font-bold rounded cursor-not-allowed"
+              >
+                Coming Soon...
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- External Projects Carousel -->
+    <section
+      id="external-projects"
+      class="py-32 relative bg-deep-space overflow-hidden border-t border-white/5"
+    >
+      <!-- Background Elements -->
+      <div
+        class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyber-blue opacity-5 rounded-full blur-[120px]"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex justify-between items-end mb-16">
+          <div>
+            <p
+              class="text-cyber-blue font-mono text-sm mb-2 tracking-widest uppercase"
+            >
+              // EXTERNAL_DEPLOYMENTS
+            </p>
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
+              Partner & Client Projects
+            </h2>
+          </div>
+          <!-- Carousel Controls -->
+          <div class="hidden md:flex gap-4">
+            <button
+              id="ext-slide-prev"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-cyber-blue hover:text-black hover:border-cyber-blue transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+            <button
+              id="ext-slide-next"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-cyber-blue hover:text-black hover:border-cyber-blue transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div
+          id="ext-carousel-container"
+          class="carousel-scroll flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth"
+        >
+          <!-- External Project 1: Hormiguero Lab -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-cyber-blue/50 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                https://grasshoppersolutions.online/hormiguero-lab/
+              </div>
+            </div>
+
+            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+              <iframe
+                src="https://grasshoppersolutions.online/hormiguero-lab/"
+                class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
+                loading="lazy"
+                title="Hormiguero Lab"
+              ></iframe>
+              <div
+                class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <a
+                  href="https://grasshoppersolutions.online/hormiguero-lab/"
+                  target="_blank"
+                  class="bg-cyber-blue text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
+                >
+                  Launch Deployment
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Hormiguero Lab
+                  </h3>
+                  <p class="text-xs font-mono text-cyber-blue">
+                    Client Portal / Landing
+                  </p>
+                </div>
+                <span
+                  class="bg-cyber-blue/10 text-cyber-blue text-[10px] px-2 py-1 rounded font-mono border border-cyber-blue/20"
+                  >LIVE</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                A customized digital presence and engagement portal built for
+                Hormiguero Lab, designed to showcase services and optimize user
+                interaction.
+              </p>
+            </div>
+          </div>
+
+          <!-- External Project 2: Diploma Generator -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                https://grasshoppersolutions.online/diploma-generator/
+              </div>
+            </div>
+
+            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+              <iframe
+                src="https://grasshoppersolutions.online/diploma-generator/"
+                class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
+                loading="lazy"
+                title="Diploma Generator"
+              ></iframe>
+              <div
+                class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <a
+                  href="https://grasshoppersolutions.online/diploma-generator/"
+                  target="_blank"
+                  class="bg-grass-green text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
+                >
+                  Launch Application
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Diploma Generator
+                  </h3>
+                  <p class="text-xs font-mono text-grass-green">
+                    Web Utility Tool
+                  </p>
+                </div>
+                <span
+                  class="bg-grass-green/10 text-grass-green text-[10px] px-2 py-1 rounded font-mono border border-grass-green/20"
+                  >LIVE</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                A dynamic, interactive web tool allowing users to seamlessly
+                generate, preview, customize, and export high-quality
+                certificates and diplomas.
+              </p>
+            </div>
+          </div>
+
+          <!-- External Project 3: Placeholder -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-white/30 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                secure://enterprise-client-03
+              </div>
+            </div>
+            <div
+              class="h-[300px] relative bg-black flex items-center justify-center overflow-hidden"
+            >
+              <div class="text-center p-8 relative z-10">
+                <i
+                  data-lucide="lock"
+                  class="w-12 h-12 text-gray-700 mx-auto mb-4"
+                ></i>
+                <h4 class="text-gray-500 font-mono text-sm uppercase">
+                  NDA Protected
+                </h4>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Enterprise Solution
+                  </h3>
+                  <p class="text-xs font-mono text-gray-500">
+                    Secure Internal Tool
+                  </p>
+                </div>
+                <span
+                  class="bg-white/5 text-gray-400 text-[10px] px-2 py-1 rounded font-mono border border-white/10"
+                  >CLASSIFIED</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                We regularly build confidential, highly secure internal tooling,
+                data pipelines, and ERP integrations for enterprise clients
+                under NDA.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-32 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-4xl font-heading font-bold text-white mb-4">
+            The Development Pipeline
+          </h2>
+          <p class="text-gray-500 font-mono text-sm tracking-widest uppercase">
+            From Analysis to Deployment
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+          <div
+            class="hidden md:block absolute top-12 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent"
+          ></div>
+
+          <!-- Step 1: Green -->
+          <div class="relative z-10 text-center space-y-4">
+            <div
+              class="w-24 h-24 mx-auto rounded-full bg-deep-space border border-grass-green flex items-center justify-center text-2xl font-bold font-mono text-grass-green shadow-[0_0_15px_rgba(0,255,65,0.2)]"
+            >
+              01
+            </div>
+            <h4 class="text-white font-heading font-bold">Deep Scan</h4>
+            <p class="text-gray-500 text-sm font-sans px-4 leading-relaxed">
+              We analyze your bottlenecks and map out the tech requirement.
+            </p>
+          </div>
+
+          <!-- Step 2: Blue -->
+          <div class="relative z-10 text-center space-y-4">
+            <div
+              class="w-24 h-24 mx-auto rounded-full bg-deep-space border border-cyber-blue flex items-center justify-center text-2xl font-bold font-mono text-cyber-blue shadow-[0_0_15px_rgba(0,219,222,0.2)]"
+            >
+              02
+            </div>
+            <h4 class="text-white font-heading font-bold">Vibe Design</h4>
+            <p class="text-gray-500 text-sm font-sans px-4 leading-relaxed">
+              Rapid prototyping and UX framing to capture the project's soul.
+            </p>
+          </div>
+
+          <!-- Step 3: Green -->
+          <div class="relative z-10 text-center space-y-4">
+            <div
+              class="w-24 h-24 mx-auto rounded-full bg-deep-space border border-grass-green flex items-center justify-center text-2xl font-bold font-mono text-grass-green shadow-[0_0_15px_rgba(0,255,65,0.2)]"
+            >
+              03
+            </div>
+            <h4 class="text-white font-heading font-bold">Neural Dev</h4>
+            <p class="text-gray-500 text-sm font-sans px-4 leading-relaxed">
+              Our elite freelance mesh builds the core logic using best-in-class
+              stacks.
+            </p>
+          </div>
+
+          <!-- Step 4: Red Neon -->
+          <div class="relative z-10 text-center space-y-4">
+            <div
+              class="w-24 h-24 mx-auto rounded-full bg-deep-space border border-cyber-red flex items-center justify-center text-2xl font-bold font-mono text-cyber-red shadow-[0_0_20px_rgba(255,0,60,0.4)] animate-pulse-slow"
+            >
+              04
+            </div>
+            <h4 class="text-white font-heading font-bold">Go Live</h4>
+            <p class="text-gray-500 text-sm font-sans px-4 leading-relaxed">
+              Smooth deployment, training, and ongoing support for your new
+              system.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="py-24 bg-gradient-to-b from-deep-space to-black border-t border-white/5"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold text-white mb-6">Ready to Scale?</h2>
+        <p class="text-xl text-gray-400 mb-12">
+          Whether you need a quick Python script, a complex .NET architecture,
+          or just some vibe coding, we are ready.
+        </p>
+        <div class="relative inline-block group">
+          <div
+            class="absolute -inset-1 bg-gradient-to-r from-grass-green to-cyber-blue rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-200"
+          ></div>
+          <div
+            class="relative bg-black rounded-lg px-8 py-6 md:px-12 md:py-8 border border-white/10"
+          >
+            <p
+              class="text-gray-500 mb-2 font-mono text-sm tracking-widest uppercase"
+            >
+              INITIATE_COMMUNICATION
+            </p>
+            <a
+              href="mailto:grasshopper.it.solutions@gmail.com"
+              class="text-xl md:text-3xl font-bold text-white hover:text-grass-green transition-colors break-all font-mono"
+              >grasshopper.it.solutions@gmail.com</a
+            >
+            <div class="flex gap-4 mt-4 items-center justify-center">
+              <span
+                class="w-3 h-3 bg-grass-green rounded-full animate-ping"
+              ></span>
+              <span
+                class="text-xs font-mono text-gray-600 uppercase tracking-widest"
+                >Network Awaiting Input</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16 border-t border-white/10">
+      <div
+        class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
+      >
+        <div class="flex items-center group">
+          <img
+            src="assets/grasshopper-geometric-logo.svg"
+            alt="Grasshopper Logo"
+            class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
+          />
+          <span class="text-xl font-mono font-bold text-white"
+            >Grasshopper_IT</span
+          >
+        </div>
+        <div class="flex gap-4 text-gray-600">
+          <button onclick="notify()" class="hover:text-white transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </button>
+          <button onclick="notify()" class="hover:text-white transition-colors">
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </button>
+          <button onclick="notify()" class="hover:text-white transition-colors">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <p class="text-gray-700 text-[10px] font-mono">
+          SYSTEM_LOCAL_TIME: <span id="time">00:00:00</span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

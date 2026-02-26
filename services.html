@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grasshopper IT Solutions</title>
+    <title>Services - Grasshopper IT Solutions</title>
     <link
       rel="icon"
       href="assets/grasshopper-geometric-logo.svg"
@@ -192,7 +192,7 @@
         <div class="flex items-center justify-between h-20">
           <div
             class="flex items-center group cursor-pointer"
-            onclick="window.scrollTo(0, 0)"
+            onclick="window.location.href = 'index.html'"
           >
             <img
               src="assets/grasshopper-geometric-logo.svg"
@@ -205,16 +205,6 @@
             >
           </div>
           <div class="hidden lg:flex items-center space-x-8">
-            <a
-              href="services.html"
-              class="hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
-              >./Services</a
-            >
-            <a
-              href="projects.html"
-              class="hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
-              >./Projects</a
-            >
             <a
               href="mailto:grasshopper.it.solutions@gmail.com"
               class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
@@ -232,12 +222,9 @@
         id="mobile-menu"
         class="hidden lg:hidden bg-code-gray border-b border-white/10 px-4 py-6 space-y-4"
       >
-        <a href="services.html" class="block text-gray-300 font-mono"
-          >./Services</a
-        >
-        <a href="projects.html" class="block text-gray-300 font-mono"
+        <!-- <a href="projects.html" class="block text-gray-300 font-mono"
           >./Projects</a
-        >
+        > -->
       </div>
     </nav>
 
@@ -262,12 +249,12 @@
             <h1
               class="text-5xl md:text-8xl font-bold font-heading tracking-tight mb-6 leading-[0.9] text-white"
             >
-              <span class="block glitch-wrapper" data-text="High-End"
-                >High-End</span
+              <span class="block glitch-wrapper" data-text="Comprehensive"
+                >Comprehensive</span
               >
               <span
                 class="text-transparent bg-clip-text bg-gradient-to-r from-grass-green to-cyber-blue"
-                >Code.</span
+                >Solutions.</span
               >
             </h1>
             <p
@@ -333,7 +320,7 @@
                     class="h-px w-full bg-gradient-to-r from-transparent via-grass-green to-transparent my-3"
                   ></div>
                   <p class="text-cyber-blue font-mono text-sm">
-                    &gt; System.Ready()
+                    > System.Ready()
                   </p>
                 </div>
                 <div
@@ -437,106 +424,312 @@
       </div>
     </div>
 
-    <!-- NEW SECTION: Project Collaboration -->
-    <section
-      id="collaboration"
-      class="py-32 relative bg-deep-space overflow-hidden border-t border-white/5"
-    >
-      <!-- Background Elements -->
-      <div
-        class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyber-blue opacity-5 rounded-full blur-[120px]"
-      ></div>
+    <!-- Services Section (Expanded) -->
+    <section id="services" class="py-32 relative bg-deep-space">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-24">
+          <p
+            class="text-grass-green font-mono text-sm mb-2 tracking-widest uppercase"
+          >
+            // CORE_CAPABILITIES
+          </p>
+          <h2
+            class="text-4xl md:text-6xl font-heading font-bold text-white max-w-3xl"
+          >
+            Comprehensive Solutions for the Digital Frontier.
+          </h2>
+        </div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service Card 1 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-grass-green/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 text-grass-green group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="layout"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              Web Development
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Building lightning-fast, responsive web applications tailored to
+              your specific business goals. From high-converting landing pages
+              to complex enterprise platforms.
+            </p>
+            <ul class="font-mono text-[10px] text-grass-green space-y-1">
+              <li>> Custom Web Apps</li>
+              <li>> E-commerce Solutions</li>
+              <li>> Landing Pages</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-cyber-blue/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 text-cyber-blue group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="smartphone"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              Mobile Development
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Create seamless mobile experiences with cross-platform excellence.
+              We specialize in high-performance iOS and Android applications
+              using modern frameworks.
+            </p>
+            <ul class="font-mono text-[10px] text-cyber-blue space-y-1">
+              <li>> Native Performance</li>
+              <li>> Cross-Platform (Flutter/React Native)</li>
+              <li>> Mobile UI/UX</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-grass-green/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 text-grass-green group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="cpu"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              AI & Machine Learning
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Integrating intelligence into your workflows. We deploy custom
+              LLMs, predictive models, and automation agents to give you a
+              competitive edge.
+            </p>
+            <ul class="font-mono text-[10px] text-grass-green space-y-1">
+              <li>> Custom LLM Implementation</li>
+              <li>> Predictive Analytics</li>
+              <li>> Intelligent Automation</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 4 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-cyber-blue/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 text-cyber-blue group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="database"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              Backend & APIs
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Architecting the engines behind your applications. Secure,
+              scalable server-side logic and robust API integrations designed
+              for maximum uptime.
+            </p>
+            <ul class="font-mono text-[10px] text-cyber-blue space-y-1">
+              <li>> Microservices Architecture</li>
+              <li>> RESTful & GraphQL APIs</li>
+              <li>> Database Design</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 5 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-grass-green/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 text-grass-green group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="cloud"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              Cloud Infrastructure
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Optimize your environment with expert cloud deployment. We manage
+              AWS, Azure, and Google Cloud setups to ensure your scaling is
+              effortless.
+            </p>
+            <ul class="font-mono text-[10px] text-grass-green space-y-1">
+              <li>> AWS/Azure/GCP Management</li>
+              <li>> Serverless Deployment</li>
+              <li>> DevOps Pipelines</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 6 -->
+          <div
+            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-cyber-blue/30 transition-all group"
+          >
+            <div
+              class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 text-cyber-blue group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="palette"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-white mb-4">
+              UX/UI Design
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Modern, intuitive, and accessible designs that convert. We bridge
+              the gap between aesthetics and functionality through rigorous user
+              research.
+            </p>
+            <ul class="font-mono text-[10px] text-cyber-blue space-y-1">
+              <li>> Prototyping (Figma)</li>
+              <li>> User Flow Analysis</li>
+              <li>> Modern Visual Identity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Section (Detailed) -->
+    <section id="stack" class="py-32 bg-black border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-20">
           <p
             class="text-cyber-blue font-mono text-sm mb-2 tracking-widest uppercase"
           >
-            // COLLABORATION
+            // STACK_OVERVIEW
           </p>
           <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
-            Let's Build Something Amazing
+            Our Engineering Toolkit
           </h2>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-          <!-- Project With Us Section -->
-          <div class="glass-card p-8 rounded-2xl border border-white/10">
-            <div
-              class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 text-cyber-blue"
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <!-- Frontend -->
+          <div>
+            <h4
+              class="text-white font-mono font-bold mb-6 border-l-2 border-grass-green pl-4"
             >
-              <i data-lucide="rocket"></i>
+              Front-end
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >React.js</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Next.js</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Vue.js</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Tailwind CSS</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >TypeScript</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >HTML5/CSS3</span
+              >
             </div>
-            <h3 class="text-2xl font-heading font-bold text-white mb-4">
-              Start a Project With Us
-            </h3>
-            <p class="text-gray-400 text-sm leading-relaxed mb-6">
-              Ready to bring your vision to life? We specialize in turning ideas
-              into powerful digital solutions. From concept to deployment, we'll
-              guide you through every step of the development process.
-            </p>
-            <div class="space-y-3 mb-8">
-              <div class="flex items-center gap-3 text-gray-400 text-sm">
-                <i data-lucide="check" class="w-4 h-4 text-cyber-blue"></i>
-                <span>Free consultation call</span>
-              </div>
-              <div class="flex items-center gap-3 text-gray-400 text-sm">
-                <i data-lucide="check" class="w-4 h-4 text-cyber-blue"></i>
-                <span>Custom development plan</span>
-              </div>
-              <div class="flex items-center gap-3 text-gray-400 text-sm">
-                <i data-lucide="check" class="w-4 h-4 text-cyber-blue"></i>
-                <span>Transparent pricing</span>
-              </div>
-            </div>
-            <a
-              href="mailto:grasshopper.it.solutions@gmail.com"
-              class="inline-flex items-center gap-3 bg-cyber-blue text-black font-bold py-4 px-8 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,219,222,0.2)]"
-            >
-              <i data-lucide="send" class="w-5 h-5"></i>
-              Get Started Today
-            </a>
           </div>
-
-          <!-- See Our Projects Section -->
-          <div class="glass-card p-8 rounded-2xl border border-white/10">
-            <div
-              class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 text-grass-green"
+          <!-- Backend -->
+          <div>
+            <h4
+              class="text-white font-mono font-bold mb-6 border-l-2 border-cyber-blue pl-4"
             >
-              <i data-lucide="eye"></i>
+              Back-end
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Node.js</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Python (Django/Flask)</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Express</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >PHP (Laravel)</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Java (Spring Boot)</span
+              >
             </div>
-            <h3 class="text-2xl font-heading font-bold text-white mb-4">
-              Explore Our Work
-            </h3>
-            <p class="text-gray-400 text-sm leading-relaxed mb-6">
-              Curious about what we've built? Browse through our portfolio to
-              see the diverse range of projects we've successfully delivered for
-              clients across different industries.
-            </p>
-            <div class="space-y-3 mb-8">
-              <div class="flex items-center gap-3 text-gray-400 text-sm">
-                <i data-lucide="monitor" class="w-4 h-4 text-grass-green"></i>
-                <span>Web applications</span>
-              </div>
-              <div class="flex items-center gap-3 text-gray-400 text-sm">
-                <i
-                  data-lucide="smartphone"
-                  class="w-4 h-4 text-grass-green"
-                ></i>
-                <span>Mobile apps</span>
-              </div>
-              <div class="flex items-center gap-3 text-gray-400 text-sm">
-                <i data-lucide="cpu" class="w-4 h-4 text-grass-green"></i>
-                <span>AI integrations</span>
-              </div>
-            </div>
-            <a
-              href="projects.html"
-              class="inline-flex items-center gap-3 bg-grass-green text-black font-bold py-4 px-8 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)]"
+          </div>
+          <!-- Databases & Cloud -->
+          <div>
+            <h4
+              class="text-white font-mono font-bold mb-6 border-l-2 border-grass-green pl-4"
             >
-              <i data-lucide="external-link" class="w-5 h-5"></i>
-              View All Projects
-            </a>
+              Data & Infrastructure
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >PostgreSQL</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >MongoDB</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Redis</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >AWS</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Azure</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Firebase</span
+              >
+            </div>
+          </div>
+          <!-- AI & Specialized -->
+          <div>
+            <h4
+              class="text-white font-mono font-bold mb-6 border-l-2 border-cyber-blue pl-4"
+            >
+              Specialized
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >OpenAI / GPT-4</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >LangChain</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >PyTorch</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Flutter</span
+              >
+              <span
+                class="bg-card-gray border border-white/10 px-3 py-1 rounded-md text-xs font-mono"
+                >Docker</span
+              >
+            </div>
           </div>
         </div>
       </div>
