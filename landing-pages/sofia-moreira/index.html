@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sofia Moreira | Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                light: "#f7f9f7", // Pale mint/white
+                accent: "#e2ede3", // Soft sage background
+                primary: "#5d7c66", // Sage green
+                dark: "#2d3e32", // Deep forest green
+                gold: "#b4a07d", // Muted gold for small details
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="min-h-screen bg-brand-light text-brand-dark font-sans selection:bg-brand-primary selection:text-white pb-16"
+  >
+    <!-- Navigation & Language Switcher -->
+    <nav
+      class="sticky top-0 z-50 bg-brand-light/90 backdrop-blur-md border-b border-brand-accent"
+    >
+      <div
+        class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="font-serif text-xl font-bold text-brand-primary">SM.</div>
+
+        <div class="flex items-center gap-4">
+          <div
+            class="flex bg-white rounded-full shadow-sm p-1 border border-brand-accent"
+            id="lang-switcher"
+          >
+            <button
+              id="btn-lang-pt"
+              onclick="setLanguage('pt')"
+              class="px-3 py-1 text-sm font-medium rounded-full transition-all duration-300 text-brand-primary hover:bg-brand-accent"
+            >
+              PT
+            </button>
+            <button
+              id="btn-lang-en"
+              onclick="setLanguage('en')"
+              class="px-3 py-1 text-sm font-medium rounded-full transition-all duration-300 bg-brand-primary text-white shadow-sm"
+            >
+              EN
+            </button>
+            <button
+              id="btn-lang-fr"
+              onclick="setLanguage('fr')"
+              class="px-3 py-1 text-sm font-medium rounded-full transition-all duration-300 text-brand-primary hover:bg-brand-accent"
+            >
+              FR
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="max-w-5xl mx-auto px-6 pt-20 pb-16 md:py-32 flex flex-col-reverse md:flex-row items-center gap-12"
+    >
+      <div class="flex-1 space-y-6 text-center md:text-left">
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 bg-brand-accent text-brand-primary rounded-full text-sm font-medium mb-2"
+        >
+          <i data-lucide="globe" class="w-4 h-4"></i>
+          <span id="t-location">Sintra, Lisbon, Portugal</span>
+        </div>
+        <h1
+          id="t-greeting"
+          class="font-serif text-5xl md:text-6xl font-bold text-brand-dark leading-tight"
+        >
+          Hello, I'm Sofia Moreira
+        </h1>
+        <p
+          id="t-tagline"
+          class="text-xl md:text-2xl text-brand-primary font-light italic"
+        >
+          Aspiring Hotel Management & Tourism Professional
+        </p>
+        <div
+          class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start"
+        >
+          <a
+            href="CV Sofia Moreira - English.pdf"
+            download
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-primary hover:bg-brand-dark text-white rounded-full transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            <i data-lucide="download" class="w-5 h-5"></i>
+            <span id="t-downloadCVEN">Download CV (English)</span>
+          </a>
+          <a
+            href="CV Sofia Moreira.pdf"
+            download
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-brand-primary text-brand-primary hover:bg-brand-accent rounded-full transition-all shadow-sm hover:shadow-md font-medium"
+          >
+            <i data-lucide="download" class="w-5 h-5"></i>
+            <span id="t-downloadCVPT">Download CV (Português)</span>
+          </a>
+        </div>
+        <div class="flex justify-center md:justify-start gap-4 pt-6">
+          <a
+            href="mailto:sofiafmoreira13@gmail.com"
+            class="p-3 bg-white text-brand-primary rounded-full shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-brand-accent"
+          >
+            <i data-lucide="mail" class="w-6 h-6"></i>
+          </a>
+          <a
+            href="tel:+351964412547"
+            class="p-3 bg-white text-brand-primary rounded-full shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-brand-accent"
+          >
+            <i data-lucide="phone" class="w-6 h-6"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/sofiafmoreira13/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-3 bg-white text-brand-primary rounded-full shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-brand-accent"
+          >
+            <i data-lucide="linkedin" class="w-6 h-6"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Playful Image Placeholder with blob-like border radius -->
+      <div class="w-64 h-64 md:w-80 md:h-80 relative flex-shrink-0">
+        <div
+          class="absolute inset-0 bg-brand-primary opacity-20 rounded-[4rem] transform rotate-6 scale-105"
+        ></div>
+        <div
+          class="absolute inset-0 bg-brand-dark opacity-10 rounded-[4rem] transform -rotate-6 scale-105"
+        ></div>
+        <div
+          class="w-full h-full bg-white rounded-[3rem] border-4 border-white shadow-xl overflow-hidden flex items-center justify-center text-brand-primary"
+        >
+          <!-- <span class="font-serif text-8xl font-bold opacity-30">SM</span> -->
+          <img
+            src="./profile-img.png"
+            alt="Sofia Moreira"
+            class="w-full h-full object-cover rounded-[3rem]"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="bg-white py-16 border-y border-brand-accent">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2
+          class="font-serif text-3xl font-bold text-brand-dark mb-6 flex items-center justify-center gap-3"
+        >
+          <span class="w-8 h-[1px] bg-brand-primary"></span>
+          <span id="t-aboutTitle">About Me</span>
+          <span class="w-8 h-[1px] bg-brand-primary"></span>
+        </h2>
+        <p
+          id="t-aboutText"
+          class="text-lg leading-relaxed text-brand-dark/80 max-w-3xl mx-auto font-light"
+        >
+          My passion for the field of Tourism and Hospitality has grown over the
+          years. With experience in reservations, administrative tasks, and
+          guest services, I bring a blend of organizational and customer service
+          skills to the table. I am adept at multitasking, adapting to new
+          environments, and collaborating with diverse teams. My goal is to
+          leverage my skills to excel and continue to grow in the dynamic field
+          of hotel management and the tourism industry.
+        </p>
+      </div>
+    </section>
+
+    <!-- Experience & Education -->
+    <section class="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16">
+      <!-- Experience Column -->
+      <div>
+        <h2
+          class="font-serif text-3xl font-bold text-brand-dark mb-8 flex items-center gap-3"
+        >
+          <div class="p-2 bg-brand-accent text-brand-primary rounded-xl">
+            <i data-lucide="briefcase" class="w-6 h-6"></i>
+          </div>
+          <span id="t-expTitle">Professional Experience</span>
+        </h2>
+        <div
+          class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-brand-accent before:to-transparent"
+        >
+          <!-- Exp 1 -->
+          <div class="relative flex items-start gap-6 group">
+            <div
+              class="w-10 h-10 rounded-full bg-white border-2 border-brand-primary text-brand-primary flex items-center justify-center shadow-sm z-10 shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300"
+            >
+              <span class="w-2.5 h-2.5 rounded-full bg-current"></span>
+            </div>
+            <div
+              class="bg-white p-6 rounded-2xl shadow-sm border border-brand-accent hover:shadow-md transition-shadow flex-1"
+            >
+              <span
+                id="t-exp1Date"
+                class="text-xs font-bold text-brand-primary tracking-wider uppercase"
+                >Sep 2024 - Jun 2025</span
+              >
+              <h3
+                id="t-exp1Role"
+                class="font-bold text-xl text-brand-dark mt-1"
+              >
+                Community Host
+              </h3>
+              <h4
+                id="t-exp1Company"
+                class="text-brand-primary font-medium mb-3"
+              >
+                Boundless Life Sintra
+              </h4>
+              <p
+                id="t-exp1Desc"
+                class="text-brand-dark/70 text-sm leading-relaxed"
+              >
+                Responsible for electronic correspondence, partner contact, and
+                guest communication.
+              </p>
+            </div>
+          </div>
+
+          <!-- Exp 2 -->
+          <div class="relative flex items-start gap-6 group">
+            <div
+              class="w-10 h-10 rounded-full bg-white border-2 border-brand-primary text-brand-primary flex items-center justify-center shadow-sm z-10 shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300"
+            >
+              <span class="w-2.5 h-2.5 rounded-full bg-current"></span>
+            </div>
+            <div
+              class="bg-white p-6 rounded-2xl shadow-sm border border-brand-accent hover:shadow-md transition-shadow flex-1"
+            >
+              <span
+                id="t-exp2Date"
+                class="text-xs font-bold text-brand-primary tracking-wider uppercase"
+                >Jun 2022 - Aug 2022</span
+              >
+              <h3
+                id="t-exp2Role"
+                class="font-bold text-xl text-brand-dark mt-1"
+              >
+                Sales & Reservations Assistant
+              </h3>
+              <h4
+                id="t-exp2Company"
+                class="text-brand-primary font-medium mb-3"
+              >
+                Herdade da Matinha Country House
+              </h4>
+              <p
+                id="t-exp2Desc"
+                class="text-brand-dark/70 text-sm leading-relaxed"
+              >
+                Assisted in managing reservations, telephone service, and
+                contact with commercial partners.
+              </p>
+            </div>
+          </div>
+
+          <!-- Exp 3 -->
+          <div class="relative flex items-start gap-6 group">
+            <div
+              class="w-10 h-10 rounded-full bg-white border-2 border-brand-primary text-brand-primary flex items-center justify-center shadow-sm z-10 shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300"
+            >
+              <span class="w-2.5 h-2.5 rounded-full bg-current"></span>
+            </div>
+            <div
+              class="bg-white p-6 rounded-2xl shadow-sm border border-brand-accent hover:shadow-md transition-shadow flex-1"
+            >
+              <span
+                id="t-exp3Date"
+                class="text-xs font-bold text-brand-primary tracking-wider uppercase"
+                >Feb 2017 - Feb 2020</span
+              >
+              <h3
+                id="t-exp3Role"
+                class="font-bold text-xl text-brand-dark mt-1"
+              >
+                Administrative Assistant & PBX Agent
+              </h3>
+              <h4
+                id="t-exp3Company"
+                class="text-brand-primary font-medium mb-3"
+              >
+                Penha Longa Resort (Marriott)
+              </h4>
+              <p
+                id="t-exp3Desc"
+                class="text-brand-dark/70 text-sm leading-relaxed"
+              >
+                Managed internal/external communications, purchase orders, event
+                catering, and provided widespread resort support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education Column -->
+      <div>
+        <h2
+          class="font-serif text-3xl font-bold text-brand-dark mb-8 flex items-center gap-3"
+        >
+          <div class="p-2 bg-brand-accent text-brand-primary rounded-xl">
+            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+          </div>
+          <span id="t-eduTitle">Education & Qualifications</span>
+        </h2>
+        <div class="space-y-6">
+          <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-brand-accent hover:-translate-y-1 transition-transform duration-300 border-l-4 border-l-brand-primary"
+          >
+            <h3 id="t-edu1Title" class="font-bold text-lg text-brand-dark">
+              Bachelor Degree in Hospitality Management
+            </h3>
+            <p id="t-edu1School" class="text-brand-primary mt-1">
+              Europeia University
+            </p>
+            <p
+              class="text-xs text-brand-primary/60 mt-2 font-bold uppercase tracking-widest"
+            >
+              Sep 2020 - Jan 2024
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-brand-accent hover:-translate-y-1 transition-transform duration-300 border-l-4 border-l-brand-gold/60"
+          >
+            <h3 id="t-edu2Title" class="font-bold text-lg text-brand-dark">
+              Bachelor Degree in Tourism
+            </h3>
+            <p id="t-edu2School" class="text-brand-primary mt-1">
+              Europeia University
+            </p>
+            <p
+              class="text-xs text-brand-primary/60 mt-2 font-bold uppercase tracking-widest"
+            >
+              Sep 2020 - Jun 2023
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-brand-accent hover:-translate-y-1 transition-transform duration-300 border-l-4 border-l-brand-accent"
+          >
+            <h3 id="t-edu3Title" class="font-bold text-lg text-brand-dark">
+              CTeSP in Tourism and Hospitality
+            </h3>
+            <p id="t-edu3School" class="text-brand-primary mt-1">
+              INP, Lusófona University
+            </p>
+            <p
+              class="text-xs text-brand-primary/60 mt-2 font-bold uppercase tracking-widest"
+            >
+              Sep 2015 - Jun 2017
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hobbies Section - Fun & Elegant -->
+    <section class="bg-brand-accent py-16">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <h2
+          id="t-hobbiesTitle"
+          class="font-serif text-3xl font-bold text-brand-dark mb-12 flex items-center justify-center gap-3"
+        >
+          What I Love Doing
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div
+            class="bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-all group hover:-translate-y-2 cursor-default border border-brand-accent/30"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-light rounded-full flex items-center justify-center text-brand-primary mb-4 group-hover:rotate-12 group-hover:bg-brand-primary group-hover:text-white transition-all duration-300"
+            >
+              <i data-lucide="palette" class="w-8 h-8"></i>
+            </div>
+            <h3 id="t-hobbyCrafts" class="font-medium text-brand-dark">
+              Arts & Crafts
+            </h3>
+          </div>
+
+          <div
+            class="bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-all group hover:-translate-y-2 cursor-default border border-brand-accent/30"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-light rounded-full flex items-center justify-center text-brand-primary mb-4 group-hover:-rotate-12 group-hover:bg-brand-primary group-hover:text-white transition-all duration-300"
+            >
+              <i data-lucide="hammer" class="w-8 h-8"></i>
+            </div>
+            <h3 id="t-hobbyWood" class="font-medium text-brand-dark">
+              Woodwork
+            </h3>
+          </div>
+
+          <div
+            class="bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-all group hover:-translate-y-2 cursor-default border border-brand-accent/30"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-light rounded-full flex items-center justify-center text-brand-primary mb-4 group-hover:rotate-12 group-hover:bg-brand-primary group-hover:text-white transition-all duration-300"
+            >
+              <i data-lucide="dices" class="w-8 h-8"></i>
+            </div>
+            <h3 id="t-hobbyBoardgames" class="font-medium text-brand-dark">
+              Board Games
+            </h3>
+          </div>
+
+          <div
+            class="bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-all group hover:-translate-y-2 cursor-default border border-brand-accent/30"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-light rounded-full flex items-center justify-center text-brand-primary mb-4 group-hover:-rotate-12 group-hover:bg-brand-primary group-hover:text-white transition-all duration-300"
+            >
+              <i data-lucide="chef-hat" class="w-8 h-8"></i>
+            </div>
+            <h3 id="t-hobbyBaking" class="font-medium text-brand-dark">
+              Baking & Cooking
+            </h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="max-w-5xl mx-auto px-6 pt-16 text-center">
+      <p class="text-brand-primary/60 text-sm">
+        © <span id="currentYear"></span> Sofia Moreira.
+        <span id="t-footerText"
+          >Crafted with passion for hospitality and design.</span
+        >
+      </p>
+    </footer>
+
+    <script>
+      lucide.createIcons();
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      const translations = {
+        en: {
+          greeting: "Hello, I'm Sofia Moreira",
+          tagline: "Aspiring Hotel Management & Tourism Professional",
+          location: "Sintra, Lisbon, Portugal",
+          aboutTitle: "About Me",
+          aboutText:
+            "My passion for the field of Tourism and Hospitality has grown over the years. With experience in reservations, administrative tasks, and guest services, I bring a blend of organizational and customer service skills to the table. I am adept at multitasking, adapting to new environments, and collaborating with diverse teams. My goal is to leverage my skills to excel and continue to grow in the dynamic field of hotel management and the tourism industry.",
+          expTitle: "Professional Experience",
+          eduTitle: "Education & Qualifications",
+          hobbiesTitle: "What I Love Doing",
+          hobbyCrafts: "Arts & Crafts",
+          hobbyWood: "Woodwork",
+          hobbyBoardgames: "Board Games",
+          hobbyBaking: "Baking & Cooking",
+          downloadCVEN: "Download CV (English)",
+          downloadCVPT: "Download CV (Português)",
+          exp1Role: "Community Host",
+          exp1Company: "Boundless Life Sintra",
+          exp1Date: "Sep 2024 - Jun 2025",
+          exp1Desc:
+            "Responsible for electronic correspondence, partner contact, and guest communication.",
+          exp2Role: "Sales & Reservations Assistant",
+          exp2Company: "Herdade da Matinha Country House",
+          exp2Date: "Jun 2022 - Aug 2022",
+          exp2Desc:
+            "Assisted in managing reservations, telephone service, and contact with commercial partners.",
+          exp3Role: "Administrative Assistant & PBX Agent",
+          exp3Company: "Penha Longa Resort (Marriott)",
+          exp3Date: "Feb 2017 - Feb 2020",
+          exp3Desc:
+            "Managed internal/external communications, purchase orders, event catering, and provided widespread resort support.",
+          edu1Title: "Bachelor Degree in Hospitality Management",
+          edu1School: "Europeia University",
+          edu2Title: "Bachelor Degree in Tourism",
+          edu2School: "Europeia University",
+          edu3Title: "CTeSP in Tourism and Hospitality",
+          edu3School: "INP, Lusófona University",
+          footerText: "Crafted with passion for hospitality and design.",
+        },
+        pt: {
+          greeting: "Olá, sou a Sofia Moreira",
+          tagline: "Aspirante a Profissional de Gestão Hoteleira e Turismo",
+          location: "Sintra, Lisboa, Portugal",
+          aboutTitle: "Sobre Mim",
+          aboutText:
+            "A minha paixão pela área de Turismo e Hotelaria tem crescido ao longo dos anos. Tendo desenvolvido experiência em reservas, tarefas administrativas e atendimento ao hóspede, possuo uma combinação de competências organizacionais e de apoio ao cliente. Tenho facilidade na adaptação a novos ambientes e na colaboração com equipas diversas. O meu objetivo é aproveitar as minhas competências para me destacar e continuar a crescer no dinâmico setor da hotelaria e do turismo.",
+          expTitle: "Experiência Profissional",
+          eduTitle: "Educação e Qualificações",
+          hobbiesTitle: "O Que Gosto de Fazer",
+          hobbyCrafts: "Trabalhos Manuais",
+          hobbyWood: "Marcenaria",
+          hobbyBoardgames: "Jogos de Tabuleiro",
+          hobbyBaking: "Culinária e Pastelaria",
+          downloadCVEN: "Descarregar CV (Inglês)",
+          downloadCVPT: "Descarregar CV (Português)",
+          exp1Role: "Community Host",
+          exp1Company: "Boundless Life Sintra",
+          exp1Date: "Set 2024 - Jun 2025",
+          exp1Desc:
+            "Responsável pela correspondência eletrónica, contacto com parceiros e comunicação com os hóspedes.",
+          exp2Role: "Assistente de Reservas e Comercial",
+          exp2Company: "Herdade da Matinha Country House",
+          exp2Date: "Jun 2022 - Ago 2022",
+          exp2Desc:
+            "Apoio na gestão de reservas, atendimento telefónico e contacto com parceiros comerciais.",
+          exp3Role: "Assistente Administrativa e Agente de PBX",
+          exp3Company: "Penha Longa Resort (Marriott)",
+          exp3Date: "Fev 2017 - Fev 2020",
+          exp3Desc:
+            "Gestão de comunicações, ordens de compra, catering para eventos e suporte generalizado ao resort.",
+          edu1Title: "Licenciatura em Gestão Hoteleira",
+          edu1School: "Universidade Europeia",
+          edu2Title: "Licenciatura em Turismo",
+          edu2School: "Universidade Europeia",
+          edu3Title: "CTeSP em Turismo e Hotelaria",
+          edu3School: "INP, Universidade Lusófona",
+          footerText: "Criado com paixão pela hospitalidade e design.",
+        },
+        fr: {
+          greeting: "Bonjour, je suis Sofia Moreira",
+          tagline: "Future Professionnelle en Gestion Hôtelière et Tourisme",
+          location: "Sintra, Lisbonne, Portugal",
+          aboutTitle: "À Propos de Moi",
+          aboutText:
+            "Ma passion pour le domaine du tourisme et de l'hôtellerie s'est développée au fil des ans. Forte d'une expérience dans les réservations, les tâches administratives et le service client, j'apporte un mélange de compétences organisationnelles et relationnelles. Je m'adapte facilement à de nouveaux environnements et collabore efficacement au sein d'équipes diverses. Mon objectif est de mettre à profit mes compétences pour exceller et continuer à évoluer dans le secteur dynamique de la gestion hôtelière et du tourisme.",
+          expTitle: "Expérience Professionnelle",
+          eduTitle: "Formation et Qualifications",
+          hobbiesTitle: "Ce Que J'aime Faire",
+          hobbyCrafts: "Travaux Manuels",
+          hobbyWood: "Menuiserie",
+          hobbyBoardgames: "Jeux de Société",
+          hobbyBaking: "Pâtisserie et Cuisine",
+          downloadCVEN: "Télécharger CV (Anglais)",
+          downloadCVPT: "Télécharger CV (Portugais)",
+          exp1Role: "Community Host",
+          exp1Company: "Boundless Life Sintra",
+          exp1Date: "Sep 2024 - Juin 2025",
+          exp1Desc:
+            "Responsable de la correspondance électronique, du contact avec les partenaires et de la communication avec les clients.",
+          exp2Role: "Assistante Réservations et Ventes",
+          exp2Company: "Herdade da Matinha Country House",
+          exp2Date: "Juin 2022 - Août 2022",
+          exp2Desc:
+            "Assistance à la gestion des réservations, service téléphonique et contact avec les partenaires commerciaux.",
+          exp3Role: "Assistante Administrative & Agent PBX",
+          exp3Company: "Penha Longa Resort (Marriott)",
+          exp3Date: "Fév 2017 - Fév 2020",
+          exp3Desc:
+            "Gestion des communications internes/externes, bons de commande, restauration événementielle et soutien global au complexe.",
+          edu1Title: "Licence en Gestion Hôtelière",
+          edu1School: "Université Europeia",
+          edu2Title: "Licence en Tourisme",
+          edu2School: "Université Europeia",
+          edu3Title: "CTeSP en Tourisme et Hôtellerie",
+          edu3School: "INP, Université Lusófona",
+          footerText: "Créé avec passion pour l'hôtellerie et le design.",
+        },
+      };
+
+      function setLanguage(lang) {
+        const t = translations[lang];
+        for (const key in t) {
+          const element = document.getElementById("t-" + key);
+          if (element) element.textContent = t[key];
+        }
+        ["pt", "en", "fr"].forEach((l) => {
+          const btn = document.getElementById("btn-lang-" + l);
+          if (l === lang) {
+            btn.className =
+              "px-3 py-1 text-sm font-medium rounded-full transition-all duration-300 bg-brand-primary text-white shadow-sm";
+          } else {
+            btn.className =
+              "px-3 py-1 text-sm font-medium rounded-full transition-all duration-300 text-brand-primary hover:bg-brand-accent";
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => setLanguage("en"));
+    </script>
+  </body>
+</html>
