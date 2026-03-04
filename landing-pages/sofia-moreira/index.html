@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sofia Moreira | Portfolio</title>
 
+    <!-- WhatsApp / Social Media Meta Tags -->
+    <meta
+      property="og:title"
+      content="Sofia Moreira | Tourism & Hospitality Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Aspiring Hotel Management & Tourism Professional based in Sintra, Portugal."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://grasshoppersolutions.online/landing-pages/sofia-moreira/profile-img.png"
+    />
+    <!-- Placeholder for preview icon -->
+    <meta
+      property="og:url"
+      content="https://grasshoppersolutions.online/landing-pages/sofia-moreira/profile-img.png"
+    />
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -19,17 +39,19 @@
       rel="stylesheet"
     />
 
+    <link rel="icon" href="./frog.svg" />
+
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
               brand: {
-                light: "#f7f9f7", // Pale mint/white
-                accent: "#e2ede3", // Soft sage background
-                primary: "#5d7c66", // Sage green
-                dark: "#2d3e32", // Deep forest green
-                gold: "#b4a07d", // Muted gold for small details
+                light: "#f7f9f7",
+                accent: "#e2ede3",
+                primary: "#5d7c66",
+                dark: "#2d3e32",
+                gold: "#b4a07d",
               },
             },
             fontFamily: {
@@ -40,6 +62,36 @@
         },
       };
     </script>
+
+    <style>
+      /* Custom Frog Cursor */
+      body {
+        cursor:
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='20' r='8' fill='%235d7c66'/><circle cx='12' cy='14' r='4' fill='%235d7c66'/><circle cx='20' cy='14' r='4' fill='%235d7c66'/><circle cx='12' cy='14' r='1.5' fill='white'/><circle cx='20' cy='14' r='1.5' fill='white'/><path d='M12 22 Q16 25 20 22' stroke='white' fill='transparent' stroke-width='1.5' stroke-linecap='round'/></svg>")
+            16 16,
+          auto;
+      }
+
+      /* Ensure interactive elements still show pointer but keep custom style if desired */
+      a,
+      button {
+        cursor: pointer;
+      }
+
+      .frog-animate {
+        animation: hop 3s ease-in-out infinite;
+      }
+
+      @keyframes hop {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+    </style>
   </head>
   <body
     class="min-h-screen bg-brand-light text-brand-dark font-sans selection:bg-brand-primary selection:text-white pb-16"
@@ -51,7 +103,19 @@
       <div
         class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center"
       >
-        <div class="font-serif text-xl font-bold text-brand-primary">SM.</div>
+        <div class="flex items-center gap-2">
+          <div class="font-serif text-xl font-bold text-brand-primary">SM.</div>
+          <!-- Little Nav Frog -->
+          <svg
+            class="w-6 h-6 text-brand-primary opacity-50"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <circle cx="12" cy="15" r="5" />
+            <circle cx="9" cy="11" r="2.5" />
+            <circle cx="15" cy="11" r="2.5" />
+          </svg>
+        </div>
 
         <div class="flex items-center gap-4">
           <div
@@ -86,7 +150,7 @@
 
     <!-- Hero Section -->
     <section
-      class="max-w-5xl mx-auto px-6 pt-20 pb-16 md:py-32 flex flex-col-reverse md:flex-row items-center gap-12"
+      class="max-w-5xl mx-auto px-6 pt-20 pb-16 md:py-32 flex flex-col-reverse md:flex-row items-center gap-12 relative"
     >
       <div class="flex-1 space-y-6 text-center md:text-left">
         <div
@@ -107,6 +171,7 @@
         >
           Aspiring Hotel Management & Tourism Professional
         </p>
+
         <div
           class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start"
         >
@@ -151,8 +216,17 @@
         </div>
       </div>
 
-      <!-- Playful Image Placeholder with blob-like border radius -->
+      <!-- Hero Image & Mascot -->
       <div class="w-64 h-64 md:w-80 md:h-80 relative flex-shrink-0">
+        <!-- Mascot Frog "Peeking" -->
+        <div class="absolute -top-12 -right-4 w-20 h-20 frog-animate z-20">
+          <img
+            src="./frog.svg"
+            alt="Mascot Frog"
+            class="w-full h-full object-cover opacity-70"
+          />
+        </div>
+
         <div
           class="absolute inset-0 bg-brand-primary opacity-20 rounded-[4rem] transform rotate-6 scale-105"
         ></div>
@@ -160,7 +234,7 @@
           class="absolute inset-0 bg-brand-dark opacity-10 rounded-[4rem] transform -rotate-6 scale-105"
         ></div>
         <div
-          class="w-full h-full bg-white rounded-[3rem] border-4 border-white shadow-xl overflow-hidden flex items-center justify-center text-brand-primary"
+          class="w-full h-full bg-white rounded-[3rem] border-4 border-white shadow-xl overflow-hidden flex items-center justify-center text-brand-primary relative"
         >
           <!-- <span class="font-serif text-8xl font-bold opacity-30">SM</span> -->
           <img
@@ -199,7 +273,7 @@
 
     <!-- Experience & Education -->
     <section class="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16">
-      <!-- Experience Column -->
+      <!-- Experience -->
       <div>
         <h2
           class="font-serif text-3xl font-bold text-brand-dark mb-8 flex items-center gap-3"
@@ -212,7 +286,7 @@
         <div
           class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-brand-accent before:to-transparent"
         >
-          <!-- Exp 1 -->
+          <!-- Exp Item -->
           <div class="relative flex items-start gap-6 group">
             <div
               class="w-10 h-10 rounded-full bg-white border-2 border-brand-primary text-brand-primary flex items-center justify-center shadow-sm z-10 shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300"
@@ -325,7 +399,7 @@
         </div>
       </div>
 
-      <!-- Education Column -->
+      <!-- Education -->
       <div>
         <h2
           class="font-serif text-3xl font-bold text-brand-dark mb-8 flex items-center gap-3"
@@ -453,7 +527,19 @@
     </section>
 
     <!-- Footer -->
-    <footer class="max-w-5xl mx-auto px-6 pt-16 text-center">
+    <footer class="max-w-5xl mx-auto px-6 pt-16 text-center relative">
+      <!-- Bottom Mascot -->
+      <div class="mb-4">
+        <svg
+          class="w-12 h-12 mx-auto text-brand-primary opacity-30"
+          viewBox="0 0 100 100"
+          fill="currentColor"
+        >
+          <circle cx="50" cy="65" r="30" />
+          <circle cx="35" cy="40" r="12" />
+          <circle cx="65" cy="40" r="12" />
+        </svg>
+      </div>
       <p class="text-brand-primary/60 text-sm">
         © <span id="currentYear"></span> Sofia Moreira.
         <span id="t-footerText"
