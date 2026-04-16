@@ -13,3 +13,9 @@
 [submodule "landing-pages/alfonso-romero-fotografia"]
 	path = landing-pages/alfonso-romero-fotografia
 	url = https://github.com/grasshopperitsolutions/alfonso-romero-fotografia.git
+[submodule "projects/multi-lingo-ai"]
+	path = projects/multi-lingo-ai
+	url = https://github.com/grasshopperitsolutions/multi-lingo-ai.git
+[submodule "proxies/multi-lingo-ai-api"]
+	path = proxies/multi-lingo-ai-api
+	url = https://github.com/grasshopperitsolutions/multi-lingo-ai-api.git
