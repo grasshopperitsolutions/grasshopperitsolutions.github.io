@@ -31,8 +31,8 @@
             },
             colors: {
               grasshopper: {
-                400: "#a3e635", // lime-400 equivalent
-                500: "#84cc16", // lime-500 equivalent
+                400: "#a3e635",
+                500: "#84cc16",
               },
             },
             animation: {
@@ -55,28 +55,16 @@
     </script>
 
     <style>
-      /* Custom scrollbar for webkit */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0f172a;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #334155;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #475569;
-      }
-
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #0f172a; }
+      ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #475569; }
       .glass-card {
         background: rgba(30, 41, 59, 0.7);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.1);
       }
-
       .text-gradient {
         background: linear-gradient(to right, #ffffff, #a3e635);
         -webkit-background-clip: text;
@@ -89,167 +77,90 @@
   >
     <!-- Background Elements -->
     <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-      <div
-        class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-      ></div>
-      <div
-        class="absolute bottom-0 right-1/4 w-96 h-96 bg-grasshopper-500/10 rounded-full blur-3xl"
-      ></div>
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-grasshopper-500/10 rounded-full blur-3xl"></div>
     </div>
 
     <!-- Navigation -->
-    <nav
-      class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md border-b border-white/5 bg-slate-900/80"
-    >
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md border-b border-white/5 bg-slate-900/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <div
-            class="flex-shrink-0 font-display font-bold text-xl tracking-wider text-white"
-          >
+          <div class="flex-shrink-0 font-display font-bold text-xl tracking-wider text-white">
             NUNO MOREIRA<span class="text-grasshopper-400">.</span>
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-8">
-              <a
-                href="#about"
-                class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium"
-                >About</a
-              >
-              <a
-                href="#ventures"
-                class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium"
-                >Ventures</a
-              >
-              <a
-                href="#languages"
-                class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium"
-                >Teaching</a
-              >
-              <a
-                href="#gallery"
-                class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium"
-                >Lifestyle</a
-              >
+              <a href="#about" class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+              <a href="#ventures" class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Ventures</a>
+              <a href="#languages" class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Teaching</a>
+              <a href="#gallery" class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Lifestyle</a>
+
               <!-- CV Dropdown -->
               <div class="relative group">
-                <button
-                  class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium flex items-center gap-1"
-                >
+                <button class="hover:text-grasshopper-400 transition-colors px-3 py-2 rounded-md text-sm font-medium flex items-center gap-1">
                   <span>CVs</span>
                   <i data-lucide="chevron-down" class="w-4 h-4"></i>
                 </button>
-                <div
-                  class="absolute left-0 mt-2 w-52 bg-slate-800 border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 -translate-y-2"
-                >
+                <div class="absolute left-0 mt-2 w-56 bg-slate-800 border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 -translate-y-2">
                   <div class="py-2">
-                    <a
-                      href="cv-programming.html"
-                      class="block px-4 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-white transition-colors"
-                      >CV-Programming</a
-                    >
-                    <a
-                      href="cv-tutoring.html"
-                      class="block px-4 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-white transition-colors"
-                      >CV-Tutoring</a
-                    >
-                    <a
-                      href="cv-diving.html"
-                      class="block px-4 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-white transition-colors"
-                      >CV-Diving</a
-                    >
-                    <a
-                      href="cv-2026.html"
-                      class="block px-4 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-white transition-colors"
-                      >CV-2026</a
-                    >
+                    <a href="cv-programming.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-white transition-colors">CV-Programming</a>
+                    <a href="cv-tutoring.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-white transition-colors">CV-Tutoring</a>
+                    <a href="cv-diving.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-white transition-colors">CV-Diving</a>
+                    <a href="cv-2026.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-white transition-colors">CV-2026</a>
                     <div class="border-t border-white/10 my-1"></div>
-                    <a
-                      href="cv-2026-ats.html"
-                      class="block px-4 py-2 text-sm text-grasshopper-400 hover:bg-slate-700 hover:text-grasshopper-300 transition-colors flex items-center gap-2"
-                    >
+                    <a href="cv-2026-ats.html" class="px-4 py-2 text-sm text-grasshopper-400 hover:bg-slate-700 hover:text-grasshopper-300 transition-colors flex items-center gap-2">
                       <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
                       CV-2026 (ATS)
+                    </a>
+                    <div class="border-t border-white/10 my-1"></div>
+                    <a href="cv-2026-net-stack.html" class="px-4 py-2 text-sm text-sky-400 hover:bg-slate-700 hover:text-sky-300 transition-colors flex items-center gap-2">
+                      <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                      CV-2026 .NET Stack
+                    </a>
+                    <a href="cv-2026-web-fullstack.html" class="px-4 py-2 text-sm text-sky-400 hover:bg-slate-700 hover:text-sky-300 transition-colors flex items-center gap-2">
+                      <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                      CV-2026 Web Fullstack
                     </a>
                   </div>
                 </div>
               </div>
-              <a
-                href="#contact"
-                class="bg-grasshopper-500 hover:bg-grasshopper-400 text-slate-900 px-4 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105"
-                >Let's Connect</a
-              >
+
+              <a href="#contact" class="bg-grasshopper-500 hover:bg-grasshopper-400 text-slate-900 px-4 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105">Let's Connect</a>
             </div>
           </div>
           <!-- Mobile menu button -->
           <div class="md:hidden">
-            <button
-              id="mobile-menu-btn"
-              class="text-gray-300 hover:text-white p-2"
-            >
+            <button id="mobile-menu-btn" class="text-gray-300 hover:text-white p-2">
               <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
           </div>
         </div>
       </div>
+
       <!-- Mobile Menu Panel -->
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden bg-slate-900 border-b border-white/5"
-      >
+      <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-white/5">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a
-            href="#about"
-            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >About</a
-          >
-          <a
-            href="#ventures"
-            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Ventures</a
-          >
-          <a
-            href="#languages"
-            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Teaching</a
-          >
-          <a
-            href="#gallery"
-            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Lifestyle</a
-          >
+          <a href="#about" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+          <a href="#ventures" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Ventures</a>
+          <a href="#languages" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Teaching</a>
+          <a href="#gallery" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Lifestyle</a>
           <div class="border-t border-gray-700 my-2"></div>
-          <a
-            href="cv-programming.html"
-            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >CV-Programming</a
-          >
-          <a
-            href="cv-tutoring.html"
-            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >CV-Tutoring</a
-          >
-          <a
-            href="cv-diving.html"
-            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >CV-Diving</a
-          >
-          <a
-            href="cv-2026.html"
-            class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >CV-2026</a
-          >
-          <a
-            href="cv-2026-ats.html"
-            class="text-grasshopper-400 hover:text-grasshopper-300 block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2"
-          >
+          <a href="cv-programming.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">CV-Programming</a>
+          <a href="cv-tutoring.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">CV-Tutoring</a>
+          <a href="cv-diving.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">CV-Diving</a>
+          <a href="cv-2026.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">CV-2026</a>
+          <a href="cv-2026-ats.html" class="text-grasshopper-400 hover:text-grasshopper-300 block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2">
             <i data-lucide="shield-check" class="w-4 h-4 inline-block mr-1"></i>CV-2026 (ATS)
           </a>
           <div class="border-t border-gray-700 my-2"></div>
-          <a
-            href="#contact"
-            class="text-grasshopper-400 block px-3 py-2 rounded-md text-base font-medium"
-            >Contact</a
-          >
+          <a href="cv-2026-net-stack.html" class="text-sky-400 hover:text-sky-300 block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2">
+            <i data-lucide="layers" class="w-4 h-4 inline-block mr-1"></i>CV-2026 .NET Stack
+          </a>
+          <a href="cv-2026-web-fullstack.html" class="text-sky-400 hover:text-sky-300 block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2">
+            <i data-lucide="globe" class="w-4 h-4 inline-block mr-1"></i>CV-2026 Web Fullstack
+          </a>
+          <div class="border-t border-gray-700 my-2"></div>
+          <a href="#contact" class="text-grasshopper-400 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
         </div>
       </div>
     </nav>
@@ -307,10 +218,7 @@
 
             <div class="flex items-center gap-8 text-slate-500 pt-4">
               <div class="flex items-center gap-2">
-                <i
-                  data-lucide="code-2"
-                  class="w-5 h-5 text-grasshopper-400"
-                ></i>
+                <i data-lucide="code-2" class="w-5 h-5 text-grasshopper-400"></i>
                 <span>Developer</span>
               </div>
               <div class="w-1 h-1 bg-slate-700 rounded-full"></div>
@@ -330,34 +238,24 @@
             </div>
           </div>
 
-          <!-- Hero Image (Profile) -->
+          <!-- Hero Image -->
           <div
             class="order-1 lg:order-2 flex justify-center lg:justify-end opacity-0 animate-fade-in-up"
             style="animation-delay: 0.3s"
           >
             <div class="relative w-72 h-72 sm:w-96 sm:h-96">
-              <div
-                class="absolute inset-0 bg-gradient-to-tr from-grasshopper-500 to-blue-500 rounded-[2rem] rotate-6 opacity-20 blur-lg animate-pulse"
-              ></div>
-              <div
-                class="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-white/10 shadow-2xl bg-slate-800"
-              >
+              <div class="absolute inset-0 bg-gradient-to-tr from-grasshopper-500 to-blue-500 rounded-[2rem] rotate-6 opacity-20 blur-lg animate-pulse"></div>
+              <div class="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-white/10 shadow-2xl bg-slate-800">
                 <img
                   src="assets/maui_cinematic.jpeg"
                   alt="Nuno Profile"
                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
-
-              <!-- Floating Badges -->
-              <div
-                class="absolute -bottom-6 -left-6 glass-card p-4 rounded-xl flex items-center gap-3 animate-float shadow-xl"
-              >
+              <!-- Floating Badge -->
+              <div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-xl flex items-center gap-3 animate-float shadow-xl">
                 <div class="bg-grasshopper-500/20 p-2 rounded-lg">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-6 h-6 text-grasshopper-400"
-                  ></i>
+                  <i data-lucide="check-circle-2" class="w-6 h-6 text-grasshopper-400"></i>
                 </div>
                 <div>
                   <p class="text-xs text-slate-400">Status</p>
@@ -373,81 +271,35 @@
       <section id="ventures" class="py-24 bg-slate-900/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
-            <h2
-              class="text-3xl sm:text-4xl font-display font-bold text-white mb-4"
-            >
-              My Ventures
-            </h2>
-            <p class="text-slate-400 max-w-2xl mx-auto">
-              Bridging the gap between complex problems and elegant solutions.
-            </p>
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-4">My Ventures</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">Bridging the gap between complex problems and elegant solutions.</p>
           </div>
 
-          <div
-            class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden group hover:border-grasshopper-500/50 transition-colors duration-500"
-          >
-            <div
-              class="absolute top-0 right-0 w-64 h-64 bg-grasshopper-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-grasshopper-500/20 transition-all duration-500"
-            ></div>
-
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10"
-            >
+          <div class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden group hover:border-grasshopper-500/50 transition-colors duration-500">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-grasshopper-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-grasshopper-500/20 transition-all duration-500"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
               <div class="space-y-6">
-                <div
-                  class="w-20 h-20 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10"
-                >
+                <div class="w-20 h-20 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10">
                   <img
                     src="../../assets/grasshopper-geometric-logo.svg"
-                    onerror="
-                      this.style.display = 'none';
-                      this.nextElementSibling.style.display = 'block';
-                    "
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
                     alt="Grasshopper Logo"
                     class="w-12 h-12 object-contain"
                   />
-                  <i
-                    data-lucide="cpu"
-                    class="w-10 h-10 text-grasshopper-400 hidden"
-                    style="display: none"
-                  ></i>
+                  <i data-lucide="cpu" class="w-10 h-10 text-grasshopper-400 hidden" style="display: none"></i>
                 </div>
-
                 <div>
-                  <h3 class="text-2xl font-bold text-white mb-2">
-                    Grasshopper IT Solutions, LLC
-                  </h3>
-                  <p class="text-grasshopper-400 font-medium mb-4">
-                    Founder & Owner
-                  </p>
-                  <p class="text-slate-300 leading-relaxed mb-6">
-                    Helping businesses leap forward through innovative
-                    technology. We specialize in custom software development, IT
-                    strategy, and digital transformation.
-                  </p>
+                  <h3 class="text-2xl font-bold text-white mb-2">Grasshopper IT Solutions, LLC</h3>
+                  <p class="text-grasshopper-400 font-medium mb-4">Founder & Owner</p>
+                  <p class="text-slate-300 leading-relaxed mb-6">Helping businesses leap forward through innovative technology. We specialize in custom software development, IT strategy, and digital transformation.</p>
                 </div>
-
-                <a
-                  href="https://grasshoppersolutions.online"
-                  target="_blank"
-                  class="inline-flex items-center gap-2 text-white font-semibold hover:text-grasshopper-400 transition-colors group/link"
-                >
+                <a href="https://grasshoppersolutions.online" target="_blank" class="inline-flex items-center gap-2 text-white font-semibold hover:text-grasshopper-400 transition-colors group/link">
                   Visit Website
-                  <i
-                    data-lucide="external-link"
-                    class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"
-                  ></i>
+                  <i data-lucide="external-link" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
                 </a>
               </div>
-
-              <div
-                class="h-96 md:h-[32rem] rounded-2xl overflow-hidden bg-slate-800 border border-white/5 relative group-hover:shadow-2xl group-hover:shadow-grasshopper-500/10 transition-all duration-500"
-              >
-                <img
-                  src="assets/unstable_traveler.jpg"
-                  alt="Professional Shot"
-                  class="w-full h-full object-cover"
-                />
+              <div class="h-96 md:h-[32rem] rounded-2xl overflow-hidden bg-slate-800 border border-white/5 relative group-hover:shadow-2xl group-hover:shadow-grasshopper-500/10 transition-all duration-500">
+                <img src="assets/unstable_traveler.jpg" alt="Professional Shot" class="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -460,97 +312,40 @@
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="space-y-8">
               <div>
-                <h2
-                  class="text-3xl sm:text-4xl font-display font-bold text-white mb-6"
-                >
-                  Polyglot & Educator
-                </h2>
-                <p class="text-slate-400 text-lg leading-relaxed">
-                  Languages are the windows through which I see the world. As a
-                  dedicated
-                  <span class="text-white font-semibold">polyglot</span>, I
-                  thrive on exploring linguistic nuances across multiple
-                  cultures. Communication is the key to both professional
-                  success and personal growth.
-                </p>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-6">Polyglot & Educator</h2>
+                <p class="text-slate-400 text-lg leading-relaxed">Languages are the windows through which I see the world. As a dedicated <span class="text-white font-semibold">polyglot</span>, I thrive on exploring linguistic nuances across multiple cultures. Communication is the key to both professional success and personal growth.</p>
               </div>
-
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                <div
-                  class="glass-card p-4 rounded-2xl border-l-4 border-green-500"
-                >
-                  <p
-                    class="text-xs uppercase tracking-widest text-slate-500 mb-1"
-                  >
-                    Portuguese
-                  </p>
+                <div class="glass-card p-4 rounded-2xl border-l-4 border-green-500">
+                  <p class="text-xs uppercase tracking-widest text-slate-500 mb-1">Portuguese</p>
                   <p class="font-bold text-white">Native</p>
                 </div>
-                <div
-                  class="glass-card p-4 rounded-2xl border-l-4 border-blue-500"
-                >
-                  <p
-                    class="text-xs uppercase tracking-widest text-slate-500 mb-1"
-                  >
-                    English
-                  </p>
+                <div class="glass-card p-4 rounded-2xl border-l-4 border-blue-500">
+                  <p class="text-xs uppercase tracking-widest text-slate-500 mb-1">English</p>
                   <p class="font-bold text-white">Fluent</p>
                 </div>
-                <div
-                  class="glass-card p-4 rounded-2xl border-l-4 border-red-500"
-                >
-                  <p
-                    class="text-xs uppercase tracking-widest text-slate-500 mb-1"
-                  >
-                    Spanish
-                  </p>
+                <div class="glass-card p-4 rounded-2xl border-l-4 border-red-500">
+                  <p class="text-xs uppercase tracking-widest text-slate-500 mb-1">Spanish</p>
                   <p class="font-bold text-white">Fluent</p>
                 </div>
-                <div
-                  class="glass-card p-4 rounded-2xl border-l-4 border-indigo-400"
-                >
-                  <p
-                    class="text-xs uppercase tracking-widest text-slate-500 mb-1"
-                  >
-                    French
-                  </p>
+                <div class="glass-card p-4 rounded-2xl border-l-4 border-indigo-400">
+                  <p class="text-xs uppercase tracking-widest text-slate-500 mb-1">French</p>
                   <p class="font-bold text-white">Fluent</p>
                 </div>
-                <div
-                  class="glass-card p-4 rounded-2xl border-l-4 border-red-600"
-                >
-                  <p
-                    class="text-xs uppercase tracking-widest text-slate-500 mb-1"
-                  >
-                    Japanese
-                  </p>
+                <div class="glass-card p-4 rounded-2xl border-l-4 border-red-600">
+                  <p class="text-xs uppercase tracking-widest text-slate-500 mb-1">Japanese</p>
                   <p class="font-bold text-white">Basic</p>
                 </div>
               </div>
-
-              <div
-                class="p-6 rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/5"
-              >
+              <div class="p-6 rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/5">
                 <div class="flex items-start gap-4">
                   <div class="bg-yellow-500/20 p-3 rounded-2xl">
-                    <i
-                      data-lucide="graduation-cap"
-                      class="w-6 h-6 text-yellow-400"
-                    ></i>
+                    <i data-lucide="graduation-cap" class="w-6 h-6 text-yellow-400"></i>
                   </div>
                   <div>
-                    <h4 class="text-xl font-bold text-white mb-2">
-                      Teaching on Preply
-                    </h4>
-                    <p class="text-slate-400 mb-4">
-                      I teach European Portuguese, English, and Spanish, helping
-                      students master grammar and conversational nuances.
-                    </p>
-                    <a
-                      href="https://preply.com/en/tutor/4337457"
-                      target="_blank"
-                      class="inline-flex items-center gap-2 text-grasshopper-400 font-semibold hover:underline"
-                    >
+                    <h4 class="text-xl font-bold text-white mb-2">Teaching on Preply</h4>
+                    <p class="text-slate-400 mb-4">I teach European Portuguese, English, and Spanish, helping students master grammar and conversational nuances.</p>
+                    <a href="https://preply.com/en/tutor/4337457" target="_blank" class="inline-flex items-center gap-2 text-grasshopper-400 font-semibold hover:underline">
                       View my Tutor Profile
                       <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                     </a>
@@ -558,38 +353,18 @@
                 </div>
               </div>
             </div>
-
             <div class="relative">
-              <div
-                class="absolute inset-0 bg-grasshopper-500/5 blur-3xl rounded-full"
-              ></div>
+              <div class="absolute inset-0 bg-grasshopper-500/5 blur-3xl rounded-full"></div>
               <div class="relative grid grid-cols-2 gap-4">
                 <div class="space-y-4 pt-8">
-                  <div class="glass-card p-6 rounded-3xl text-center">
-                    <span class="text-4xl block mb-2">🇵🇹</span>
-                    <p class="text-sm font-medium">Português</p>
-                  </div>
-                  <div class="glass-card p-6 rounded-3xl text-center">
-                    <span class="text-4xl block mb-2">🇺🇸</span>
-                    <p class="text-sm font-medium">English</p>
-                  </div>
-                  <div class="glass-card p-6 rounded-3xl text-center">
-                    <span class="text-4xl block mb-2">🇫🇷</span>
-                    <p class="text-sm font-medium">Français</p>
-                  </div>
+                  <div class="glass-card p-6 rounded-3xl text-center"><span class="text-4xl block mb-2">🇵🇹</span><p class="text-sm font-medium">Português</p></div>
+                  <div class="glass-card p-6 rounded-3xl text-center"><span class="text-4xl block mb-2">🇺🇸</span><p class="text-sm font-medium">English</p></div>
+                  <div class="glass-card p-6 rounded-3xl text-center"><span class="text-4xl block mb-2">🇫🇷</span><p class="text-sm font-medium">Français</p></div>
                 </div>
                 <div class="space-y-4">
-                  <div class="glass-card p-6 rounded-3xl text-center">
-                    <span class="text-4xl block mb-2">🇪🇸</span>
-                    <p class="text-sm font-medium">Español</p>
-                  </div>
-                  <div class="glass-card p-6 rounded-3xl text-center">
-                    <span class="text-4xl block mb-2">🇯🇵</span>
-                    <p class="text-sm font-medium">日本語</p>
-                  </div>
-                  <div
-                    class="bg-grasshopper-500 p-6 rounded-3xl text-center flex flex-col items-center justify-center text-slate-900"
-                  >
+                  <div class="glass-card p-6 rounded-3xl text-center"><span class="text-4xl block mb-2">🇪🇸</span><p class="text-sm font-medium">Español</p></div>
+                  <div class="glass-card p-6 rounded-3xl text-center"><span class="text-4xl block mb-2">🇯🇵</span><p class="text-sm font-medium">日本語</p></div>
+                  <div class="bg-grasshopper-500 p-6 rounded-3xl text-center flex flex-col items-center justify-center text-slate-900">
                     <i data-lucide="users" class="w-8 h-8 mb-2"></i>
                     <p class="font-bold">Book a Lesson</p>
                   </div>
@@ -603,211 +378,92 @@
       <!-- Lifestyle Gallery Section -->
       <section id="gallery" class="py-24 relative bg-slate-900/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
-          >
+          <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <h2
-                class="text-3xl sm:text-4xl font-display font-bold text-white mb-4"
-              >
-                Beyond the Code
-              </h2>
-              <p class="text-slate-400 max-w-xl">
-                When I'm not architecting systems or conjugating verbs, you'll
-                find me exploring the depths of the ocean or navigating new
-                countries.
-              </p>
+              <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mb-4">Beyond the Code</h2>
+              <p class="text-slate-400 max-w-xl">When I'm not architecting systems or conjugating verbs, you'll find me exploring the depths of the ocean or navigating new countries.</p>
             </div>
             <div class="flex gap-4">
-              <a
-                href="https://www.instagram.com/nunos.diving/"
-                target="_blank"
-                class="p-3 rounded-full border border-white/10 hover:bg-white/5 hover:border-pink-500/50 transition-all group"
-                title="Diving Instagram"
-              >
-                <i
-                  data-lucide="instagram"
-                  class="w-5 h-5 text-slate-400 group-hover:text-pink-400"
-                ></i>
+              <a href="https://www.instagram.com/nunos.diving/" target="_blank" class="p-3 rounded-full border border-white/10 hover:bg-white/5 hover:border-pink-500/50 transition-all group" title="Diving Instagram">
+                <i data-lucide="instagram" class="w-5 h-5 text-slate-400 group-hover:text-pink-400"></i>
               </a>
-              <a
-                href="https://www.instagram.com/unstable_traveler/"
-                target="_blank"
-                class="p-3 rounded-full border border-white/10 hover:bg-white/5 hover:border-purple-500/50 transition-all group"
-                title="Travel Instagram"
-              >
-                <i
-                  data-lucide="camera"
-                  class="w-5 h-5 text-slate-400 group-hover:text-purple-400"
-                ></i>
+              <a href="https://www.instagram.com/unstable_traveler/" target="_blank" class="p-3 rounded-full border border-white/10 hover:bg-white/5 hover:border-purple-500/50 transition-all group" title="Travel Instagram">
+                <i data-lucide="camera" class="w-5 h-5 text-slate-400 group-hover:text-purple-400"></i>
               </a>
             </div>
           </div>
-
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Diving Card -->
-            <div
-              class="group relative h-96 rounded-3xl overflow-hidden cursor-pointer"
-            >
+            <div class="group relative h-96 rounded-3xl overflow-hidden cursor-pointer">
               <div class="absolute inset-0 bg-slate-800">
-                <img
-                  src="assets/diving_pit.jpg"
-                  alt="Diving"
-                  class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
-                />
+                <img src="assets/diving_pit.jpg" alt="Diving" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
               </div>
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
-              ></div>
-              <div
-                class="absolute bottom-0 left-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
-              >
-                <div
-                  class="bg-blue-500/20 backdrop-blur-md w-fit px-3 py-1 rounded-full border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider mb-3"
-                >
-                  Underwater
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-2">
-                  Ocean Explorer
-                </h3>
-                <p
-                  class="text-slate-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100"
-                >
-                  Capturing the silence and beauty of the underwater world.
-                  Check out @nunos.diving for more.
-                </p>
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <div class="bg-blue-500/20 backdrop-blur-md w-fit px-3 py-1 rounded-full border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider mb-3">Underwater</div>
+                <h3 class="text-2xl font-bold text-white mb-2">Ocean Explorer</h3>
+                <p class="text-slate-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Capturing the silence and beauty of the underwater world. Check out @nunos.diving for more.</p>
               </div>
             </div>
-
-            <!-- Relaxed/Travel Card -->
-            <div
-              class="group relative h-96 rounded-3xl overflow-hidden cursor-pointer"
-            >
+            <div class="group relative h-96 rounded-3xl overflow-hidden cursor-pointer">
               <div class="absolute inset-0 bg-slate-800">
-                <img
-                  src="assets/CV_PIC.jpg"
-                  alt="Travel"
-                  class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
-                />
+                <img src="assets/CV_PIC.jpg" alt="Travel" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
               </div>
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
-              ></div>
-              <div
-                class="absolute bottom-0 left-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
-              >
-                <div
-                  class="bg-purple-500/20 backdrop-blur-md w-fit px-3 py-1 rounded-full border border-purple-400/30 text-purple-300 text-xs font-bold uppercase tracking-wider mb-3"
-                >
-                  Lifestyle
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-2">
-                  Unstable Traveler
-                </h3>
-                <p
-                  class="text-slate-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100"
-                >
-                  Documenting journeys and relaxed moments around the globe.
-                  Follow @unstable_traveler.
-                </p>
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <div class="bg-purple-500/20 backdrop-blur-md w-fit px-3 py-1 rounded-full border border-purple-400/30 text-purple-300 text-xs font-bold uppercase tracking-wider mb-3">Lifestyle</div>
+                <h3 class="text-2xl font-bold text-white mb-2">Unstable Traveler</h3>
+                <p class="text-slate-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Documenting journeys and relaxed moments around the globe. Follow @unstable_traveler.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Footer / Contact Links -->
+      <!-- Footer / Contact -->
       <footer id="contact" class="bg-slate-950 border-t border-white/5 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-2xl font-display font-bold text-white mb-4">
-            Connect with me
-          </h2>
-          <p class="text-slate-400 italic font-display mb-8 text-lg">
-            "Without geometry, life would be pointless."
-          </p>
-
+          <h2 class="text-2xl font-display font-bold text-white mb-4">Connect with me</h2>
+          <p class="text-slate-400 italic font-display mb-8 text-lg">"Without geometry, life would be pointless."</p>
           <div class="flex flex-wrap justify-center gap-6 mb-12">
-            <a
-              href="mailto:nunomoreira16@gmail.com"
-              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-blue-400 hover:text-blue-400 transition-all group"
-            >
+            <a href="mailto:nunomoreira16@gmail.com" class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-blue-400 hover:text-blue-400 transition-all group">
               <i data-lucide="mail" class="w-5 h-5"></i>
               <span class="font-medium">nunomoreira16@gmail.com</span>
             </a>
-
-            <a
-              href="https://wa.me/33767834576"
-              target="_blank"
-              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-green-500 hover:text-green-500 transition-all group"
-            >
+            <a href="https://wa.me/33767834576" target="_blank" class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-green-500 hover:text-green-500 transition-all group">
               <i data-lucide="message-circle" class="w-5 h-5"></i>
               <span class="font-medium">WhatsApp</span>
             </a>
-
-            <a
-              href="https://www.linkedin.com/in/nuno-soft-dev/"
-              target="_blank"
-              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-[#0077b5] hover:text-[#0077b5] transition-all group"
-            >
+            <a href="https://www.linkedin.com/in/nuno-soft-dev/" target="_blank" class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-[#0077b5] hover:text-[#0077b5] transition-all group">
               <i data-lucide="linkedin" class="w-5 h-5"></i>
               <span class="font-medium">LinkedIn</span>
             </a>
-
-            <a
-              href="https://github.com/NunoMore"
-              target="_blank"
-              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-white hover:text-white transition-all group"
-            >
+            <a href="https://github.com/NunoMore" target="_blank" class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-white hover:text-white transition-all group">
               <i data-lucide="github" class="w-5 h-5"></i>
               <span class="font-medium">GitHub</span>
             </a>
-
-            <a
-              href="https://grasshoppersolutions.online"
-              target="_blank"
-              class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-grasshopper-400 hover:text-grasshopper-400 transition-all group"
-            >
+            <a href="https://grasshoppersolutions.online" target="_blank" class="flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 hover:border-grasshopper-400 hover:text-grasshopper-400 transition-all group">
               <i data-lucide="globe" class="w-5 h-5"></i>
               <span class="font-medium">Company Website</span>
             </a>
           </div>
-
           <div class="text-slate-500 text-sm">
-            <p>
-              &copy;
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-              Nuno Moreira. All rights reserved.
-            </p>
-            <p class="mt-2 text-xs">
-              Founder of Grasshopper IT Solutions, LLC.
-            </p>
+            <p>&copy; <script>document.write(new Date().getFullYear());</script> Nuno Moreira. All rights reserved.</p>
+            <p class="mt-2 text-xs">Founder of Grasshopper IT Solutions, LLC.</p>
           </div>
         </div>
       </footer>
     </main>
 
     <script>
-      // Initialize Lucide Icons
       lucide.createIcons();
-
-      // Mobile Menu Toggle
       const btn = document.getElementById("mobile-menu-btn");
       const menu = document.getElementById("mobile-menu");
-
-      btn.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-      });
-
-      // Smooth Scroll for Anchor Links
+      btn.addEventListener("click", () => { menu.classList.toggle("hidden"); });
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
-          menu.classList.add("hidden"); // Close mobile menu if open
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-          });
+          menu.classList.add("hidden");
+          document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
         });
       });
     </script>
