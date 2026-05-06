@@ -27,10 +27,7 @@
       property="og:image"
       content="https://grasshoppersolutions.online/landing-pages/nuno-moreira/assets/unstable_traveler.jpg"
     />
-    <meta
-      property="og:image:alt"
-      content="Nuno Moreira - Full-Stack .NET Developer"
-    />
+    <meta property="og:image:alt" content="Nuno Moreira - Full-Stack .NET Developer" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="CV Nuno Moreira 2026 — .NET Developer" />
     <meta
@@ -66,13 +63,9 @@
         flex-direction: column;
         align-items: center;
       }
-      h1,
-      h2,
-      h3,
-      .font-heading {
+      h1, h2, h3, .font-heading {
         font-family: "Outfit", sans-serif;
       }
-
       .a4-page {
         width: 210mm;
         min-height: 297mm;
@@ -83,7 +76,6 @@
         box-sizing: border-box;
         display: flex;
       }
-
       .sidebar {
         background-color: var(--dark);
         color: var(--light);
@@ -92,22 +84,13 @@
         display: flex;
         flex-direction: column;
       }
-
       .main-content {
         width: 65%;
         padding: 2.5rem;
       }
-
       @media print {
-        @page {
-          size: A4;
-          margin: 0;
-        }
-        body {
-          background: white;
-          padding: 0;
-          margin: 0;
-        }
+        @page { size: A4; margin: 0; }
+        body { background: white; padding: 0; margin: 0; }
         .a4-page {
           width: 100%;
           min-height: 100vh;
@@ -115,15 +98,12 @@
           margin: 0;
           page-break-after: always;
         }
-        .no-print {
-          display: none !important;
-        }
+        .no-print { display: none !important; }
         * {
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
         }
       }
-
       .skill-tag {
         background: rgba(2, 132, 199, 0.25);
         border: 1px solid rgba(2, 132, 199, 0.5);
@@ -147,7 +127,6 @@
 
     <!-- PAGE 1 -->
     <div class="a4-page">
-      <!-- Sidebar -->
       <div class="sidebar">
         <div class="mb-10 text-center">
           <div
@@ -159,67 +138,41 @@
               class="w-full h-auto object-cover"
             />
           </div>
-          <h2
-            class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4"
-          >
-            Contact
-          </h2>
+          <h2 class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4">Contact</h2>
           <ul class="space-y-3 text-xs text-left text-slate-300">
             <li class="flex items-center gap-3">
               <i class="ph ph-map-pin text-sky-500"></i>
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Playa+del+Carmen%2C+Mexico"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-slate-300 hover:text-sky-400 transition-colors"
-                >Playa del Carmen, Mexico</a
-              >
+              <a href="https://www.google.com/maps/search/?api=1&query=Playa+del+Carmen%2C+Mexico"
+                target="_blank" rel="noopener noreferrer"
+                class="text-slate-300 hover:text-sky-400 transition-colors">Playa del Carmen, Mexico</a>
             </li>
             <li class="flex items-center gap-3">
               <i class="ph ph-envelope text-sky-500"></i>
-              <a
-                href="mailto:nunomoreira16@gmail.com"
-                class="text-slate-300 hover:text-sky-400 transition-colors"
-                >nunomoreira16@gmail.com</a
-              >
+              <a href="mailto:nunomoreira16@gmail.com"
+                class="text-slate-300 hover:text-sky-400 transition-colors">nunomoreira16@gmail.com</a>
             </li>
             <li class="flex items-center gap-3">
               <i class="ph ph-phone text-sky-500"></i>
-              <a
-                href="tel:+529844271487"
-                class="text-slate-300 hover:text-sky-400 transition-colors"
-                >+52 984 427 1487</a
-              >
+              <a href="tel:+529844271487"
+                class="text-slate-300 hover:text-sky-400 transition-colors">+52 984 427 1487</a>
             </li>
             <li class="flex items-center gap-3">
               <i class="ph ph-whatsapp-logo text-sky-500"></i>
-              <a
-                href="https://wa.me/33767834576"
-                class="text-slate-300 hover:text-sky-400 transition-colors"
-                >+33 767 834 576 (WhatsApp)</a
-              >
+              <a href="https://wa.me/33767834576"
+                class="text-slate-300 hover:text-sky-400 transition-colors">+33 767 834 576 (WhatsApp)</a>
             </li>
             <li class="flex items-center gap-3">
               <i class="ph ph-linkedin-logo text-sky-500"></i>
-              <a
-                href="https://www.linkedin.com/in/nuno-soft-dev"
-                class="text-slate-300 hover:text-sky-400 transition-colors"
-                >linkedin.com/in/nuno-soft-dev</a
-              >
+              <a href="https://www.linkedin.com/in/nuno-soft-dev"
+                class="text-slate-300 hover:text-sky-400 transition-colors">linkedin.com/in/nuno-soft-dev</a>
             </li>
           </ul>
         </div>
 
         <div class="mb-10">
-          <h2
-            class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2"
-          >
-            Skills &amp; Tools
-          </h2>
+          <h2 class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2">Skills &amp; Tools</h2>
 
-          <h3 class="text-[10px] text-slate-400 uppercase mb-2">
-            .NET &amp; Backend
-          </h3>
+          <h3 class="text-[10px] text-slate-400 uppercase mb-2">.NET &amp; Backend</h3>
           <div class="mb-4">
             <span class="skill-tag">C# / ASP.NET MVC</span>
             <span class="skill-tag">Windows Services</span>
@@ -238,9 +191,7 @@
             <span class="skill-tag">React</span>
           </div>
 
-          <h3 class="text-[10px] text-slate-400 uppercase mb-2">
-            Data &amp; Cloud
-          </h3>
+          <h3 class="text-[10px] text-slate-400 uppercase mb-2">Data &amp; Cloud</h3>
           <div class="mb-4">
             <span class="skill-tag">PostgreSQL</span>
             <span class="skill-tag">MongoDB</span>
@@ -248,9 +199,7 @@
             <span class="skill-tag">Docker</span>
           </div>
 
-          <h3 class="text-[10px] text-slate-400 uppercase mb-2">
-            AI &amp; Tooling
-          </h3>
+          <h3 class="text-[10px] text-slate-400 uppercase mb-2">AI &amp; Tooling</h3>
           <div>
             <span class="skill-tag">Perplexity</span>
             <span class="skill-tag">Cline</span>
@@ -260,32 +209,13 @@
         </div>
 
         <div>
-          <h2
-            class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2"
-          >
-            Languages
-          </h2>
+          <h2 class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2">Languages</h2>
           <ul class="space-y-2 text-xs text-slate-300">
-            <li class="flex justify-between">
-              <span>Portuguese</span>
-              <span class="text-slate-500 italic">Native</span>
-            </li>
-            <li class="flex justify-between">
-              <span>English</span>
-              <span class="text-slate-500 italic">Fluent</span>
-            </li>
-            <li class="flex justify-between">
-              <span>French</span>
-              <span class="text-slate-500 italic">Fluent</span>
-            </li>
-            <li class="flex justify-between">
-              <span>Spanish</span>
-              <span class="text-slate-500 italic">Fluent</span>
-            </li>
-            <li class="flex justify-between">
-              <span>Japanese</span>
-              <span class="text-slate-600 italic">Learning</span>
-            </li>
+            <li class="flex justify-between"><span>Portuguese</span><span class="text-slate-500 italic">Native</span></li>
+            <li class="flex justify-between"><span>English</span><span class="text-slate-500 italic">Fluent</span></li>
+            <li class="flex justify-between"><span>French</span><span class="text-slate-500 italic">Fluent</span></li>
+            <li class="flex justify-between"><span>Spanish</span><span class="text-slate-500 italic">Fluent</span></li>
+            <li class="flex justify-between"><span>Japanese</span><span class="text-slate-600 italic">Learning</span></li>
           </ul>
         </div>
       </div>
@@ -293,20 +223,12 @@
       <!-- Main Content -->
       <div class="main-content">
         <header class="mb-10">
-          <h1 class="text-4xl font-extrabold text-slate-800 mb-1">
-            Nuno Moreira
-          </h1>
-          <p class="text-lg text-sky-600 font-medium">
-            Full-Stack .NET &amp; Web Developer
-          </p>
+          <h1 class="text-4xl font-extrabold text-slate-800 mb-1">Nuno Moreira</h1>
+          <p class="text-lg text-sky-600 font-medium">Full-Stack .NET &amp; Web Developer</p>
         </header>
 
         <section class="mb-10">
-          <h3
-            class="text-sm font-black text-slate-400 uppercase tracking-widest mb-3"
-          >
-            About Me
-          </h3>
+          <h3 class="text-sm font-black text-slate-400 uppercase tracking-widest mb-3">About Me</h3>
           <p class="text-slate-600 leading-relaxed text-sm">
             Full-stack developer with 8+ years of experience building enterprise
             web and desktop applications. Proven track record working with
@@ -326,126 +248,35 @@
         </section>
 
         <section>
-          <h3
-            class="text-sm font-black text-slate-400 uppercase tracking-widest mb-6"
-          >
-            Experience
-          </h3>
+          <h3 class="text-sm font-black text-slate-400 uppercase tracking-widest mb-6">Experience</h3>
 
-          <!-- Grasshopper IT Solutions -->
+          <!-- 1. Grasshopper IT Solutions -->
           <div class="mb-8 relative pl-5 border-l border-slate-200">
-            <div
-              class="absolute w-2 h-2 bg-sky-500 rounded-full -left-[4.5px] top-1.5"
-            ></div>
+            <div class="absolute w-2 h-2 bg-sky-500 rounded-full -left-[4.5px] top-1.5"></div>
             <div class="flex justify-between items-baseline mb-1">
-              <h4 class="text-base font-bold text-slate-800">
-                Founder &amp; Lead Full-Stack Developer
-              </h4>
-              <span class="text-xs font-medium text-slate-400"
-                >2023 - Present</span
-              >
+              <h4 class="text-base font-bold text-slate-800">Founder &amp; Lead Full-Stack Developer</h4>
+              <span class="text-xs font-medium text-slate-400">2023 - Present</span>
             </div>
-            <p class="text-xs text-sky-600 mb-2">
-              Grasshopper IT Solutions, LLC | Remote
-            </p>
+            <p class="text-xs text-sky-600 mb-2">Grasshopper IT Solutions, LLC | Remote</p>
             <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
-              <li>
-                Architected and delivered full-stack web applications integrating
-                <strong>Node.js REST APIs</strong> with relational database
-                backends (SQL, PostgreSQL).
-              </li>
-              <li>
-                Built and maintained multi-service systems with clean separation
-                between API layers, business logic, and frontend clients.
-              </li>
-              <li>
-                Applied AI-assisted development workflows (Cline, Claude) to
-                accelerate delivery and maintain code quality across concurrent
-                client projects.
-              </li>
+              <li>Architected and delivered full-stack web applications integrating <strong>Node.js REST APIs</strong> with relational database backends (SQL, PostgreSQL).</li>
+              <li>Built and maintained multi-service systems with clean separation between API layers, business logic, and frontend clients.</li>
+              <li>Applied AI-assisted development workflows (Cline, Claude) to accelerate delivery and maintain code quality across concurrent client projects.</li>
             </ul>
           </div>
 
-          <!-- Evolve RH -->
-          <div class="mb-8 relative pl-5 border-l border-slate-200">
-            <div
-              class="absolute w-2 h-2 bg-sky-500 rounded-full -left-[4.5px] top-1.5"
-            ></div>
+          <!-- 2. Evolve RH -->
+          <div class="mb-0 relative pl-5 border-l border-slate-200">
+            <div class="absolute w-2 h-2 bg-sky-500 rounded-full -left-[4.5px] top-1.5"></div>
             <div class="flex justify-between items-baseline mb-1">
-              <h4 class="text-base font-bold text-slate-800">
-                Lead Full-Stack Developer
-              </h4>
-              <span class="text-xs font-medium text-slate-400"
-                >2022 - 2023</span
-              >
+              <h4 class="text-base font-bold text-slate-800">Lead Full-Stack Developer</h4>
+              <span class="text-xs font-medium text-slate-400">2022 - 2023</span>
             </div>
             <p class="text-xs text-sky-600 mb-2">Evolve RH | Remote</p>
             <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
-              <li>
-                Led migration of a legacy PHP backend to a modern
-                <strong>TypeScript / Node.js</strong> system with a React/Next.js
-                frontend, improving performance and maintainability.
-              </li>
-              <li>
-                Designed and implemented <strong>REST API</strong> endpoints
-                consumed by Angular and React client apps.
-              </li>
-              <li>
-                Managed server deployment on <strong>AWS</strong> and automated
-                backend tasks with Python scripts.
-              </li>
-            </ul>
-          </div>
-
-          <!-- Timber -->
-          <div class="mb-8 relative pl-5 border-l border-slate-200">
-            <div
-              class="absolute w-2 h-2 bg-sky-500 rounded-full -left-[4.5px] top-1.5"
-            ></div>
-            <div class="flex justify-between items-baseline mb-1">
-              <h4 class="text-base font-bold text-slate-800">
-                Full-Stack Developer — Backend Performance
-              </h4>
-              <span class="text-xs font-medium text-slate-400"
-                >2021 - 2022</span
-              >
-            </div>
-            <p class="text-xs text-sky-600 mb-2">Timber | Remote</p>
-            <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
-              <li>
-                Joined a global team to improve backend performance using Elixir;
-                contributed to <strong>SQL optimisation</strong> and AWS
-                infrastructure management.
-              </li>
-              <li>
-                Demonstrated ability to pick up unfamiliar languages on the job
-                and contribute meaningfully within weeks.
-              </li>
-            </ul>
-          </div>
-
-          <!-- Vinci Autoroutes -->
-          <div class="mb-0 relative pl-5 border-l border-slate-200">
-            <div
-              class="absolute w-2 h-2 bg-sky-500 rounded-full -left-[4.5px] top-1.5"
-            ></div>
-            <div class="flex justify-between items-baseline mb-1">
-              <h4 class="text-base font-bold text-slate-800">
-                Full-Stack Developer — API Architecture
-              </h4>
-              <span class="text-xs font-medium text-slate-400">2021</span>
-            </div>
-            <p class="text-xs text-sky-600 mb-2">Vinci Autoroutes | France</p>
-            <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
-              <li>
-                Designed and built a centralised <strong>REST API</strong> from
-                scratch using <strong>TypeScript and SQL</strong> to unify data
-                access across multiple internal services.
-              </li>
-              <li>
-                Wrote optimised <strong>T-SQL queries</strong> and views to
-                support high-throughput reporting and cross-service data sharing.
-              </li>
+              <li>Led migration of a legacy PHP backend to a modern <strong>TypeScript / Node.js</strong> system with a React/Next.js frontend, improving performance and maintainability.</li>
+              <li>Designed and implemented <strong>REST API</strong> endpoints consumed by Angular and React client apps.</li>
+              <li>Managed server deployment on <strong>AWS</strong> and automated backend tasks with Python scripts.</li>
             </ul>
           </div>
         </section>
@@ -456,64 +287,40 @@
     <div class="a4-page">
       <div class="sidebar">
         <div class="mb-10">
-          <h2
-            class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2"
-          >
-            Personal Skills
-          </h2>
+          <h2 class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2">Personal Skills</h2>
           <ul class="space-y-4 text-xs text-slate-300">
             <li>
               <strong class="text-sky-500 block mb-1">Analytical Thinking</strong>
-              Backgrounds in both civil engineering and enterprise software give
-              me a structured, root-cause approach to complex bugs and system
-              design.
+              Backgrounds in both civil engineering and enterprise software give me a structured, root-cause approach to complex bugs and system design.
             </li>
             <li>
               <strong class="text-sky-500 block mb-1">Multi-tasking</strong>
-              Experienced managing multiple concurrent client projects with
-              different tech stacks and deadlines.
+              Experienced managing multiple concurrent client projects with different tech stacks and deadlines.
             </li>
             <li>
               <strong class="text-sky-500 block mb-1">Adaptability</strong>
-              Picked up Elixir, Solidity, and Unity C# on the job — comfortable
-              learning new frameworks quickly.
+              Picked up Elixir, Solidity, and Unity C# on the job — comfortable learning new frameworks quickly.
             </li>
             <li>
               <strong class="text-sky-500 block mb-1">Communication</strong>
-              Worked with international teams across France, Portugal, Mexico and
-              remote-first environments. Fluent in 4 languages.
+              Worked with international teams across France, Portugal, Mexico and remote-first environments. Fluent in 4 languages.
             </li>
           </ul>
         </div>
 
         <div class="mb-10">
-          <h2
-            class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2"
-          >
-            Education
-          </h2>
+          <h2 class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2">Education</h2>
           <div class="mb-4">
-            <h4 class="text-sm font-bold text-slate-100">
-              Masters in Civil Engineering
-            </h4>
+            <h4 class="text-sm font-bold text-slate-100">Masters in Civil Engineering</h4>
             <p class="text-[10px] text-slate-400 italic">
-              <a
-                href="https://tecnico.ulisboa.pt/en/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-slate-400 hover:text-sky-300 transition-colors"
-                >IST | Lisbon, Portugal</a
-              >, 2017
+              <a href="https://tecnico.ulisboa.pt/en/" target="_blank" rel="noopener noreferrer"
+                class="text-slate-400 hover:text-sky-300 transition-colors">IST | Lisbon, Portugal</a>, 2017
             </p>
           </div>
         </div>
 
         <div class="mb-10">
-          <h2
-            class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2"
-          >
-            Methodologies
-          </h2>
+          <h2 class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2">Methodologies</h2>
           <div>
             <span class="skill-tag">Agile / Scrum</span>
             <span class="skill-tag">Code Review</span>
@@ -525,122 +332,96 @@
         </div>
 
         <div>
-          <h2
-            class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2"
-          >
-            Other
-          </h2>
+          <h2 class="text-sky-400 font-bold uppercase tracking-widest text-xs mb-4 border-b border-slate-700 pb-2">Other</h2>
           <p class="text-xs text-slate-400">
             Certified Scuba Instructor (SDI / TDI Full Cave Diver). Background
-            in high-pressure safety management — a mindset I bring to
-            production-critical code.
+            in high-pressure safety management — a mindset I bring to production-critical code.
           </p>
         </div>
       </div>
 
       <div class="main-content">
         <section>
-          <h3
-            class="text-sm font-black text-slate-400 uppercase tracking-widest mb-6"
-          >
-            More Experience
-          </h3>
+          <h3 class="text-sm font-black text-slate-400 uppercase tracking-widest mb-6">More Experience</h3>
 
-          <!-- Schneider Electric — C# / .NET (moved here) -->
+          <!-- Schneider Electric — C# / .NET -->
           <div class="mb-8 relative pl-5 border-l border-slate-200">
-            <div
-              class="absolute w-2 h-2 bg-sky-500 rounded-full -left-[4.5px] top-1.5"
-            ></div>
+            <div class="absolute w-2 h-2 bg-sky-500 rounded-full -left-[4.5px] top-1.5"></div>
             <div class="flex justify-between items-baseline mb-1">
-              <h4 class="text-base font-bold text-slate-800">
-                Software Developer — C# / .NET
-              </h4>
-              <span class="text-xs font-medium text-slate-400"
-                >2020 - 2021</span
-              >
+              <h4 class="text-base font-bold text-slate-800">Software Developer — C# / .NET</h4>
+              <span class="text-xs font-medium text-slate-400">2020 - 2021</span>
             </div>
-            <p class="text-xs text-sky-600 mb-2">
-              Schneider Electric | France
-            </p>
+            <p class="text-xs text-sky-600 mb-2">Schneider Electric | France</p>
             <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
-              <li>
-                Migrated internal desktop software to a web-based application
-                using <strong>C# and ASP.NET MVC</strong>, following Agile
-                methodologies.
-              </li>
-              <li>
-                Developed and optimised <strong>MS SQL Server</strong> queries,
-                stored procedures, and views to support the new web layer.
-              </li>
-              <li>
-                Collaborated with cross-functional teams including UX, QA, and
-                product management to deliver reliable, maintainable code.
-              </li>
+              <li>Migrated internal desktop software to a web-based application using <strong>C# and ASP.NET MVC</strong>, following Agile methodologies.</li>
+              <li>Developed and optimised <strong>MS SQL Server</strong> queries, stored procedures, and views to support the new web layer.</li>
+              <li>Collaborated with cross-functional teams including UX, QA, and product management to deliver reliable, maintainable code.</li>
+            </ul>
+          </div>
+
+          <!-- Timber -->
+          <div class="mb-8 relative pl-5 border-l border-slate-200">
+            <div class="absolute w-2 h-2 bg-slate-300 rounded-full -left-[4.5px] top-1.5"></div>
+            <div class="flex justify-between items-baseline mb-1">
+              <h4 class="text-base font-bold text-slate-800">Full-Stack Developer — Backend Performance</h4>
+              <span class="text-xs font-medium text-slate-400">2021 - 2022</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-2">Timber | Remote</p>
+            <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+              <li>Joined a global team to improve backend performance using Elixir; contributed to <strong>SQL optimisation</strong> and AWS infrastructure management.</li>
+              <li>Demonstrated ability to pick up unfamiliar languages on the job and contribute meaningfully within weeks.</li>
+            </ul>
+          </div>
+
+          <!-- Vinci Autoroutes -->
+          <div class="mb-8 relative pl-5 border-l border-slate-200">
+            <div class="absolute w-2 h-2 bg-slate-300 rounded-full -left-[4.5px] top-1.5"></div>
+            <div class="flex justify-between items-baseline mb-1">
+              <h4 class="text-base font-bold text-slate-800">Full-Stack Developer — API Architecture</h4>
+              <span class="text-xs font-medium text-slate-400">2021</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-2">Vinci Autoroutes | France</p>
+            <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+              <li>Designed and built a centralised <strong>REST API</strong> from scratch using <strong>TypeScript and SQL</strong> to unify data access across multiple internal services.</li>
+              <li>Wrote optimised <strong>T-SQL queries</strong> and views to support high-throughput reporting and cross-service data sharing.</li>
             </ul>
           </div>
 
           <!-- Escape Rossio -->
           <div class="mb-8 relative pl-5 border-l border-slate-200">
-            <div
-              class="absolute w-2 h-2 bg-slate-300 rounded-full -left-[4.5px] top-1.5"
-            ></div>
+            <div class="absolute w-2 h-2 bg-slate-300 rounded-full -left-[4.5px] top-1.5"></div>
             <div class="flex justify-between items-baseline mb-1">
-              <h4 class="text-base font-bold text-slate-800">
-                Full Stack Engineer — C# / Unity
-              </h4>
-              <span class="text-xs font-medium text-slate-400"
-                >Nov 2023 - Feb 2024</span
-              >
+              <h4 class="text-base font-bold text-slate-800">Full Stack Engineer — C# / Unity</h4>
+              <span class="text-xs font-medium text-slate-400">Nov 2023 - Feb 2024</span>
             </div>
             <p class="text-xs text-slate-500 mb-2">Escape Rossio | Remote</p>
             <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
-              <li>
-                Led development of a PC game in <strong>Unity (C#)</strong>;
-                managed technical direction, project architecture, and team
-                coordination.
-              </li>
+              <li>Led development of a PC game in <strong>Unity (C#)</strong>; managed technical direction, project architecture, and team coordination.</li>
             </ul>
           </div>
 
           <!-- Betacode -->
           <div class="mb-8 relative pl-5 border-l border-slate-200">
-            <div
-              class="absolute w-2 h-2 bg-slate-300 rounded-full -left-[4.5px] top-1.5"
-            ></div>
+            <div class="absolute w-2 h-2 bg-slate-300 rounded-full -left-[4.5px] top-1.5"></div>
             <div class="flex justify-between items-baseline mb-1">
-              <h4 class="text-base font-bold text-slate-800">
-                Blockchain Instructor
-              </h4>
+              <h4 class="text-base font-bold text-slate-800">Blockchain Instructor</h4>
               <span class="text-xs font-medium text-slate-400">2023</span>
             </div>
             <p class="text-xs text-slate-500 mb-2">Betacode | Remote</p>
-            <p class="text-sm text-slate-600">
-              Taught blockchain fundamentals and Solidity smart contract
-              development to technical audiences.
-            </p>
+            <p class="text-sm text-slate-600">Taught blockchain fundamentals and Solidity smart contract development to technical audiences.</p>
           </div>
 
           <!-- Earlier Work -->
           <div class="mb-0 relative pl-5 border-l border-slate-200">
-            <div
-              class="absolute w-2 h-2 bg-slate-300 rounded-full -left-[4.5px] top-1.5"
-            ></div>
+            <div class="absolute w-2 h-2 bg-slate-300 rounded-full -left-[4.5px] top-1.5"></div>
             <div class="flex justify-between items-baseline mb-1">
-              <h4 class="text-base font-bold text-slate-800">
-                Earlier Tech Work
-              </h4>
-              <span class="text-xs font-medium text-slate-400"
-                >2017 - 2019</span
-              >
+              <h4 class="text-base font-bold text-slate-800">Earlier Tech Work</h4>
+              <span class="text-xs font-medium text-slate-400">2017 - 2019</span>
             </div>
-            <p class="text-xs text-slate-500 mb-2">
-              Tekever, Escape Rossio, Glintt | Portugal
-            </p>
+            <p class="text-xs text-slate-500 mb-2">Tekever, Escape Rossio, Glintt | Portugal</p>
             <p class="text-sm text-slate-600">
-              Healthcare application development at Tekever; Arduino/C++
-              embedded programming at Escape Rossio; modernisation of legacy
-              pharmaceutical platforms at Glintt using
-              <strong>web technologies and SQL</strong>.
+              Healthcare application development at Tekever; Arduino/C++ embedded programming at Escape Rossio;
+              modernisation of legacy pharmaceutical platforms at Glintt using <strong>web technologies and SQL</strong>.
             </p>
           </div>
         </section>
