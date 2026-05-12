@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuno Moreira - CV 2026</title>
+  <style>
+    /* ATS-SAFE: Single column, no flexbox layout, no icons, no images, no decorative elements */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11pt;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 2rem;
+      max-width: 800px;
+      margin-inline: auto;
+    }
+
+    /* ---------- HEADER ---------- */
+    #header {
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.8rem;
+    }
+    #header h1 {
+      font-size: 22pt;
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+    }
+    #header .title {
+      font-size: 13pt;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+    }
+    #header .contact-line {
+      font-size: 10pt;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+      margin-bottom: 1.2rem;
+    }
+    section h2 {
+      font-size: 12pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2px;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skills-block p {
+      font-size: 10.5pt;
+      line-height: 1.7;
+    }
+    .skills-block strong {
+      font-weight: bold;
+    }
+
+    /* ---------- EXPERIENCE ENTRY ---------- */
+    .job {
+      margin-bottom: 1rem;
+    }
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .job-title {
+      font-size: 11pt;
+      font-weight: bold;
+    }
+    .job-dates {
+      font-size: 10pt;
+      color: #333;
+      white-space: nowrap;
+    }
+    .job-company {
+      font-size: 10pt;
+      color: #333;
+      margin-bottom: 0.3rem;
+    }
+    .job ul {
+      padding-left: 1.2rem;
+      margin-top: 0.3rem;
+    }
+    .job li {
+      font-size: 10.5pt;
+      line-height: 1.6;
+      margin-bottom: 0.2rem;
+    }
+    .job p {
+      font-size: 10.5pt;
+      line-height: 1.6;
+    }
+
+    /* ---------- EDUCATION ---------- */
+    .edu-entry {
+      margin-bottom: 0.5rem;
+    }
+    .edu-entry h3 {
+      font-size: 11pt;
+      font-weight: bold;
+    }
+    .edu-entry p {
+      font-size: 10pt;
+      color: #333;
+    }
+
+    /* ---------- LANGUAGES ---------- */
+    .lang-list {
+      font-size: 10.5pt;
+      line-height: 1.7;
+    }
+
+    /* ---------- PRINT ---------- */
+    @media print {
+      @page { size: A4; margin: 15mm; }
+      body { padding: 0; max-width: 100%; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRINT BUTTON (hidden on print/PDF) -->
+  <div class="no-print" style="text-align:right; margin-bottom:1rem;">
+    <button onclick="window.print()" style="background:#0284c7;color:#fff;border:none;padding:0.5rem 1.2rem;border-radius:4px;font-size:11pt;cursor:pointer;">
+      Download PDF
+    </button>
+  </div>
+
+  <!-- HEADER -->
+  <div id="header">
+    <h1>Nuno Moreira</h1>
+    <p class="title">Full-Stack Engineer | TypeScript, React, Node.js, AWS</p>
+    <div class="contact-line">
+      Location: Playa del Carmen, Mexico &nbsp;|&nbsp;
+      Email: nunomoreira16@gmail.com &nbsp;|&nbsp;
+      Phone: +52 984 427 1487 &nbsp;|&nbsp;
+      WhatsApp: +33 767 834 576 &nbsp;|&nbsp;
+      LinkedIn: linkedin.com/in/nuno-soft-dev
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <section>
+    <h2>Summary</h2>
+    <p style="font-size:10.5pt; line-height:1.7;">
+      Full-stack engineer with 7+ years building web and mobile applications using TypeScript, React, React Native, Node.js, and cloud infrastructure (AWS, GCP). Experienced in AI-assisted development, API design, database architecture, and end-to-end delivery from architecture to deployment. Background in civil engineering brings a structured, safety-first approach to complex technical challenges. Fluent in English, Portuguese, French, and Spanish.
+    </p>
+  </section>
+
+  <!-- TECHNICAL SKILLS -->
+  <section>
+    <h2>Technical Skills</h2>
+    <div class="skills-block">
+      <p><strong>Languages &amp; Frameworks:</strong> TypeScript, JavaScript, React, React Native, Expo, Next.js, Node.js, Python, C#, Unity, Elixir, PHP, Solidity</p>
+      <p><strong>Cloud &amp; DevOps:</strong> AWS, GCP, Docker, Firebase, CI/CD, Git, GitHub, version control</p>
+      <p><strong>Databases:</strong> MongoDB, PostgreSQL, SQL, Firebase Firestore</p>
+      <p><strong>AI &amp; Automation:</strong> Perplexity AI, Claude, Cline, prompt engineering, LLM integration, AI-assisted development</p>
+      <p><strong>Other:</strong> REST APIs, API design, Agile, Scrum, Arduino, healthcare software, blockchain, smart contracts</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <h2>Work Experience</h2>
+
+    <!-- 1. Grasshopper IT Solutions — 2023-Present (ongoing, started first) -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Founder &amp; Full-Stack Engineer</span>
+        <span class="job-dates">2023 - Present</span>
+      </div>
+      <p class="job-company">Grasshopper IT Solutions, LLC | Remote</p>
+      <ul>
+        <li>Built and deployed web and mobile applications using TypeScript, React Native, Expo, Node.js, and Firebase.</li>
+        <li>Integrated AI-assisted development tools (Perplexity, Claude, Cline) into daily workflow, accelerating feature delivery and testing cycles.</li>
+        <li>Managed full project lifecycle: database architecture (MongoDB), REST API design, version control, and cloud deployment.</li>
+      </ul>
+    </div>
+
+    <!-- 2. Scuba Instructor — 2025-Present -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Scuba Instructor &amp; Cave Guide</span>
+        <span class="job-dates">2025 - Present</span>
+      </div>
+      <p class="job-company">Dressel Divers &amp; Freelance | Mexico</p>
+      <ul>
+        <li>Teaching scuba courses and guiding international groups through Cozumel reef and Cenote cave systems.</li>
+        <li>Managing safety logistics in high-pressure technical diving environments.</li>
+      </ul>
+    </div>
+
+    <!-- 3. Online Language Tutor — 2024-Present -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Online Language Tutor</span>
+        <span class="job-dates">2024 - Present</span>
+      </div>
+      <p class="job-company">Freelance | Remote</p>
+      <ul>
+        <li>Teaching Portuguese, Spanish, and English online to students globally.</li>
+      </ul>
+    </div>
+
+    <!-- 4. Escape Rossio — Nov 2023-Feb 2024 -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Full Stack Engineer</span>
+        <span class="job-dates">Nov 2023 - Feb 2024</span>
+      </div>
+      <p class="job-company">Escape Rossio | Remote</p>
+      <ul>
+        <li>Led development of a PC game in Unity (C#), managing the team's technical direction and project setup.</li>
+        <li>Coordinated architecture decisions and code reviews across the development team.</li>
+      </ul>
+    </div>
+
+    <!-- 5. Betacode — 2023 -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Blockchain Instructor</span>
+        <span class="job-dates">2023</span>
+      </div>
+      <p class="job-company">Betacode | Remote</p>
+      <ul>
+        <li>Taught blockchain fundamentals and Solidity smart contract development to technical students.</li>
+      </ul>
+    </div>
+
+    <!-- 6. Evolve RH — 2022-2023 -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Lead Full-Stack Developer</span>
+        <span class="job-dates">2022 - 2023</span>
+      </div>
+      <p class="job-company">Evolve RH | Remote</p>
+      <ul>
+        <li>Migrated a legacy PHP backend to a modern TypeScript system using React and Next.js.</li>
+        <li>Managed server deployment on AWS and automated operational tasks with Python scripts.</li>
+      </ul>
+    </div>
+
+    <!-- 7. Timber — 2021-2022 -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Full-Stack Developer</span>
+        <span class="job-dates">2021 - 2022</span>
+      </div>
+      <p class="job-company">Timber | Remote</p>
+      <ul>
+        <li>Contributed to backend performance optimization using Elixir, SQL query tuning, and AWS infrastructure management for a global team.</li>
+      </ul>
+    </div>
+
+    <!-- 8. Vinci Autoroutes — 2021 -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Full-Stack Developer</span>
+        <span class="job-dates">2021</span>
+      </div>
+      <p class="job-company">Vinci Autoroutes | France</p>
+      <ul>
+        <li>Designed and built a central REST API from scratch using TypeScript and SQL, enabling multiple internal services to share data efficiently.</li>
+      </ul>
+    </div>
+
+    <!-- 9. Schneider Electric — 2020-2021 -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Software Developer</span>
+        <span class="job-dates">2020 - 2021</span>
+      </div>
+      <p class="job-company">Schneider Electric | France</p>
+      <ul>
+        <li>Migrated internal enterprise software to a web-based application using C# and Agile methodologies.</li>
+      </ul>
+    </div>
+
+    <!-- 10. Earlier Tech Work — 2017-2019 -->
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Junior Software Developer</span>
+        <span class="job-dates">2017 - 2019</span>
+      </div>
+      <p class="job-company">Tekever, Escape Rossio, Glintt | Portugal</p>
+      <ul>
+        <li>Developed healthcare applications at Tekever, programmed Arduino-based interactive systems at Escape Rossio, and modernized pharmaceutical platforms at Glintt.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <h2>Education</h2>
+    <div class="edu-entry">
+      <h3>Master's Degree in Civil Engineering</h3>
+      <p>Instituto Superior Tecnico (IST) | Lisbon, Portugal | 2017</p>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <h2>Certifications</h2>
+    <div class="skills-block">
+      <p>SDI Open Water Instructor, TDI Full Cave Overhead Diver, SSI Recreational Sidemount, SSI Enriched Air Nitrox, SSI Dive Guide (Divemaster), SSI Diver Stress and Rescue, PADI Advanced Open Water Diver</p>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section>
+    <h2>Languages</h2>
+    <p class="lang-list">
+      Portuguese (Native), English (Fluent), French (Fluent), Spanish (Fluent), Japanese (Beginner)
+    </p>
+  </section>
+
+</body>
+</html>
