@@ -1,0 +1,140 @@
+<!--
+  footer.html — Reusable footer component
+  Usage: include via fetch() in each page's <script> block:
+
+    fetch('/footer.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('site-footer').innerHTML = html;
+        lucide.createIcons();
+        initFooter(); // starts the clock
+      });
+
+  Add <div id="site-footer"></div> just before </body> in each page.
+
+  NOTES:
+  - The real-time clock (#time) is driven by initFooter() in script.js
+  - Social links (LinkedIn, Instagram) currently use placeholder hrefs.
+    Replace with real URLs when profiles are ready:
+      LinkedIn : https://linkedin.com/company/grasshopper-it-solutions
+      Instagram: https://instagram.com/grasshopperitsolutions
+-->
+
+<!-- Contact CTA Section -->
+<section
+  id="contact"
+  class="py-24 bg-gradient-to-b from-deep-space to-black border-t border-white/5"
+  aria-labelledby="contact-heading"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 id="contact-heading" class="text-4xl font-bold text-white mb-6">Ready to Scale?</h2>
+    <p class="text-xl text-gray-400 mb-12">
+      Whether you need a quick Python script, a complex .NET architecture,
+      or just some vibe coding, we are ready.
+    </p>
+    <div class="relative inline-block group">
+      <div
+        class="absolute -inset-1 bg-gradient-to-r from-grass-green to-cyber-blue rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-200"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="relative bg-black rounded-lg px-8 py-6 md:px-12 md:py-8 border border-white/10"
+      >
+        <p
+          class="text-gray-500 mb-2 font-mono text-sm tracking-widest uppercase"
+        >
+          INITIATE_COMMUNICATION
+        </p>
+        <a
+          href="mailto:grasshopper.it.solutions@gmail.com"
+          class="text-xl md:text-3xl font-bold text-white hover:text-grass-green transition-colors break-all font-mono"
+          >grasshopper.it.solutions@gmail.com</a
+        >
+        <div class="flex gap-4 mt-4 items-center justify-center" aria-hidden="true">
+          <span class="w-3 h-3 bg-grass-green rounded-full animate-ping"></span>
+          <span class="text-xs font-mono text-gray-600 uppercase tracking-widest"
+            >Network Awaiting Input</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer bar -->
+<footer class="bg-black py-16 border-t border-white/10" role="contentinfo">
+  <div
+    class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
+  >
+    <!-- Brand -->
+    <a
+      href="/index.html"
+      class="flex items-center group"
+      aria-label="Grasshopper IT Solutions — Home"
+    >
+      <img
+        src="/assets/grasshopper-geometric-logo.svg"
+        alt=""
+        aria-hidden="true"
+        class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
+        width="32"
+        height="32"
+        loading="lazy"
+      />
+      <span class="text-xl font-mono font-bold text-white">Grasshopper_IT</span>
+    </a>
+
+    <!-- Social links -->
+    <nav aria-label="Social media links">
+      <ul class="flex gap-4 text-gray-600" role="list">
+        <li>
+          <!-- TODO: replace href with real LinkedIn URL when profile is ready -->
+          <a
+            href="https://linkedin.com/company/grasshopper-it-solutions"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Grasshopper IT on LinkedIn"
+            class="hover:text-white transition-colors block p-1"
+          >
+            <i data-lucide="linkedin" class="w-4 h-4" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/grasshopperitsolutions"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Grasshopper IT on GitHub"
+            class="hover:text-white transition-colors block p-1"
+          >
+            <i data-lucide="github" class="w-4 h-4" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <!-- TODO: replace href with real Instagram URL when profile is ready -->
+          <a
+            href="https://instagram.com/grasshopperitsolutions"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Grasshopper IT on Instagram"
+            class="hover:text-white transition-colors block p-1"
+          >
+            <i data-lucide="instagram" class="w-4 h-4" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Live clock -->
+    <p class="text-gray-700 text-[10px] font-mono" aria-label="Current local time">
+      SYSTEM_LOCAL_TIME: <time id="time" datetime="">00:00:00</time>
+    </p>
+  </div>
+
+  <!-- Legal / Copyright -->
+  <div class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-white/5 text-center">
+    <p class="text-gray-800 text-[10px] font-mono">
+      &copy; <span id="footer-year"></span> Grasshopper IT Solutions. All rights reserved.
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,153 @@
+<!--
+  header.html — Reusable navigation component
+  Usage: include via fetch() in each page's <script> block:
+
+    fetch('/header.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('site-header').innerHTML = html;
+        lucide.createIcons();
+        initHeader();
+      });
+
+  Add <div id="site-header"></div> at the top of each <body>.
+
+  ACTIVE LINK CONVENTION:
+  Each page sets the active nav link via a data attribute on the placeholder:
+    <div id="site-header" data-active-page="services"></div>
+  Valid values: "home" | "services" | "projects"
+-->
+
+<!-- Notification Toast (shared across all pages) -->
+<div
+  id="notification-toast"
+  class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-cyber-blue text-black font-mono font-bold px-6 py-3 rounded-full shadow-2xl flex items-center gap-3"
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <i data-lucide="info" class="w-5 h-5" aria-hidden="true"></i>
+  <span>Module coming soon...</span>
+</div>
+
+<!-- Floating AI Agent (Grassy Hopper) -->
+<div class="fixed bottom-8 right-8 z-[60] flex flex-col items-end">
+  <div
+    id="ai-bubble"
+    class="hidden mb-4 glass-card p-4 rounded-2xl border border-grass-green/30 max-w-[200px] text-xs font-mono text-white shadow-2xl"
+    role="status"
+  >
+    <p class="mb-2 text-grass-green">// GRASSY_HOPPER_v1.0</p>
+    <p>Neural chat interface coming soon to assist your build.</p>
+  </div>
+  <button
+    onclick="toggleAIBubble()"
+    aria-label="Toggle Grassy Hopper AI assistant"
+    class="animate-float w-16 h-16 rounded-full bg-grass-green flex items-center justify-center shadow-[0_0_20px_rgba(0,255,65,0.4)] hover:scale-110 transition-transform group overflow-hidden border-2 border-white/20"
+  >
+    <img
+      src="/assets/grasshopper-geometric-logo.svg"
+      alt=""
+      aria-hidden="true"
+      class="w-10 h-10"
+      width="40"
+      height="40"
+    />
+  </button>
+</div>
+
+<!-- Skip to content link (accessibility) -->
+<a
+  href="#main-content"
+  class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:bg-grass-green focus:text-black focus:font-mono focus:font-bold focus:px-4 focus:py-2 focus:rounded-full"
+>Skip to content</a>
+
+<!-- Navigation -->
+<nav
+  class="fixed w-full z-50 bg-deep-space/80 backdrop-blur-xl border-b border-white/5"
+  aria-label="Main navigation"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo / Home link -->
+      <a
+        href="/index.html"
+        class="flex items-center group"
+        aria-label="Grasshopper IT Solutions — Home"
+      >
+        <img
+          src="/assets/grasshopper-geometric-logo.svg"
+          alt="Grasshopper IT Solutions logo"
+          class="w-10 h-10 mr-2 drop-shadow-[0_0_5px_rgba(0,255,65,0.5)] group-hover:scale-110 transition-transform"
+          width="40"
+          height="40"
+          loading="eager"
+        />
+        <span
+          class="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-grass-green transition-colors neon-text"
+          >Grasshopper IT Solutions</span
+        >
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden lg:flex items-center space-x-8" role="list">
+        <a
+          href="/pages/services.html"
+          data-nav="services"
+          class="nav-link hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
+          role="listitem"
+          >./Services</a
+        >
+        <a
+          href="/pages/projects.html"
+          data-nav="projects"
+          class="nav-link hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
+          role="listitem"
+          >./Projects</a
+        >
+        <a
+          href="mailto:grasshopper.it.solutions@gmail.com"
+          class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
+          role="listitem"
+          >START_PROJECT</a
+        >
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-btn"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open navigation menu"
+        class="lg:hidden text-gray-300 hover:text-white transition-colors p-2"
+      >
+        <i data-lucide="menu" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden bg-code-gray border-b border-white/10 px-4 py-6 space-y-4"
+    aria-label="Mobile navigation"
+  >
+    <a
+      href="/pages/services.html"
+      data-nav="services"
+      class="nav-link block text-gray-300 hover:text-white font-mono transition-colors py-1"
+      >./Services</a
+    >
+    <a
+      href="/pages/projects.html"
+      data-nav="projects"
+      class="nav-link block text-gray-300 hover:text-white font-mono transition-colors py-1"
+      >./Projects</a
+    >
+    <a
+      href="mailto:grasshopper.it.solutions@gmail.com"
+      class="block text-grass-green font-mono font-bold py-1"
+      >START_PROJECT</a
+    >
+  </div>
+</nav>
