@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grasshopper IT Solutions – Services</title>
+    <link
+      rel="icon"
+      href="/assets/grasshopper-geometric-logo.svg"
+      type="image/svg+xml"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "grass-green": "#00ff41",
+              "cyber-blue": "#00dbde",
+              "cyber-red": "#ff003c",
+              "deep-space": "#0a0a0a",
+              "code-gray": "#1e1e1e",
+              "card-gray": "#151515",
+              "neon-red": "#ff073a",
+              "tales-amber": "#b45309",
+              "tales-action": "#991b1b",
+              "kitchen-orange": "#ea580c",
+              "kitchen-red": "#dc2626",
+            },
+            fontFamily: {
+              mono: ['"Space Mono"', "monospace"],
+              sans: ['"Inter"', "sans-serif"],
+              heading: ['"Outfit"', "sans-serif"],
+            },
+            animation: {
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              float: "float 3s ease-in-out infinite",
+              scroll: "scroll 60s linear infinite",
+              "bounce-x": "bounce-x 1s infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+              scroll: {
+                "0%": { transform: "translateX(0)" },
+                "100%": { transform: "translateX(-50%)" },
+              },
+              "bounce-x": {
+                "0%, 100%": { transform: "translateX(0)" },
+                "50%": { transform: "translateX(5px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #0a0a0a; }
+      ::-webkit-scrollbar-thumb { background: #1e1e1e; border: 1px solid #00ff41; }
+      .neon-text {
+        text-shadow: 0 0 5px rgba(0,255,65,0.5), 0 0 10px rgba(0,255,65,0.3);
+      }
+      .glass-card {
+        background: rgba(21,21,21,0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.05);
+      }
+      #notification-toast {
+        transform: translateY(100px);
+        transition: transform 0.3s ease-out;
+      }
+      #notification-toast.show { transform: translateY(0); }
+    </style>
+  </head>
+  <body
+    class="bg-deep-space text-gray-300 font-sans antialiased selection:bg-grass-green selection:text-black overflow-x-hidden"
+  >
+    <!-- Shared Header (nav, toast, AI bubble) -->
+    <div id="site-header" data-active-page="services"></div>
+
+    <!-- Hero Section -->
+    <section
+      id="main-content"
+      class="relative pt-32 pb-20 lg:pt-48 lg:pb-24 overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_right,#1e1e1e_1px,transparent_1px),linear-gradient(to_bottom,#1e1e1e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"
+      ></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div
+          class="inline-flex items-center gap-2 bg-grass-green/10 border border-grass-green/30 rounded-full px-4 py-2 mb-8"
+        >
+          <span class="w-2 h-2 bg-grass-green rounded-full animate-pulse"></span>
+          <span class="text-grass-green text-xs font-mono tracking-widest">SERVICES_MODULE</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold font-heading text-white leading-none mb-6">
+          What We <span class="text-grass-green neon-text">Deploy</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 mb-10 font-light leading-relaxed max-w-2xl mx-auto">
+          End-to-end digital solutions built with the right technology for your problem — not the trendiest stack.
+        </p>
+      </div>
+    </section>
+
+    <!-- Core Services Grid -->
+    <section class="py-24 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16">
+          <p class="text-grass-green font-mono text-sm tracking-widest mb-4 uppercase">// CORE_SERVICES</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-white font-heading">Full Capability Stack</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Card: Full-Stack -->
+          <div class="glass-card rounded-2xl p-8 hover:border-grass-green/30 transition-all hover:-translate-y-1 group">
+            <div class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-grass-green/20 transition-colors">
+              <i data-lucide="code-2" class="w-6 h-6 text-grass-green"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 font-heading">Full-Stack Development</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Custom web applications built with modern frameworks. From concept to deployment, we handle the full lifecycle.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs font-mono bg-grass-green/10 text-grass-green px-2 py-1 rounded-full">React</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">.NET</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">Node.js</span>
+            </div>
+          </div>
+
+          <!-- Card: AI & Automation -->
+          <div class="glass-card rounded-2xl p-8 hover:border-cyber-blue/30 transition-all hover:-translate-y-1 group">
+            <div class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-cyber-blue/20 transition-colors">
+              <i data-lucide="bot" class="w-6 h-6 text-cyber-blue"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 font-heading">AI & Automation</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Intelligent workflows, chatbots, and process automation. We integrate AI where it creates real business value.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs font-mono bg-cyber-blue/10 text-cyber-blue px-2 py-1 rounded-full">OpenAI</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">Python</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">FastAPI</span>
+            </div>
+          </div>
+
+          <!-- Card: Backend & APIs -->
+          <div class="glass-card rounded-2xl p-8 hover:border-grass-green/30 transition-all hover:-translate-y-1 group">
+            <div class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-grass-green/20 transition-colors">
+              <i data-lucide="server" class="w-6 h-6 text-grass-green"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 font-heading">Backend & APIs</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Robust .NET, Python, and Node.js backends. RESTful and GraphQL APIs designed for performance and scalability.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs font-mono bg-grass-green/10 text-grass-green px-2 py-1 rounded-full">REST</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">GraphQL</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">C#</span>
+            </div>
+          </div>
+
+          <!-- Card: Mobile -->
+          <div class="glass-card rounded-2xl p-8 hover:border-cyber-blue/30 transition-all hover:-translate-y-1 group">
+            <div class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-cyber-blue/20 transition-colors">
+              <i data-lucide="smartphone" class="w-6 h-6 text-cyber-blue"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 font-heading">Mobile Applications</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Cross-platform mobile apps with React Native. Native performance without double the codebase.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs font-mono bg-cyber-blue/10 text-cyber-blue px-2 py-1 rounded-full">React Native</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">iOS</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">Android</span>
+            </div>
+          </div>
+
+          <!-- Card: Data Engineering -->
+          <div class="glass-card rounded-2xl p-8 hover:border-grass-green/30 transition-all hover:-translate-y-1 group">
+            <div class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-grass-green/20 transition-colors">
+              <i data-lucide="database" class="w-6 h-6 text-grass-green"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 font-heading">Data Engineering</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              ETL pipelines, data warehouses, and analytics dashboards. Turn raw data into actionable intelligence.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs font-mono bg-grass-green/10 text-grass-green px-2 py-1 rounded-full">PostgreSQL</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">Python</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">ETL</span>
+            </div>
+          </div>
+
+          <!-- Card: Cloud & DevOps -->
+          <div class="glass-card rounded-2xl p-8 hover:border-cyber-blue/30 transition-all hover:-translate-y-1 group">
+            <div class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-cyber-blue/20 transition-colors">
+              <i data-lucide="cloud" class="w-6 h-6 text-cyber-blue"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 font-heading">Cloud & DevOps</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              CI/CD pipelines, containerization, and cloud infrastructure. Deploy faster with confidence.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs font-mono bg-cyber-blue/10 text-cyber-blue px-2 py-1 rounded-full">Azure</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">Docker</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-2 py-1 rounded-full">CI/CD</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-24 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16">
+          <p class="text-grass-green font-mono text-sm tracking-widest mb-4 uppercase">// PROCESS</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-white font-heading">How We Work</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="glass-card rounded-2xl p-6 relative">
+            <div class="text-grass-green font-mono text-xs tracking-widest mb-4">01</div>
+            <h3 class="text-lg font-bold text-white mb-2 font-heading">Discovery</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">We map your problem space, goals, and constraints before touching a line of code.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-6">
+            <div class="text-cyber-blue font-mono text-xs tracking-widest mb-4">02</div>
+            <h3 class="text-lg font-bold text-white mb-2 font-heading">Architecture</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">We design the system — stack, structure, and integrations — optimized for your scale.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-6">
+            <div class="text-grass-green font-mono text-xs tracking-widest mb-4">03</div>
+            <h3 class="text-lg font-bold text-white mb-2 font-heading">Build & Ship</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Iterative development with regular demos. You stay in the loop at every milestone.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-6">
+            <div class="text-cyber-blue font-mono text-xs tracking-widest mb-4">04</div>
+            <h3 class="text-lg font-bold text-white mb-2 font-heading">Support</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Post-launch monitoring, maintenance, and iteration. We don't disappear after deploy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-24 border-t border-white/5">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-grass-green font-mono text-sm tracking-widest mb-4 uppercase">// READY?</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-white font-heading mb-6">Let's Build Something</h2>
+        <p class="text-gray-400 text-lg mb-10">Tell us what you need. We'll tell you what's possible.</p>
+        <a
+          href="mailto:grasshopper.it.solutions@gmail.com"
+          class="inline-flex items-center gap-2 bg-grass-green text-black font-mono font-bold px-10 py-4 rounded-full hover:bg-grass-green/90 transition-all hover:scale-105 active:scale-95 text-sm"
+        >
+          START_PROJECT
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Shared Footer (contact CTA + footer bar) -->
+    <div id="site-footer"></div>
+
+    <script>
+      function loadComponent(id, url, callback) {
+        fetch(url)
+          .then(r => r.text())
+          .then(html => {
+            document.getElementById(id).innerHTML = html;
+            lucide.createIcons();
+            if (callback) callback();
+          })
+          .catch(err => console.warn("Component load error:", url, err));
+      }
+
+      function initHeader() {
+        const btn  = document.getElementById("mobile-menu-btn");
+        const menu = document.getElementById("mobile-menu");
+        if (btn && menu) {
+          btn.addEventListener("click", () => {
+            const expanded = btn.getAttribute("aria-expanded") === "true";
+            btn.setAttribute("aria-expanded", String(!expanded));
+            menu.classList.toggle("hidden");
+          });
+        }
+        const activePage = document.getElementById("site-header").dataset.activePage;
+        if (activePage) {
+          document.querySelectorAll('[data-nav="' + activePage + '"]').forEach(el => {
+            el.classList.add("text-cyber-blue");
+          });
+        }
+      }
+
+      function initFooter() {
+        setInterval(() => {
+          const el = document.getElementById("time");
+          if (el) el.innerText = new Date().toTimeString().split(" ")[0];
+        }, 1000);
+        const yearEl = document.getElementById("footer-year");
+        if (yearEl) yearEl.innerText = new Date().getFullYear();
+      }
+
+      function notify() {
+        const toast = document.getElementById("notification-toast");
+        if (toast) { toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 3000); }
+      }
+
+      function toggleAIBubble() {
+        const bubble = document.getElementById("ai-bubble");
+        if (bubble) bubble.classList.toggle("hidden");
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        loadComponent("site-header", "/header.html", initHeader);
+        loadComponent("site-footer", "/footer.html", initFooter);
+      });
+    </script>
+    <script src="/js/script.js" defer></script>
+  </body>
+</html>
