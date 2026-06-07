@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grasshopper IT Solutions – Projects</title>
+    <link
+      rel="icon"
+      href="/assets/grasshopper-geometric-logo.svg"
+      type="image/svg+xml"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "grass-green": "#00ff41",
+              "cyber-blue": "#00dbde",
+              "cyber-red": "#ff003c",
+              "deep-space": "#0a0a0a",
+              "code-gray": "#1e1e1e",
+              "card-gray": "#151515",
+              "neon-red": "#ff073a",
+              "tales-amber": "#b45309",
+              "tales-action": "#991b1b",
+              "kitchen-orange": "#ea580c",
+              "kitchen-red": "#dc2626",
+            },
+            fontFamily: {
+              mono: ['"Space Mono"', "monospace"],
+              sans: ['"Inter"', "sans-serif"],
+              heading: ['"Outfit"', "sans-serif"],
+            },
+            animation: {
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              float: "float 3s ease-in-out infinite",
+              scroll: "scroll 60s linear infinite",
+              "bounce-x": "bounce-x 1s infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+              scroll: {
+                "0%": { transform: "translateX(0)" },
+                "100%": { transform: "translateX(-50%)" },
+              },
+              "bounce-x": {
+                "0%, 100%": { transform: "translateX(0)" },
+                "50%": { transform: "translateX(5px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #0a0a0a; }
+      ::-webkit-scrollbar-thumb { background: #1e1e1e; border: 1px solid #00ff41; }
+
+      .glitch-wrapper { position: relative; display: inline-block; }
+      .glitch-wrapper::before,
+      .glitch-wrapper::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+      }
+      .glitch-wrapper::before {
+        animation: glitch-1 3s infinite;
+        color: #00ff41;
+        clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+        transform: translate(-2px);
+      }
+      .glitch-wrapper::after {
+        animation: glitch-2 3s infinite;
+        color: #00dbde;
+        clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+        transform: translate(2px);
+      }
+      @keyframes glitch-1 {
+        0%, 90%, 100% { transform: translate(-2px); opacity: 0; }
+        92% { transform: translate(-4px); opacity: 1; }
+        94% { transform: translate(2px); opacity: 1; }
+        96% { transform: translate(-2px); opacity: 0; }
+      }
+      @keyframes glitch-2 {
+        0%, 90%, 100% { transform: translate(2px); opacity: 0; }
+        92% { transform: translate(4px); opacity: 1; }
+        94% { transform: translate(-2px); opacity: 1; }
+        96% { transform: translate(2px); opacity: 0; }
+      }
+
+      .neon-text {
+        text-shadow: 0 0 5px rgba(0,255,65,0.5), 0 0 10px rgba(0,255,65,0.3);
+      }
+      .glass-card {
+        background: rgba(21,21,21,0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.05);
+      }
+      .carousel-scroll::-webkit-scrollbar { display: none; }
+      .carousel-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+      #notification-toast {
+        transform: translateY(100px);
+        transition: transform 0.3s ease-out;
+      }
+      #notification-toast.show { transform: translateY(0); }
+
+      @keyframes fade-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
+    </style>
+  </head>
+  <body
+    class="bg-deep-space text-gray-300 font-sans antialiased selection:bg-grass-green selection:text-black overflow-x-hidden"
+  >
+    <!-- Notification Toast -->
+    <div
+      id="notification-toast"
+      class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-cyber-blue text-black font-mono font-bold px-6 py-3 rounded-full shadow-2xl flex items-center gap-3"
+    >
+      <i data-lucide="info" class="w-5 h-5"></i>
+      <span>Module coming soon...</span>
+    </div>
+
+    <!-- Floating AI Agent (Grassy Hopper) -->
+    <div class="fixed bottom-8 right-8 z-[60] flex flex-col items-end">
+      <div
+        id="ai-bubble"
+        class="hidden mb-4 glass-card p-4 rounded-2xl border border-grass-green/30 max-w-[200px] text-xs font-mono text-white animate-fade-in shadow-2xl"
+      >
+        <p class="mb-2 text-grass-green">// GRASSY_HOPPER_v1.0</p>
+        <p>Neural chat interface coming soon to assist your build.</p>
+      </div>
+      <button
+        onclick="toggleAIBubble()"
+        class="animate-float w-16 h-16 rounded-full bg-grass-green flex items-center justify-center shadow-[0_0_20px_rgba(0,255,65,0.4)] hover:scale-110 transition-transform group overflow-hidden border-2 border-white/20"
+      >
+        <div
+          class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"
+        ></div>
+        <img
+          src="/assets/grasshopper-geometric-logo.svg"
+          alt="Grasshopper Logo"
+          class="w-10 h-10"
+        />
+      </button>
+    </div>
+
+    <!-- Shared Header -->
+    <div id="site-header" data-active-page="projects"></div>
+
+    <!-- Hero Section -->
+    <section
+      class="relative pt-32 pb-20 lg:pt-56 lg:pb-32 overflow-hidden min-h-screen flex items-center"
+    >
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_right,#1e1e1e_1px,transparent_1px),linear-gradient(to_bottom,#1e1e1e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"
+      ></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div
+              class="inline-flex items-center px-3 py-1 mb-6 text-xs font-mono font-semibold tracking-tighter text-cyber-blue uppercase bg-cyber-blue/10 rounded-full border border-cyber-blue/20"
+            >
+              <span
+                class="w-2 h-2 bg-cyber-blue rounded-full mr-2 animate-ping"
+              ></span>
+              Status: Systems Optimal
+            </div>
+            <h1
+              class="text-5xl md:text-8xl font-bold font-heading tracking-tight mb-6 leading-[0.9] text-white"
+            >
+              <span class="block glitch-wrapper" data-text="Project"
+                >Project</span
+              >
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-grass-green to-cyber-blue"
+                >Portfolio.</span
+              >
+            </h1>
+            <p
+              class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed font-sans font-light"
+            >
+              Explore our diverse portfolio of digital solutions, from personal
+              branding sites to enterprise applications and interactive web
+              experiences.
+            </p>
+            <div class="flex flex-wrap gap-4 items-center">
+              <a
+                href="mailto:grasshopper.it.solutions@gmail.com"
+                class="bg-grass-green text-black font-bold py-4 px-10 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)]"
+              >
+                Start Project
+              </a>
+              <div
+                class="flex items-center gap-4 px-4 py-2 bg-white/5 rounded-full border border-white/10 ml-2"
+              >
+                <button
+                  onclick="notify()"
+                  class="hover:text-white transition-colors"
+                >
+                  <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </button>
+                <a
+                  href="https://github.com/grasshopperitsolutions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-white transition-colors"
+                >
+                  <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                <button
+                  onclick="notify()"
+                  class="hover:text-white transition-colors"
+                >
+                  <i data-lucide="instagram" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="relative hidden lg:flex justify-end">
+            <div class="relative w-80 h-80 md:w-96 md:h-96">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-grass-green to-cyber-blue rounded-full blur-3xl opacity-20 animate-pulse-slow"
+              ></div>
+              <div
+                class="relative w-full h-full bg-card-gray/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center animate-float shadow-2xl"
+              >
+                <div class="w-48 h-48 mb-6 relative">
+                  <img
+                    src="/assets/grasshopper-geometric-logo.svg"
+                    alt="Grasshopper Logo"
+                    class="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,65,0.6)]"
+                  />
+                </div>
+                <div class="text-center w-full">
+                  <h3 class="text-2xl font-mono text-white font-bold">
+                    Project Archive
+                  </h3>
+                  <div
+                    class="h-px w-full bg-gradient-to-r from-transparent via-grass-green to-transparent my-3"
+                  ></div>
+                  <p class="text-cyber-blue font-mono text-sm">
+                    > Portfolio.View()
+                  </p>
+                </div>
+                <div
+                  class="absolute -top-4 -right-4 bg-black border border-grass-green text-grass-green px-3 py-1 rounded-full text-xs font-mono transform rotate-12"
+                >
+                  V 1.0
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personal Identities / Portfolio Carousel -->
+    <section
+      id="portfolio"
+      class="py-32 relative bg-deep-space overflow-hidden"
+    >
+      <div
+        class="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-grass-green opacity-5 rounded-full blur-[100px]"
+      ></div>
+      <div
+        class="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-cyber-blue opacity-5 rounded-full blur-[100px]"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex justify-between items-end mb-16">
+          <div>
+            <p
+              class="text-grass-green font-mono text-sm mb-2 tracking-widest uppercase"
+            >
+              // DIGITAL_IDENTITIES
+            </p>
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
+              Personal Landing Pages
+            </h2>
+          </div>
+          <div class="hidden md:flex gap-4">
+            <button
+              id="slide-prev"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-grass-green hover:text-black hover:border-grass-green transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+            <button
+              id="slide-next"
+              class="w-12 h-12 rounded-full border border-white/10 bg-black/50 hover:bg-cyber-blue hover:text-black hover:border-cyber-blue transition-all flex items-center justify-center group"
+            >
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="carousel-container"
+          class="carousel-scroll flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth"
+        >
+          <!-- Card 1: Ludovica Piro -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="flex-1 bg-white/5 rounded-md px-3 py-1 text-xs font-mono text-gray-500"
+              >
+                ludovicapiro.com
+              </div>
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-gray-600"></i>
+            </div>
+            <div class="p-8">
+              <div class="flex items-start justify-between mb-6">
+                <div>
+                  <span
+                    class="text-xs font-mono text-grass-green bg-grass-green/10 px-2 py-1 rounded-full"
+                    >PERSONAL_BRAND</span
+                  >
+                  <h3
+                    class="text-2xl font-bold text-white mt-3 font-heading"
+                  >
+                    Ludovica Piro
+                  </h3>
+                  <p class="text-gray-400 text-sm mt-1">
+                    International Model &amp; Artist
+                  </p>
+                </div>
+                <div
+                  class="w-16 h-16 rounded-full bg-gradient-to-br from-grass-green/20 to-cyber-blue/20 border border-white/10 flex items-center justify-center overflow-hidden"
+                >
+                  <i data-lucide="user" class="w-8 h-8 text-grass-green/50"></i>
+                </div>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                A sleek personal branding site with portfolio gallery, booking
+                system, and multilingual support for an international audience.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10"
+                  >Next.js</span
+                >
+                <span
+                  class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10"
+                  >Tailwind</span
+                >
+                <span
+                  class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10"
+                  >i18n</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <a
+                  href="https://ludovicapiro.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 bg-grass-green text-black font-mono text-xs font-bold py-3 rounded-xl hover:bg-grass-green/90 transition-colors text-center"
+                  >VIEW_LIVE</a
+                >
+                <button
+                  onclick="notify()"
+                  class="px-4 py-3 border border-white/10 rounded-xl hover:border-white/30 transition-colors"
+                >
+                  <i data-lucide="github" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Tales From The Fog -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-tales-amber/50 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="flex-1 bg-white/5 rounded-md px-3 py-1 text-xs font-mono text-gray-500"
+              >
+                talesfromthefog.com
+              </div>
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-gray-600"></i>
+            </div>
+            <div class="p-8">
+              <div class="flex items-start justify-between mb-6">
+                <div>
+                  <span
+                    class="text-xs font-mono text-tales-amber bg-tales-amber/10 px-2 py-1 rounded-full"
+                    >BRAND_SITE</span
+                  >
+                  <h3 class="text-2xl font-bold text-white mt-3 font-heading">
+                    Tales From The Fog
+                  </h3>
+                  <p class="text-gray-400 text-sm mt-1">Horror Board Game Brand</p>
+                </div>
+                <div
+                  class="w-16 h-16 rounded-full bg-gradient-to-br from-tales-amber/20 to-tales-action/20 border border-white/10 flex items-center justify-center"
+                >
+                  <i data-lucide="ghost" class="w-8 h-8 text-tales-amber/50"></i>
+                </div>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                Atmospheric brand site for a horror board game. Dark aesthetic,
+                lore-rich storytelling, and an integrated e-commerce experience.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10"
+                  >React</span
+                >
+                <span
+                  class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10"
+                  >GSAP</span
+                >
+                <span
+                  class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10"
+                  >Shopify</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <a
+                  href="https://talesfromthefog.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 bg-tales-amber text-black font-mono text-xs font-bold py-3 rounded-xl hover:bg-tales-amber/90 transition-colors text-center"
+                  >VIEW_LIVE</a
+                >
+                <button
+                  onclick="notify()"
+                  class="px-4 py-3 border border-white/10 rounded-xl hover:border-white/30 transition-colors"
+                >
+                  <i data-lucide="github" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Chef Placeholder -->
+          <div
+            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-kitchen-orange/50 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="flex-1 bg-white/5 rounded-md px-3 py-1 text-xs font-mono text-gray-500"
+              >
+                comingsoon.dev
+              </div>
+              <i data-lucide="lock" class="w-3.5 h-3.5 text-gray-600"></i>
+            </div>
+            <div class="p-8">
+              <div class="flex items-start justify-between mb-6">
+                <div>
+                  <span
+                    class="text-xs font-mono text-kitchen-orange bg-kitchen-orange/10 px-2 py-1 rounded-full"
+                    >IN_PROGRESS</span
+                  >
+                  <h3 class="text-2xl font-bold text-white mt-3 font-heading">
+                    Chef Portfolio
+                  </h3>
+                  <p class="text-gray-400 text-sm mt-1">
+                    Culinary Artist &amp; Restaurant Brand
+                  </p>
+                </div>
+                <div
+                  class="w-16 h-16 rounded-full bg-gradient-to-br from-kitchen-orange/20 to-kitchen-red/20 border border-white/10 flex items-center justify-center"
+                >
+                  <i data-lucide="chef-hat" class="w-8 h-8 text-kitchen-orange/50"></i>
+                </div>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                A rich culinary portfolio featuring recipe showcases, restaurant
+                bookings, and a visual feast of photography and video.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10"
+                  >Next.js</span
+                >
+                <span
+                  class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10"
+                  >Sanity CMS</span
+                >
+                <span
+                  class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10"
+                  >Stripe</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <button
+                  onclick="notify()"
+                  class="flex-1 bg-white/5 text-gray-400 font-mono text-xs font-bold py-3 rounded-xl border border-white/10 cursor-not-allowed text-center"
+                >
+                  IN_PROGRESS
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enterprise / Web Apps Section -->
+    <section class="py-32 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16">
+          <p class="text-cyber-blue font-mono text-sm mb-2 tracking-widest uppercase">
+            // ENTERPRISE_APPS
+          </p>
+          <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">
+            Web Applications
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          <!-- App Card 1 -->
+          <div class="glass-card rounded-2xl p-8 border border-white/10 hover:border-cyber-blue/30 transition-all group">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center group-hover:bg-cyber-blue/20 transition-colors">
+                <i data-lucide="layout-dashboard" class="w-6 h-6 text-cyber-blue"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-cyber-blue bg-cyber-blue/10 px-2 py-0.5 rounded-full">DELIVERED</span>
+                <h3 class="text-xl font-bold text-white font-heading mt-1">Operations Dashboard</h3>
+              </div>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Real-time KPI dashboard for a logistics company. Live data feeds, role-based access, and exportable reports.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10">.NET</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10">React</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10">PostgreSQL</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10">Azure</span>
+            </div>
+          </div>
+
+          <!-- App Card 2 -->
+          <div class="glass-card rounded-2xl p-8 border border-white/10 hover:border-grass-green/30 transition-all group">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-grass-green/10 rounded-xl flex items-center justify-center group-hover:bg-grass-green/20 transition-colors">
+                <i data-lucide="bot" class="w-6 h-6 text-grass-green"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-grass-green bg-grass-green/10 px-2 py-0.5 rounded-full">IN_PROGRESS</span>
+                <h3 class="text-xl font-bold text-white font-heading mt-1">AI Support Agent</h3>
+              </div>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Intelligent customer support automation. Integrates with existing CRM, handles tier-1 tickets autonomously.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10">Python</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10">FastAPI</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10">OpenAI</span>
+              <span class="text-xs font-mono bg-white/5 text-gray-400 px-3 py-1 rounded-full border border-white/10">Redis</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 border-t border-white/5">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-grass-green font-mono text-sm tracking-widest mb-4 uppercase">// YOUR_PROJECT</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-white font-heading mb-6">Ready to Ship?</h2>
+        <p class="text-gray-400 text-lg mb-10">Your idea deserves production-grade execution.</p>
+        <a
+          href="mailto:grasshopper.it.solutions@gmail.com"
+          class="inline-flex items-center gap-2 bg-grass-green text-black font-mono font-bold px-10 py-4 rounded-full hover:bg-grass-green/90 transition-all hover:scale-105 active:scale-95 text-sm"
+        >
+          START_PROJECT
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Shared Footer -->
+    <div id="site-footer"></div>
+
+    <script>
+      // Carousel
+      const container = document.getElementById("carousel-container");
+      document.getElementById("slide-next")?.addEventListener("click", () => {
+        container.scrollBy({ left: 540, behavior: "smooth" });
+      });
+      document.getElementById("slide-prev")?.addEventListener("click", () => {
+        container.scrollBy({ left: -540, behavior: "smooth" });
+      });
+
+      function loadComponent(id, url, callback) {
+        fetch(url)
+          .then(r => r.text())
+          .then(html => {
+            document.getElementById(id).innerHTML = html;
+            lucide.createIcons();
+            if (callback) callback();
+          })
+          .catch(err => console.warn("Component load error:", url, err));
+      }
+
+      function initHeader() {
+        const btn  = document.getElementById("mobile-menu-btn");
+        const menu = document.getElementById("mobile-menu");
+        if (btn && menu) {
+          btn.addEventListener("click", () => {
+            const expanded = btn.getAttribute("aria-expanded") === "true";
+            btn.setAttribute("aria-expanded", String(!expanded));
+            menu.classList.toggle("hidden");
+          });
+        }
+        const activePage = document.getElementById("site-header").dataset.activePage;
+        if (activePage) {
+          document.querySelectorAll('[data-nav="' + activePage + '"]').forEach(el => {
+            el.classList.add("text-cyber-blue");
+          });
+        }
+      }
+
+      function initFooter() {
+        setInterval(() => {
+          const el = document.getElementById("time");
+          if (el) el.innerText = new Date().toTimeString().split(" ")[0];
+        }, 1000);
+        const yearEl = document.getElementById("footer-year");
+        if (yearEl) yearEl.innerText = new Date().getFullYear();
+      }
+
+      function notify() {
+        const toast = document.getElementById("notification-toast");
+        if (toast) { toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 3000); }
+      }
+
+      function toggleAIBubble() {
+        const bubble = document.getElementById("ai-bubble");
+        if (bubble) bubble.classList.toggle("hidden");
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        loadComponent("site-header", "/header.html", initHeader);
+        loadComponent("site-footer", "/footer.html", initFooter);
+      });
+    </script>
+    <script src="/js/script.js" defer></script>
+  </body>
+</html>
