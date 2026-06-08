@@ -1,0 +1,1147 @@
+<!doctype html>
+<html lang="es-CO" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Costos - Grasshopper IT Solutions</title>
+    <link
+      rel="icon"
+      href="../assets/grasshopper-geometric-logo.svg"
+      type="image/svg+xml"
+    />
+    <!-- SEO: Canonical & hreflang -->
+    <link rel="canonical" href="https://grasshoppersolutions.online/es-co/project-cost-calculator.html" />
+    <link rel="alternate" hreflang="en-us" href="https://grasshoppersolutions.online/en-us/project-cost-calculator.html" />
+    <link rel="alternate" hreflang="es-co" href="https://grasshoppersolutions.online/es-co/project-cost-calculator.html" />
+    <link rel="alternate" hreflang="x-default" href="https://grasshoppersolutions.online/" />
+    <meta name="description" content="Configura, calcula y genera estimaciones técnicas para páginas de aterrizaje escalables, integraciones de sistemas y componentes modulares adicionales." />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../styles/main.css" />
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "grass-green": "#00ff41",
+              "cyber-blue": "#00dbde",
+              "cyber-red": "#ff003c",
+              "deep-space": "#0a0a0a",
+              "code-gray": "#1e1e1e",
+              "card-gray": "#151515",
+              "neon-red": "#ff073a",
+              "tales-amber": "#b45309",
+              "tales-action": "#991b1b",
+              "kitchen-orange": "#ea580c",
+              "kitchen-red": "#dc2626",
+            },
+            fontFamily: {
+              mono: ['"Space Mono"', "monospace"],
+              sans: ['"Inter"', "sans-serif"],
+              heading: ['"Outfit"', "sans-serif"],
+            },
+            animation: {
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              float: "float 3s ease-in-out infinite",
+              scroll: "scroll 60s linear infinite",
+              "bounce-x": "bounce-x 1s infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+              scroll: {
+                "0%": { transform: "translateX(0)" },
+                "100%": { transform: "translateX(-50%)" },
+              },
+              "bounce-x": {
+                "0%, 100%": { transform: "translateX(0)" },
+                "50%": { transform: "translateX(5px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <!-- html2pdf.js for Client-Side PDF Generation -->
+    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+
+    <style>
+      /* Calculator-specific utility styles */
+      .calc-input {
+        @apply w-full bg-code-gray border border-white/10 text-white font-mono rounded px-3 py-2 text-sm focus:outline-none focus:border-grass-green/40 focus:ring-1 focus:ring-grass-green/40 transition;
+      }
+      .calc-badge {
+        @apply absolute top-0 right-0 transform -translate-y-1/2 translate-x-4 bg-code-gray/90 border border-grass-green/40 text-[10px] font-mono text-grass-green px-2.5 py-0.5 rounded-full uppercase tracking-widest shadow-[0_0_10px_rgba(0,255,65,0.15)];
+      }
+      .calc-section {
+        @apply bg-card-gray/80 border border-white/10 p-6 rounded-xl relative shadow-sm;
+      }
+      .calc-label {
+        @apply inline-flex items-center px-3 py-1 mb-6 text-xs font-mono font-semibold tracking-tighter text-grass-green uppercase bg-grass-green/10 rounded-full border border-grass-green/20;
+      }
+      .calc-stat-box {
+        @apply bg-deep-space p-4 rounded-lg border border-white/10;
+      }
+      .calc-total-display {
+        @apply text-2xl md:text-3xl font-extrabold text-grass-green font-mono transition-all duration-300;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-deep-space text-gray-300 font-sans antialiased selection:bg-grass-green selection:text-black overflow-x-hidden"
+  >
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- HERO HEADER -->
+    <header class="relative overflow-hidden pt-32 pb-6 border-b border-white/10 bg-gradient-to-b from-card-gray to-deep-space">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(0,255,65,0.06),rgba(0,0,0,0))] pointer-events-none"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <div class="calc-label">
+              <span class="w-2 h-2 bg-grass-green rounded-full mr-2 animate-ping"></span>
+              ESTIMADOR DE PROYECTOS
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold font-heading tracking-tight text-white leading-[1.1]">
+              Calculadora de <span class="text-transparent bg-clip-text bg-gradient-to-r from-grass-green to-cyber-blue">Costos</span>
+            </h1>
+            <p class="mt-3 text-gray-400 max-w-2xl text-sm md:text-base leading-relaxed">
+              Configura, calcula y genera estimaciones técnicas para páginas de aterrizaje escalables, integraciones de sistemas y componentes modulares adicionales.
+            </p>
+          </div>
+
+          <!-- Preset Selectors -->
+          <div class="flex flex-col gap-2 min-w-[240px] md:self-center">
+            <span class="text-xs font-mono text-gray-500 flex items-center gap-1">
+              <i data-lucide="zap" class="text-grass-green w-3.5 h-3.5"></i> CARGAR PREDETERMINADO:
+            </span>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="applyPreset('basic')" class="py-1.5 px-2 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-grass-green/50 text-xs font-mono rounded transition duration-200">
+                Básico
+              </button>
+              <button onclick="applyPreset('portfolio')" class="py-1.5 px-2 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-grass-green/50 text-xs font-mono rounded transition duration-200">
+                Agencia
+              </button>
+              <button onclick="applyPreset('enterprise')" class="py-1.5 px-2 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-grass-green/50 text-xs font-mono rounded transition duration-200">
+                Pro Pack
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- LEFT PANEL: CONFIGURATION (Col span: 7) -->
+      <section class="lg:col-span-7 flex flex-col gap-6">
+
+        <!-- SECTION 1: BASE SYSTEM VALUE -->
+        <div class="calc-section">
+          <div class="calc-badge">Módulo Principal</div>
+          <h3 class="text-lg font-semibold text-white flex items-center gap-2 mb-4">
+            <span class="text-grass-green text-sm font-mono">[01]</span> Configuración Base
+          </h3>
+
+          <div class="grid grid-cols-1 gap-6">
+            <!-- Raw Base Value Indicator -->
+            <div class="calc-stat-box">
+              <label class="block text-xs font-mono text-gray-500 mb-1">VALOR BASE ESTÁNDAR</label>
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl font-extrabold text-white font-mono">$250</span>
+                <span class="text-xs text-gray-600 font-mono">USD</span>
+              </div>
+              <p class="text-[11px] text-gray-600 mt-2 leading-relaxed">
+                Cubre el despliegue completo de la arquitectura, configuración del framework de estilos y layout responsivo de la página principal.
+              </p>
+            </div>
+          </div>
+
+          <!-- Calculated Real-Time Base Price -->
+          <div class="mt-4 p-3.5 bg-grass-green/5 border border-grass-green/20 rounded-lg flex items-center justify-between">
+            <span class="text-xs font-mono text-gray-400">PRODUCE BASE MODIFICADA:</span>
+            <span class="text-lg font-bold text-grass-green font-mono" id="calculated-base-price">$100.00 USD</span>
+          </div>
+        </div>
+
+        <!-- SECTION 2: MODULAR COMPONENTS (EXTRA PAGES) -->
+        <div class="calc-section">
+          <div class="absolute top-0 right-0 transform -translate-y-1/2 translate-x-4 bg-code-gray/90 border border-gray-500/40 text-[10px] font-mono text-gray-400 px-2.5 py-0.5 rounded-full uppercase tracking-widest">
+            25% del Valor Base
+          </div>
+          <h3 class="text-lg font-semibold text-white flex items-center gap-2 mb-2">
+            <span class="text-grass-green text-sm font-mono">[02]</span> Páginas Adicionales
+          </h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">
+            Secciones secundarias estándar. Subpáginas responsivas estructuradas y estilizadas individualmente.
+            <span class="text-grass-green/90 font-mono">(Tarifa actual: <span class="rate-pages">$25.00</span> por unidad)</span>
+          </p>
+
+          <!-- Static Toggles for Pages -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="page-contacts" class="page-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Página de Contacto</span>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$25.00</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="page-portfolio" class="page-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Portafolio Dinámico</span>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$25.00</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="page-services" class="page-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Servicios Detallados</span>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$25.00</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="page-about" class="page-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Acerca / Equipo</span>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$25.00</span>
+            </label>
+          </div>
+
+          <!-- Dynamic User-added Extra Pages -->
+          <div class="border-t border-white/10 pt-4">
+            <label class="block text-xs font-mono text-gray-500 mb-2">AGREGAR DISEÑOS ADICIONALES:</label>
+            <div class="flex gap-2">
+              <input 
+                type="text" 
+                id="custom-page-name" 
+                class="calc-input flex-grow" 
+                placeholder="Ej: Términos, Carreras, FAQ..."
+              >
+              <button 
+                type="button" 
+                onclick="addCustomPage()" 
+                class="px-4 py-1.5 bg-card-gray hover:bg-grass-green hover:text-black border border-grass-green/30 text-xs font-mono font-bold rounded transition"
+              >
+                + AGREGAR
+              </button>
+            </div>
+            <!-- Dynamic Tag Container -->
+            <div id="custom-pages-container" class="flex flex-wrap gap-2 mt-3 empty:mt-0">
+              <!-- Dynamic tags injected here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: SYSTEM INTEGRATIONS (HIGH VALUE INTEGRATIONS) -->
+        <div class="calc-section">
+          <div class="absolute top-0 right-0 transform -translate-y-1/2 translate-x-4 bg-code-gray/90 border border-gray-500/40 text-[10px] font-mono text-gray-400 px-2.5 py-0.5 rounded-full uppercase tracking-widest">
+            50% del Valor Base
+          </div>
+          <h3 class="text-lg font-semibold text-white flex items-center gap-2 mb-2">
+            <span class="text-grass-green text-sm font-mono">[03]</span> Integraciones de Alto Valor
+          </h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">
+            Inyectando protocolos de automatización externa, manejadores de webhook e integraciones de scripts de terceros.
+            <span class="text-grass-green/90 font-mono">(Tarifa actual: <span class="rate-integrations">$50.00</span> por integración)</span>
+          </p>
+
+          <!-- Predefined list of popular integrations -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="integration-whatsapp" class="integration-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Widget de Chat WhatsApp</span>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$50.00</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="integration-calendar" class="integration-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Agendador Google / Calendly</span>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$50.00</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="integration-gdrive" class="integration-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Cargador de Archivos GDrive</span>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$50.00</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="integration-form" class="integration-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Webhook de Formulario</span>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$50.00</span>
+            </label>
+          </div>
+
+          <!-- Custom Integrations -->
+          <div class="border-t border-white/10 pt-4">
+            <label class="block text-xs font-mono text-gray-500 mb-2">MANEJADOR DE INTEGRACIÓN PERSONALIZADO:</label>
+            <div class="flex gap-2">
+              <input 
+                type="text" 
+                id="custom-integration-name" 
+                class="calc-input flex-grow" 
+                placeholder="Ej: Mailchimp, Stripe, API Personalizada..."
+              >
+              <button 
+                type="button" 
+                onclick="addCustomIntegration()" 
+                class="px-4 py-1.5 bg-card-gray hover:bg-grass-green hover:text-black border border-grass-green/30 text-xs font-mono font-bold rounded transition"
+              >
+                + AGREGAR
+              </button>
+            </div>
+            <!-- Dynamic Integration tag Container -->
+            <div id="custom-integrations-container" class="flex flex-wrap gap-2 mt-3 empty:mt-0">
+              <!-- Injected dynamic items -->
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: EXTRA HIGH-VALUE FEATURES (SIMPLE INTEGRATIONS) -->
+        <div class="calc-section">
+          <div class="absolute top-0 right-0 transform -translate-y-1/2 translate-x-4 bg-code-gray/90 border border-gray-500/40 text-[10px] font-mono text-gray-400 px-2.5 py-0.5 rounded-full uppercase tracking-widest">
+            20% del Valor Base
+          </div>
+          <h3 class="text-lg font-semibold text-white flex items-center gap-2 mb-2">
+            <span class="text-grass-green text-sm font-mono">[04]</span> Integraciones Simples
+          </h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">
+            Especificaciones funcionales avanzadas, activos de todo el sitio y configuraciones de localización.
+            <span class="text-grass-green/90 font-mono">(Tarifa actual: <span class="rate-features">$20.00</span> por configuración)</span>
+          </p>
+
+          <!-- Static checkboxes representing requested properties -->
+          <div class="space-y-3">
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="feature-seo" class="feature-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <div>
+                  <span class="text-sm font-medium text-gray-300 block">Configuración SEO y GEO</span>
+                  <span class="text-[11px] text-gray-600">Optimización de índice Google, protocolos OpenGraph, ajustes SEO locales.</span>
+                </div>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-features">$20.00</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="feature-domain" class="feature-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <div>
+                  <span class="text-sm font-medium text-gray-300 block">Configuración de Dominio Personalizado y DNS</span>
+                  <span class="text-[11px] text-gray-600">Enrutamiento y configuración de servidores con generación SSL.</span>
+                </div>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-features">$20.00</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
+              <span class="flex items-center gap-3">
+                <input type="checkbox" id="feature-multilang" class="feature-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <div>
+                  <span class="text-sm font-medium text-gray-300 block">Framework Multi-idioma (i18n)</span>
+                  <span class="text-[11px] text-gray-600">Estructura lista para cambios de localización y traducciones del sistema.</span>
+                </div>
+              </span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-features">$20.00</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL: CALCULATION RESULTS & EXPORTS (Col span: 5) -->
+      <section class="lg:col-span-5 flex flex-col gap-6">
+        
+        <!-- COMPILE ACTION -->
+        <div class="calc-section flex flex-col justify-between">
+          <h3 class="text-sm font-mono text-gray-500 uppercase tracking-wider mb-2">PIPELINE DEL ESTIMADOR</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-normal">
+            Haz clic para compilar parámetros, actualizar elementos dinámicos y generar la cotización oficial.
+          </p>
+
+          <button 
+            id="compile-btn"
+            onclick="runCalculationAnimation()"
+            class="w-full text-center py-4 bg-grass-green text-black font-mono font-extrabold rounded-lg hover:shadow-[0_0_30px_rgba(0,255,65,0.3)] shadow-[0_0_15px_rgba(0,255,65,0.2)] active:translate-y-[1px] transition-all duration-300 flex items-center justify-center gap-2"
+          >
+            <i data-lucide="calculator" class="w-5 h-5"></i>
+            <span>COMPILAR PROYECCIÓN DE COSTOS</span>
+          </button>
+        </div>
+
+        <!-- INVOICE / RECEIPT CONTAINER (PDF TARGET) -->
+        <div id="invoice-scope" class="bg-card-gray border-2 border-grass-green/30 p-6 rounded-xl shadow-[0_0_15px_rgba(0,255,65,0.15)] relative overflow-hidden">
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(0,255,65,0.03),rgba(0,0,0,0))] pointer-events-none"></div>
+          
+          <div>
+            <!-- Logo & Meta -->
+            <div class="flex items-start justify-between border-b border-white/10 pb-4 mb-4">
+              <div>
+                <h2 class="text-md font-mono text-white tracking-widest flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-grass-green inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 20l4-4h12l2-4-8-4-4 4-6-2v6l2 4z"/>
+                  </svg> GRASSHOPPER
+                </h2>
+                <span class="text-[9px] text-gray-500 font-mono block">BLUEPRINT_IDENTIFIER: GR_PROJ_924</span>
+              </div>
+              <div class="text-right font-mono">
+                <span class="text-[10px] text-grass-green bg-grass-green/10 px-2 py-0.5 rounded border border-grass-green/30 inline-block font-semibold">
+                  COTIZACIÓN ESTIMADA
+                </span>
+                <span class="block text-[9px] text-gray-600 mt-1" id="quote-timestamp">GEN_DATE: --/--/--</span>
+              </div>
+            </div>
+
+            <!-- Base details -->
+            <div class="mb-4">
+              <span class="text-[10px] font-mono text-gray-600 block uppercase">CONFIGURACIÓN DEL SISTEMA</span>
+              <div class="flex items-center justify-between text-sm py-1">
+                <span class="text-gray-400 font-medium">Base de Página Principal</span>
+                <span class="text-white font-mono" id="invoice-base-price">$100.00</span>
+              </div>
+              <div id="invoice-discount-row" class="flex items-center justify-between text-xs py-1 text-emerald-400 hidden">
+                <span>Descuento Aplicado</span>
+                <span class="font-mono" id="invoice-discount-val">-0.00%</span>
+              </div>
+            </div>
+
+            <!-- Modular Cost Breakdown -->
+            <div class="mb-4 border-t border-white/10 pt-3">
+              <span class="text-[10px] font-mono text-gray-600 block uppercase">DESGLOSE DE COMPONENTES MODULARES</span>
+              
+              <!-- Pages -->
+              <div class="flex items-start justify-between text-xs py-1.5 text-gray-400">
+                <div>
+                  <span class="font-medium">Páginas Adicionales</span>
+                  <span id="invoice-pages-count" class="text-[10px] font-mono text-gray-600 block">0 seleccionados</span>
+                  <div id="invoice-pages-names" class="text-[10px] text-grass-green/70 italic max-w-xs mt-0.5"></div>
+                </div>
+                <span id="invoice-pages-total" class="font-mono text-white">$0.00</span>
+              </div>
+
+              <!-- Integrations (High Value Integrations) -->
+              <div class="flex items-start justify-between text-xs py-1.5 text-gray-400 border-t border-white/10">
+                <div>
+                  <span class="font-medium">Integraciones de Alto Valor</span>
+                  <span id="invoice-integrations-count" class="text-[10px] font-mono text-gray-600 block">0 seleccionados</span>
+                  <div id="invoice-integrations-names" class="text-[10px] text-grass-green/70 italic max-w-xs mt-0.5"></div>
+                </div>
+                <span id="invoice-integrations-total" class="font-mono text-white">$0.00</span>
+              </div>
+
+              <!-- Features (Simple Integrations) -->
+              <div class="flex items-start justify-between text-xs py-1.5 text-gray-400 border-t border-white/10">
+                <div>
+                  <span class="font-medium">Integraciones Simples</span>
+                  <span id="invoice-features-count" class="text-[10px] font-mono text-gray-600 block">0 seleccionados</span>
+                  <div id="invoice-features-names" class="text-[10px] text-grass-green/70 italic max-w-xs mt-0.5"></div>
+                </div>
+                <span id="invoice-features-total" class="font-mono text-white">$0.00</span>
+              </div>
+            </div>
+
+            <!-- Total Due Output -->
+            <div class="border-t-2 border-dashed border-white/10 pt-4 mt-2">
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-mono text-gray-400 font-semibold">INVERSIÓN TOTAL PROYECTADA</span>
+                <div class="text-right">
+                  <span class="calc-total-display" id="total-display">
+                    $100.00
+                  </span>
+                  <span class="text-[10px] text-gray-500 block font-mono">USD · ESTIMACIÓN NETA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- System Disclaimer -->
+          <div class="mt-6 pt-3 border-t border-white/10 text-[9px] text-gray-600 font-mono space-y-1">
+            <p>// ESTA ES UNA PROYECCIÓN AUTOMÁTICA DE GRASSHOPPER IT SOLUTIONS.</p>
+            <p>// LOS ESTIMADOS REALES PUEDEN VARIAR LIGERAMENTE SEGÚN EL ALCANCE DE REQUISITOS ESPECÍFICOS.</p>
+          </div>
+        </div>
+
+        <!-- EXPORT ACTIONS PANEL -->
+        <div class="calc-section flex flex-col gap-2">
+          <div class="grid grid-cols-2 gap-2">
+            <!-- PDF download -->
+            <button 
+              type="button" 
+              onclick="downloadPDF()" 
+              class="py-2.5 px-3 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-gray-500 text-xs font-mono font-medium rounded flex items-center justify-center gap-2 transition"
+            >
+              <i class="fa-solid fa-file-pdf text-red-400"></i> PDF
+            </button>
+            <!-- Share URL -->
+            <button 
+              type="button" 
+              onclick="shareQuote()" 
+              class="py-2.5 px-3 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-cyber-blue/50 text-xs font-mono font-medium rounded flex items-center justify-center gap-2 transition"
+            >
+              <i class="fa-solid fa-link text-cyber-blue"></i> COMPARTIR
+            </button>
+          </div>
+
+          <!-- Initiate contact with estimate details filled in! -->
+          <button 
+            type="button" 
+            onclick="initiateContact()" 
+            class="w-full mt-1 py-3 px-4 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition duration-200"
+          >
+            <i data-lucide="message-circle" class="w-4 h-4"></i> DISCUTIR ESTIMACIÓN CON GRASSHOPPER
+          </button>
+        </div>
+
+        <!-- COMPILATION VIRTUAL TERMINAL LOGS -->
+        <div class="bg-black border border-white/10 rounded-xl p-4 font-mono text-[11px] text-gray-500 shadow-inner">
+          <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
+            <span class="text-grass-green text-xs flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 bg-grass-green rounded-full animate-ping"></span>
+              REGISTROS DEL COMPILADOR
+            </span>
+            <span class="text-gray-600 text-[10px]">VER: 1.0.4</span>
+          </div>
+          <div class="space-y-1 max-h-32 overflow-y-auto" id="terminal-logs">
+            <div>> Terminal del sistema inicializada. Lista para compilación del proyecto.</div>
+            <div>> Esperando parámetros de cálculo dinámico...</div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- CUSTOM USER ACTION TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300">
+      <div class="bg-card-gray border border-grass-green shadow-[0_0_20px_rgba(0,255,65,0.25)] px-4 py-3 rounded-lg flex items-center gap-3">
+        <i data-lucide="circle-check" class="text-grass-green w-5 h-5"></i>
+        <span class="text-xs font-mono text-white" id="toast-message">¡Estado de configuración copiado!</span>
+      </div>
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- SCRIPTING LOGIC -->
+    <script>
+      // System Constant Rates
+      const BASE_VALUE = 250.00; 
+      const PAGES_RATE_MULT = 0.25;        // 25% of Base
+      const INTEGRATIONS_RATE_MULT = 0.50;  // 50% of Base
+      const FEATURES_RATE_MULT = 0.20;      // 20% of Base
+
+      // Dynamic State lists
+      let customPages = [];
+      let customIntegrations = [];
+      let discountPercent = 60; // 60% to show exactly $100 USD initially ($250 * 0.4 = $100)
+
+      // Terminal Logging utility
+      function addLog(text, type = 'info') {
+        const logsContainer = document.getElementById('terminal-logs');
+        const div = document.createElement('div');
+        
+        let prefix = '> ';
+        let colorClass = 'text-gray-500';
+        
+        if (type === 'success') {
+          colorClass = 'text-grass-green';
+        } else if (type === 'warn') {
+          colorClass = 'text-amber-400';
+          prefix = '[!] ';
+        } else if (type === 'system') {
+          colorClass = 'text-cyan-400';
+        }
+
+        const dateStr = new Date().toLocaleTimeString();
+        div.className = `${colorClass} leading-normal`;
+        div.innerHTML = `<span class="text-gray-700">[${dateStr}]</span> ${prefix}${text}`;
+        
+        logsContainer.appendChild(div);
+        logsContainer.scrollTop = logsContainer.scrollHeight;
+      }
+
+      // On Load Initialization
+      window.addEventListener('DOMContentLoaded', () => {
+        // Set quote default timestamp
+        const today = new Date();
+        document.getElementById('quote-timestamp').innerText = `GEN_DATE: ${today.toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'})}`;
+        
+        addLog('Scanning peripheral interfaces...', 'system');
+        addLog('Loading state presets from URL hashes...', 'info');
+
+        // Attempt parsing query variables for sharing quotes
+        loadFromURL();
+        
+        // Perform initial pass calculation
+        calculateAll(false);
+      });
+
+      // Adding dynamic page chips
+      function addCustomPage() {
+        const input = document.getElementById('custom-page-name');
+        const val = input.value.trim();
+        if (!val) return;
+
+        if (customPages.includes(val)) {
+          addLog(`Layout page "${val}" already configured.`, 'warn');
+          return;
+        }
+
+        customPages.push(val);
+        input.value = '';
+        
+        renderPageChips();
+        addLog(`Appended custom layout: "${val}" (+25% of base value).`, 'info');
+        calculateAll(true);
+      }
+
+      function removeCustomPage(index) {
+        const removed = customPages.splice(index, 1);
+        renderPageChips();
+        addLog(`Removed custom layout: "${removed[0]}".`, 'info');
+        calculateAll(true);
+      }
+
+      function renderPageChips() {
+        const container = document.getElementById('custom-pages-container');
+        container.innerHTML = '';
+        
+        customPages.forEach((page, idx) => {
+          const chip = document.createElement('div');
+          chip.className = 'inline-flex items-center gap-1.5 px-2 py-1 bg-card-gray text-white font-mono text-xs rounded border border-grass-green/30 shadow-sm';
+          chip.innerHTML = `
+            <span>${page}</span>
+            <button type="button" onclick="removeCustomPage(${idx})" class="hover:text-red-400 focus:outline-none ml-1">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          `;
+          container.appendChild(chip);
+        });
+      }
+
+      // Adding dynamic integration chips
+      function addCustomIntegration() {
+        const input = document.getElementById('custom-integration-name');
+        const val = input.value.trim();
+        if (!val) return;
+
+        if (customIntegrations.includes(val)) {
+          addLog(`Integration widget "${val}" already mapped.`, 'warn');
+          return;
+        }
+
+        customIntegrations.push(val);
+        input.value = '';
+
+        renderIntegrationChips();
+        addLog(`Appended custom connection: "${val}" (+50% of base value).`, 'info');
+        calculateAll(true);
+      }
+
+      function removeCustomIntegration(index) {
+        const removed = customIntegrations.splice(index, 1);
+        renderIntegrationChips();
+        addLog(`Removed custom integration: "${removed[0]}".`, 'info');
+        calculateAll(true);
+      }
+
+      function renderIntegrationChips() {
+        const container = document.getElementById('custom-integrations-container');
+        container.innerHTML = '';
+
+        customIntegrations.forEach((item, idx) => {
+          const chip = document.createElement('div');
+          chip.className = 'inline-flex items-center gap-1.5 px-2 py-1 bg-card-gray text-white font-mono text-xs rounded border border-grass-green/30 shadow-sm';
+          chip.innerHTML = `
+            <span>${item}</span>
+            <button type="button" onclick="removeCustomIntegration(${idx})" class="hover:text-red-400 focus:outline-none ml-1">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          `;
+          container.appendChild(chip);
+        });
+      }
+
+      // Trigger recalculation on configuration changes (soft pass)
+      function triggerRecalculate() {
+        calculateAll(false);
+      }
+
+      // SYSTEM CALCULATION ENGINE
+      function calculateAll(logCompilation = false) {
+        // Calculate base value according to discount %
+        const calculatedBase = BASE_VALUE * (1 - discountPercent / 100);
+        
+        // Update UI base text labels & static rate cards
+        document.getElementById('calculated-base-price').innerText = `$${calculatedBase.toFixed(2)} USD`;
+        document.getElementById('invoice-base-price').innerText = `$${calculatedBase.toFixed(2)}`;
+
+        const pageRate = calculatedBase * PAGES_RATE_MULT;
+        const integrationRate = calculatedBase * INTEGRATIONS_RATE_MULT;
+        const featureRate = calculatedBase * FEATURES_RATE_MULT;
+
+        // Update unit tags in left panel inputs
+        document.querySelectorAll('.rate-pages').forEach(el => el.innerText = `$${pageRate.toFixed(2)}`);
+        document.querySelectorAll('.rate-integrations').forEach(el => el.innerText = `$${integrationRate.toFixed(2)}`);
+        document.querySelectorAll('.rate-features').forEach(el => el.innerText = `$${featureRate.toFixed(2)}`);
+
+        document.querySelectorAll('.rate-tag-pages').forEach(el => el.innerText = `$${pageRate.toFixed(2)}`);
+        document.querySelectorAll('.rate-tag-integrations').forEach(el => el.innerText = `$${integrationRate.toFixed(2)}`);
+        document.querySelectorAll('.rate-tag-features').forEach(el => el.innerText = `$${featureRate.toFixed(2)}`);
+
+        // 2. Count active static layout checkbox items + dynamic ones
+        let pageNames = [];
+        if (document.getElementById('page-contacts').checked) pageNames.push("Contact Form Page");
+        if (document.getElementById('page-portfolio').checked) pageNames.push("Dynamic Portfolio");
+        if (document.getElementById('page-services').checked) pageNames.push("Detailed Services");
+        if (document.getElementById('page-about').checked) pageNames.push("About / Team Page");
+        
+        // Merge with custom pages
+        const allPages = [...pageNames, ...customPages];
+        const pagesCount = allPages.length;
+        const totalPagesCost = pagesCount * pageRate;
+
+        // Update invoice page logs
+        document.getElementById('invoice-pages-count').innerText = `${pagesCount} page${pagesCount === 1 ? '' : 's'} mapped`;
+        document.getElementById('invoice-pages-total').innerText = `$${totalPagesCost.toFixed(2)}`;
+        document.getElementById('invoice-pages-names').innerText = pagesCount > 0 ? allPages.join(", ") : 'No optional pages';
+
+        // 3. Count Integrations
+        let integrationNames = [];
+        if (document.getElementById('integration-whatsapp').checked) integrationNames.push("WhatsApp Chat");
+        if (document.getElementById('integration-calendar').checked) integrationNames.push("Calendly Scheduler");
+        if (document.getElementById('integration-gdrive').checked) integrationNames.push("GDrive Uploader");
+        if (document.getElementById('integration-form').checked) integrationNames.push("Lead Webhook");
+
+        const allIntegrations = [...integrationNames, ...customIntegrations];
+        const integrationsCount = allIntegrations.length;
+        const totalIntegrationsCost = integrationsCount * integrationRate;
+
+        document.getElementById('invoice-integrations-count').innerText = `${integrationsCount} item${integrationsCount === 1 ? '' : 's'} active`;
+        document.getElementById('invoice-integrations-total').innerText = `$${totalIntegrationsCost.toFixed(2)}`;
+        document.getElementById('invoice-integrations-names').innerText = integrationsCount > 0 ? allIntegrations.join(", ") : 'No automated integrations';
+
+        // 4. Count Features
+        let featureNames = [];
+        if (document.getElementById('feature-seo').checked) featureNames.push("SEO / GEO Metadata");
+        if (document.getElementById('feature-domain').checked) featureNames.push("DNS Domain Route");
+        if (document.getElementById('feature-multilang').checked) featureNames.push("i18n Translation Framework");
+
+        const featuresCount = featureNames.length;
+        const totalFeaturesCost = featuresCount * featureRate;
+
+        document.getElementById('invoice-features-count').innerText = `${featuresCount} component setup${featuresCount === 1 ? '' : 's'} registered`;
+        document.getElementById('invoice-features-total').innerText = `$${totalFeaturesCost.toFixed(2)}`;
+        document.getElementById('invoice-features-names').innerText = featuresCount > 0 ? featureNames.join(", ") : 'No modular layouts';
+
+        // 5. Total cost projection
+        const totalCost = calculatedBase + totalPagesCost + totalIntegrationsCost + totalFeaturesCost;
+        
+        // Update the invoice main display total
+        document.getElementById('total-display').innerText = `$${totalCost.toFixed(2)}`;
+
+        // Update Invoice Discount Sub-Row if discount applied (hidden)
+        const discRow = document.getElementById('invoice-discount-row');
+        if (discRow) {
+          discRow.classList.add('hidden');
+        }
+
+        if (logCompilation) {
+          addLog(`Calculated Subtotals: Pages ($${totalPagesCost.toFixed(2)}) | High Value Integrations ($${totalIntegrationsCost.toFixed(2)}) | Simple Integrations ($${totalFeaturesCost.toFixed(2)})`, 'info');
+          addLog(`System compiled successfully! Absolute total projected: $${totalCost.toFixed(2)} USD`, 'success');
+        }
+      }
+
+      // Calculate Button Trigger
+      function runCalculationAnimation() {
+        const btn = document.getElementById('compile-btn');
+        
+        // Audio click sound (Web Audio API synthesis)
+        try {
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const oscillator = audioCtx.createOscillator();
+          const gainNode = audioCtx.createGain();
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+          gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+          oscillator.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.15);
+        } catch(e) {}
+
+        // Temporarily disable button
+        btn.disabled = true;
+        btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> RUNNING DIAGNOSTIC COMPILER...`;
+        
+        addLog('Triggering manual project compilation pass...', 'system');
+        
+        setTimeout(() => {
+          calculateAll(true);
+          btn.disabled = false;
+          btn.innerHTML = `<span style="display:flex;align-items:center;gap:0.5rem"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7l4 4 4-4"/><path d="M4 12l4 4 4-4"/></svg> <span>COMPILE COST PROJECTION</span></span>`;
+
+          // Show user visual success flash on invoice target
+          const inv = document.getElementById('invoice-scope');
+          inv.classList.add('border-grass-green');
+          setTimeout(() => inv.classList.remove('border-grass-green'), 500);
+
+          // Reinitialize Lucide icons for the button
+          if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+          }
+
+          showToast('Compilation completed. Project Quote refreshed!');
+        }, 700);
+      }
+
+      // PRESETS APPLIER
+      function applyPreset(type) {
+        addLog(`Initializing Preset Loader for: "${type.toUpperCase()}"`, 'system');
+
+        // Default states reset
+        customPages = [];
+        customIntegrations = [];
+
+        if (type === 'basic') {
+          discountPercent = 60;
+
+          // 1 Core Home page, Contacts active. Portfolio/Services inactive.
+          document.getElementById('page-contacts').checked = true;
+          document.getElementById('page-portfolio').checked = false;
+          document.getElementById('page-services').checked = false;
+          document.getElementById('page-about').checked = false;
+
+          // Integration Lead Form Active
+          document.getElementById('integration-whatsapp').checked = false;
+          document.getElementById('integration-calendar').checked = false;
+          document.getElementById('integration-gdrive').checked = false;
+          document.getElementById('integration-form').checked = true;
+
+          // Features Base
+          document.getElementById('feature-seo').checked = true;
+          document.getElementById('feature-domain').checked = false;
+          document.getElementById('feature-multilang').checked = false;
+
+          addLog('Successfully mapped "Basic Landing Profile Preset" (Base page + Contact & form).', 'info');
+
+        } else if (type === 'portfolio') {
+          discountPercent = 60;
+
+          document.getElementById('page-contacts').checked = true;
+          document.getElementById('page-portfolio').checked = true;
+          document.getElementById('page-services').checked = true;
+          document.getElementById('page-about').checked = false;
+
+          document.getElementById('integration-whatsapp').checked = true;
+          document.getElementById('integration-calendar').checked = true;
+          document.getElementById('integration-gdrive').checked = false;
+          document.getElementById('integration-form').checked = true;
+
+          document.getElementById('feature-seo').checked = true;
+          document.getElementById('feature-domain').checked = true;
+          document.getElementById('feature-multilang').checked = false;
+
+          addLog('Successfully mapped "Agency/Portfolio Preset" (Includes Portfolio, Services, Scheduler integrations).', 'info');
+
+        } else if (type === 'enterprise') {
+          discountPercent = 60;
+
+          document.getElementById('page-contacts').checked = true;
+          document.getElementById('page-portfolio').checked = true;
+          document.getElementById('page-services').checked = true;
+          document.getElementById('page-about').checked = true;
+
+          // All integrations checked
+          document.getElementById('integration-whatsapp').checked = true;
+          document.getElementById('integration-calendar').checked = true;
+          document.getElementById('integration-gdrive').checked = true;
+          document.getElementById('integration-form').checked = true;
+
+          // All features
+          document.getElementById('feature-seo').checked = true;
+          document.getElementById('feature-domain').checked = true;
+          document.getElementById('feature-multilang').checked = true;
+
+          customPages = ["Product Showcase", "Resources Library"];
+          customIntegrations = ["Stripe Gateway", "Mailchimp Newsletter"];
+
+          addLog('Successfully mapped "Professional Premium Pack" (Full multi-page structure, maximum cloud linkages & custom nodes).', 'info');
+        }
+
+        renderPageChips();
+        renderIntegrationChips();
+        calculateAll(true);
+      }
+
+      // TOAST DISPLAY SYSTEM
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-message').innerText = message;
+        
+        toast.classList.remove('opacity-0', 'translate-y-12', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        
+        setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-12', 'pointer-events-none');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 3500);
+      }
+
+      // URL STATE SHARING - Encode current configuration into a shareable URL
+      function saveToURL() {
+        const state = {
+          d: discountPercent,
+          p_c: document.getElementById('page-contacts').checked,
+          p_p: document.getElementById('page-portfolio').checked,
+          p_s: document.getElementById('page-services').checked,
+          p_a: document.getElementById('page-about').checked,
+          i_w: document.getElementById('integration-whatsapp').checked,
+          i_c: document.getElementById('integration-calendar').checked,
+          i_g: document.getElementById('integration-gdrive').checked,
+          i_f: document.getElementById('integration-form').checked,
+          f_s: document.getElementById('feature-seo').checked,
+          f_d: document.getElementById('feature-domain').checked,
+          f_m: document.getElementById('feature-multilang').checked,
+          cp: customPages,
+          ci: customIntegrations,
+        };
+
+        const encoded = btoa(encodeURIComponent(JSON.stringify(state)));
+        const url = new URL(window.location.href);
+        url.searchParams.set('state', encoded);
+        return url.toString();
+      }
+
+      // Share quote - copy URL to clipboard
+      function shareQuote() {
+        const url = saveToURL();
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('Shareable quote URL copied to clipboard!');
+          addLog('Quote state URL copied to clipboard.', 'success');
+        }).catch(() => {
+          // Fallback for older browsers
+          const textarea = document.createElement('textarea');
+          textarea.value = url;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          showToast('Shareable quote URL copied to clipboard!');
+          addLog('Quote state URL copied to clipboard.', 'success');
+        });
+      }
+
+      // URL PARSING RECOVERY STATE
+      function loadFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const encodedState = params.get('state');
+        if (!encodedState) return;
+
+        try {
+          const decodedState = JSON.parse(decodeURIComponent(atob(encodedState)));
+          
+          if (decodedState.d !== undefined) {
+            discountPercent = decodedState.d;
+          }
+
+          if (decodedState.p_c !== undefined) document.getElementById('page-contacts').checked = decodedState.p_c;
+          if (decodedState.p_p !== undefined) document.getElementById('page-portfolio').checked = decodedState.p_p;
+          if (decodedState.p_s !== undefined) document.getElementById('page-services').checked = decodedState.p_s;
+          if (decodedState.p_a !== undefined) document.getElementById('page-about').checked = decodedState.p_a;
+
+          if (decodedState.i_w !== undefined) document.getElementById('integration-whatsapp').checked = decodedState.i_w;
+          if (decodedState.i_c !== undefined) document.getElementById('integration-calendar').checked = decodedState.i_c;
+          if (decodedState.i_g !== undefined) document.getElementById('integration-gdrive').checked = decodedState.i_g;
+          if (decodedState.i_f !== undefined) document.getElementById('integration-form').checked = decodedState.i_f;
+
+          if (decodedState.f_s !== undefined) document.getElementById('feature-seo').checked = decodedState.f_s;
+          if (decodedState.f_d !== undefined) document.getElementById('feature-domain').checked = decodedState.f_d;
+          if (decodedState.f_m !== undefined) document.getElementById('feature-multilang').checked = decodedState.f_m;
+
+          if (decodedState.cp !== undefined && Array.isArray(decodedState.cp)) {
+            customPages = decodedState.cp;
+            renderPageChips();
+          }
+
+          if (decodedState.ci !== undefined && Array.isArray(decodedState.ci)) {
+            customIntegrations = decodedState.ci;
+            renderIntegrationChips();
+          }
+
+          addLog('Successfully loaded project configuration parameters from secure URL state map.', 'success');
+        } catch (err) {
+          addLog('Failed parsing configuration from URL. Default state resumed.', 'warn');
+        }
+      }
+
+      // PDF EXPORT HANDLER
+      function downloadPDF() {
+        addLog('Preparing viewport and compiling PDF metadata structure...', 'system');
+        
+        const element = document.getElementById('invoice-scope');
+        
+        // Temporarily add a class that ensures clean background for PDF
+        element.classList.add('pdf-export');
+        
+        const opt = {
+          margin:       10,
+          filename:     'Grasshopper-IT-Solutions-Project-Quote.pdf',
+          image:        { type: 'jpeg', quality: 0.98 },
+          html2canvas:  { scale: 2, backgroundColor: '#151515', logging: false, useCORS: true },
+          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(element).save()
+          .then(() => {
+            element.classList.remove('pdf-export');
+            addLog('Invoice PDF generation completed. Document saved locally.', 'success');
+            showToast('Invoice PDF generated successfully!');
+          })
+          .catch(err => {
+            element.classList.remove('pdf-export');
+            addLog(`PDF compilation execution error: ${err.message}`, 'warn');
+          });
+      }
+
+      // WhatsApp Direct routing to client WhatsApp number +33767834576
+      function initiateContact() {
+        const calculatedBase = BASE_VALUE * (1 - discountPercent / 100);
+        const totalCost = document.getElementById('total-display').innerText;
+
+        let pages = [];
+        if (document.getElementById('page-contacts').checked) pages.push("Contact");
+        if (document.getElementById('page-portfolio').checked) pages.push("Portfolio");
+        if (document.getElementById('page-services').checked) pages.push("Services");
+        if (document.getElementById('page-about').checked) pages.push("About");
+        pages = [...pages, ...customPages];
+
+        let integrations = [];
+        if (document.getElementById('integration-whatsapp').checked) integrations.push("WhatsApp");
+        if (document.getElementById('integration-calendar').checked) integrations.push("Calendly");
+        if (document.getElementById('integration-gdrive').checked) integrations.push("GDrive");
+        if (document.getElementById('integration-form').checked) integrations.push("Webhook Forms");
+        integrations = [...integrations, ...customIntegrations];
+
+        let features = [];
+        if (document.getElementById('feature-seo').checked) features.push("SEO");
+        if (document.getElementById('feature-domain').checked) features.push("DNS");
+        if (document.getElementById('feature-multilang').checked) features.push("i18n (Multilingual)");
+
+        const summaryText = `Hi Grasshopper team! I mapped my project using your Projection Tool:
+      - Modified Base Price: $${calculatedBase.toFixed(2)} (Discount: ${discountPercent}%)
+      - Pages: ${pages.length > 0 ? pages.join(", ") : "None"}
+      - High Value Integrations: ${integrations.length > 0 ? integrations.join(", ") : "None"}
+      - Simple Integrations: ${features.length > 0 ? features.join(", ") : "None"}
+
+      *Total Projected Budget: ${totalCost}*
+
+      I would love to set up a session to discuss launching this project!`;
+
+        const encodedMsg = encodeURIComponent(summaryText);
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=33767834576&text=${encodedMsg}`;
+        
+        window.open(whatsappUrl, '_blank');
+        addLog('WhatsApp communication protocol initialized.', 'success');
+      }
+
+      // Load partials (header + footer)
+      async function loadPartials() {
+        // Load header
+        const headerEl = document.getElementById('header-placeholder');
+        if (headerEl) {
+          const response = await fetch('../html-elements/header.html');
+          let html = await response.text();
+          html = html.replace(/ASSET_PATH/g, '../assets');
+          html = html.replace(/INDEX_PATH/g, '../index.html');
+          html = html.replace(/SERVICES_PATH/g, 'services.html');
+          html = html.replace(/PROJECTS_PATH/g, 'projects.html');
+          headerEl.outerHTML = html;
+        }
+
+        // Load footer
+        const footerEl = document.getElementById('footer-placeholder');
+        if (footerEl) {
+          const response = await fetch('../html-elements/footer.html');
+          let html = await response.text();
+          html = html.replace(/ASSET_PATH/g, '../assets');
+          footerEl.outerHTML = html;
+        }
+
+        // Re-initialize Lucide icons after DOM update
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+
+        // Setup mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        if (menuBtn) {
+          menuBtn.addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+          });
+        }
+
+        // Inject Lucide icons for dynamic elements that were created before partials loaded
+        if (typeof lucide !== 'undefined') {
+          setTimeout(() => lucide.createIcons(), 100);
+        }
+
+        // Update time
+        updateTime();
+      }
+
+      function updateTime() {
+        const timeEl = document.getElementById('time');
+        if (timeEl) {
+          const now = new Date();
+          timeEl.textContent = now.toLocaleTimeString();
+        }
+      }
+      setInterval(updateTime, 1000);
+
+      function notify() {
+        const toast = document.getElementById('notification-toast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      }
+
+      function toggleAIBubble() {
+        const bubble = document.getElementById('ai-bubble');
+        if (bubble) bubble.classList.toggle('hidden');
+      }
+
+      // Load partials on DOM ready
+      document.addEventListener('DOMContentLoaded', loadPartials);
+    </script>
+    <!-- FontAwesome Icons (for solid icons used in chips etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </body>
+</html>

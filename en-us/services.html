@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en-US" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +9,12 @@
       href="../assets/grasshopper-geometric-logo.svg"
       type="image/svg+xml"
     />
+    <!-- SEO: Canonical & hreflang -->
+    <link rel="canonical" href="https://grasshoppersolutions.online/en-us/services.html" />
+    <link rel="alternate" hreflang="en-us" href="https://grasshoppersolutions.online/en-us/services.html" />
+    <link rel="alternate" hreflang="es-co" href="https://grasshoppersolutions.online/es-co/services.html" />
+    <link rel="alternate" hreflang="x-default" href="https://grasshoppersolutions.online/" />
+    <meta name="description" content="Premium software solutions at grassroots rates. Comprehensive web development, mobile apps, AI/ML, backend & APIs, cloud infrastructure, and UX/UI design services." />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -730,7 +736,7 @@
         if (headerEl) {
           const response = await fetch('../html-elements/header.html');
           let html = await response.text();
-          // Replace path placeholders for pages-level page
+          // Replace path placeholders for en-us level page
           html = html.replace(/ASSET_PATH/g, '../assets');
           html = html.replace(/INDEX_PATH/g, '../index.html');
           html = html.replace(/SERVICES_PATH/g, 'services.html');
@@ -788,5 +794,6 @@
 
       document.addEventListener('DOMContentLoaded', loadAllPartials);
     </script>
+    <script src="../script.js"></script>
   </body>
 </html>

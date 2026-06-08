@@ -108,3 +108,21 @@
 .animate-pulse-slow {
   animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Cursor Blink - for terminal/typing UIs */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s infinite;
+}
+
+/* Neon Pulse Glow - for featured cards / CTAs */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 65, 0.2); border-color: rgba(0, 255, 65, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(0, 255, 65, 0.5); border-color: rgba(0, 255, 65, 0.8); }
+}
+.neon-pulse-glow {
+  animation: pulse-glow 3s infinite;
+}

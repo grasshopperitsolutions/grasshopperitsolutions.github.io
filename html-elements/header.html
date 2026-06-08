@@ -63,13 +63,71 @@
           class="hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
           >./Projects</a
         >
+        <!-- Language Switcher -->
+        <div class="relative group">
+          <button
+            class="flex items-center gap-1.5 px-3 py-1.5 border border-white/10 rounded-full text-xs font-mono text-gray-400 hover:text-white hover:border-white/30 transition-all"
+          >
+            <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+            <span id="current-lang-label">EN</span>
+          </button>
+          <div
+            class="absolute right-0 mt-2 w-36 bg-code-gray border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+          >
+            <div class="p-2 space-y-1">
+              <button
+                onclick="switchLanguage('en-us')"
+                class="w-full text-left px-3 py-2 text-xs font-mono text-gray-300 hover:text-white hover:bg-grass-green/10 rounded-lg transition-colors flex items-center gap-2"
+              >
+                <span class="text-base">🇺🇸</span>
+                <span>English</span>
+              </button>
+              <button
+                onclick="switchLanguage('es-co')"
+                class="w-full text-left px-3 py-2 text-xs font-mono text-gray-300 hover:text-white hover:bg-grass-green/10 rounded-lg transition-colors flex items-center gap-2"
+              >
+                <span class="text-base">🇨🇴</span>
+                <span>Español</span>
+              </button>
+            </div>
+          </div>
+        </div>
         <a
           href="mailto:grasshopper.it.solutions@gmail.com"
           class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
           >START_PROJECT</a
         >
       </div>
-      <div class="lg:hidden">
+      <div class="lg:hidden flex items-center gap-3">
+        <!-- Mobile Language Switcher -->
+        <div class="relative group">
+          <button
+            class="flex items-center gap-1 px-2 py-1.5 border border-white/10 rounded-full text-xs font-mono text-gray-400 hover:text-white transition-all"
+          >
+            <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+            <span id="mobile-current-lang-label">EN</span>
+          </button>
+          <div
+            class="absolute right-0 mt-2 w-36 bg-code-gray border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+          >
+            <div class="p-2 space-y-1">
+              <button
+                onclick="switchLanguage('en-us')"
+                class="w-full text-left px-3 py-2 text-xs font-mono text-gray-300 hover:text-white hover:bg-grass-green/10 rounded-lg transition-colors flex items-center gap-2"
+              >
+                <span class="text-base">🇺🇸</span>
+                <span>English</span>
+              </button>
+              <button
+                onclick="switchLanguage('es-co')"
+                class="w-full text-left px-3 py-2 text-xs font-mono text-gray-300 hover:text-white hover:bg-grass-green/10 rounded-lg transition-colors flex items-center gap-2"
+              >
+                <span class="text-base">🇨🇴</span>
+                <span>Español</span>
+              </button>
+            </div>
+          </div>
+        </div>
         <button id="mobile-menu-btn" class="text-gray-300">
           <i data-lucide="menu"></i>
         </button>
