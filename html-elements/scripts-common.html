@@ -1,0 +1,88 @@
+<!-- Shared Scripts - Partial Loader & Common Functions -->
+<script>
+  // Partial Loading System
+  async function loadPartials(config = {}) {
+    const {
+      loadHeader = true,
+      loadFooter = true,
+      assetPath = '',
+      indexPath = 'index.html',
+      servicesPath = 'pages/services.html',
+      projectsPath = 'pages/projects.html'
+    } = config;
+
+    // Calculate relative paths based on current page location
+    const currentPath = window.location.pathname;
+    const isRoot = currentPath.endsWith('/') || currentPath.endsWith('/index.html') || currentPath === '/';
+    const prefix = isRoot ? '' : '../';
+
+    const fullAssetPath = assetPath || prefix + 'assets';
+    const fullIndexPath = indexPath || (isRoot ? 'index.html' : '../index.html');
+    const fullServicesPath = servicesPath || (isRoot ? 'pages/services.html' : 'services.html');
+    const fullProjectsPath = projectsPath || (isRoot ? 'pages/projects.html' : 'projects.html');
+
+    // Load header
+    if (loadHeader) {
+      const headerEl = document.getElementById('header-placeholder');
+      if (headerEl) {
+        const response = await fetch(fullAssetPath.replace('/assets', '/html-elements/header.html'));
+        let html = await response.text();
+        // Replace placeholders with actual paths
+        html = html.replace(/ASSET_PATH/g, fullAssetPath);
+        html = html.replace(/INDEX_PATH/g, fullIndexPath);
+        html = html.replace(/SERVICES_PATH/g, fullServicesPath);
+        html = html.replace(/PROJECTS_PATH/g, fullProjectsPath);
+        headerEl.outerHTML = html;
+      }
+    }
+
+    // Load footer
+    if (loadFooter) {
+      const footerEl = document.getElementById('footer-placeholder');
+      if (footerEl) {
+        const response = await fetch(fullAssetPath.replace('/assets', '/html-elements/footer.html'));
+        let html = await response.text();
+        html = html.replace(/ASSET_PATH/g, fullAssetPath);
+        footerEl.outerHTML = html;
+      }
+    }
+
+    // Initialize Lucide icons after DOM update
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  }
+
+  // Navigation toggle
+  function toggleNav() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) menu.classList.toggle('hidden');
+  }
+
+  // AI Bubble toggle
+  function toggleAIBubble() {
+    const bubble = document.getElementById('ai-bubble');
+    if (bubble) bubble.classList.toggle('hidden');
+  }
+
+  // Notification function
+  function notify() {
+    const toast = document.getElementById('notification-toast');
+    if (toast) {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+  }
+
+  // Time update
+  function updateTime() {
+    const timeEl = document.getElementById('time');
+    if (timeEl) {
+      const now = new Date();
+      timeEl.textContent = now.toLocaleTimeString();
+    }
+  }
+  setInterval(updateTime, 1000);
+  updateTime();
+</script>
+<script src="SCRIPT_PATH"></script>

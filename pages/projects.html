@@ -6,19 +6,21 @@
     <title>Grasshopper IT Solutions - Projects</title>
     <link
       rel="icon"
-      href="assets/grasshopper-geometric-logo.svg"
+      href="../assets/grasshopper-geometric-logo.svg"
       type="image/svg+xml"
     />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Space Mono for Vibe / Inter & Outfit for Professionalism -->
+    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
+    <!-- Shared Styles - MUST load synchronously -->
+    <link rel="stylesheet" href="../styles/main.css" />
+    <!-- Tailwind Config -->
     <script>
       tailwind.config = {
         theme: {
@@ -30,8 +32,6 @@
               "deep-space": "#0a0a0a",
               "code-gray": "#1e1e1e",
               "card-gray": "#151515",
-
-              // App Specific Theme Colors
               "neon-red": "#ff073a",
               "tales-amber": "#b45309",
               "tales-action": "#991b1b",
@@ -67,169 +67,12 @@
         },
       };
     </script>
-    <style>
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0a0a0a;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1e1e1e;
-        border: 1px solid #00ff41;
-      }
-      .neon-text {
-        text-shadow:
-          0 0 5px rgba(0, 255, 65, 0.5),
-          0 0 10px rgba(0, 255, 65, 0.3);
-      }
-      .glass-card {
-        background: rgba(21, 21, 21, 0.6);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      .glitch-wrapper {
-        position: relative;
-      }
-      .glitch-wrapper::before,
-      .glitch-wrapper::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #0a0a0a;
-      }
-      .glitch-wrapper::before {
-        left: 2px;
-        text-shadow: -1px 0 #00ff41;
-        clip: rect(24px, 550px, 90px, 0);
-        animation: glitch-anim-2 3s infinite linear alternate-reverse;
-      }
-      .glitch-wrapper::after {
-        left: -2px;
-        text-shadow: -1px 0 #00dbde;
-        clip: rect(85px, 550px, 140px, 0);
-        animation: glitch-anim 2.5s infinite linear alternate-reverse;
-      }
-      @keyframes glitch-anim {
-        0% {
-          clip: rect(11px, 9999px, 86px, 0);
-        }
-        100% {
-          clip: rect(48px, 9999px, 73px, 0);
-        }
-      }
-      @keyframes glitch-anim-2 {
-        0% {
-          clip: rect(65px, 9999px, 100px, 0);
-        }
-        100% {
-          clip: rect(32px, 9999px, 45px, 0);
-        }
-      }
-      #notification-toast {
-        transform: translateY(100px);
-        transition: transform 0.3s ease-out;
-      }
-      #notification-toast.show {
-        transform: translateY(0);
-      }
-
-      /* Hide scrollbar for carousel but allow functionality */
-      .carousel-scroll::-webkit-scrollbar {
-        display: none;
-      }
-      .carousel-scroll {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
   </head>
   <body
     class="bg-deep-space text-gray-300 font-sans antialiased selection:bg-grass-green selection:text-black overflow-x-hidden"
   >
-    <!-- Notification Toast -->
-    <div
-      id="notification-toast"
-      class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-cyber-blue text-black font-mono font-bold px-6 py-3 rounded-full shadow-2xl flex items-center gap-3"
-    >
-      <i data-lucide="info" class="w-5 h-5"></i>
-      <span>Module coming soon...</span>
-    </div>
-
-    <!-- Floating AI Agent (Grassy Hopper) -->
-    <div class="fixed bottom-8 right-8 z-[60] flex flex-col items-end">
-      <div
-        id="ai-bubble"
-        class="hidden mb-4 glass-card p-4 rounded-2xl border border-grass-green/30 max-w-[200px] text-xs font-mono text-white animate-fade-in shadow-2xl"
-      >
-        <p class="mb-2 text-grass-green">// GRASSY_HOPPER_v1.0</p>
-        <p>Neural chat interface coming soon to assist your build.</p>
-      </div>
-      <button
-        onclick="toggleAIBubble()"
-        class="animate-float w-16 h-16 rounded-full bg-grass-green flex items-center justify-center shadow-[0_0_20px_rgba(0,255,65,0.4)] hover:scale-110 transition-transform group overflow-hidden border-2 border-white/20"
-      >
-        <div
-          class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"
-        ></div>
-        <img
-          src="assets/grasshopper-geometric-logo.svg"
-          alt="Grasshopper Logo"
-          class="w-10 h-10"
-        />
-      </button>
-    </div>
-
-    <!-- Navigation -->
-    <nav
-      class="fixed w-full z-50 bg-deep-space/80 backdrop-blur-xl border-b border-white/5"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
-          <div
-            class="flex items-center group cursor-pointer"
-            onclick="window.location.href = 'index.html'"
-          >
-            <img
-              src="assets/grasshopper-geometric-logo.svg"
-              alt="Grasshopper Logo"
-              class="w-10 h-10 mr-2 drop-shadow-[0_0_5px_rgba(0,255,65,0.5)] group-hover:scale-110 transition-transform"
-            />
-            <span
-              class="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-grass-green transition-colors neon-text"
-              >Grasshopper IT Solutions</span
-            >
-          </div>
-          <div class="hidden lg:flex items-center space-x-8">
-            <a
-              href="mailto:grasshopper.it.solutions@gmail.com"
-              class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
-              >START_PROJECT</a
-            >
-          </div>
-          <div class="lg:hidden">
-            <button id="mobile-menu-btn" class="text-gray-300">
-              <i data-lucide="menu"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        id="mobile-menu"
-        class="hidden lg:hidden bg-code-gray border-b border-white/10 px-4 py-6 space-y-4"
-      >
-        <!-- <a href="services.html" class="block text-gray-300 font-mono"
-          >./Services</a
-        >
-        <a href="projects.html" class="block text-gray-300 font-mono"
-          >./Projects</a
-        > -->
-      </div>
-    </nav>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
 
     <!-- Hero Section -->
     <section
@@ -310,7 +153,7 @@
               >
                 <div class="w-48 h-48 mb-6 relative">
                   <img
-                    src="assets/grasshopper-geometric-logo.svg"
+                    src="../assets/grasshopper-geometric-logo.svg"
                     alt="Grasshopper Logo"
                     class="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,65,0.6)]"
                   />
@@ -408,7 +251,7 @@
             <!-- Preview Area (Iframe or Image) -->
             <div class="h-[300px] relative bg-black/50 overflow-hidden">
               <iframe
-                src="./landing-pages/ludovica-piro/index.html"
+                src="../landing-pages/ludovica-piro/index.html"
                 class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
                 loading="lazy"
                 title="Ludovica Piro Portfolio"
@@ -419,22 +262,13 @@
                 class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
               >
                 <a
-                  href="./landing-pages/ludovica-piro/index.html"
+                  href="../landing-pages/ludovica-piro/index.html"
                   target="_blank"
                   class="bg-grass-green text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
                 >
                   Visit Live Site
                   <i data-lucide="external-link" class="w-4 h-4"></i>
                 </a>
-                <!-- Commented out for future update -->
-                <!-- <a
-                  href="https://ludovicapiro.com/"
-                  target="_blank"
-                  class="bg-cyber-blue text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2 ml-4"
-                >
-                  Visit Live Site
-                  <i data-lucide="external-link" class="w-4 h-4"></i>
-                </a> -->
               </div>
             </div>
 
@@ -485,7 +319,7 @@
             <!-- Preview Area (Iframe) -->
             <div class="h-[300px] relative bg-black/50 overflow-hidden">
               <iframe
-                src="./landing-pages/nuno-moreira/index.html"
+                src="../landing-pages/nuno-moreira/index.html"
                 class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
                 loading="lazy"
                 title="Nuno Moreira Portfolio"
@@ -496,7 +330,7 @@
                 class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
               >
                 <a
-                  href="./landing-pages/nuno-moreira/index.html"
+                  href="../landing-pages/nuno-moreira/index.html"
                   target="_blank"
                   class="bg-cyber-blue text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
                 >
@@ -552,7 +386,7 @@
             <!-- Preview Area (Iframe) -->
             <div class="h-[300px] relative bg-black/50 overflow-hidden">
               <iframe
-                src="./landing-pages/sofia-moreira/index.html"
+                src="../landing-pages/sofia-moreira/index.html"
                 class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
                 loading="lazy"
                 title="Sofia Moreira Portfolio"
@@ -563,7 +397,7 @@
                 class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
               >
                 <a
-                  href="./landing-pages/sofia-moreira/index.html"
+                  href="../landing-pages/sofia-moreira/index.html"
                   target="_blank"
                   class="bg-grass-green text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
                 >
@@ -649,7 +483,7 @@
                 class="text-6xl mb-4 text-neon-red group-hover:scale-110 transition-transform duration-300"
               >
                 <img
-                  src="./apps/void-enigma-riddle-app/assets/favicon.png"
+                  src="../apps/void-enigma-riddle-app/assets/favicon.png"
                   alt="Void Enigma Favicon"
                   class="w-20 h-20 mr-2 inline-block"
                 />
@@ -680,7 +514,7 @@
                 >
               </div>
               <a
-                href="./apps/void-enigma-riddle-app/index.html"
+                href="../apps/void-enigma-riddle-app/index.html"
                 class="block w-full py-3 text-center bg-neon-red text-black font-bold rounded hover:bg-white transition-colors"
               >
                 Launch Terminal >
@@ -726,7 +560,7 @@
                 >
               </div>
               <a
-                href="./apps/tiny-tales-teller-app/"
+                href="../apps/tiny-tales-teller-app/"
                 class="block w-full py-3 text-center bg-tales-action text-white font-bold rounded hover:bg-white hover:text-black transition-colors"
               >
                 Open Library >
@@ -1127,38 +961,74 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black py-16 border-t border-white/10">
-      <div
-        class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
-      >
-        <div class="flex items-center group">
-          <img
-            src="assets/grasshopper-geometric-logo.svg"
-            alt="Grasshopper Logo"
-            class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
-          />
-          <span class="text-xl font-mono font-bold text-white"
-            >Grasshopper_IT</span
-          >
-        </div>
-        <div class="flex gap-4 text-gray-600">
-          <button onclick="notify()" class="hover:text-white transition-colors">
-            <i data-lucide="linkedin" class="w-4 h-4"></i>
-          </button>
-          <button onclick="notify()" class="hover:text-white transition-colors">
-            <i data-lucide="github" class="w-4 h-4"></i>
-          </button>
-          <button onclick="notify()" class="hover:text-white transition-colors">
-            <i data-lucide="instagram" class="w-4 h-4"></i>
-          </button>
-        </div>
-        <p class="text-gray-700 text-[10px] font-mono">
-          SYSTEM_LOCAL_TIME: <span id="time">00:00:00</span>
-        </p>
-      </div>
-    </footer>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
 
-    <script src="js/script.js"></script>
+    <!-- Load shared scripts and partials -->
+    <script>
+      async function loadAllPartials() {
+        // Load header
+        const headerEl = document.getElementById('header-placeholder');
+        if (headerEl) {
+          const response = await fetch('../html-elements/header.html');
+          let html = await response.text();
+          // Replace path placeholders for pages-level page
+          html = html.replace(/ASSET_PATH/g, '../assets');
+          html = html.replace(/INDEX_PATH/g, '../index.html');
+          html = html.replace(/SERVICES_PATH/g, 'services.html');
+          html = html.replace(/PROJECTS_PATH/g, 'projects.html');
+          headerEl.outerHTML = html;
+        }
+
+        // Load footer
+        const footerEl = document.getElementById('footer-placeholder');
+        if (footerEl) {
+          const response = await fetch('../html-elements/footer.html');
+          let html = await response.text();
+          html = html.replace(/ASSET_PATH/g, '../assets');
+          footerEl.outerHTML = html;
+        }
+
+        // Re-initialize Lucide icons after DOM update
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+
+        // Setup mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        if (menuBtn) {
+          menuBtn.addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+          });
+        }
+
+        updateTime();
+      }
+
+      function notify() {
+        const toast = document.getElementById('notification-toast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      }
+
+      function toggleAIBubble() {
+        const bubble = document.getElementById('ai-bubble');
+        if (bubble) bubble.classList.toggle('hidden');
+      }
+
+      function updateTime() {
+        const timeEl = document.getElementById('time');
+        if (timeEl) {
+          const now = new Date();
+          timeEl.textContent = now.toLocaleTimeString();
+        }
+      }
+      setInterval(updateTime, 1000);
+
+      document.addEventListener('DOMContentLoaded', loadAllPartials);
+    </script>
   </body>
 </html>

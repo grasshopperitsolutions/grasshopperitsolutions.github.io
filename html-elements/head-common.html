@@ -1,0 +1,64 @@
+<!-- Shared Head Content - Grasshopper IT Solutions -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Google Fonts: Space Mono for Vibe / Inter & Outfit for Professionalism -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Shared Styles -->
+<link rel="stylesheet" href="../styles/main.css" />
+
+<!-- Tailwind Config - Shared across all pages -->
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          "grass-green": "#00ff41",
+          "cyber-blue": "#00dbde",
+          "cyber-red": "#ff003c",
+          "deep-space": "#0a0a0a",
+          "code-gray": "#1e1e1e",
+          "card-gray": "#151515",
+
+          // App Specific Theme Colors
+          "neon-red": "#ff073a",
+          "tales-amber": "#b45309",
+          "tales-action": "#991b1b",
+          "kitchen-orange": "#ea580c",
+          "kitchen-red": "#dc2626",
+        },
+        fontFamily: {
+          mono: ['"Space Mono"', "monospace"],
+          sans: ['"Inter"', "sans-serif"],
+          heading: ['"Outfit"', "sans-serif"],
+        },
+        animation: {
+          "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+          float: "float 3s ease-in-out infinite",
+          scroll: "scroll 60s linear infinite",
+          "bounce-x": "bounce-x 1s infinite",
+        },
+        keyframes: {
+          float: {
+            "0%, 100%": { transform: "translateY(0)" },
+            "50%": { transform: "translateY(-10px)" },
+          },
+          scroll: {
+            "0%": { transform: "translateX(0)" },
+            "100%": { transform: "translateX(-50%)" },
+          },
+          "bounce-x": {
+            "0%, 100%": { transform: "translateX(0)" },
+            "50%": { transform: "translateX(5px)" },
+          },
+        },
+      },
+    },
+  };
+</script>

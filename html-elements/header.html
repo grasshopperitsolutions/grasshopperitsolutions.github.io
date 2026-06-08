@@ -1,0 +1,90 @@
+<!-- Shared Header - Notification Toast, AI Agent, Navigation -->
+<!-- Notification Toast -->
+<div
+  id="notification-toast"
+  class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-cyber-blue text-black font-mono font-bold px-6 py-3 rounded-full shadow-2xl flex items-center gap-3"
+>
+  <i data-lucide="info" class="w-5 h-5"></i>
+  <span>Module coming soon...</span>
+</div>
+
+<!-- Floating AI Agent (Grassy Hopper) -->
+<div class="fixed bottom-8 right-8 z-[60] flex flex-col items-end">
+  <div
+    id="ai-bubble"
+    class="hidden mb-4 glass-card p-4 rounded-2xl border border-grass-green/30 max-w-[200px] text-xs font-mono text-white animate-fade-in shadow-2xl"
+  >
+    <p class="mb-2 text-grass-green">// GRASSY_HOPPER_v1.0</p>
+    <p>Neural chat interface coming soon to assist your build.</p>
+  </div>
+  <button
+    onclick="toggleAIBubble()"
+    class="animate-float w-16 h-16 rounded-full bg-grass-green flex items-center justify-center shadow-[0_0_20px_rgba(0,255,65,0.4)] hover:scale-110 transition-transform group overflow-hidden border-2 border-white/20"
+  >
+    <div
+      class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"
+    ></div>
+    <img
+      src="ASSET_PATH/grasshopper-geometric-logo.svg"
+      alt="Grasshopper Logo"
+      class="w-10 h-10"
+    />
+  </button>
+</div>
+
+<!-- Navigation -->
+<nav
+  class="fixed w-full z-50 bg-deep-space/80 backdrop-blur-xl border-b border-white/5"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <div
+        class="flex items-center group cursor-pointer"
+        onclick="window.location.href = 'INDEX_PATH'"
+      >
+        <img
+          src="ASSET_PATH/grasshopper-geometric-logo.svg"
+          alt="Grasshopper Logo"
+          class="w-10 h-10 mr-2 drop-shadow-[0_0_5px_rgba(0,255,65,0.5)] group-hover:scale-110 transition-transform"
+        />
+        <span
+          class="text-xl md:text-2xl font-mono font-bold text-white group-hover:text-grass-green transition-colors neon-text"
+          >Grasshopper IT Solutions</span
+        >
+      </div>
+      <div class="hidden lg:flex items-center space-x-8">
+        <a
+          href="SERVICES_PATH"
+          class="hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
+          >./Services</a
+        >
+        <a
+          href="PROJECTS_PATH"
+          class="hover:text-cyber-blue text-sm font-medium transition-colors font-mono"
+          >./Projects</a
+        >
+        <a
+          href="mailto:grasshopper.it.solutions@gmail.com"
+          class="bg-grass-green/10 border border-grass-green text-grass-green hover:bg-grass-green hover:text-black px-5 py-2 rounded-full text-xs font-mono transition-all font-bold tracking-tighter"
+          >START_PROJECT</a
+        >
+      </div>
+      <div class="lg:hidden">
+        <button id="mobile-menu-btn" class="text-gray-300">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden bg-code-gray border-b border-white/10 px-4 py-6 space-y-4"
+  >
+    <a href="SERVICES_PATH" class="block text-gray-300 font-mono"
+      >./Services</a
+    >
+    <a href="PROJECTS_PATH" class="block text-gray-300 font-mono"
+      >./Projects</a
+    >
+  </div>
+</nav>

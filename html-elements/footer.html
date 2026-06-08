@@ -1,0 +1,31 @@
+<!-- Shared Footer -->
+<footer class="bg-black py-16 border-t border-white/10">
+  <div
+    class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
+  >
+    <div class="flex items-center group">
+      <img
+        src="ASSET_PATH/grasshopper-geometric-logo.svg"
+        alt="Grasshopper Logo"
+        class="w-8 h-8 mr-2 opacity-70 group-hover:opacity-100 transition-opacity"
+      />
+      <span class="text-xl font-mono font-bold text-white"
+        >Grasshopper_IT</span
+      >
+    </div>
+    <div class="flex gap-4 text-gray-600">
+      <button onclick="notify()" class="hover:text-white transition-colors">
+        <i data-lucide="linkedin" class="w-4 h-4"></i>
+      </button>
+      <button onclick="notify()" class="hover:text-white transition-colors">
+        <i data-lucide="github" class="w-4 h-4"></i>
+      </button>
+      <button onclick="notify()" class="hover:text-white transition-colors">
+        <i data-lucide="instagram" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <p class="text-gray-700 text-[10px] font-mono">
+      SYSTEM_LOCAL_TIME: <span id="time">00:00:00</span>
+    </p>
+  </div>
+</footer>
