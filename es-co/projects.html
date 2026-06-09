@@ -234,9 +234,77 @@
           id="carousel-container"
           class="carousel-scroll flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth"
         >
-          <!-- Card 1: Ludovica Piro (Real) -->
+          <!-- Card 1: Alfonso Romero (Live) -->
           <div
-            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
+            class="min-w-[42vw] md:min-w-[240px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-cyber-blue/50 transition-all duration-500"
+          >
+            <!-- Browser Chrome Mockup -->
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                https://alfonso-romero.art/
+              </div>
+            </div>
+
+            <!-- Preview Area (Iframe) -->
+            <div class="h-[150px] relative bg-black/50 overflow-hidden">
+              <iframe
+                src="https://alfonso-romero.art/"
+                class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
+                loading="lazy"
+                title="Alfonso Romero Photography"
+              ></iframe>
+
+              <!-- Hover Overlay with CTA -->
+              <div
+                class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <a
+                  href="https://alfonso-romero.art/"
+                  target="_blank"
+                  class="bg-cyber-blue text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
+                >
+                  Visitar Sitio
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Alfonso Romero
+                  </h3>
+                  <p class="text-xs font-mono text-cyber-blue">
+                    Portafolio de Fotografía
+                  </p>
+                </div>
+                <span
+                  class="bg-cyber-blue/10 text-cyber-blue text-[10px] px-2 py-1 rounded font-mono border border-cyber-blue/20"
+                  >LIVE</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                Un impresionante portafolio de fotografía que muestra trabajo
+                profesional con diseños de galería inmersivos, soporte
+                multilingüe y una experiencia visual cinematográfica.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Ludovica Piro (Real) -->
+          <div
+            class="min-w-[42vw] md:min-w-[240px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
           >
             <!-- Browser Chrome Mockup -->
             <div
@@ -255,7 +323,7 @@
             </div>
 
             <!-- Preview Area (Iframe or Image) -->
-            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+            <div class="h-[150px] relative bg-black/50 overflow-hidden">
               <iframe
                 src="../landing-pages/ludovica-piro/index.html"
                 class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
@@ -304,7 +372,7 @@
 
           <!-- Card 2: Nuno Moreira (Local) -->
           <div
-            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-cyber-blue/50 transition-all duration-500"
+            class="min-w-[42vw] md:min-w-[240px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-cyber-blue/50 transition-all duration-500"
           >
             <!-- Browser Chrome Mockup -->
             <div
@@ -323,7 +391,7 @@
             </div>
 
             <!-- Preview Area (Iframe) -->
-            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+            <div class="h-[150px] relative bg-black/50 overflow-hidden">
               <iframe
                 src="../landing-pages/nuno-moreira/index.html"
                 class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
@@ -371,7 +439,7 @@
 
           <!-- Card 3: Sofia Moreira -->
           <div
-            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
+            class="min-w-[42vw] md:min-w-[240px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
           >
             <!-- Browser Chrome Mockup -->
             <div
@@ -390,7 +458,7 @@
             </div>
 
             <!-- Preview Area (Iframe) -->
-            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+            <div class="h-[150px] relative bg-black/50 overflow-hidden">
               <iframe
                 src="../landing-pages/sofia-moreira/index.html"
                 class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
@@ -439,10 +507,10 @@
       </div>
     </section>
 
-    <!-- App Showcase Carousel -->
+    <!-- App Showcase Carousel (Hidden) -->
     <section
       id="apps"
-      class="py-32 relative bg-black overflow-hidden border-t border-white/5"
+      class="hidden py-32 relative bg-black overflow-hidden border-t border-white/5"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="flex justify-between items-end mb-16">
@@ -480,10 +548,10 @@
         >
           <!-- App 1: Void Enigma -->
           <div
-            class="min-w-[85vw] md:min-w-[450px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-neon-red/50 transition-all duration-500"
+            class="min-w-[42vw] md:min-w-[220px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-neon-red/50 transition-all duration-500"
           >
             <div
-              class="h-[250px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
+              class="h-[125px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
             >
               <div
                 class="text-6xl mb-4 text-neon-red group-hover:scale-110 transition-transform duration-300"
@@ -499,7 +567,7 @@
               </h3>
               <p class="text-xs font-mono text-neon-red">System.Game.Logic</p>
             </div>
-            <div class="p-8">
+            <div class="p-4">
               <p class="text-gray-400 mb-6 text-sm leading-relaxed">
                 Una app que crea acertijos a partir de patrones de datos
                 generados por IA. Ingresa tu conjunto de datos y recibe enigmas
@@ -530,10 +598,10 @@
 
           <!-- App 2: Tiny Tales Teller -->
           <div
-            class="min-w-[85vw] md:min-w-[450px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-tales-amber/50 transition-all duration-500"
+            class="min-w-[42vw] md:min-w-[220px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-tales-amber/50 transition-all duration-500"
           >
             <div
-              class="h-[250px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
+              class="h-[125px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
             >
               <div
                 class="text-6xl mb-4 text-tales-amber group-hover:scale-110 transition-transform duration-300"
@@ -545,7 +613,7 @@
               </h3>
               <p class="text-xs font-mono text-tales-amber">System.Story.Gen</p>
             </div>
-            <div class="p-8">
+            <div class="p-4">
               <p class="text-gray-400 mb-6 text-sm leading-relaxed">
                 Un narrador de cuentos con IA que genera historias
                 personalizadas y amigables para niños bajo demanda. Elige un
@@ -576,10 +644,10 @@
 
           <!-- App 3: AI Kitchen Navigator -->
           <div
-            class="min-w-[85vw] md:min-w-[450px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-kitchen-orange/50 transition-all duration-500"
+            class="min-w-[42vw] md:min-w-[220px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-kitchen-orange/50 transition-all duration-500"
           >
             <div
-              class="h-[250px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
+              class="h-[125px] bg-card-gray relative p-8 flex flex-col items-center justify-center border-b border-white/5"
             >
               <div
                 class="text-6xl mb-4 text-kitchen-orange group-hover:scale-110 transition-transform duration-300"
@@ -593,7 +661,7 @@
                 System.Food.AI
               </p>
             </div>
-            <div class="p-8">
+            <div class="p-4">
               <p class="text-gray-400 mb-6 text-sm leading-relaxed">
                 (Trabajo en Progreso) Genera recetas según los ingredientes que
                 tengas, restricciones dietéticas o tiempo de cocción. Tu
@@ -671,7 +739,7 @@
         >
           <!-- External Project 1: Hormiguero Lab -->
           <div
-            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-cyber-blue/50 transition-all duration-500"
+            class="min-w-[42vw] md:min-w-[240px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-cyber-blue/50 transition-all duration-500"
           >
             <div
               class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
@@ -688,7 +756,7 @@
               </div>
             </div>
 
-            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+            <div class="h-[150px] relative bg-black/50 overflow-hidden">
               <iframe
                 src="https://grasshoppersolutions.online/hormiguero-lab/"
                 class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
@@ -732,9 +800,72 @@
             </div>
           </div>
 
-          <!-- External Project 2: Diploma Generator -->
+          <!-- External Project 2: Multi Lingo AI -->
           <div
-            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
+            class="min-w-[42vw] md:min-w-[240px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
+          >
+            <div
+              class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div
+                class="ml-4 bg-white/5 rounded px-3 py-1 text-[10px] font-mono text-gray-500 flex-1 truncate"
+              >
+                https://multi-lingo.online/
+              </div>
+            </div>
+
+            <div class="h-[150px] relative bg-black/50 overflow-hidden">
+              <iframe
+                src="https://multi-lingo.online/"
+                class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
+                loading="lazy"
+                title="Multi Lingo AI"
+              ></iframe>
+              <div
+                class="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <a
+                  href="https://multi-lingo.online/"
+                  target="_blank"
+                  class="bg-grass-green text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2"
+                >
+                  Lanzar Aplicación
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Multi Lingo AI
+                  </h3>
+                  <p class="text-xs font-mono text-grass-green">
+                    Plataforma de Traducción IA
+                  </p>
+                </div>
+                <span
+                  class="bg-grass-green/10 text-grass-green text-[10px] px-2 py-1 rounded font-mono border border-grass-green/20"
+                  >LIVE</span
+                >
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                Una plataforma de traducción multilingüe impulsada por IA que
+                rompe las barreras del idioma con traducción inteligente en
+                tiempo real y herramientas interactivas de idiomas.
+              </p>
+            </div>
+          </div>
+
+          <!-- External Project 3: Diploma Generator -->
+          <div
+            class="min-w-[42vw] md:min-w-[240px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-grass-green/50 transition-all duration-500"
           >
             <div
               class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
@@ -751,7 +882,7 @@
               </div>
             </div>
 
-            <div class="h-[300px] relative bg-black/50 overflow-hidden">
+            <div class="h-[150px] relative bg-black/50 overflow-hidden">
               <iframe
                 src="https://grasshoppersolutions.online/diploma-generator/"
                 class="w-full h-[200%] w-[200%] transform scale-50 origin-top-left border-none pointer-events-none"
@@ -797,7 +928,7 @@
 
           <!-- External Project 3: Placeholder -->
           <div
-            class="min-w-[85vw] md:min-w-[500px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-white/30 transition-all duration-500"
+            class="min-w-[42vw] md:min-w-[240px] snap-center glass-card rounded-2xl overflow-hidden border border-white/10 group hover:border-white/30 transition-all duration-500"
           >
             <div
               class="bg-black/80 p-3 flex items-center gap-2 border-b border-white/5"
@@ -814,7 +945,7 @@
               </div>
             </div>
             <div
-              class="h-[300px] relative bg-black flex items-center justify-center overflow-hidden"
+              class="h-[150px] relative bg-black flex items-center justify-center overflow-hidden"
             >
               <div class="text-center p-8 relative z-10">
                 <i
