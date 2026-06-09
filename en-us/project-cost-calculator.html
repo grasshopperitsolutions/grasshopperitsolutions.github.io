@@ -10,12 +10,12 @@
       type="image/svg+xml"
     />
     <!-- SEO: Canonical & hreflang -->
-    <link rel="canonical" href="https://grasshoppersolutions.online/en-us/project-cost-calculator.html" />
-    <link rel="alternate" hreflang="en-us" href="https://grasshoppersolutions.online/en-us/project-cost-calculator.html" />
-    <link rel="alternate" hreflang="es-co" href="https://grasshoppersolutions.online/es-co/project-cost-calculator.html" />
-    <link rel="alternate" hreflang="x-default" href="https://grasshoppersolutions.online/" />
-    <meta name="description" content="Configure, compute, and generate technical estimates for scalable landing pages, system integrations, and extra modular components." />
-    <!-- Tailwind CSS CDN -->
+ <link rel=canonical href=https://grasshoppersolutions.online/en-us/project-cost-calculator.html />
+ <link rel=alternate hreflang=en-us href=https://grasshoppersolutions.online/en-us/project-cost-calculator.html />
+ <link rel=alternate hreflang=es-co href=https://grasshoppersolutions.online/es-co/project-cost-calculator.html />
+ <link rel=alternate hreflang=x-default href=https://grasshoppersolutions.online/ />
+ <meta name=description content=Configure your project options and get an instant cost estimate. Adjust discounts, select pages and integrations, and export your quote. />
+ <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link
@@ -81,9 +81,6 @@
       .calc-input {
         @apply w-full bg-code-gray border border-white/10 text-white font-mono rounded px-3 py-2 text-sm focus:outline-none focus:border-grass-green/40 focus:ring-1 focus:ring-grass-green/40 transition;
       }
-      .calc-badge {
-        @apply absolute top-0 right-0 transform -translate-y-1/2 translate-x-4 bg-code-gray/90 border border-grass-green/40 text-[10px] font-mono text-grass-green px-2.5 py-0.5 rounded-full uppercase tracking-widest shadow-[0_0_10px_rgba(0,255,65,0.15)];
-      }
       .calc-section {
         @apply bg-card-gray/80 border border-white/10 p-6 rounded-xl relative shadow-sm;
       }
@@ -95,6 +92,16 @@
       }
       .calc-total-display {
         @apply text-2xl md:text-3xl font-extrabold text-grass-green font-mono transition-all duration-300;
+      }
+      /* Custom range slider styling */
+      input[type="range"] {
+        @apply h-1 bg-code-gray rounded-lg appearance-none cursor-pointer;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        @apply appearance-none w-4 h-4 bg-grass-green rounded-full shadow-[0_0_8px_rgba(0,255,65,0.4)] cursor-pointer;
+      }
+      input[type="range"]::-moz-range-thumb {
+        @apply w-4 h-4 bg-grass-green rounded-full border-0 shadow-[0_0_8px_rgba(0,255,65,0.4)] cursor-pointer;
       }
     </style>
   </head>
@@ -108,37 +115,17 @@
     <header class="relative overflow-hidden pt-32 pb-6 border-b border-white/10 bg-gradient-to-b from-card-gray to-deep-space">
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(0,255,65,0.06),rgba(0,0,0,0))] pointer-events-none"></div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <div class="calc-label">
-              <span class="w-2 h-2 bg-grass-green rounded-full mr-2 animate-ping"></span>
-              PROJECT ESTIMATOR
-            </div>
-            <h1 class="text-4xl md:text-6xl font-bold font-heading tracking-tight text-white leading-[1.1]">
-              Project Cost <span class="text-transparent bg-clip-text bg-gradient-to-r from-grass-green to-cyber-blue">Calculator</span>
-            </h1>
-            <p class="mt-3 text-gray-400 max-w-2xl text-sm md:text-base leading-relaxed">
-              Configure, compute, and generate technical estimates for scalable landing pages, system integrations, and extra modular components.
-            </p>
+        <div>
+          <div class="calc-label">
+            <span class="w-2 h-2 bg-grass-green rounded-full mr-2 animate-ping"></span>
+            PROJECT COST CALCULATOR
           </div>
-
-          <!-- Preset Selectors -->
-          <div class="flex flex-col gap-2 min-w-[240px] md:self-center">
-            <span class="text-xs font-mono text-gray-500 flex items-center gap-1">
-              <i data-lucide="zap" class="text-grass-green w-3.5 h-3.5"></i> LOAD PRESET:
-            </span>
-            <div class="grid grid-cols-3 gap-2">
-              <button onclick="applyPreset('basic')" class="py-1.5 px-2 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-grass-green/50 text-xs font-mono rounded transition duration-200">
-                Basic
-              </button>
-              <button onclick="applyPreset('portfolio')" class="py-1.5 px-2 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-grass-green/50 text-xs font-mono rounded transition duration-200">
-                Agency
-              </button>
-              <button onclick="applyPreset('enterprise')" class="py-1.5 px-2 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-grass-green/50 text-xs font-mono rounded transition duration-200">
-                Pro Pack
-              </button>
-            </div>
-          </div>
+          <h1 class="text-4xl md:text-5xl font-bold font-heading tracking-tight text-white leading-[1.1]">
+            Project Cost <span class="text-transparent bg-clip-text bg-gradient-to-r from-grass-green to-cyber-blue">Calculator</span>
+          </h1>
+          <p class="mt-3 text-gray-400 max-w-2xl text-sm md:text-base leading-relaxed">
+            Configure your project options below to get an instant cost estimate. Adjust the discount, select your pages and integrations, and export your quote.
+          </p>
         </div>
       </div>
     </header>
@@ -149,91 +136,145 @@
       <!-- LEFT PANEL: CONFIGURATION (Col span: 7) -->
       <section class="lg:col-span-7 flex flex-col gap-6">
 
-        <!-- SECTION 1: BASE SYSTEM VALUE -->
+        <!-- SECTION 1: BASE SYSTEM VALUE + DISCOUNT -->
         <div class="calc-section">
-          <div class="calc-badge">Core Module</div>
           <h3 class="text-lg font-semibold text-white flex items-center gap-2 mb-4">
             <span class="text-grass-green text-sm font-mono">[01]</span> Base Configuration
           </h3>
 
-          <div class="grid grid-cols-1 gap-6">
+          <div class="grid grid-cols-1 gap-4">
             <!-- Raw Base Value Indicator -->
             <div class="calc-stat-box">
               <label class="block text-xs font-mono text-gray-500 mb-1">STANDARD BASE VALUE</label>
               <div class="flex items-baseline gap-2">
-                <span class="text-3xl font-extrabold text-white font-mono">$250</span>
+                <span class="text-3xl font-extrabold text-white font-mono">$280</span>
                 <span class="text-xs text-gray-600 font-mono">USD</span>
               </div>
               <p class="text-[11px] text-gray-600 mt-2 leading-relaxed">
-                Covers full architecture deployment, default styling framework setup, and core home/landing page responsive layout.
+                Covers hosting, landing page, WhatsApp integration, navigation header with logo, social links footer, T&C & privacy pages, professional design, simple architecture, and simple domain.
               </p>
+            </div>
+
+            <!-- Discount Input (hidden) -->
+            <div class="calc-stat-box hidden">
+              <div class="flex items-center justify-between mb-2">
+                <label for="discount-input" class="text-xs font-mono text-gray-500 flex items-center gap-1">
+                  <i data-lucide="percent" class="w-3 h-3 text-grass-green"></i> DISCOUNT PERCENTAGE
+                </label>
+                <span class="text-xs font-mono text-grass-green" id="discount-display">0% applied</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <input 
+                  type="number" 
+                  id="discount-input" 
+                  min="0" 
+                  max="100" 
+                  value="0" 
+                  oninput="updateDiscountFromInput(this.value)"
+                  class="calc-input w-24"
+                  placeholder="0"
+                >
+                <span class="text-sm font-mono text-gray-500">%</span>
+                <input 
+                  type="range" 
+                  id="discount-range" 
+                  min="0" 
+                  max="90" 
+                  value="0" 
+                  step="5"
+                  oninput="updateDiscountFromRange(this.value)"
+                  class="flex-grow"
+                >
+              </div>
             </div>
           </div>
 
           <!-- Calculated Real-Time Base Price -->
-          <div class="mt-4 p-3.5 bg-grass-green/5 border border-grass-green/20 rounded-lg flex items-center justify-between">
-            <span class="text-xs font-mono text-gray-400">PRODUCES MODIFIED BASE:</span>
-            <span class="text-lg font-bold text-grass-green font-mono" id="calculated-base-price">$100.00 USD</span>
+          <div class="hidden mt-4 p-3.5 bg-grass-green/5 border border-grass-green/20 rounded-lg flex items-center justify-between">
+            <span class="text-xs font-mono text-gray-400">MODIFIED BASE:</span>
+            <span class="text-lg font-bold text-grass-green font-mono" id="calculated-base-price">$250.00 USD</span>
           </div>
         </div>
 
         <!-- SECTION 2: MODULAR COMPONENTS (EXTRA PAGES) -->
         <div class="calc-section">
-          <div class="absolute top-0 right-0 transform -translate-y-1/2 translate-x-4 bg-code-gray/90 border border-gray-500/40 text-[10px] font-mono text-gray-400 px-2.5 py-0.5 rounded-full uppercase tracking-widest">
-            25% of Base Value
-          </div>
           <h3 class="text-lg font-semibold text-white flex items-center gap-2 mb-2">
-            <span class="text-grass-green text-sm font-mono">[02]</span> Extra Layout Pages
+            <span class="text-grass-green text-sm font-mono">[02]</span> Extra Pages
           </h3>
           <p class="text-xs text-gray-500 mb-4 leading-relaxed">
-            Standard secondary sections. Individually structured and styled responsive sub-pages.
-            <span class="text-grass-green/90 font-mono">(Current rate: <span class="rate-pages">$25.00</span> per unit)</span>
+            Additional pages for your project.
+            <span class="text-grass-green/90 font-mono">(<span class="rate-pages">$62.50</span> each)</span>
           </p>
 
-          <!-- Static Toggles for Pages -->
+          <!-- Preset Button -->
+          <div class="mb-4">
+            <button type="button" onclick="applyBasicWebpagePreset()" class="px-4 py-2 bg-grass-green/10 hover:bg-grass-green/20 border border-grass-green/30 text-grass-green text-xs font-mono font-bold rounded-lg transition flex items-center gap-2">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i> PRESET: BASIC WEBPAGE (Contact + About + Services)
+            </button>
+          </div>
+
+          <!-- Fixed/Included Pages -->
+          <div class="mb-3">
+            <label class="block text-[10px] font-mono text-gray-600 mb-2 uppercase">Included in Base:</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+              <div class="flex items-center gap-3 p-2.5 rounded-lg bg-grass-green/5 border border-grass-green/15 opacity-70 cursor-default">
+                <input type="checkbox" checked disabled class="accent-grass-green w-4 h-4 opacity-60">
+                <span class="text-xs font-medium text-gray-400">Terms & Conditions</span>
+              <span class="text-[9px] font-mono text-grass-green/50 ml-auto">included</span>
+              </div>
+              <div class="flex items-center gap-3 p-2.5 rounded-lg bg-grass-green/5 border border-grass-green/15 opacity-70 cursor-default">
+                <input type="checkbox" checked disabled class="accent-grass-green w-4 h-4 opacity-60">
+                <span class="text-xs font-medium text-gray-400">Privacy Policy</span>
+                <span class="text-[9px] font-mono text-grass-green/50 ml-auto">included</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paid Toggles for Pages -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
-                <input type="checkbox" id="page-contacts" class="page-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
-                <span class="text-sm font-medium text-gray-300">Contact Form Page</span>
+                <input type="checkbox" id="page-contact" class="page-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Contact</span>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$25.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$62.50</span>
             </label>
 
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
-                <input type="checkbox" id="page-portfolio" class="page-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
-                <span class="text-sm font-medium text-gray-300">Dynamic Portfolio</span>
+                <input type="checkbox" id="page-portfolio" class="page-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Portfolio</span>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$25.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$62.50</span>
             </label>
 
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
-                <input type="checkbox" id="page-services" class="page-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
-                <span class="text-sm font-medium text-gray-300">Detailed Services</span>
+                <input type="checkbox" id="page-services" class="page-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Services</span>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$25.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$62.50</span>
             </label>
 
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
                 <input type="checkbox" id="page-about" class="page-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
-                <span class="text-sm font-medium text-gray-300">About / Team Page</span>
+                <span class="text-sm font-medium text-gray-300">About / Team</span>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$25.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$62.50</span>
             </label>
           </div>
 
           <!-- Dynamic User-added Extra Pages -->
           <div class="border-t border-white/10 pt-4">
-            <label class="block text-xs font-mono text-gray-500 mb-2">ADD ADDITIONAL UNIQUE LAYOUTS:</label>
+            <label class="block text-xs font-mono text-gray-500 mb-2">ADD CUSTOM PAGE:</label>
             <div class="flex gap-2">
               <input 
                 type="text" 
                 id="custom-page-name" 
                 class="calc-input flex-grow" 
-                placeholder="e.g. Terms of Service, Careers, FAQ..."
+                placeholder="e.g. FAQ, Careers, Pricing..."
+                onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomPage();}"
               >
               <button 
                 type="button" 
@@ -244,69 +285,75 @@
               </button>
             </div>
             <!-- Dynamic Tag Container -->
-            <div id="custom-pages-container" class="flex flex-wrap gap-2 mt-3 empty:mt-0">
-              <!-- Dynamic tags injected here -->
-            </div>
+            <div id="custom-pages-container" class="flex flex-wrap gap-2 mt-3 empty:mt-0"></div>
           </div>
         </div>
 
-        <!-- SECTION 3: SYSTEM INTEGRATIONS (HIGH VALUE INTEGRATIONS) -->
+        <!-- SECTION 3: SYSTEM INTEGRATIONS -->
         <div class="calc-section">
-          <div class="absolute top-0 right-0 transform -translate-y-1/2 translate-x-4 bg-code-gray/90 border border-gray-500/40 text-[10px] font-mono text-gray-400 px-2.5 py-0.5 rounded-full uppercase tracking-widest">
-            50% of Base Value
-          </div>
           <h3 class="text-lg font-semibold text-white flex items-center gap-2 mb-2">
-            <span class="text-grass-green text-sm font-mono">[03]</span> High Value Integrations
+            <span class="text-grass-green text-sm font-mono">[03]</span> Integrations
           </h3>
           <p class="text-xs text-gray-500 mb-4 leading-relaxed">
-            Injecting external automation protocols, webhook handlers, and third-party script integrations.
-            <span class="text-grass-green/90 font-mono">(Current rate: <span class="rate-integrations">$50.00</span> per integration)</span>
+            External services and automation connections.
+            <span class="text-grass-green/90 font-mono">(<span class="rate-integrations">$125.00</span> each)</span>
           </p>
 
-          <!-- Predefined list of popular integrations -->
+          <!-- Fixed/Included Integration -->
+          <div class="mb-3">
+            <label class="block text-[10px] font-mono text-gray-600 mb-2 uppercase">Included in Base:</label>
+            <div class="flex items-center gap-3 p-2.5 rounded-lg bg-grass-green/5 border border-grass-green/15 opacity-70 cursor-default mb-3">
+              <input type="checkbox" checked disabled class="accent-grass-green w-4 h-4 opacity-60">
+              <span class="text-sm font-medium text-gray-400">Link your own WhatsApp number</span>
+              <span class="text-[9px] font-mono text-grass-green/50 ml-auto">included</span>
+            </div>
+          </div>
+
+          <!-- Predefined list of integrations -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
-                <input type="checkbox" id="integration-whatsapp" class="integration-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
-                <span class="text-sm font-medium text-gray-300">WhatsApp Live Chat widget</span>
+                <input type="checkbox" id="integration-calendar" class="integration-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Calendar</span>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$50.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$125.00</span>
             </label>
 
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
-                <input type="checkbox" id="integration-calendar" class="integration-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
-                <span class="text-sm font-medium text-gray-300">Google / Calendly Scheduler</span>
+                <input type="checkbox" id="integration-filemanager" class="integration-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">File Manager</span>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$50.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$125.00</span>
             </label>
 
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
-                <input type="checkbox" id="integration-gdrive" class="integration-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
-                <span class="text-sm font-medium text-gray-300">GDrive File Uploader</span>
+                <input type="checkbox" id="integration-map" class="integration-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Map</span>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$50.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$125.00</span>
             </label>
 
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
-                <input type="checkbox" id="integration-form" class="integration-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
-                <span class="text-sm font-medium text-gray-300">Custom Lead Form Webhook</span>
+                <input type="checkbox" id="integration-tracking" class="integration-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
+                <span class="text-sm font-medium text-gray-300">Tracking System</span>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$50.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-integrations">$125.00</span>
             </label>
           </div>
 
           <!-- Custom Integrations -->
           <div class="border-t border-white/10 pt-4">
-            <label class="block text-xs font-mono text-gray-500 mb-2">CUSTOM WEB INTEGRATION HANDLER:</label>
+            <label class="block text-xs font-mono text-gray-500 mb-2">ADD CUSTOM INTEGRATION:</label>
             <div class="flex gap-2">
               <input 
                 type="text" 
                 id="custom-integration-name" 
                 class="calc-input flex-grow" 
-                placeholder="e.g. Mailchimp Newsletter, Stripe, Custom API..."
+                placeholder="e.g. Mailchimp, Stripe, Custom API..."
+                onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomIntegration();}"
               >
               <button 
                 type="button" 
@@ -316,84 +363,60 @@
                 + ADD
               </button>
             </div>
-            <!-- Dynamic Integration tag Container -->
-            <div id="custom-integrations-container" class="flex flex-wrap gap-2 mt-3 empty:mt-0">
-              <!-- Injected dynamic items -->
-            </div>
+            <div id="custom-integrations-container" class="flex flex-wrap gap-2 mt-3 empty:mt-0"></div>
           </div>
         </div>
 
-        <!-- SECTION 4: EXTRA HIGH-VALUE FEATURES (SIMPLE INTEGRATIONS) -->
+        <!-- SECTION 4: PRO FEATURES -->
         <div class="calc-section">
-          <div class="absolute top-0 right-0 transform -translate-y-1/2 translate-x-4 bg-code-gray/90 border border-gray-500/40 text-[10px] font-mono text-gray-400 px-2.5 py-0.5 rounded-full uppercase tracking-widest">
-            20% of Base Value
-          </div>
           <h3 class="text-lg font-semibold text-white flex items-center gap-2 mb-2">
-            <span class="text-grass-green text-sm font-mono">[04]</span> Simple Integrations
+            <span class="text-grass-green text-sm font-mono">[04]</span> Pro Features
           </h3>
           <p class="text-xs text-gray-500 mb-4 leading-relaxed">
-            Advanced functional specifications, site-wide assets, and localization configurations.
-            <span class="text-grass-green/90 font-mono">(Current rate: <span class="rate-features">$20.00</span> per setup)</span>
+            Premium options to boost your site's visibility and reach.
+            <span class="text-grass-green/90 font-mono">(<span class="rate-features">$50.00</span> each)</span>
           </p>
 
-          <!-- Static checkboxes representing requested properties -->
           <div class="space-y-3">
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
-                <input type="checkbox" id="feature-seo" class="feature-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <input type="checkbox" id="feature-seo" class="feature-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
                 <div>
-                  <span class="text-sm font-medium text-gray-300 block">SEO & GEO Metadata Setup</span>
-                  <span class="text-[11px] text-gray-600">Google index optimization, OpenGraph protocols, local SEO settings.</span>
+                  <span class="text-sm font-medium text-gray-300 block">SEO & GEO</span>
+                  <span class="text-[11px] text-gray-600">Make your website appear in web seach and AI gpt searches!</span>
                 </div>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-features">$20.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-features">$50.00</span>
             </label>
 
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
                 <input type="checkbox" id="feature-domain" class="feature-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
                 <div>
-                  <span class="text-sm font-medium text-gray-300 block">Custom Domain Setup & DNS Mapping</span>
-                  <span class="text-[11px] text-gray-600">Routing and pointing server configurations with SSL generation.</span>
+                  <span class="text-sm font-medium text-gray-300 block">Pro Domain of your choice</span>
+                  <span class="text-[11px] text-gray-600">Get your own professional web address. Price may vary depending on the domain.</span>
                 </div>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-features">$20.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-features">$50.00</span>
             </label>
 
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
-                <input type="checkbox" id="feature-multilang" class="feature-checkbox accent-grass-green w-4.5 h-4.5" checked onchange="triggerRecalculate()">
+                <input type="checkbox" id="feature-multilang" class="feature-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
                 <div>
-                  <span class="text-sm font-medium text-gray-300 block">Multiple Language (i18n) Framework</span>
-                  <span class="text-[11px] text-gray-600">Structure ready for localization switches and system translations.</span>
+                  <span class="text-sm font-medium text-gray-300 block">Multilingual</span>
+                  <span class="text-[11px] text-gray-600">Add english language to your website!</span>
                 </div>
               </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-features">$20.00</span>
+              <span class="text-xs font-mono text-gray-500 rate-tag-features">$50.00</span>
             </label>
           </div>
         </div>
       </section>
 
       <!-- RIGHT PANEL: CALCULATION RESULTS & EXPORTS (Col span: 5) -->
-      <section class="lg:col-span-5 flex flex-col gap-6">
+      <section class="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-24 lg:self-start">
         
-        <!-- COMPILE ACTION -->
-        <div class="calc-section flex flex-col justify-between">
-          <h3 class="text-sm font-mono text-gray-500 uppercase tracking-wider mb-2">PROJECT ESTIMATOR PIPELINE</h3>
-          <p class="text-xs text-gray-500 mb-4 leading-normal">
-            Click below to compile parameters, update dynamic line-items, and trigger the official system quote validation.
-          </p>
-
-          <button 
-            id="compile-btn"
-            onclick="runCalculationAnimation()"
-            class="w-full text-center py-4 bg-grass-green text-black font-mono font-extrabold rounded-lg hover:shadow-[0_0_30px_rgba(0,255,65,0.3)] shadow-[0_0_15px_rgba(0,255,65,0.2)] active:translate-y-[1px] transition-all duration-300 flex items-center justify-center gap-2"
-          >
-            <i data-lucide="calculator" class="w-5 h-5"></i>
-            <span>COMPILE COST PROJECTION</span>
-          </button>
-        </div>
-
         <!-- INVOICE / RECEIPT CONTAINER (PDF TARGET) -->
         <div id="invoice-scope" class="bg-card-gray border-2 border-grass-green/30 p-6 rounded-xl shadow-[0_0_15px_rgba(0,255,65,0.15)] relative overflow-hidden">
           <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(0,255,65,0.03),rgba(0,0,0,0))] pointer-events-none"></div>
@@ -407,58 +430,81 @@
                     <path d="M4 20l4-4h12l2-4-8-4-4 4-6-2v6l2 4z"/>
                   </svg> GRASSHOPPER
                 </h2>
-                <span class="text-[9px] text-gray-500 font-mono block">BLUEPRINT_IDENTIFIER: GR_PROJ_924</span>
+                <span class="text-[9px] text-gray-500 font-mono block">QUOTE REF: GR_PROJ_924</span>
               </div>
               <div class="text-right font-mono">
                 <span class="text-[10px] text-grass-green bg-grass-green/10 px-2 py-0.5 rounded border border-grass-green/30 inline-block font-semibold">
-                  QUOTE ESTIMATE
+                  ESTIMATE
                 </span>
-                <span class="block text-[9px] text-gray-600 mt-1" id="quote-timestamp">GEN_DATE: --/--/--</span>
+                <span class="block text-[9px] text-gray-600 mt-1" id="quote-timestamp">DATE: --/--/--</span>
+              </div>
+            </div>
+
+            <!-- Currency Toggle + Validity -->
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <!-- Currency Toggle -->
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-mono text-gray-600">CURRENCY:</span>
+                <button 
+                  id="currency-usd" 
+                  onclick="setCurrency('USD')" 
+                  class="px-2 py-0.5 text-[10px] font-mono rounded border border-grass-green/30 bg-grass-green/10 text-grass-green transition"
+                >USD</button>
+                <button 
+                  id="currency-cop" 
+                  onclick="setCurrency('COP')" 
+                  class="px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition"
+                >COP</button>
+                <span class="text-[9px] text-gray-600 font-mono" id="exchange-rate-display"></span>
+              </div>
+              <!-- Validity Period (Fixed) -->
+              <div class="flex items-center gap-1">
+                <span class="text-[10px] font-mono text-gray-600">VALID:</span>
+                <span class="text-[10px] font-mono text-grass-green bg-grass-green/10 px-1.5 py-0.5 rounded border border-grass-green/20">15 days</span>
               </div>
             </div>
 
             <!-- Base details -->
             <div class="mb-4">
-              <span class="text-[10px] font-mono text-gray-600 block uppercase">CORE SYSTEM CONFIG</span>
               <div class="flex items-center justify-between text-sm py-1">
-                <span class="text-gray-400 font-medium">Core Landing Page Base</span>
-                <span class="text-white font-mono" id="invoice-base-price">$100.00</span>
+                <span class="text-gray-400 font-medium">Base Package</span>
+                <span class="text-white font-mono" id="invoice-base-price">$250.00</span>
               </div>
-              <div id="invoice-discount-row" class="flex items-center justify-between text-xs py-1 text-emerald-400 hidden">
-                <span>Applied Discount Modifier</span>
-                <span class="font-mono" id="invoice-discount-val">-0.00%</span>
+              <div id="invoice-discount-row" class="flex items-center justify-between text-xs py-1 text-emerald-400">
+                <span>Discount Applied</span>
+                <span class="font-mono" id="invoice-discount-val">-0%</span>
               </div>
             </div>
 
             <!-- Modular Cost Breakdown -->
             <div class="mb-4 border-t border-white/10 pt-3">
-              <span class="text-[10px] font-mono text-gray-600 block uppercase">MODULAR COMPONENTS BREAKDOWN</span>
+              <span class="text-[10px] font-mono text-gray-600 block uppercase mb-2">BREAKDOWN</span>
               
               <!-- Pages -->
               <div class="flex items-start justify-between text-xs py-1.5 text-gray-400">
                 <div>
                   <span class="font-medium">Extra Pages</span>
-                  <span id="invoice-pages-count" class="text-[10px] font-mono text-gray-600 block">0 items selected</span>
+                  <span id="invoice-pages-count" class="text-[10px] font-mono text-gray-600 block">0 selected</span>
                   <div id="invoice-pages-names" class="text-[10px] text-grass-green/70 italic max-w-xs mt-0.5"></div>
                 </div>
                 <span id="invoice-pages-total" class="font-mono text-white">$0.00</span>
               </div>
 
-              <!-- Integrations (High Value Integrations) -->
+              <!-- Integrations -->
               <div class="flex items-start justify-between text-xs py-1.5 text-gray-400 border-t border-white/10">
                 <div>
-                  <span class="font-medium">High Value Integrations</span>
-                  <span id="invoice-integrations-count" class="text-[10px] font-mono text-gray-600 block">0 items selected</span>
+                  <span class="font-medium">Integrations</span>
+                  <span id="invoice-integrations-count" class="text-[10px] font-mono text-gray-600 block">0 selected</span>
                   <div id="invoice-integrations-names" class="text-[10px] text-grass-green/70 italic max-w-xs mt-0.5"></div>
                 </div>
                 <span id="invoice-integrations-total" class="font-mono text-white">$0.00</span>
               </div>
 
-              <!-- Features (Simple Integrations) -->
+              <!-- Features -->
               <div class="flex items-start justify-between text-xs py-1.5 text-gray-400 border-t border-white/10">
                 <div>
-                  <span class="font-medium">Simple Integrations</span>
-                  <span id="invoice-features-count" class="text-[10px] font-mono text-gray-600 block">0 items selected</span>
+                  <span class="font-medium">Pro Features</span>
+                  <span id="invoice-features-count" class="text-[10px] font-mono text-gray-600 block">0 selected</span>
                   <div id="invoice-features-names" class="text-[10px] text-grass-green/70 italic max-w-xs mt-0.5"></div>
                 </div>
                 <span id="invoice-features-total" class="font-mono text-white">$0.00</span>
@@ -468,21 +514,23 @@
             <!-- Total Due Output -->
             <div class="border-t-2 border-dashed border-white/10 pt-4 mt-2">
               <div class="flex items-center justify-between">
-                <span class="text-sm font-mono text-gray-400 font-semibold">TOTAL PROJECTED INVESTMENT</span>
+                <span class="text-sm font-mono text-gray-400 font-semibold">TOTAL ESTIMATE</span>
                 <div class="text-right">
-                  <span class="calc-total-display" id="total-display">
-                    $100.00
-                  </span>
-                  <span class="text-[10px] text-gray-500 block font-mono">USD &middot; NET ESTIMATE</span>
+                  <span class="calc-total-display" id="total-display">$250.00</span>
+                  <span class="text-[10px] text-gray-500 block font-mono"><span id="total-currency-label">USD</span> &middot; NET ESTIMATE</span>
                 </div>
               </div>
             </div>
+
+            <!-- Validity Date -->
+            <div class="mt-3 text-center">
+              <span class="text-[10px] font-mono text-gray-500">Valid until: <span id="validity-date" class="text-grass-green/80">--</span></span>
+            </div>
           </div>
 
-          <!-- System Disclaimer -->
-          <div class="mt-6 pt-3 border-t border-white/10 text-[9px] text-gray-600 font-mono space-y-1">
-            <p>// THIS IS AN AUTOMATIC GRAPH PROJECTION FROM GRASSHOPPER IT SOLUTIONS.</p>
-            <p>// ACTUAL ESTIMATES MAY VARY SLIGHTLY ACCORDING TO SPECIFIC REQUIREMENT SCOPE.</p>
+          <!-- Disclaimer -->
+          <div class="mt-4 pt-3 border-t border-white/10 text-[9px] text-gray-600 font-mono">
+            <p>// Estimates from Grasshopper IT Solutions. Actual costs may vary based on scope.</p>
           </div>
         </div>
 
@@ -507,7 +555,7 @@
             </button>
           </div>
 
-          <!-- Initiate contact with estimate details filled in! -->
+          <!-- WhatsApp contact -->
           <button 
             type="button" 
             onclick="initiateContact()" 
@@ -517,29 +565,14 @@
           </button>
         </div>
 
-        <!-- COMPILATION VIRTUAL TERMINAL LOGS -->
-        <div class="bg-black border border-white/10 rounded-xl p-4 font-mono text-[11px] text-gray-500 shadow-inner">
-          <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
-            <span class="text-grass-green text-xs flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 bg-grass-green rounded-full animate-ping"></span>
-              SYSTEM COMPILER LOGS
-            </span>
-            <span class="text-gray-600 text-[10px]">VER: 1.0.4</span>
-          </div>
-          <div class="space-y-1 max-h-32 overflow-y-auto" id="terminal-logs">
-            <div>> System terminal initialized. Ready for project mapping compilation.</div>
-            <div>> Awaiting dynamic calculation trigger parameters...</div>
-          </div>
-        </div>
-
       </section>
     </main>
 
-    <!-- CUSTOM USER ACTION TOAST NOTIFICATION -->
+    <!-- TOAST NOTIFICATION -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300">
       <div class="bg-card-gray border border-grass-green shadow-[0_0_20px_rgba(0,255,65,0.25)] px-4 py-3 rounded-lg flex items-center gap-3">
         <i data-lucide="circle-check" class="text-grass-green w-5 h-5"></i>
-        <span class="text-xs font-mono text-white" id="toast-message">Configuration state copied successfully!</span>
+        <span class="text-xs font-mono text-white" id="toast-message">Saved!</span>
       </div>
     </div>
 
@@ -549,65 +582,166 @@
     <!-- SCRIPTING LOGIC -->
     <script>
       // System Constant Rates
-      const BASE_VALUE = 250.00; 
+      const BASE_VALUE = 280.00; 
       const PAGES_RATE_MULT = 0.25;        // 25% of Base
       const INTEGRATIONS_RATE_MULT = 0.50;  // 50% of Base
       const FEATURES_RATE_MULT = 0.20;      // 20% of Base
+      const VALIDITY_DAYS = 15;
 
-      // Dynamic State lists
+      // Dynamic State
       let customPages = [];
       let customIntegrations = [];
-      let discountPercent = 60; // 60% to show exactly $100 USD initially ($250 * 0.4 = $100)
+      let discountPercent = 0;
+      let currentCurrency = 'USD';
+      let exchangeRate = null;
 
-      // Terminal Logging utility
-      function addLog(text, type = 'info') {
-        const logsContainer = document.getElementById('terminal-logs');
-        const div = document.createElement('div');
-        
-        let prefix = '> ';
-        let colorClass = 'text-gray-500';
-        
-        if (type === 'success') {
-          colorClass = 'text-grass-green';
-        } else if (type === 'warn') {
-          colorClass = 'text-amber-400';
-          prefix = '[!] ';
-        } else if (type === 'system') {
-          colorClass = 'text-cyan-400';
-        }
-
-        const dateStr = new Date().toLocaleTimeString();
-        div.className = `${colorClass} leading-normal`;
-        div.innerHTML = `<span class="text-gray-700">[${dateStr}]</span> ${prefix}${text}`;
-        
-        logsContainer.appendChild(div);
-        logsContainer.scrollTop = logsContainer.scrollHeight;
+      // ===== PRESET =====
+      function applyBasicWebpagePreset() {
+        document.getElementById('page-contact').checked = true;
+        document.getElementById('page-about').checked = true;
+        document.getElementById('page-services').checked = true;
+        showToast('Basic Webpage preset applied: Contact + About + Services');
+        triggerRecalculate();
       }
 
-      // On Load Initialization
-      window.addEventListener('DOMContentLoaded', () => {
-        // Set quote default timestamp
-        const today = new Date();
-        document.getElementById('quote-timestamp').innerText = `GEN_DATE: ${today.toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'})}`;
-        
-        addLog('Scanning peripheral interfaces...', 'system');
-        addLog('Loading state presets from URL hashes...', 'info');
+      function clearSelections() {
+        document.getElementById('page-contact').checked = false;
+        document.getElementById('page-portfolio').checked = false;
+        document.getElementById('page-services').checked = false;
+        document.getElementById('page-about').checked = false;
+        document.getElementById('integration-calendar').checked = false;
+        document.getElementById('integration-filemanager').checked = false;
+        document.getElementById('integration-map').checked = false;
+        document.getElementById('integration-tracking').checked = false;
+        document.getElementById('feature-seo').checked = false;
+        document.getElementById('feature-domain').checked = false;
+        document.getElementById('feature-multilang').checked = false;
+        customPages = [];
+        customIntegrations = [];
+        renderPageChips();
+        renderIntegrationChips();
+        discountPercent = 0;
+        document.getElementById('discount-input').value = 0;
+        document.getElementById('discount-range').value = 0;
+        updateDiscountUI();
+        setCurrency('USD');
+        showToast('All selections cleared.');
+        triggerRecalculate();
+      }
 
-        // Attempt parsing query variables for sharing quotes
-        loadFromURL();
+      // ===== DISCOUNT HANDLERS =====
+      function updateDiscountFromInput(val) {
+        let num = parseFloat(val);
+        if (isNaN(num)) num = 0;
+        if (num < 0) num = 0;
+        if (num > 100) num = 100;
         
-        // Perform initial pass calculation
-        calculateAll(false);
-      });
+        discountPercent = num;
+        document.getElementById('discount-range').value = Math.min(num, 90);
+        updateDiscountUI();
+        triggerRecalculate();
+      }
 
-      // Adding dynamic page chips
+      function updateDiscountFromRange(val) {
+        let num = parseFloat(val);
+        discountPercent = num;
+        document.getElementById('discount-input').value = num;
+        updateDiscountUI();
+        triggerRecalculate();
+      }
+
+      function updateDiscountUI() {
+        const disp = document.getElementById('discount-display');
+        const discRow = document.getElementById('invoice-discount-row');
+        const discVal = document.getElementById('invoice-discount-val');
+        
+        if (discountPercent > 0) {
+          disp.innerText = `${discountPercent}% applied`;
+          disp.classList.add('text-grass-green');
+          discRow.classList.remove('hidden');
+          discVal.innerText = `-${discountPercent}%`;
+        } else {
+          disp.innerText = '0% applied';
+          disp.classList.remove('text-grass-green');
+          discRow.classList.add('hidden');
+        }
+      }
+
+      // ===== CURRENCY =====
+      async function fetchExchangeRate() {
+        const cached = localStorage.getItem('gh_exchange_rate');
+        const cachedTime = localStorage.getItem('gh_exchange_rate_time');
+        
+        if (cached && cachedTime && (Date.now() - parseInt(cachedTime)) < 3600000) {
+          exchangeRate = parseFloat(cached);
+          updateExchangeRateDisplay();
+          return;
+        }
+
+        try {
+          const resp = await fetch('https://api.exchangerate-api.com/v1/latest/USD');
+          const data = await resp.json();
+          exchangeRate = data.rates.COP;
+          localStorage.setItem('gh_exchange_rate', exchangeRate.toString());
+          localStorage.setItem('gh_exchange_rate_time', Date.now().toString());
+          updateExchangeRateDisplay();
+        } catch (err) {
+          exchangeRate = 3600;
+          updateExchangeRateDisplay();
+        }
+      }
+
+      function updateExchangeRateDisplay() {
+        const el = document.getElementById('exchange-rate-display');
+        if (currentCurrency === 'COP' && exchangeRate) {
+          el.textContent = `(1 USD â‰ˆ ${exchangeRate.toLocaleString()} COP)`;
+        } else {
+          el.textContent = '';
+        }
+      }
+
+      function setCurrency(currency) {
+        currentCurrency = currency;
+        
+        const usdBtn = document.getElementById('currency-usd');
+        const copBtn = document.getElementById('currency-cop');
+        
+        if (currency === 'USD') {
+          usdBtn.className = 'px-2 py-0.5 text-[10px] font-mono rounded border border-grass-green/30 bg-grass-green/10 text-grass-green transition';
+          copBtn.className = 'px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition';
+        } else {
+          copBtn.className = 'px-2 py-0.5 text-[10px] font-mono rounded border border-grass-green/30 bg-grass-green/10 text-grass-green transition';
+          usdBtn.className = 'px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition';
+        }
+
+        updateExchangeRateDisplay();
+        triggerRecalculate();
+      }
+
+      function formatCurrency(amountUSD) {
+        if (currentCurrency === 'COP' && exchangeRate) {
+          const copAmount = amountUSD * exchangeRate;
+          return `$${Math.round(copAmount).toLocaleString()} COP`;
+        }
+        return `$${amountUSD.toFixed(2)} USD`;
+      }
+
+      // ===== VALIDITY (Fixed 15 days) =====
+      function updateValidity() {
+        const date = new Date();
+        date.setDate(date.getDate() + VALIDITY_DAYS);
+        document.getElementById('validity-date').textContent = 
+          date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      }
+
+      // ===== CUSTOM PAGE CHIPS =====
       function addCustomPage() {
         const input = document.getElementById('custom-page-name');
         const val = input.value.trim();
         if (!val) return;
 
         if (customPages.includes(val)) {
-          addLog(`Layout page "${val}" already configured.`, 'warn');
+          showToast(`"${val}" is already added.`);
           return;
         }
 
@@ -615,15 +749,15 @@
         input.value = '';
         
         renderPageChips();
-        addLog(`Appended custom layout: "${val}" (+25% of base value).`, 'info');
-        calculateAll(true);
+        triggerRecalculate();
+        saveToLocalStorage();
       }
 
       function removeCustomPage(index) {
-        const removed = customPages.splice(index, 1);
+        customPages.splice(index, 1);
         renderPageChips();
-        addLog(`Removed custom layout: "${removed[0]}".`, 'info');
-        calculateAll(true);
+        triggerRecalculate();
+        saveToLocalStorage();
       }
 
       function renderPageChips() {
@@ -643,14 +777,14 @@
         });
       }
 
-      // Adding dynamic integration chips
+      // ===== CUSTOM INTEGRATION CHIPS =====
       function addCustomIntegration() {
         const input = document.getElementById('custom-integration-name');
         const val = input.value.trim();
         if (!val) return;
 
         if (customIntegrations.includes(val)) {
-          addLog(`Integration widget "${val}" already mapped.`, 'warn');
+          showToast(`"${val}" is already added.`);
           return;
         }
 
@@ -658,15 +792,15 @@
         input.value = '';
 
         renderIntegrationChips();
-        addLog(`Appended custom connection: "${val}" (+50% of base value).`, 'info');
-        calculateAll(true);
+        triggerRecalculate();
+        saveToLocalStorage();
       }
 
       function removeCustomIntegration(index) {
-        const removed = customIntegrations.splice(index, 1);
+        customIntegrations.splice(index, 1);
         renderIntegrationChips();
-        addLog(`Removed custom integration: "${removed[0]}".`, 'info');
-        calculateAll(true);
+        triggerRecalculate();
+        saveToLocalStorage();
       }
 
       function renderIntegrationChips() {
@@ -686,245 +820,159 @@
         });
       }
 
-      // Trigger recalculation on configuration changes (soft pass)
+      // ===== TRIGGER RECALCULATE =====
       function triggerRecalculate() {
-        calculateAll(false);
+        calculateAll();
+        saveToLocalStorage();
       }
 
-      // SYSTEM CALCULATION ENGINE
-      function calculateAll(logCompilation = false) {
-        // Calculate base value according to discount %
+      // ===== MAIN CALCULATION ENGINE =====
+      function calculateAll() {
         const calculatedBase = BASE_VALUE * (1 - discountPercent / 100);
         
-        // Update UI base text labels & static rate cards
-        document.getElementById('calculated-base-price').innerText = `$${calculatedBase.toFixed(2)} USD`;
-        document.getElementById('invoice-base-price').innerText = `$${calculatedBase.toFixed(2)}`;
+        document.getElementById('calculated-base-price').textContent = `${formatCurrency(calculatedBase)}`;
+        document.getElementById('invoice-base-price').textContent = formatCurrency(calculatedBase);
 
         const pageRate = calculatedBase * PAGES_RATE_MULT;
         const integrationRate = calculatedBase * INTEGRATIONS_RATE_MULT;
         const featureRate = calculatedBase * FEATURES_RATE_MULT;
 
-        // Update unit tags in left panel inputs
-        document.querySelectorAll('.rate-pages').forEach(el => el.innerText = `$${pageRate.toFixed(2)}`);
-        document.querySelectorAll('.rate-integrations').forEach(el => el.innerText = `$${integrationRate.toFixed(2)}`);
-        document.querySelectorAll('.rate-features').forEach(el => el.innerText = `$${featureRate.toFixed(2)}`);
+        // Update rate tags
+        document.querySelectorAll('.rate-pages').forEach(el => el.textContent = formatCurrency(pageRate));
+        document.querySelectorAll('.rate-integrations').forEach(el => el.textContent = formatCurrency(integrationRate));
+        document.querySelectorAll('.rate-features').forEach(el => el.textContent = formatCurrency(featureRate));
+        document.querySelectorAll('.rate-tag-pages').forEach(el => el.textContent = formatCurrency(pageRate));
+        document.querySelectorAll('.rate-tag-integrations').forEach(el => el.textContent = formatCurrency(integrationRate));
+        document.querySelectorAll('.rate-tag-features').forEach(el => el.textContent = formatCurrency(featureRate));
 
-        document.querySelectorAll('.rate-tag-pages').forEach(el => el.innerText = `$${pageRate.toFixed(2)}`);
-        document.querySelectorAll('.rate-tag-integrations').forEach(el => el.innerText = `$${integrationRate.toFixed(2)}`);
-        document.querySelectorAll('.rate-tag-features').forEach(el => el.innerText = `$${featureRate.toFixed(2)}`);
-
-        // 2. Count active static layout checkbox items + dynamic ones
+        // Pages (paid only - T&C/Privacy are fixed)
         let pageNames = [];
-        if (document.getElementById('page-contacts').checked) pageNames.push("Contact Form Page");
-        if (document.getElementById('page-portfolio').checked) pageNames.push("Dynamic Portfolio");
-        if (document.getElementById('page-services').checked) pageNames.push("Detailed Services");
-        if (document.getElementById('page-about').checked) pageNames.push("About / Team Page");
+        if (document.getElementById('page-contact').checked) pageNames.push("Contact");
+        if (document.getElementById('page-portfolio').checked) pageNames.push("Portfolio");
+        if (document.getElementById('page-services').checked) pageNames.push("Services");
+        if (document.getElementById('page-about').checked) pageNames.push("About / Team");
         
-        // Merge with custom pages
         const allPages = [...pageNames, ...customPages];
         const pagesCount = allPages.length;
         const totalPagesCost = pagesCount * pageRate;
 
-        // Update invoice page logs
-        document.getElementById('invoice-pages-count').innerText = `${pagesCount} page${pagesCount === 1 ? '' : 's'} mapped`;
-        document.getElementById('invoice-pages-total').innerText = `$${totalPagesCost.toFixed(2)}`;
-        document.getElementById('invoice-pages-names').innerText = pagesCount > 0 ? allPages.join(", ") : 'No optional pages';
+        document.getElementById('invoice-pages-count').textContent = `${pagesCount} selected`;
+        document.getElementById('invoice-pages-total').textContent = formatCurrency(totalPagesCost);
+        document.getElementById('invoice-pages-names').textContent = pagesCount > 0 ? allPages.join(", ") : '';
 
-        // 3. Count Integrations
+        // Integrations (WhatsApp is fixed/included)
         let integrationNames = [];
-        if (document.getElementById('integration-whatsapp').checked) integrationNames.push("WhatsApp Chat");
-        if (document.getElementById('integration-calendar').checked) integrationNames.push("Calendly Scheduler");
-        if (document.getElementById('integration-gdrive').checked) integrationNames.push("GDrive Uploader");
-        if (document.getElementById('integration-form').checked) integrationNames.push("Lead Webhook");
+        if (document.getElementById('integration-calendar').checked) integrationNames.push("Calendar");
+        if (document.getElementById('integration-filemanager').checked) integrationNames.push("File Manager");
+        if (document.getElementById('integration-map').checked) integrationNames.push("Map");
+        if (document.getElementById('integration-tracking').checked) integrationNames.push("Tracking System");
 
         const allIntegrations = [...integrationNames, ...customIntegrations];
         const integrationsCount = allIntegrations.length;
         const totalIntegrationsCost = integrationsCount * integrationRate;
 
-        document.getElementById('invoice-integrations-count').innerText = `${integrationsCount} item${integrationsCount === 1 ? '' : 's'} active`;
-        document.getElementById('invoice-integrations-total').innerText = `$${totalIntegrationsCost.toFixed(2)}`;
-        document.getElementById('invoice-integrations-names').innerText = integrationsCount > 0 ? allIntegrations.join(", ") : 'No automated integrations';
+        document.getElementById('invoice-integrations-count').textContent = `${integrationsCount} selected`;
+        document.getElementById('invoice-integrations-total').textContent = formatCurrency(totalIntegrationsCost);
+        document.getElementById('invoice-integrations-names').textContent = integrationsCount > 0 ? allIntegrations.join(", ") : '';
 
-        // 4. Count Features
+        // Features
         let featureNames = [];
-        if (document.getElementById('feature-seo').checked) featureNames.push("SEO / GEO Metadata");
-        if (document.getElementById('feature-domain').checked) featureNames.push("DNS Domain Route");
-        if (document.getElementById('feature-multilang').checked) featureNames.push("i18n Translation Framework");
+        if (document.getElementById('feature-seo').checked) featureNames.push("SEO / GEO");
+        if (document.getElementById('feature-domain').checked) featureNames.push("Pro Domain");
+        if (document.getElementById('feature-multilang').checked) featureNames.push("Multilingual");
 
         const featuresCount = featureNames.length;
         const totalFeaturesCost = featuresCount * featureRate;
 
-        document.getElementById('invoice-features-count').innerText = `${featuresCount} component setup${featuresCount === 1 ? '' : 's'} registered`;
-        document.getElementById('invoice-features-total').innerText = `$${totalFeaturesCost.toFixed(2)}`;
-        document.getElementById('invoice-features-names').innerText = featuresCount > 0 ? featureNames.join(", ") : 'No modular layouts';
+        document.getElementById('invoice-features-count').textContent = `${featuresCount} selected`;
+        document.getElementById('invoice-features-total').textContent = formatCurrency(totalFeaturesCost);
+        document.getElementById('invoice-features-names').textContent = featuresCount > 0 ? featureNames.join(", ") : '';
 
-        // 5. Total cost projection
+        // Total
         const totalCost = calculatedBase + totalPagesCost + totalIntegrationsCost + totalFeaturesCost;
         
-        // Update the invoice main display total
-        document.getElementById('total-display').innerText = `$${totalCost.toFixed(2)}`;
-
-        // Update Invoice Discount Sub-Row if discount applied (hidden)
-        const discRow = document.getElementById('invoice-discount-row');
-        if (discRow) {
-          discRow.classList.add('hidden');
-        }
-
-        if (logCompilation) {
-          addLog(`Calculated Subtotals: Pages ($${totalPagesCost.toFixed(2)}) | High Value Integrations ($${totalIntegrationsCost.toFixed(2)}) | Simple Integrations ($${totalFeaturesCost.toFixed(2)})`, 'info');
-          addLog(`System compiled successfully! Absolute total projected: $${totalCost.toFixed(2)} USD`, 'success');
-        }
+        document.getElementById('total-display').textContent = formatCurrency(totalCost);
+        document.getElementById('total-currency-label').textContent = currentCurrency;
       }
 
-      // Calculate Button Trigger
-      function runCalculationAnimation() {
-        const btn = document.getElementById('compile-btn');
-        
-        // Audio click sound (Web Audio API synthesis)
-        try {
-          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          const oscillator = audioCtx.createOscillator();
-          const gainNode = audioCtx.createGain();
-          oscillator.type = 'sine';
-          oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
-          gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
-          gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
-          oscillator.connect(gainNode);
-          gainNode.connect(audioCtx.destination);
-          oscillator.start();
-          oscillator.stop(audioCtx.currentTime + 0.15);
-        } catch(e) {}
-
-        // Temporarily disable button
-        btn.disabled = true;
-        btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> RUNNING DIAGNOSTIC COMPILER...`;
-        
-        addLog('Triggering manual project compilation pass...', 'system');
-        
-        setTimeout(() => {
-          calculateAll(true);
-          btn.disabled = false;
-          btn.innerHTML = `<span style="display:flex;align-items:center;gap:0.5rem"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7l4 4 4-4"/><path d="M4 12l4 4 4-4"/></svg> <span>COMPILE COST PROJECTION</span></span>`;
-
-          // Show user visual success flash on invoice target
-          const inv = document.getElementById('invoice-scope');
-          inv.classList.add('border-grass-green');
-          setTimeout(() => inv.classList.remove('border-grass-green'), 500);
-
-          // Reinitialize Lucide icons for the button
-          if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-          }
-
-          showToast('Compilation completed. Project Quote refreshed!');
-        }, 700);
-      }
-
-      // PRESETS APPLIER
-      function applyPreset(type) {
-        addLog(`Initializing Preset Loader for: "${type.toUpperCase()}"`, 'system');
-
-        // Default states reset
-        customPages = [];
-        customIntegrations = [];
-
-        if (type === 'basic') {
-          discountPercent = 60;
-
-          // 1 Core Home page, Contacts active. Portfolio/Services inactive.
-          document.getElementById('page-contacts').checked = true;
-          document.getElementById('page-portfolio').checked = false;
-          document.getElementById('page-services').checked = false;
-          document.getElementById('page-about').checked = false;
-
-          // Integration Lead Form Active
-          document.getElementById('integration-whatsapp').checked = false;
-          document.getElementById('integration-calendar').checked = false;
-          document.getElementById('integration-gdrive').checked = false;
-          document.getElementById('integration-form').checked = true;
-
-          // Features Base
-          document.getElementById('feature-seo').checked = true;
-          document.getElementById('feature-domain').checked = false;
-          document.getElementById('feature-multilang').checked = false;
-
-          addLog('Successfully mapped "Basic Landing Profile Preset" (Base page + Contact & form).', 'info');
-
-        } else if (type === 'portfolio') {
-          discountPercent = 60;
-
-          document.getElementById('page-contacts').checked = true;
-          document.getElementById('page-portfolio').checked = true;
-          document.getElementById('page-services').checked = true;
-          document.getElementById('page-about').checked = false;
-
-          document.getElementById('integration-whatsapp').checked = true;
-          document.getElementById('integration-calendar').checked = true;
-          document.getElementById('integration-gdrive').checked = false;
-          document.getElementById('integration-form').checked = true;
-
-          document.getElementById('feature-seo').checked = true;
-          document.getElementById('feature-domain').checked = true;
-          document.getElementById('feature-multilang').checked = false;
-
-          addLog('Successfully mapped "Agency/Portfolio Preset" (Includes Portfolio, Services, Scheduler integrations).', 'info');
-
-        } else if (type === 'enterprise') {
-          discountPercent = 60;
-
-          document.getElementById('page-contacts').checked = true;
-          document.getElementById('page-portfolio').checked = true;
-          document.getElementById('page-services').checked = true;
-          document.getElementById('page-about').checked = true;
-
-          // All integrations checked
-          document.getElementById('integration-whatsapp').checked = true;
-          document.getElementById('integration-calendar').checked = true;
-          document.getElementById('integration-gdrive').checked = true;
-          document.getElementById('integration-form').checked = true;
-
-          // All features
-          document.getElementById('feature-seo').checked = true;
-          document.getElementById('feature-domain').checked = true;
-          document.getElementById('feature-multilang').checked = true;
-
-          customPages = ["Product Showcase", "Resources Library"];
-          customIntegrations = ["Stripe Gateway", "Mailchimp Newsletter"];
-
-          addLog('Successfully mapped "Professional Premium Pack" (Full multi-page structure, maximum cloud linkages & custom nodes).', 'info');
-        }
-
-        renderPageChips();
-        renderIntegrationChips();
-        calculateAll(true);
-      }
-
-      // TOAST DISPLAY SYSTEM
-      function showToast(message) {
-        const toast = document.getElementById('toast');
-        document.getElementById('toast-message').innerText = message;
-        
-        toast.classList.remove('opacity-0', 'translate-y-12', 'pointer-events-none');
-        toast.classList.add('opacity-100', 'translate-y-0');
-        
-        setTimeout(() => {
-          toast.classList.add('opacity-0', 'translate-y-12', 'pointer-events-none');
-          toast.classList.remove('opacity-100', 'translate-y-0');
-        }, 3500);
-      }
-
-      // URL STATE SHARING - Encode current configuration into a shareable URL
-      function saveToURL() {
+      // ===== LOCALSTORAGE PERSISTENCE =====
+      function saveToLocalStorage() {
         const state = {
-          d: discountPercent,
-          p_c: document.getElementById('page-contacts').checked,
+          discount: discountPercent,
+          currency: currentCurrency,
+          p_c: document.getElementById('page-contact').checked,
           p_p: document.getElementById('page-portfolio').checked,
           p_s: document.getElementById('page-services').checked,
           p_a: document.getElementById('page-about').checked,
-          i_w: document.getElementById('integration-whatsapp').checked,
           i_c: document.getElementById('integration-calendar').checked,
-          i_g: document.getElementById('integration-gdrive').checked,
-          i_f: document.getElementById('integration-form').checked,
+          i_fm: document.getElementById('integration-filemanager').checked,
+          i_m: document.getElementById('integration-map').checked,
+          i_t: document.getElementById('integration-tracking').checked,
+          f_s: document.getElementById('feature-seo').checked,
+          f_d: document.getElementById('feature-domain').checked,
+          f_m: document.getElementById('feature-multilang').checked,
+          cp: customPages,
+          ci: customIntegrations,
+        };
+        try {
+          localStorage.setItem('gh_calc_state', JSON.stringify(state));
+        } catch(e) {}
+      }
+
+      function loadFromLocalStorage() {
+        try {
+          const raw = localStorage.getItem('gh_calc_state');
+          if (!raw) return false;
+          const state = JSON.parse(raw);
+
+          if (state.discount !== undefined) {
+            discountPercent = state.discount;
+            document.getElementById('discount-input').value = state.discount;
+            document.getElementById('discount-range').value = Math.min(state.discount, 90);
+            updateDiscountUI();
+          }
+          if (state.currency) setCurrency(state.currency);
+
+          if (state.p_p !== undefined) document.getElementById('page-portfolio').checked = state.p_p;
+          if (state.p_s !== undefined) document.getElementById('page-services').checked = state.p_s;
+          if (state.p_a !== undefined) document.getElementById('page-about').checked = state.p_a;
+
+          if (state.i_c !== undefined) document.getElementById('integration-calendar').checked = state.i_c;
+          if (state.i_fm !== undefined) document.getElementById('integration-filemanager').checked = state.i_fm;
+          if (state.i_m !== undefined) document.getElementById('integration-map').checked = state.i_m;
+          if (state.i_t !== undefined) document.getElementById('integration-tracking').checked = state.i_t;
+
+          if (state.f_s !== undefined) document.getElementById('feature-seo').checked = state.f_s;
+          if (state.f_d !== undefined) document.getElementById('feature-domain').checked = state.f_d;
+          if (state.f_m !== undefined) document.getElementById('feature-multilang').checked = state.f_m;
+
+          if (state.cp && Array.isArray(state.cp)) {
+            customPages = state.cp;
+            renderPageChips();
+          }
+          if (state.ci && Array.isArray(state.ci)) {
+            customIntegrations = state.ci;
+            renderIntegrationChips();
+          }
+
+          return true;
+        } catch(e) {
+          return false;
+        }
+      }
+
+      // ===== URL STATE SHARING =====
+      function saveToURL() {
+        const state = {
+          d: discountPercent,
+          cur: currentCurrency,
+          p_p: document.getElementById('page-portfolio').checked,
+          p_s: document.getElementById('page-services').checked,
+          p_a: document.getElementById('page-about').checked,
+          i_c: document.getElementById('integration-calendar').checked,
+          i_fm: document.getElementById('integration-filemanager').checked,
+          i_m: document.getElementById('integration-map').checked,
+          i_t: document.getElementById('integration-tracking').checked,
           f_s: document.getElementById('feature-seo').checked,
           f_d: document.getElementById('feature-domain').checked,
           f_m: document.getElementById('feature-multilang').checked,
@@ -938,14 +986,11 @@
         return url.toString();
       }
 
-      // Share quote - copy URL to clipboard
       function shareQuote() {
         const url = saveToURL();
         navigator.clipboard.writeText(url).then(() => {
           showToast('Shareable quote URL copied to clipboard!');
-          addLog('Quote state URL copied to clipboard.', 'success');
         }).catch(() => {
-          // Fallback for older browsers
           const textarea = document.createElement('textarea');
           textarea.value = url;
           document.body.appendChild(textarea);
@@ -953,126 +998,142 @@
           document.execCommand('copy');
           document.body.removeChild(textarea);
           showToast('Shareable quote URL copied to clipboard!');
-          addLog('Quote state URL copied to clipboard.', 'success');
         });
       }
 
-      // URL PARSING RECOVERY STATE
       function loadFromURL() {
         const params = new URLSearchParams(window.location.search);
         const encodedState = params.get('state');
-        if (!encodedState) return;
+        if (!encodedState) return false;
 
         try {
-          const decodedState = JSON.parse(decodeURIComponent(atob(encodedState)));
+          const state = JSON.parse(decodeURIComponent(atob(encodedState)));
           
-          if (decodedState.d !== undefined) {
-            discountPercent = decodedState.d;
+          if (state.d !== undefined) {
+            discountPercent = state.d;
+            document.getElementById('discount-input').value = state.d;
+            document.getElementById('discount-range').value = Math.min(state.d, 90);
+            updateDiscountUI();
           }
+          if (state.cur) setCurrency(state.cur);
 
-          if (decodedState.p_c !== undefined) document.getElementById('page-contacts').checked = decodedState.p_c;
-          if (decodedState.p_p !== undefined) document.getElementById('page-portfolio').checked = decodedState.p_p;
-          if (decodedState.p_s !== undefined) document.getElementById('page-services').checked = decodedState.p_s;
-          if (decodedState.p_a !== undefined) document.getElementById('page-about').checked = decodedState.p_a;
+          if (state.p_p !== undefined) document.getElementById('page-portfolio').checked = state.p_p;
+          if (state.p_s !== undefined) document.getElementById('page-services').checked = state.p_s;
+          if (state.p_a !== undefined) document.getElementById('page-about').checked = state.p_a;
 
-          if (decodedState.i_w !== undefined) document.getElementById('integration-whatsapp').checked = decodedState.i_w;
-          if (decodedState.i_c !== undefined) document.getElementById('integration-calendar').checked = decodedState.i_c;
-          if (decodedState.i_g !== undefined) document.getElementById('integration-gdrive').checked = decodedState.i_g;
-          if (decodedState.i_f !== undefined) document.getElementById('integration-form').checked = decodedState.i_f;
+          if (state.i_c !== undefined) document.getElementById('integration-calendar').checked = state.i_c;
+          if (state.i_fm !== undefined) document.getElementById('integration-filemanager').checked = state.i_fm;
+          if (state.i_m !== undefined) document.getElementById('integration-map').checked = state.i_m;
+          if (state.i_t !== undefined) document.getElementById('integration-tracking').checked = state.i_t;
 
-          if (decodedState.f_s !== undefined) document.getElementById('feature-seo').checked = decodedState.f_s;
-          if (decodedState.f_d !== undefined) document.getElementById('feature-domain').checked = decodedState.f_d;
-          if (decodedState.f_m !== undefined) document.getElementById('feature-multilang').checked = decodedState.f_m;
+          if (state.f_s !== undefined) document.getElementById('feature-seo').checked = state.f_s;
+          if (state.f_d !== undefined) document.getElementById('feature-domain').checked = state.f_d;
+          if (state.f_m !== undefined) document.getElementById('feature-multilang').checked = state.f_m;
 
-          if (decodedState.cp !== undefined && Array.isArray(decodedState.cp)) {
-            customPages = decodedState.cp;
+          if (state.cp && Array.isArray(state.cp)) {
+            customPages = state.cp;
             renderPageChips();
           }
-
-          if (decodedState.ci !== undefined && Array.isArray(decodedState.ci)) {
-            customIntegrations = decodedState.ci;
+          if (state.ci && Array.isArray(state.ci)) {
+            customIntegrations = state.ci;
             renderIntegrationChips();
           }
 
-          addLog('Successfully loaded project configuration parameters from secure URL state map.', 'success');
+          return true;
         } catch (err) {
-          addLog('Failed parsing configuration from URL. Default state resumed.', 'warn');
+          return false;
         }
       }
 
-      // PDF EXPORT HANDLER
+      // ===== PDF EXPORT =====
       function downloadPDF() {
-        addLog('Preparing viewport and compiling PDF metadata structure...', 'system');
-        
         const element = document.getElementById('invoice-scope');
-        
-        // Temporarily add a class that ensures clean background for PDF
-        element.classList.add('pdf-export');
-        
         const opt = {
-          margin:       10,
-          filename:     'Grasshopper-IT-Solutions-Project-Quote.pdf',
-          image:        { type: 'jpeg', quality: 0.98 },
-          html2canvas:  { scale: 2, backgroundColor: '#151515', logging: false, useCORS: true },
-          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+          margin: 10, filename: 'Grasshopper-Project-Quote.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, backgroundColor: '#151515', logging: false, useCORS: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
-
         html2pdf().set(opt).from(element).save()
-          .then(() => {
-            element.classList.remove('pdf-export');
-            addLog('Invoice PDF generation completed. Document saved locally.', 'success');
-            showToast('Invoice PDF generated successfully!');
-          })
-          .catch(err => {
-            element.classList.remove('pdf-export');
-            addLog(`PDF compilation execution error: ${err.message}`, 'warn');
-          });
+          .then(() => { showToast('PDF exported successfully!'); })
+          .catch(err => { showToast('PDF export failed. Please try again.'); });
       }
 
-      // WhatsApp Direct routing to client WhatsApp number +33767834576
+      // ===== WHATSAPP CONTACT =====
       function initiateContact() {
         const calculatedBase = BASE_VALUE * (1 - discountPercent / 100);
-        const totalCost = document.getElementById('total-display').innerText;
-
-        let pages = [];
-        if (document.getElementById('page-contacts').checked) pages.push("Contact");
+        const totalDisplay = document.getElementById('total-display').textContent;
+        let pages = ["T&C", "Privacy"];
+        if (document.getElementById('page-contact').checked) pages.push("Contact");
         if (document.getElementById('page-portfolio').checked) pages.push("Portfolio");
         if (document.getElementById('page-services').checked) pages.push("Services");
         if (document.getElementById('page-about').checked) pages.push("About");
         pages = [...pages, ...customPages];
-
-        let integrations = [];
-        if (document.getElementById('integration-whatsapp').checked) integrations.push("WhatsApp");
-        if (document.getElementById('integration-calendar').checked) integrations.push("Calendly");
-        if (document.getElementById('integration-gdrive').checked) integrations.push("GDrive");
-        if (document.getElementById('integration-form').checked) integrations.push("Webhook Forms");
+        let integrations = ["WhatsApp"];
+        if (document.getElementById('integration-calendar').checked) integrations.push("Calendar");
+        if (document.getElementById('integration-filemanager').checked) integrations.push("File Manager");
+        if (document.getElementById('integration-map').checked) integrations.push("Map");
+        if (document.getElementById('integration-tracking').checked) integrations.push("Tracking");
         integrations = [...integrations, ...customIntegrations];
-
         let features = [];
-        if (document.getElementById('feature-seo').checked) features.push("SEO");
-        if (document.getElementById('feature-domain').checked) features.push("DNS");
-        if (document.getElementById('feature-multilang').checked) features.push("i18n (Multilingual)");
+        if (document.getElementById('feature-seo').checked) features.push("SEO/GEO");
+        if (document.getElementById('feature-domain').checked) features.push("Pro Domain");
+        if (document.getElementById('feature-multilang').checked) features.push("Multilingual");
+        const summaryText = `Hi Grasshopper team! I configured my project using your Cost Calculator:
+- Base Price: $${calculatedBase.toFixed(2)} USD (Discount: ${discountPercent}%)
+- Pages: ${pages.join(", ")}
+- Integrations: ${integrations.join(", ")}
+- Features: ${features.length > 0 ? features.join(", ") : "None"}
 
-        const summaryText = `Hi Grasshopper team! I mapped my project using your Projection Tool:
-      - Modified Base Price: $${calculatedBase.toFixed(2)} (Discount: ${discountPercent}%)
-      - Pages: ${pages.length > 0 ? pages.join(", ") : "None"}
-      - High Value Integrations: ${integrations.length > 0 ? integrations.join(", ") : "None"}
-      - Simple Integrations: ${features.length > 0 ? features.join(", ") : "None"}
+*Total Estimate: ${totalDisplay}*
+(Valid for ${VALIDITY_DAYS} days)
 
-      *Total Projected Budget: ${totalCost}*
-
-      I would love to set up a session to discuss launching this project!`;
-
+I'd like to discuss launching this project!`;
         const encodedMsg = encodeURIComponent(summaryText);
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=33767834576&text=${encodedMsg}`;
-        
-        window.open(whatsappUrl, '_blank');
-        addLog('WhatsApp communication protocol initialized.', 'success');
+        window.open(`https://api.whatsapp.com/send?phone=33767834576&text=${encodedMsg}`, '_blank');
       }
 
-      // Load partials (header + footer)
+      // ===== TOAST =====
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-message').textContent = message;
+        toast.classList.remove('opacity-0', 'translate-y-12', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-12', 'pointer-events-none');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 3000);
+      }
+
+      // ===== INIT =====
+      window.addEventListener('DOMContentLoaded', () => {
+        const today = new Date();
+        document.getElementById('quote-timestamp').textContent = `DATE: ${today.toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'})}`;
+        fetchExchangeRate();
+        const fromURL = loadFromURL();
+        if (!fromURL) loadFromLocalStorage();
+        updateValidity();
+        calculateAll();
+      });
+
+      function switchLanguage(locale) {
+        const path = window.location.pathname;
+        const filename = path.split("/").pop() || "index.html";
+        const currentDir = path.substring(0, path.lastIndexOf("/"));
+        let targetPath;
+        if (currentDir.endsWith("/en-us") || currentDir.endsWith("/es-co")) {
+          const parentDir = currentDir.substring(0, currentDir.lastIndexOf("/"));
+          targetPath = parentDir + "/" + locale + "/" + filename;
+        } else if (currentDir === "" || currentDir === "/") {
+          targetPath = "/" + locale + "/" + filename;
+        } else {
+          targetPath = "/" + locale + "/" + filename;
+        }
+        window.location.href = targetPath;
+      }
+
+      // ===== LOAD PARTIALS =====
       async function loadPartials() {
-        // Load header
         const headerEl = document.getElementById('header-placeholder');
         if (headerEl) {
           const response = await fetch('../html-elements/header.html');
@@ -1083,8 +1144,6 @@
           html = html.replace(/PROJECTS_PATH/g, 'projects.html');
           headerEl.outerHTML = html;
         }
-
-        // Load footer
         const footerEl = document.getElementById('footer-placeholder');
         if (footerEl) {
           const response = await fetch('../html-elements/footer.html');
@@ -1092,13 +1151,7 @@
           html = html.replace(/ASSET_PATH/g, '../assets');
           footerEl.outerHTML = html;
         }
-
-        // Re-initialize Lucide icons after DOM update
-        if (typeof lucide !== 'undefined') {
-          lucide.createIcons();
-        }
-
-        // Setup mobile menu toggle
+        if (typeof lucide !== 'undefined') lucide.createIcons();
         const menuBtn = document.getElementById('mobile-menu-btn');
         if (menuBtn) {
           menuBtn.addEventListener('click', () => {
@@ -1106,42 +1159,10 @@
             if (menu) menu.classList.toggle('hidden');
           });
         }
-
-        // Inject Lucide icons for dynamic elements that were created before partials loaded
-        if (typeof lucide !== 'undefined') {
-          setTimeout(() => lucide.createIcons(), 100);
-        }
-
-        // Update time
-        updateTime();
+        if (typeof lucide !== 'undefined') setTimeout(() => lucide.createIcons(), 100);
       }
-
-      function updateTime() {
-        const timeEl = document.getElementById('time');
-        if (timeEl) {
-          const now = new Date();
-          timeEl.textContent = now.toLocaleTimeString();
-        }
-      }
-      setInterval(updateTime, 1000);
-
-      function notify() {
-        const toast = document.getElementById('notification-toast');
-        if (toast) {
-          toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-      }
-
-      function toggleAIBubble() {
-        const bubble = document.getElementById('ai-bubble');
-        if (bubble) bubble.classList.toggle('hidden');
-      }
-
-      // Load partials on DOM ready
       document.addEventListener('DOMContentLoaded', loadPartials);
     </script>
-    <!-- FontAwesome Icons (for solid icons used in chips etc.) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </body>
 </html>
