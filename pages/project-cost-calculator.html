@@ -200,10 +200,13 @@
             <span class="text-grass-green/90 font-mono">(<span class="rate-pages">$62.50</span> each)</span>
           </p>
 
-          <!-- Preset Button -->
-          <div class="mb-4">
+          <!-- Action Buttons: Preset + Clear Budget -->
+          <div class="mb-4 flex flex-wrap items-center gap-2">
             <button type="button" onclick="applyBasicWebpagePreset()" class="px-4 py-2 bg-grass-green/10 hover:bg-grass-green/20 border border-grass-green/30 text-grass-green text-xs font-mono font-bold rounded-lg transition flex items-center gap-2">
               <i data-lucide="zap" class="w-3.5 h-3.5"></i> PRESET: BASIC WEBPAGE (Contact + About + Services)
+            </button>
+            <button type="button" onclick="clearSelections()" class="px-4 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs font-mono font-bold rounded-lg transition flex items-center gap-2">
+              <i data-lucide="eraser" class="w-3.5 h-3.5"></i> CLEAR BUDGET
             </button>
           </div>
 

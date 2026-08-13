@@ -147,7 +147,7 @@
             <div class="calc-stat-box">
               <label class="block text-xs font-mono text-gray-500 mb-1">STANDARD BASE VALUE</label>
               <div class="flex items-baseline gap-2">
-                <span class="text-3xl font-extrabold text-white font-mono">$280</span>
+                <span class="text-3xl font-extrabold text-white font-mono">$250</span>
                 <span class="text-xs text-gray-600 font-mono">USD</span>
               </div>
               <p class="text-[11px] text-gray-600 mt-2 leading-relaxed">
@@ -206,10 +206,13 @@
             <span class="text-grass-green/90 font-mono">(<span class="rate-pages">$62.50</span> each)</span>
           </p>
 
-          <!-- Preset Button -->
-          <div class="mb-4">
+          <!-- Action Buttons: Preset + Clear Budget -->
+          <div class="mb-4 flex flex-wrap items-center gap-2">
             <button type="button" onclick="applyBasicWebpagePreset()" class="px-4 py-2 bg-grass-green/10 hover:bg-grass-green/20 border border-grass-green/30 text-grass-green text-xs font-mono font-bold rounded-lg transition flex items-center gap-2">
               <i data-lucide="zap" class="w-3.5 h-3.5"></i> PRESET: BASIC WEBPAGE (Contact + About + Services)
+            </button>
+            <button type="button" onclick="clearSelections()" class="px-4 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs font-mono font-bold rounded-lg transition flex items-center gap-2">
+              <i data-lucide="eraser" class="w-3.5 h-3.5"></i> CLEAR BUDGET
             </button>
           </div>
 
@@ -582,7 +585,7 @@
     <!-- SCRIPTING LOGIC -->
     <script>
       // System Constant Rates
-      const BASE_VALUE = 280.00; 
+      const BASE_VALUE = 250.00; 
       const PAGES_RATE_MULT = 0.25;        // 25% of Base
       const INTEGRATIONS_RATE_MULT = 0.50;  // 50% of Base
       const FEATURES_RATE_MULT = 0.20;      // 20% of Base
