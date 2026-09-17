@@ -19,3 +19,9 @@
 [submodule "proxies/multi-lingo-ai-api"]
 	path = proxies/multi-lingo-ai-api
 	url = https://github.com/grasshopperitsolutions/multi-lingo-ai-api.git
+[submodule "landing-pages/miguel-e-sofia"]
+	path = landing-pages/miguel-e-sofia
+	url = https://github.com/grasshopperitsolutions/miguel-e-sofia
+[submodule "projects/aratoca-en-hilos"]
+	path = projects/aratoca-en-hilos
+	url = https://github.com/grasshopperitsolutions/aratoca-en-hilos
