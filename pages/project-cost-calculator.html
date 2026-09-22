@@ -217,7 +217,7 @@
                 <span class="text-xs text-gray-600 font-mono">USD</span>
               </div>
               <p class="text-[11px] text-gray-600 mt-2 leading-relaxed">
-                Covers hosting, landing page, WhatsApp integration, navigation header with logo, social links footer, T&C & privacy pages, professional design, simple architecture, and simple domain.
+                Covers hosting, home & contact pages, WhatsApp integration, navigation header with logo, social links footer, T&C & privacy pages, professional design, simple architecture, and simple domain.
               </p>
             </div>
 
@@ -275,7 +275,7 @@
           <!-- Action Buttons: Preset + Clear Budget -->
           <div class="mb-4 flex flex-wrap items-center gap-2">
             <button type="button" onclick="applyBasicWebpagePreset()" class="px-4 py-2 bg-grass-green/10 hover:bg-grass-green/20 border border-grass-green/30 text-grass-green text-xs font-mono font-bold rounded-lg transition flex items-center gap-2">
-              <i data-lucide="zap" class="w-3.5 h-3.5"></i> PRESET: BASIC WEBPAGE (Contact + About + Services)
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i> PRESET: BASIC WEBPAGE (About + Services)
             </button>
             <button type="button" onclick="clearSelections()" class="px-4 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs font-mono font-bold rounded-lg transition flex items-center gap-2">
               <i data-lucide="eraser" class="w-3.5 h-3.5"></i> CLEAR BUDGET
@@ -286,6 +286,16 @@
           <div class="mb-3">
             <label class="block text-[10px] font-mono text-gray-600 mb-2 uppercase">Included in Base:</label>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+              <div class="flex items-center gap-3 p-2.5 rounded-lg bg-grass-green/5 border border-grass-green/15 opacity-70 cursor-default">
+                <input type="checkbox" checked disabled class="accent-grass-green w-4 h-4 opacity-60">
+                <span class="text-xs font-medium text-gray-400">Home</span>
+                <span class="text-[9px] font-mono text-grass-green/50 ml-auto">FREE</span>
+              </div>
+              <div class="flex items-center gap-3 p-2.5 rounded-lg bg-grass-green/5 border border-grass-green/15 opacity-70 cursor-default">
+                <input type="checkbox" checked disabled class="accent-grass-green w-4 h-4 opacity-60">
+                <span class="text-xs font-medium text-gray-400">Contact</span>
+                <span class="text-[9px] font-mono text-grass-green/50 ml-auto">FREE</span>
+              </div>
               <div class="flex items-center gap-3 p-2.5 rounded-lg bg-grass-green/5 border border-grass-green/15 opacity-70 cursor-default">
                 <input type="checkbox" checked disabled class="accent-grass-green w-4 h-4 opacity-60">
                 <span class="text-xs font-medium text-gray-400">Terms & Conditions</span>
@@ -301,14 +311,6 @@
 
           <!-- Paid Toggles for Pages -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-            <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
-              <span class="flex items-center gap-3">
-                <input type="checkbox" id="page-contact" class="page-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
-                <span class="text-sm font-medium text-gray-300">Contact</span>
-              </span>
-              <span class="text-xs font-mono text-gray-500 rate-tag-pages">$62.50</span>
-            </label>
-
             <label class="flex items-center justify-between p-3 rounded-lg bg-deep-space hover:bg-card-gray/40 border border-white/10 cursor-pointer transition">
               <span class="flex items-center gap-3">
                 <input type="checkbox" id="page-portfolio" class="page-checkbox accent-grass-green w-4.5 h-4.5" onchange="triggerRecalculate()">
@@ -776,16 +778,14 @@
 
       // ===== PRESET =====
       function applyBasicWebpagePreset() {
-        document.getElementById('page-contact').checked = true;
         document.getElementById('page-about').checked = true;
         document.getElementById('page-services').checked = true;
-        showToast('Basic Webpage preset applied: Contact + About + Services');
+        showToast('Basic Webpage preset applied: About + Services');
         triggerRecalculate();
       }
 
       // ===== CLEAR SELECTIONS =====
       function clearSelections() {
-        document.getElementById('page-contact').checked = false;
         document.getElementById('page-portfolio').checked = false;
         document.getElementById('page-services').checked = false;
         document.getElementById('page-about').checked = false;
@@ -1140,9 +1140,8 @@
         document.querySelectorAll('.rate-tag-integrations').forEach(el => el.textContent = formatCurrency(integrationRate));
         document.querySelectorAll('.rate-tag-features').forEach(el => el.textContent = formatCurrency(featureRate));
 
-        // Pages (paid only - T&C/Privacy are fixed)
+        // Pages (paid only - Home/Contact/T&C/Privacy are fixed, included in base)
         let pageNames = [];
-        if (document.getElementById('page-contact').checked) pageNames.push("Contact");
         if (document.getElementById('page-portfolio').checked) pageNames.push("Portfolio");
         if (document.getElementById('page-services').checked) pageNames.push("Services");
         if (document.getElementById('page-about').checked) pageNames.push("About / Team");
@@ -1195,7 +1194,6 @@
         const state = {
           discount: discountPercent,
           currency: currentCurrency,
-          p_c: document.getElementById('page-contact').checked,
           p_p: document.getElementById('page-portfolio').checked,
           p_s: document.getElementById('page-services').checked,
           p_a: document.getElementById('page-about').checked,
@@ -1228,7 +1226,6 @@
           }
           if (state.currency) setCurrency(state.currency);
 
-          if (state.p_c !== undefined) document.getElementById('page-contact').checked = state.p_c;
           if (state.p_p !== undefined) document.getElementById('page-portfolio').checked = state.p_p;
           if (state.p_s !== undefined) document.getElementById('page-services').checked = state.p_s;
           if (state.p_a !== undefined) document.getElementById('page-about').checked = state.p_a;
@@ -1262,7 +1259,6 @@
         const state = {
           d: discountPercent,
           cur: currentCurrency,
-          p_c: document.getElementById('page-contact').checked,
           p_p: document.getElementById('page-portfolio').checked,
           p_s: document.getElementById('page-services').checked,
           p_a: document.getElementById('page-about').checked,
@@ -1302,7 +1298,6 @@
           // it doesn't recognise.
           if (state.cur) setCurrency(state.cur);
 
-          if (state.p_c !== undefined) document.getElementById('page-contact').checked = state.p_c;
           if (state.p_p !== undefined) document.getElementById('page-portfolio').checked = state.p_p;
           if (state.p_s !== undefined) document.getElementById('page-services').checked = state.p_s;
           if (state.p_a !== undefined) document.getElementById('page-about').checked = state.p_a;
@@ -1452,8 +1447,7 @@
         const totalDisplay = document.getElementById('total-display').textContent;
         const d = quoteDates();
 
-        let pages = ["T&C", "Privacy"];
-        if (document.getElementById('page-contact').checked) pages.push("Contact");
+        let pages = ["Home", "Contact", "T&C", "Privacy"];
         if (document.getElementById('page-portfolio').checked) pages.push("Portfolio");
         if (document.getElementById('page-services').checked) pages.push("Services");
         if (document.getElementById('page-about').checked) pages.push("About");
