@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Project Cost Calculator - page-specific component classes.
+   Moved out of pages/project-cost-calculator.html's inline <style> because
+   the Tailwind CLI only expands @apply in files it compiles, not in inline
+   <style> tags (that only worked before via the play CDN's runtime compiler).
+   Loaded only on the calculator page - see the stylesheet <link> there. */
+@layer components {
+  .calc-input {
+    @apply w-full bg-code-gray border border-white/10 text-white font-mono rounded px-3 py-2 text-sm focus:outline-none focus:border-grass-green/40 focus:ring-1 focus:ring-grass-green/40 transition;
+  }
+  .calc-section {
+    @apply bg-card-gray/80 border border-white/10 p-6 rounded-xl relative shadow-sm;
+  }
+  .calc-label {
+    @apply inline-flex items-center px-3 py-1 mb-6 text-xs font-mono font-semibold tracking-tighter text-grass-green uppercase bg-grass-green/10 rounded-full border border-grass-green/20;
+  }
+  .calc-stat-box {
+    @apply bg-deep-space p-4 rounded-lg border border-white/10;
+  }
+  .calc-total-display {
+    @apply text-2xl md:text-3xl font-extrabold text-grass-green font-mono transition-all duration-300;
+  }
+  input[type="range"] {
+    @apply h-1 bg-code-gray rounded-lg appearance-none cursor-pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 bg-grass-green rounded-full shadow-[0_0_8px_rgba(0,255,65,0.4)] cursor-pointer;
+  }
+  input[type="range"]::-moz-range-thumb {
+    @apply w-4 h-4 bg-grass-green rounded-full border-0 shadow-[0_0_8px_rgba(0,255,65,0.4)] cursor-pointer;
+  }
+}
