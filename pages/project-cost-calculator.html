@@ -33,8 +33,8 @@
     <!-- Shared Styles -->
     <link rel="stylesheet" href="../styles/tailwind.css" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <!-- html2pdf.js for Client-Side PDF Generation -->
-    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+    <!-- jsPDF for Client-Side PDF Generation (vector-built quote, not a screenshot) -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 
     <style>
       /* Calculator-specific utility styles */
@@ -501,7 +501,7 @@
                     <path d="M4 20l4-4h12l2-4-8-4-4 4-6-2v6l2 4z"/>
                   </svg> GRASSHOPPER
                 </h2>
-                <span class="text-[9px] text-gray-500 font-mono block">QUOTE REF: GR_PROJ_924</span>
+                <span class="text-[9px] text-gray-500 font-mono block">QUOTE REF: <span id="quote-ref">--</span></span>
               </div>
               <div class="text-right font-mono">
                 <span class="text-[10px] text-grass-green bg-grass-green/10 px-2 py-0.5 rounded border border-grass-green/30 inline-block font-semibold">
@@ -768,6 +768,17 @@
       const INTEGRATIONS_RATE_MULT = 0.50;  // 50% of Base
       const FEATURES_RATE_MULT = 0.20;      // 20% of Base
       const VALIDITY_DAYS = 15;
+
+      // A quote that gets saved, forwarded and quoted back at us needs its own
+      // identity, so the reference is minted per visit rather than being one
+      // fixed string shared by every quote the calculator has ever produced.
+      const QUOTE_REF = (() => {
+        const d = new Date();
+        const stamp = String(d.getFullYear()).slice(2) +
+          String(d.getMonth() + 1).padStart(2, '0') +
+          String(d.getDate()).padStart(2, '0');
+        return 'GR-' + stamp + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+      })();
 
       // Dynamic State
       let customPages = [];
@@ -1337,24 +1348,331 @@
         return 'Grasshopper-Quote-' + stamp + '.pdf';
       }
 
-      function pdfWorker() {
-        const element = document.getElementById('invoice-scope');
-        const opt = {
-          margin: 10,
-          filename: pdfFilename(),
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2, backgroundColor: '#151515', logging: false, useCORS: true },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      // The quote used to be an html2canvas screenshot of the on-page invoice
+      // panel - a neon dark-mode UI element, which exported as a near-black,
+      // unreadable page. It is now built as a real vector document: the site's
+      // own logo mark and typefaces, on a light, print-appropriate layout.
+      const PDF_INK = [17, 22, 21];
+      const PDF_MUTED = [112, 118, 115];
+      const PDF_FAINT = [150, 156, 152];
+      const PDF_DARK_BG = [10, 10, 10];
+      const PDF_NEON = [0, 255, 65];       // brand green - legible on dark only
+      const PDF_GREEN_INK = [0, 146, 62];  // brand green, darkened for white
+      const PDF_CYAN = [0, 219, 222];
+      const PDF_HAIRLINE = [223, 228, 224];
+
+      // The brand fonts are ~200KB of base64, so they load only when a visitor
+      // actually asks for a PDF. If that request fails the document still
+      // builds, just in jsPDF's built-in faces.
+      let brandFontsReady = false;
+      let brandFontsPromise = null;
+      function loadPdfFonts() {
+        if (brandFontsPromise) return brandFontsPromise;
+        brandFontsPromise = new Promise((resolve, reject) => {
+          const tag = document.createElement('script');
+          tag.src = '../assets/pdf-fonts.js';
+          tag.onload = () => { brandFontsReady = true; resolve(); };
+          tag.onerror = reject;
+          document.head.appendChild(tag);
+        });
+        return brandFontsPromise;
+      }
+
+      const PDF_FAMILIES = {
+        display: ['Outfit', 'helvetica'],
+        body: ['Inter', 'helvetica'],
+        mono: ['SpaceMono', 'courier']
+      };
+
+      // Outfit and Space Mono are embedded at one weight each, so a style the
+      // embedded face cannot honour is snapped to the one it has.
+      function pdfFont(doc, role, style) {
+        const family = PDF_FAMILIES[role][brandFontsReady ? 0 : 1];
+        let resolved = style || 'normal';
+        if (brandFontsReady && family === 'Outfit') resolved = 'bold';
+        if (brandFontsReady && family === 'SpaceMono') resolved = 'normal';
+        doc.setFont(family, resolved);
+      }
+
+      function pdfText(doc, text, x, y, opts) {
+        const o = Object.assign(
+          { role: 'body', style: 'normal', size: 9, color: PDF_INK, align: 'left', track: 0 },
+          opts || {}
+        );
+        pdfFont(doc, o.role, o.style);
+        doc.setFontSize(o.size);
+        doc.setTextColor(o.color[0], o.color[1], o.color[2]);
+        if (o.track) doc.setCharSpace(o.track);
+        doc.text(text, x, y, { align: o.align });
+        if (o.track) doc.setCharSpace(0);
+      }
+
+      // The site's logo, redrawn as vectors from its source SVG
+      // (assets/grasshopper-geometric-logo.svg, 200x200 viewBox) so it stays
+      // crisp at any zoom and needs no image loading or canvas rasterising.
+      function drawLogoMark(doc, x, y, size) {
+        const k = size / 200;
+        const px = (n) => x + n * k;
+        const py = (n) => y + n * k;
+
+        // SVG quadratic -> cubic bezier; jsPDF wants each control point as a
+        // delta from the segment's start.
+        const curve = (x0, y0, qx, qy, x1, y1) => {
+          const c1x = x0 + (2 / 3) * (qx - x0), c1y = y0 + (2 / 3) * (qy - y0);
+          const c2x = x1 + (2 / 3) * (qx - x1), c2y = y1 + (2 / 3) * (qy - y1);
+          doc.lines([[c1x - x0, c1y - y0, c2x - x0, c2y - y0, x1 - x0, y1 - y0]], x0, y0, [1, 1], 'S');
         };
-        return html2pdf().set(opt).from(element);
+
+        doc.setLineCap('round');
+
+        doc.setFillColor(PDF_DARK_BG[0], PDF_DARK_BG[1], PDF_DARK_BG[2]);
+        doc.setDrawColor(PDF_NEON[0], PDF_NEON[1], PDF_NEON[2]);
+        doc.setLineWidth(2 * k);
+        doc.circle(px(100), py(100), 90 * k, 'FD');
+
+        doc.setLineWidth(4 * k);
+        curve(px(60), py(120), px(40), py(80), px(80), py(60));
+        curve(px(140), py(120), px(160), py(80), px(120), py(60));
+
+        doc.setLineWidth(2 * k);
+        doc.line(px(80), py(60), px(60), py(30));
+        doc.line(px(120), py(60), px(140), py(30));
+
+        doc.setFillColor(PDF_CYAN[0], PDF_CYAN[1], PDF_CYAN[2]);
+        doc.circle(px(85), py(90), 8 * k, 'F');
+        doc.circle(px(115), py(90), 8 * k, 'F');
+
+        doc.setLineWidth(3 * k);
+        curve(px(90), py(120), px(100), py(130), px(110), py(120));
+
+        doc.setLineCap('butt');
+      }
+
+      function collectQuoteData() {
+        const calculatedBase = BASE_VALUE * (1 - discountPercent / 100);
+        const d = quoteDates();
+
+        let pageNames = [];
+        if (document.getElementById('page-portfolio').checked) pageNames.push("Portfolio");
+        if (document.getElementById('page-services').checked) pageNames.push("Services");
+        if (document.getElementById('page-about').checked) pageNames.push("About / Team");
+        const allPages = [...pageNames, ...customPages];
+
+        let integrationNames = [];
+        if (document.getElementById('integration-calendar').checked) integrationNames.push("Calendar");
+        if (document.getElementById('integration-filemanager').checked) integrationNames.push("File Manager");
+        if (document.getElementById('integration-map').checked) integrationNames.push("Map");
+        if (document.getElementById('integration-tracking').checked) integrationNames.push("Tracking System");
+        const allIntegrations = [...integrationNames, ...customIntegrations];
+
+        let featureNames = [];
+        if (document.getElementById('feature-seo').checked) featureNames.push("SEO / GEO");
+        if (document.getElementById('feature-domain').checked) featureNames.push("Pro Domain");
+        if (document.getElementById('feature-multilang').checked) featureNames.push("Multilingual");
+
+        const pageRate = calculatedBase * PAGES_RATE_MULT;
+        const integrationRate = calculatedBase * INTEGRATIONS_RATE_MULT;
+        const featureRate = calculatedBase * FEATURES_RATE_MULT;
+
+        const pagesCost = allPages.length * pageRate;
+        const integrationsCost = allIntegrations.length * integrationRate;
+        const featuresCost = featureNames.length * featureRate;
+        const total = calculatedBase + pagesCost + integrationsCost + featuresCost;
+
+        return {
+          ref: QUOTE_REF,
+          generated: d.generated,
+          expires: d.expires,
+          currency: currentCurrency,
+          isConverted: currentCurrency !== 'USD' && !!exchangeRate,
+          discountPercent,
+          items: [
+            {
+              label: 'Base Package',
+              detail: 'Hosting, home & contact pages, WhatsApp integration, navigation header, footer, T&C & privacy pages, professional design.',
+              amount: calculatedBase
+            },
+            {
+              label: 'Extra Pages',
+              detail: allPages.length ? allPages.join(', ') : 'None selected.',
+              amount: pagesCost
+            },
+            {
+              label: 'Integrations',
+              detail: allIntegrations.length ? allIntegrations.join(', ') : 'WhatsApp only (included in base).',
+              amount: integrationsCost
+            },
+            {
+              label: 'Pro Features',
+              detail: featureNames.length ? featureNames.join(', ') : 'None selected.',
+              amount: featuresCost
+            }
+          ],
+          total
+        };
+      }
+
+      async function buildQuoteDoc() {
+        try {
+          await loadPdfFonts();
+        } catch (err) {
+          /* keep going on the built-in faces rather than failing the export */
+        }
+
+        const data = collectQuoteData();
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+        doc.setProperties({
+          title: 'Grasshopper Solutions - Project Estimate',
+          subject: 'Project estimate ' + data.ref + ', valid until ' + data.expires,
+          author: 'Grasshopper IT Solutions LLC',
+          creator: 'grasshoppersolutions.online'
+        });
+
+        const pageW = doc.internal.pageSize.getWidth();
+        const pageH = doc.internal.pageSize.getHeight();
+        const m = 18;
+        const contentW = pageW - m * 2;
+        const rightX = pageW - m;
+        const WHITE = [255, 255, 255];
+
+        // ----- Letterhead ----------------------------------------------------
+        doc.setFillColor(PDF_DARK_BG[0], PDF_DARK_BG[1], PDF_DARK_BG[2]);
+        doc.rect(0, 0, pageW, 36, 'F');
+        doc.setFillColor(PDF_NEON[0], PDF_NEON[1], PDF_NEON[2]);
+        doc.rect(0, 36, pageW, 0.9, 'F');
+
+        drawLogoMark(doc, m, 9.5, 17);
+
+        pdfText(doc, 'GRASSHOPPER', m + 22, 20.5, { role: 'display', style: 'bold', size: 18, color: WHITE });
+        pdfText(doc, 'IT SOLUTIONS LLC', m + 22.5, 26.5, { role: 'mono', size: 7, color: PDF_NEON, track: 0.55 });
+
+        pdfText(doc, 'PROJECT ESTIMATE', rightX, 19.5, { role: 'display', style: 'bold', size: 12, color: PDF_NEON, align: 'right' });
+        pdfText(doc, 'grasshoppersolutions.online', rightX, 26, { role: 'mono', size: 7, color: [168, 174, 170], align: 'right' });
+
+        // ----- Quote meta -----------------------------------------------------
+        let y = 52;
+        const meta = [
+          ['QUOTE REF', data.ref],
+          ['DATE GENERATED', data.generated],
+          ['VALID UNTIL', data.expires],
+          ['CURRENCY', data.currency + (data.isConverted ? ' (converted)' : '')]
+        ];
+        meta.forEach((cell, i) => {
+          const cx = m + i * (contentW / 4);
+          pdfText(doc, cell[0], cx, y, { role: 'mono', size: 6.5, color: PDF_FAINT, track: 0.32 });
+          pdfText(doc, cell[1], cx, y + 5.6, { role: 'body', style: 'bold', size: 9.5 });
+        });
+        y += 17;
+
+        // ----- Line items -----------------------------------------------------
+        pdfText(doc, '// SCOPE & PRICING', m, y, { role: 'mono', size: 7.5, color: PDF_GREEN_INK, track: 0.3 });
+        y += 4.5;
+
+        doc.setFillColor(PDF_DARK_BG[0], PDF_DARK_BG[1], PDF_DARK_BG[2]);
+        doc.rect(m, y, contentW, 7.5, 'F');
+        pdfText(doc, 'DESCRIPTION', m + 4, y + 5, { role: 'mono', size: 6.8, color: WHITE, track: 0.4 });
+        pdfText(doc, 'AMOUNT', rightX - 4, y + 5, { role: 'mono', size: 6.8, color: WHITE, track: 0.4, align: 'right' });
+        y += 7.5;
+
+        data.items.forEach((item) => {
+          pdfFont(doc, 'body', 'normal');
+          doc.setFontSize(8);
+          const detail = doc.splitTextToSize(item.detail, contentW - 42);
+          const rowH = 7.5 + detail.length * 3.6;
+
+          if (y + rowH > pageH - 58) {
+            doc.addPage();
+            y = m;
+          }
+
+          pdfText(doc, item.label, m + 4, y + 5.2, { role: 'body', style: 'bold', size: 9.5 });
+          pdfText(doc, formatCurrency(item.amount), rightX - 4, y + 5.2, { role: 'body', style: 'bold', size: 9.5, align: 'right' });
+          pdfText(doc, detail, m + 4, y + 9.8, { role: 'body', size: 8, color: PDF_MUTED });
+
+          y += rowH;
+          doc.setDrawColor(PDF_HAIRLINE[0], PDF_HAIRLINE[1], PDF_HAIRLINE[2]);
+          doc.setLineWidth(0.25);
+          doc.line(m, y, rightX, y);
+        });
+
+        if (data.discountPercent > 0) {
+          y += 6;
+          pdfText(doc, 'Discount applied  -' + data.discountPercent + '%', m + 4, y, { role: 'body', style: 'bold', size: 8.5, color: PDF_GREEN_INK });
+          y += 1.5;
+        }
+
+        // ----- Total ----------------------------------------------------------
+        y += 9;
+        if (y + 22 > pageH - 46) {
+          doc.addPage();
+          y = m;
+        }
+        doc.setFillColor(PDF_DARK_BG[0], PDF_DARK_BG[1], PDF_DARK_BG[2]);
+        doc.roundedRect(m, y, contentW, 19, 1.8, 1.8, 'F');
+        pdfText(doc, 'TOTAL ESTIMATE', m + 7, y + 8.4, { role: 'mono', size: 7.5, color: WHITE, track: 0.5 });
+        pdfText(doc, 'Net estimate in ' + data.currency, m + 7, y + 13.6, { role: 'mono', size: 6.3, color: PDF_FAINT });
+        pdfText(doc, formatCurrency(data.total), rightX - 7, y + 12.8, { role: 'body', style: 'bold', size: 19, color: PDF_NEON, align: 'right' });
+        y += 31;
+
+        // ----- Terms ----------------------------------------------------------
+        pdfText(doc, '// TERMS', m, y, { role: 'mono', size: 7.5, color: PDF_GREEN_INK, track: 0.3 });
+        y += 5.5;
+
+        let terms = 'Prices are indicative and may be reviewed or changed without notice. Any budget generated here is valid and ' +
+          'will be honoured for ' + VALIDITY_DAYS + ' days from its creation date (' + data.generated + '), expiring ' + data.expires + '.';
+        if (data.isConverted) {
+          terms += ' Converted amounts are indicative only, based on the exchange rate retrieved on the generation date.';
+        }
+        terms += ' Estimates are non-binding and actual costs may vary with the final agreed scope.';
+
+        pdfFont(doc, 'body', 'normal');
+        doc.setFontSize(8);
+        const termLines = doc.splitTextToSize(terms, contentW);
+        pdfText(doc, termLines, m, y, { role: 'body', size: 8, color: PDF_MUTED });
+        y += termLines.length * 3.9 + 14;
+
+        // ----- What happens next ----------------------------------------------
+        // The same three steps the services page promises, so the document a
+        // client files away says the same thing the site does.
+        if (y + 34 < pageH - 26) {
+          pdfText(doc, '// WHAT HAPPENS NEXT', m, y, { role: 'mono', size: 7.5, color: PDF_GREEN_INK, track: 0.3 });
+          y += 7;
+
+          const steps = [
+            ['01', 'Tell us what you need', 'Send this quote back with anything you want added, changed or dropped.'],
+            ['02', 'We build it', 'Design and development start straight away, with direct updates as we go.'],
+            ['03', 'Go live', 'Most small sites are live within 3-7 days of kickoff.']
+          ];
+          const colW = contentW / 3;
+          steps.forEach((step, i) => {
+            const cx = m + i * colW;
+            pdfText(doc, step[0], cx, y, { role: 'display', style: 'bold', size: 12, color: PDF_GREEN_INK });
+            pdfText(doc, step[1], cx, y + 5.6, { role: 'body', style: 'bold', size: 8.5 });
+            pdfText(doc, doc.splitTextToSize(step[2], colW - 8), cx, y + 10, { role: 'body', size: 7.5, color: PDF_MUTED });
+          });
+          y += 22;
+
+          pdfText(doc, 'Questions, or ready to start? Reply on WhatsApp or write to general@grasshoppersolutions.online', m, y, { role: 'body', size: 8, color: PDF_INK });
+        }
+
+        // ----- Footer ---------------------------------------------------------
+        const fy = pageH - 19;
+        doc.setDrawColor(PDF_HAIRLINE[0], PDF_HAIRLINE[1], PDF_HAIRLINE[2]);
+        doc.setLineWidth(0.4);
+        doc.line(m, fy, rightX, fy);
+        pdfText(doc, 'Growing Green. Building Clean. Leaping Far.', m, fy + 5.5, { role: 'display', style: 'bold', size: 8.5, color: PDF_GREEN_INK });
+        pdfText(doc, 'Grasshopper IT Solutions LLC', rightX, fy + 5, { role: 'mono', size: 6.8, color: PDF_MUTED, align: 'right' });
+        pdfText(doc, 'general@grasshoppersolutions.online', rightX, fy + 9.4, { role: 'mono', size: 6.8, color: PDF_FAINT, align: 'right' });
+
+        return doc;
       }
 
       function buildQuotePdfBlob() {
-        return pdfWorker().outputPdf('blob');
+        return buildQuoteDoc().then((doc) => doc.output('blob'));
       }
 
-      // html2canvas rasterises the whole panel, which takes a moment. Lock the
-      // button so a second click cannot start a competing render.
+      // Locks the button so a second click cannot start a competing render.
       function withBusyButton(btnId, label, fn) {
         const btn = document.getElementById(btnId);
         const original = btn ? btn.innerHTML : null;
@@ -1376,7 +1694,8 @@
 
       function downloadPDF() {
         return withBusyButton('btn-pdf', 'BUILDING...', () =>
-          pdfWorker().save()
+          buildQuoteDoc()
+            .then((doc) => doc.save(pdfFilename()))
             .then(() => showToast('PDF downloaded.'))
             .catch(() => showToast('PDF export failed. Please try again.'))
         );
@@ -1432,7 +1751,8 @@
           // Tier 3 - desktop: download the PDF, open WhatsApp with the summary,
           // and tell the user to attach the file they just got.
           try {
-            await pdfWorker().save();
+            const doc = await buildQuoteDoc();
+            doc.save(pdfFilename());
           } catch (err) {
             /* keep going - the WhatsApp text is still useful on its own */
           }
@@ -1516,6 +1836,7 @@ I'd like to discuss launching this project!`;
       window.addEventListener('DOMContentLoaded', () => {
         const today = new Date();
         document.getElementById('quote-timestamp').textContent = `DATE: ${today.toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'})}`;
+        document.getElementById('quote-ref').textContent = QUOTE_REF;
 
         populateCurrencySelect();
         setCurrency(detectLocalCurrency() || 'USD'); // best-guess default; rate arrives async
