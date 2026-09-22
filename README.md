@@ -2,7 +2,9 @@
 
 [![Pages Status](https://github.com/grasshopperitsolutions/grasshopperitsolutions.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/grasshopperitsolutions/grasshopperitsolutions.github.io/actions/workflows/pages/pages-build-deployment)
 
-A modern, cyberpunk-inspired landing page showcasing premium software development services with a grassroots approach.
+Growing Green. Building Clean. Leaping Far.
+
+A cyberpunk-inspired landing page for Grasshopper IT Solutions LLC — premium software at grassroots rates, with an instant project cost calculator and direct WhatsApp contact.
 
 🌐 **Live Site**: [grasshoppersolutions.online](https://grasshoppersolutions.online)
 
@@ -22,7 +24,7 @@ A modern, cyberpunk-inspired landing page showcasing premium software developmen
 
 ## 📞 Contact
 
-- **Email**: 📧 grasshopper.it.solutions@gmail.com
+- **Email**: 📧 general@grasshoppersolutions.online
 - **GitHub**: [grasshopperitsolutions](https://github.com/grasshopperitsolutions)
 - **Website**: [grasshoppersolutions.online](grasshoppersolutions.online)
 

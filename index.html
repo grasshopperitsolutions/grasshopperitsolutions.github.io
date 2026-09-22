@@ -3,17 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grasshopper IT Solutions</title>
+    <title>Grasshopper Solutions — Custom Web &amp; Software Development</title>
     <link
       rel="icon"
       href="assets/grasshopper-geometric-logo.svg"
       type="image/svg+xml"
     />
-    <!-- SEO: hreflang alternates -->
-    <link rel="alternate" hreflang="en-us" href="https://grasshoppersolutions.online/en-us/" />
-    <link rel="alternate" hreflang="es-co" href="https://grasshoppersolutions.online/es-co/" />
-    <link rel="alternate" hreflang="x-default" href="https://grasshoppersolutions.online/" />
-    <meta name="description" content="Premium software solutions at grassroots rates. We connect forward-thinking businesses with a specialized network of elite freelance developers." />
+    <link rel="canonical" href="https://grasshoppersolutions.online/" />
+    <meta name="description" content="Custom web and software development for small projects. Landing pages, web apps and AI tools — direct contact, fast turnaround, instant online estimates." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Grasshopper Solutions" />
+    <meta property="og:url" content="https://grasshoppersolutions.online/" />
+    <meta property="og:title" content="Grasshopper Solutions — Custom Web &amp; Software Development" />
+    <meta property="og:description" content="Growing Green. Building Clean. Leaping Far. Landing pages, web apps and AI tools for small projects — with instant online estimates." />
+    <meta property="og:image" content="https://grasshoppersolutions.online/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Grasshopper Solutions — Growing Green. Building Clean. Leaping Far." />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Grasshopper Solutions — Custom Web &amp; Software Development" />
+    <meta name="twitter:description" content="Growing Green. Building Clean. Leaping Far. Landing pages, web apps and AI tools for small projects." />
+    <meta name="twitter:image" content="https://grasshoppersolutions.online/assets/og-image.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Grasshopper IT Solutions LLC",
+        "alternateName": "Grasshopper Solutions",
+        "url": "https://grasshoppersolutions.online/",
+        "logo": "https://grasshoppersolutions.online/assets/grasshopper-geometric-logo.svg",
+        "image": "https://grasshoppersolutions.online/assets/og-image.png",
+        "email": "general@grasshoppersolutions.online",
+        "slogan": "Growing Green. Building Clean. Leaping Far.",
+        "description": "Custom web and software development for small projects. Landing pages, web apps and AI tools.",
+        "areaServed": "Worldwide",
+        "availableLanguage": ["en", "es", "pt"],
+        "knowsAbout": [
+          "Web Development",
+          "Landing Pages",
+          "AI Integration",
+          "Mobile Applications",
+          "Backend APIs"
+        ],
+        "sameAs": [
+          "https://github.com/grasshopperitsolutions",
+          "https://www.facebook.com/profile.php?id=1308660815667618"
+        ]
+      }
+    </script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -109,43 +153,50 @@
               >
             </h1>
             <p
+              class="text-sm font-mono text-grass-green/90 mb-4 tracking-tight"
+            >
+              Growing Green. Building Clean. Leaping Far.
+            </p>
+            <p
               class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed font-sans font-light"
             >
-              Premium software solutions at grassroots rates. We connect
-              forward-thinking businesses with a specialized network of elite
-              freelance developers.
+              Premium software at grassroots rates. Landing pages, web apps and
+              AI tools — built by a small team that answers directly, with no
+              agency layers in between.
             </p>
             <div class="flex flex-wrap gap-4 items-center">
               <a
-                href="pages/services.html"
+                href="#contact"
                 class="bg-grass-green text-black font-bold py-4 px-10 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)]"
               >
-                Show Services
+                Start a Project
               </a>
-              <div
-                class="flex items-center gap-4 px-4 py-2 bg-white/5 rounded-full border border-white/10 ml-2"
+              <a
+                href="pages/project-cost-calculator.html"
+                class="border border-grass-green/40 text-grass-green font-bold py-4 px-8 rounded-full hover:bg-grass-green/10 hover:border-grass-green transition-all"
               >
-                <button
-                  onclick="notify()"
-                  class="hover:text-white transition-colors"
+                Price It Yourself
+              </a>
+              <a
+                href="https://github.com/grasshopperitsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Grasshopper Solutions on GitHub"
+                class="flex items-center gap-2 px-4 py-3 bg-white/5 rounded-full border border-white/10 hover:text-white hover:border-white/30 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
                 >
-                  <i data-lucide="linkedin" class="w-5 h-5"></i>
-                </button>
-                <a
-                  href="https://github.com/grasshopperitsolutions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-white transition-colors"
-                >
-                  <i data-lucide="github" class="w-5 h-5"></i>
-                </a>
-                <button
-                  onclick="notify()"
-                  class="hover:text-white transition-colors"
-                >
-                  <i data-lucide="instagram" class="w-5 h-5"></i>
-                </button>
-              </div>
+                  <path
+                    d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.003 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"
+                  />
+                </svg>
+              </a>
             </div>
           </div>
           <div class="relative hidden lg:flex justify-end">
@@ -453,41 +504,214 @@
       </div>
     </section>
 
+    <!-- Estimate Section -->
+    <section
+      id="estimate"
+      class="py-24 bg-black border-t border-white/5 relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(0,255,65,0.05),rgba(0,0,0,0))] pointer-events-none"
+      ></div>
+      <div
+        class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <div>
+          <p
+            class="text-grass-green font-mono text-sm mb-3 tracking-widest uppercase"
+          >
+            No sales call required
+          </p>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            Price your project yourself
+          </h2>
+          <p class="text-gray-400 leading-relaxed mb-8">
+            Pick your pages, integrations and features and see the cost update
+            as you go — in your own currency. Take away a dated PDF quote, or
+            send it straight to us on WhatsApp. It takes about a minute, and
+            nothing is committed.
+          </p>
+          <a
+            href="pages/project-cost-calculator.html"
+            class="inline-flex items-center gap-3 bg-grass-green text-black font-bold py-4 px-8 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)]"
+          >
+            Open the Calculator
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div
+          class="glass-card border border-white/10 rounded-2xl p-8 font-mono text-sm"
+        >
+          <div class="flex justify-between text-gray-500 mb-3">
+            <span>BASE</span><span class="text-white">$250.00</span>
+          </div>
+          <div class="flex justify-between text-gray-500 mb-3">
+            <span>PAGES</span><span class="text-white">+ your picks</span>
+          </div>
+          <div class="flex justify-between text-gray-500 mb-3">
+            <span>INTEGRATIONS</span><span class="text-white">+ your picks</span>
+          </div>
+          <div
+            class="flex justify-between border-t border-dashed border-white/10 pt-4 mt-4"
+          >
+            <span class="text-gray-400 font-semibold">TOTAL ESTIMATE</span>
+            <span class="text-grass-green font-bold text-lg">you decide</span>
+          </div>
+          <p class="text-[10px] text-gray-600 mt-4 leading-relaxed">
+            Quotes are valid for 15 days from the date they are generated.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact Section -->
     <section
       id="contact"
       class="py-24 bg-gradient-to-b from-deep-space to-black border-t border-white/5"
     >
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold text-white mb-6">Ready to Scale?</h2>
-        <p class="text-xl text-gray-400 mb-12">
-          Whether you need a quick Python script, a complex .NET architecture,
-          or just some vibe coding, we are ready.
-        </p>
-        <div class="relative inline-block group">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-4xl font-bold text-white mb-4">Start a Project</h2>
+          <p class="text-lg text-gray-400 max-w-xl mx-auto">
+            Tell us what you need. The form opens WhatsApp with your details
+            filled in — usually a reply the same day.
+          </p>
+        </div>
+
+        <div class="relative group">
           <div
-            class="absolute -inset-1 bg-gradient-to-r from-grass-green to-cyber-blue rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-200"
+            class="absolute -inset-1 bg-gradient-to-r from-grass-green to-cyber-blue rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300"
           ></div>
           <div
-            class="relative bg-black rounded-lg px-8 py-6 md:px-12 md:py-8 border border-white/10"
+            class="relative bg-black rounded-2xl p-6 md:p-10 border border-white/10"
           >
-            <p
-              class="text-gray-500 mb-2 font-mono text-sm tracking-widest uppercase"
-            >
-              INITIATE_COMMUNICATION
-            </p>
-            <a
-              href="mailto:grasshopper.it.solutions@gmail.com"
-              class="text-xl md:text-3xl font-bold text-white hover:text-grass-green transition-colors break-all font-mono"
-              >grasshopper.it.solutions@gmail.com</a
-            >
-            <div class="flex gap-4 mt-4 items-center justify-center">
-              <span
-                class="w-3 h-3 bg-grass-green rounded-full animate-ping"
-              ></span>
-              <span
-                class="text-xs font-mono text-gray-600 uppercase tracking-widest"
-                >Network Awaiting Input</span
+            <form id="contact-form" novalidate>
+              <div class="grid md:grid-cols-2 gap-5">
+                <div class="md:col-span-2">
+                  <label
+                    for="contact-name"
+                    class="block text-xs font-mono text-gray-500 uppercase tracking-widest mb-2"
+                    >Your name *</label
+                  >
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    required
+                    autocomplete="name"
+                    placeholder="Jane Doe"
+                    class="w-full bg-code-gray border border-white/10 text-white font-sans rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-grass-green/50 focus:ring-1 focus:ring-grass-green/50 transition"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="contact-type"
+                    class="block text-xs font-mono text-gray-500 uppercase tracking-widest mb-2"
+                    >Project type *</label
+                  >
+                  <select
+                    id="contact-type"
+                    name="type"
+                    required
+                    class="w-full bg-code-gray border border-white/10 text-white font-sans rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-grass-green/50 focus:ring-1 focus:ring-grass-green/50 transition"
+                  >
+                    <option value="Landing page">Landing page</option>
+                    <option value="Business website">Business website</option>
+                    <option value="Web application">Web application</option>
+                    <option value="Mobile app">Mobile app</option>
+                    <option value="AI integration">AI integration</option>
+                    <option value="Something else">Something else</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    for="contact-budget"
+                    class="block text-xs font-mono text-gray-500 uppercase tracking-widest mb-2"
+                    >Budget range *</label
+                  >
+                  <select
+                    id="contact-budget"
+                    name="budget"
+                    required
+                    class="w-full bg-code-gray border border-white/10 text-white font-sans rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-grass-green/50 focus:ring-1 focus:ring-grass-green/50 transition"
+                  >
+                    <option value="Under $500">Under $500</option>
+                    <option value="$500 - $1,500">$500 – $1,500</option>
+                    <option value="$1,500 - $5,000">$1,500 – $5,000</option>
+                    <option value="$5,000+">$5,000+</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                  </select>
+                </div>
+
+                <div class="md:col-span-2">
+                  <label
+                    for="contact-message"
+                    class="block text-xs font-mono text-gray-500 uppercase tracking-widest mb-2"
+                    >What are you building? *</label
+                  >
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    required
+                    rows="4"
+                    placeholder="A few lines about the project, and when you'd like it live."
+                    class="w-full bg-code-gray border border-white/10 text-white font-sans rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-grass-green/50 focus:ring-1 focus:ring-grass-green/50 transition resize-y"
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- Honeypot: hidden from people, irresistible to bots. -->
+              <div class="hidden" aria-hidden="true">
+                <label for="contact-company">Company (leave blank)</label>
+                <input
+                  type="text"
+                  id="contact-company"
+                  name="company"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="w-full mt-7 bg-grass-green text-black font-bold py-4 px-8 rounded-full hover:bg-white transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)] flex items-center justify-center gap-3"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 2.01c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22.02l5.16-1.35a9.93 9.93 0 0 0 4.88 1.27h.01c5.49 0 9.95-4.46 9.95-9.96 0-2.66-1.04-5.16-2.92-7.04a9.88 9.88 0 0 0-7.04-2.93z"
+                  />
+                </svg>
+                Send via WhatsApp
+              </button>
+
+              <p
+                id="contact-sent"
+                class="hidden mt-4 text-center text-sm font-mono text-grass-green"
+              >
+                WhatsApp should have opened in a new tab. If nothing happened,
+                email us instead using the link below.
+              </p>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-white/10 text-center">
+              <p
+                class="text-gray-500 mb-2 font-mono text-xs tracking-widest uppercase"
+              >
+                Prefer email?
+              </p>
+              <a
+                href="mailto:general@grasshoppersolutions.online"
+                class="text-base md:text-xl font-bold text-white hover:text-grass-green transition-colors break-all font-mono"
+                >general@grasshoppersolutions.online</a
               >
             </div>
           </div>
@@ -512,6 +736,8 @@
           html = html.replace(/INDEX_PATH/g, 'index.html');
           html = html.replace(/SERVICES_PATH/g, 'pages/services.html');
           html = html.replace(/PROJECTS_PATH/g, 'pages/projects.html');
+          html = html.replace(/CALCULATOR_PATH/g, 'pages/project-cost-calculator.html');
+          html = html.replace(/CONTACT_PATH/g, '#contact');
           headerEl.outerHTML = html;
         }
 
@@ -522,6 +748,11 @@
           let html = await response.text();
           html = html.replace(/ASSET_PATH/g, 'assets');
           footerEl.outerHTML = html;
+        }
+
+        // Partials are in the DOM now — bind everything that lives inside them.
+        if (typeof initPartialDependentUI === 'function') {
+          initPartialDependentUI();
         }
 
         // Re-initialize Lucide icons after DOM update

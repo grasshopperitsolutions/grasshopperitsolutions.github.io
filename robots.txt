@@ -1,0 +1,9 @@
+# Grasshopper IT Solutions LLC — grasshoppersolutions.online
+User-agent: *
+Allow: /
+
+# /en-us/ and /es-co/ are redirect stubs. They are deliberately left
+# crawlable so search engines can follow their canonical to the new URL;
+# each stub carries its own <meta name="robots" content="noindex, follow">.
+
+Sitemap: https://grasshoppersolutions.online/sitemap.xml

@@ -3,12 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Cost Calculator - Grasshopper IT Solutions</title>
+    <title>Project Cost Calculator — Grasshopper Solutions</title>
     <link
       rel="icon"
       href="../assets/grasshopper-geometric-logo.svg"
       type="image/svg+xml"
     />
+    <link rel="canonical" href="https://grasshoppersolutions.online/pages/project-cost-calculator.html" />
+    <meta name="description" content="Price your own project in under a minute. Pick pages, integrations and features, see the total in your local currency, and download a dated PDF quote." />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Grasshopper Solutions" />
+    <meta property="og:url" content="https://grasshoppersolutions.online/pages/project-cost-calculator.html" />
+    <meta property="og:title" content="Project Cost Calculator — Grasshopper Solutions" />
+    <meta property="og:description" content="Price your own project in under a minute, in your local currency, and take away a dated PDF quote." />
+    <meta property="og:image" content="https://grasshoppersolutions.online/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://grasshoppersolutions.online/assets/og-image.png" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -448,10 +462,10 @@
                   class="px-2 py-0.5 text-[10px] font-mono rounded border border-grass-green/30 bg-grass-green/10 text-grass-green transition"
                 >USD</button>
                 <button 
-                  id="currency-cop" 
-                  onclick="setCurrency('COP')" 
-                  class="px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition"
-                >COP</button>
+                  id="currency-local" 
+                  onclick="setCurrency('LOCAL')" 
+                  class="hidden px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition"
+                >LOCAL</button>
                 <span class="text-[9px] text-gray-600 font-mono" id="exchange-rate-display"></span>
               </div>
               <!-- Validity Period (Fixed) -->
@@ -523,11 +537,30 @@
             <div class="mt-3 text-center">
               <span class="text-[10px] font-mono text-gray-500">Valid until: <span id="validity-date" class="text-grass-green/80">--</span></span>
             </div>
+
+            <!-- Pricing terms. Deliberately INSIDE #invoice-scope so they are
+                 captured in the exported PDF - that is the copy that gets
+                 forwarded, saved and quoted back at us later. -->
+            <div class="mt-4 pt-3 border-t border-white/10 text-[9px] leading-relaxed text-gray-500 font-mono">
+              <p>
+                Quote generated <span id="generated-date" class="text-gray-400">--</span>
+                &middot; valid until <span id="validity-date-terms" class="text-gray-400">--</span>
+              </p>
+              <p class="mt-1">
+                Prices are indicative and may be reviewed or changed without
+                notice. Any budget generated here is valid and will be honoured
+                for 15 days from its creation date.
+              </p>
+              <p class="mt-1 hidden" id="fx-terms">
+                Converted amounts are indicative only, based on the exchange
+                rate retrieved on the generation date.
+              </p>
+            </div>
           </div>
 
           <!-- Disclaimer -->
           <div class="mt-4 pt-3 border-t border-white/10 text-[9px] text-gray-600 font-mono">
-            <p>// Estimates from Grasshopper IT Solutions. Actual costs may vary based on scope.</p>
+            <p>// Estimates from Grasshopper IT Solutions LLC. Actual costs may vary based on final scope.</p>
           </div>
         </div>
 
@@ -537,7 +570,7 @@
             <!-- PDF download -->
             <button 
               type="button" 
-              onclick="downloadPDF()" 
+              id="btn-pdf" onclick="downloadPDF()" 
               class="py-2.5 px-3 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-gray-500 text-xs font-mono font-medium rounded flex items-center justify-center gap-2 transition"
             >
               <i class="fa-solid fa-file-pdf text-red-400"></i> PDF
@@ -545,10 +578,10 @@
             <!-- Share URL -->
             <button 
               type="button" 
-              onclick="shareQuote()" 
+              id="btn-share" onclick="shareQuote()" 
               class="py-2.5 px-3 bg-card-gray hover:bg-code-gray border border-white/10 hover:border-cyber-blue/50 text-xs font-mono font-medium rounded flex items-center justify-center gap-2 transition"
             >
-              <i class="fa-solid fa-link text-cyber-blue"></i> SHARE
+              <i class="fa-solid fa-share-nodes text-cyber-blue"></i> SHARE
             </button>
           </div>
 
@@ -666,70 +699,171 @@
       }
 
       // ===== CURRENCY =====
+      // Rates come from open.er-api.com: keyless, CORS-enabled, one call for
+      // every currency. The previous endpoint returned 404 and was CORS-blocked,
+      // so conversion silently fell back to a hardcoded rate.
+      const RATES_ENDPOINT = 'https://open.er-api.com/v6/latest/USD';
+      const RATE_CACHE_MS = 24 * 60 * 60 * 1000;
+
+      // Region -> currency. Deliberately small: unknown regions just stay USD.
+      const REGION_CURRENCY = {
+        US: 'USD', GB: 'GBP', CA: 'CAD', AU: 'AUD', NZ: 'NZD', CH: 'CHF',
+        PT: 'EUR', ES: 'EUR', FR: 'EUR', DE: 'EUR', IT: 'EUR', IE: 'EUR',
+        NL: 'EUR', BE: 'EUR', AT: 'EUR', GR: 'EUR', FI: 'EUR', LU: 'EUR',
+        CO: 'COP', MX: 'MXN', BR: 'BRL', AR: 'ARS', CL: 'CLP', PE: 'PEN',
+        UY: 'UYU', CR: 'CRC', DO: 'DOP', GT: 'GTQ',
+        SE: 'SEK', NO: 'NOK', DK: 'DKK', PL: 'PLN', CZ: 'CZK', RO: 'RON',
+        HU: 'HUF', BG: 'BGN', UA: 'UAH', TR: 'TRY', RU: 'RUB',
+        JP: 'JPY', CN: 'CNY', IN: 'INR', KR: 'KRW', SG: 'SGD', HK: 'HKD',
+        TH: 'THB', ID: 'IDR', MY: 'MYR', PH: 'PHP', VN: 'VND',
+        ZA: 'ZAR', NG: 'NGN', KE: 'KES', EG: 'EGP', MA: 'MAD',
+        AE: 'AED', SA: 'SAR', IL: 'ILS'
+      };
+
+      let localCurrency = null;   // e.g. 'EUR'; null when the visitor is USD/unknown
+      let rateIsFallback = false; // true when the live rate could not be fetched
+
+      function detectLocalCurrency() {
+        try {
+          const tag = navigator.language || 'en-US';
+          let region = null;
+          if (typeof Intl.Locale === 'function') {
+            region = new Intl.Locale(tag).region;
+          }
+          if (!region) {
+            const parts = tag.split('-');
+            region = parts.length > 1 ? parts[parts.length - 1] : null;
+          }
+          const cur = REGION_CURRENCY[String(region || '').toUpperCase()];
+          return cur && cur !== 'USD' ? cur : null;
+        } catch (err) {
+          return null;
+        }
+      }
+
       async function fetchExchangeRate() {
+        localCurrency = detectLocalCurrency();
+        const localBtn = document.getElementById('currency-local');
+
+        // Visitor is already in USD (or we cannot tell) - keep it simple.
+        if (!localCurrency) {
+          if (localBtn) localBtn.classList.add('hidden');
+          return;
+        }
+
+        if (localBtn) {
+          localBtn.textContent = localCurrency;
+          localBtn.classList.remove('hidden');
+        }
+
         const cached = localStorage.getItem('gh_exchange_rate');
+        const cachedCur = localStorage.getItem('gh_exchange_currency');
         const cachedTime = localStorage.getItem('gh_exchange_rate_time');
-        
-        if (cached && cachedTime && (Date.now() - parseInt(cachedTime)) < 3600000) {
+        if (
+          cached && cachedCur === localCurrency && cachedTime &&
+          Date.now() - parseInt(cachedTime, 10) < RATE_CACHE_MS
+        ) {
           exchangeRate = parseFloat(cached);
+          rateIsFallback = false;
           updateExchangeRateDisplay();
           return;
         }
 
         try {
-          const resp = await fetch('https://api.exchangerate-api.com/v1/latest/USD');
+          const resp = await fetch(RATES_ENDPOINT);
+          if (!resp.ok) throw new Error('HTTP ' + resp.status);
           const data = await resp.json();
-          exchangeRate = data.rates.COP;
-          localStorage.setItem('gh_exchange_rate', exchangeRate.toString());
-          localStorage.setItem('gh_exchange_rate_time', Date.now().toString());
-          updateExchangeRateDisplay();
+          const rate = data && data.rates ? data.rates[localCurrency] : null;
+          if (!rate) throw new Error('no rate for ' + localCurrency);
+
+          exchangeRate = rate;
+          rateIsFallback = false;
+          localStorage.setItem('gh_exchange_rate', String(exchangeRate));
+          localStorage.setItem('gh_exchange_currency', localCurrency);
+          localStorage.setItem('gh_exchange_rate_time', String(Date.now()));
         } catch (err) {
-          exchangeRate = 3600;
-          updateExchangeRateDisplay();
+          // Never break the calculator because a third party is down: fall back
+          // to USD only, and say so rather than showing an invented rate.
+          exchangeRate = null;
+          rateIsFallback = true;
+          if (currentCurrency === 'LOCAL') setCurrency('USD');
         }
+        updateExchangeRateDisplay();
       }
 
       function updateExchangeRateDisplay() {
         const el = document.getElementById('exchange-rate-display');
-        if (currentCurrency === 'COP' && exchangeRate) {
-          el.textContent = `(1 USD ≈ ${exchangeRate.toLocaleString()} COP)`;
+        if (!el) return;
+        if (rateIsFallback) {
+          el.textContent = '(live rate unavailable - showing USD)';
+        } else if (currentCurrency === 'LOCAL' && exchangeRate && localCurrency) {
+          const pretty = exchangeRate.toLocaleString(undefined, { maximumFractionDigits: 2 });
+          el.textContent = '(1 USD ~ ' + pretty + ' ' + localCurrency + ' - indicative)';
         } else {
           el.textContent = '';
         }
       }
 
       function setCurrency(currency) {
+        if (currency === 'LOCAL' && (!localCurrency || !exchangeRate)) return;
         currentCurrency = currency;
-        
+
         const usdBtn = document.getElementById('currency-usd');
-        const copBtn = document.getElementById('currency-cop');
-        
-        if (currency === 'USD') {
-          usdBtn.className = 'px-2 py-0.5 text-[10px] font-mono rounded border border-grass-green/30 bg-grass-green/10 text-grass-green transition';
-          copBtn.className = 'px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition';
-        } else {
-          copBtn.className = 'px-2 py-0.5 text-[10px] font-mono rounded border border-grass-green/30 bg-grass-green/10 text-grass-green transition';
-          usdBtn.className = 'px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition';
+        const localBtn = document.getElementById('currency-local');
+        const on = 'px-2 py-0.5 text-[10px] font-mono rounded border border-grass-green/30 bg-grass-green/10 text-grass-green transition';
+        const off = 'px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition';
+
+        if (usdBtn) usdBtn.className = currency === 'USD' ? on : off;
+        if (localBtn) {
+          localBtn.className = (currency === 'USD' ? off : on) + (localCurrency ? '' : ' hidden');
         }
 
         updateExchangeRateDisplay();
+        updateValidity();
         triggerRecalculate();
       }
 
       function formatCurrency(amountUSD) {
-        if (currentCurrency === 'COP' && exchangeRate) {
-          const copAmount = amountUSD * exchangeRate;
-          return `$${Math.round(copAmount).toLocaleString()} COP`;
+        if (currentCurrency === 'LOCAL' && exchangeRate && localCurrency) {
+          try {
+            return new Intl.NumberFormat(navigator.language, {
+              style: 'currency',
+              currency: localCurrency,
+              maximumFractionDigits: 0
+            }).format(amountUSD * exchangeRate);
+          } catch (err) {
+            return Math.round(amountUSD * exchangeRate).toLocaleString() + ' ' + localCurrency;
+          }
         }
-        return `$${amountUSD.toFixed(2)} USD`;
+        return '$' + amountUSD.toFixed(2) + ' USD';
       }
 
       // ===== VALIDITY (Fixed 15 days) =====
+      const DATE_FMT = { year: 'numeric', month: 'short', day: 'numeric' };
+
+      function quoteDates() {
+        const generated = new Date();
+        const expires = new Date();
+        expires.setDate(expires.getDate() + VALIDITY_DAYS);
+        return {
+          generated: generated.toLocaleDateString('en-US', DATE_FMT),
+          expires: expires.toLocaleDateString('en-US', DATE_FMT)
+        };
+      }
+
       function updateValidity() {
-        const date = new Date();
-        date.setDate(date.getDate() + VALIDITY_DAYS);
-        document.getElementById('validity-date').textContent = 
-          date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        const d = quoteDates();
+        const set = (id, value) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = value;
+        };
+        set('validity-date', d.expires);
+        set('validity-date-terms', d.expires);
+        set('generated-date', d.generated);
+
+        // Only claim the FX caveat when a converted figure is actually shown.
+        const fx = document.getElementById('fx-terms');
+        if (fx) fx.classList.toggle('hidden', currentCurrency !== 'LOCAL');
       }
 
       // ===== CUSTOM PAGE CHIPS =====
@@ -986,21 +1120,6 @@
         return url.toString();
       }
 
-      function shareQuote() {
-        const url = saveToURL();
-        navigator.clipboard.writeText(url).then(() => {
-          showToast('Shareable quote URL copied to clipboard!');
-        }).catch(() => {
-          const textarea = document.createElement('textarea');
-          textarea.value = url;
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textarea);
-          showToast('Shareable quote URL copied to clipboard!');
-        });
-      }
-
       function loadFromURL() {
         const params = new URLSearchParams(window.location.search);
         const encodedState = params.get('state');
@@ -1008,14 +1127,16 @@
 
         try {
           const state = JSON.parse(decodeURIComponent(atob(encodedState)));
-          
+
           if (state.d !== undefined) {
             discountPercent = state.d;
             document.getElementById('discount-input').value = state.d;
             document.getElementById('discount-range').value = Math.min(state.d, 90);
             updateDiscountUI();
           }
-          if (state.cur) setCurrency(state.cur);
+          // Older shared links carry 'COP'; the toggle is generic now, so map
+          // any legacy non-USD value onto the visitor's detected currency.
+          if (state.cur) setCurrency(state.cur === 'USD' ? 'USD' : 'LOCAL');
 
           if (state.p_c !== undefined) document.getElementById('page-contact').checked = state.p_c;
           if (state.p_p !== undefined) document.getElementById('page-portfolio').checked = state.p_p;
@@ -1046,52 +1167,179 @@
         }
       }
 
-      // ===== PDF EXPORT =====
-      function downloadPDF() {
+      // ===== QUOTE PDF =====
+      // One generator, used by both the download button and the share button,
+      // so the two can never drift apart.
+      function pdfFilename() {
+        const d = new Date();
+        const stamp = d.getFullYear() + '-' +
+          String(d.getMonth() + 1).padStart(2, '0') + '-' +
+          String(d.getDate()).padStart(2, '0');
+        return 'Grasshopper-Quote-' + stamp + '.pdf';
+      }
+
+      function pdfWorker() {
         const element = document.getElementById('invoice-scope');
         const opt = {
-          margin: 10, filename: 'Grasshopper-Project-Quote.pdf',
+          margin: 10,
+          filename: pdfFilename(),
           image: { type: 'jpeg', quality: 0.98 },
           html2canvas: { scale: 2, backgroundColor: '#151515', logging: false, useCORS: true },
           jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
-        html2pdf().set(opt).from(element).save()
-          .then(() => { showToast('PDF exported successfully!'); })
-          .catch(err => { showToast('PDF export failed. Please try again.'); });
+        return html2pdf().set(opt).from(element);
+      }
+
+      function buildQuotePdfBlob() {
+        return pdfWorker().outputPdf('blob');
+      }
+
+      // html2canvas rasterises the whole panel, which takes a moment. Lock the
+      // button so a second click cannot start a competing render.
+      function withBusyButton(btnId, label, fn) {
+        const btn = document.getElementById(btnId);
+        const original = btn ? btn.innerHTML : null;
+        if (btn) {
+          btn.disabled = true;
+          btn.classList.add('opacity-60', 'cursor-wait');
+          btn.innerHTML = label;
+        }
+        return Promise.resolve()
+          .then(fn)
+          .finally(() => {
+            if (btn) {
+              btn.disabled = false;
+              btn.classList.remove('opacity-60', 'cursor-wait');
+              btn.innerHTML = original;
+            }
+          });
+      }
+
+      function downloadPDF() {
+        return withBusyButton('btn-pdf', 'BUILDING...', () =>
+          pdfWorker().save()
+            .then(() => showToast('PDF downloaded.'))
+            .catch(() => showToast('PDF export failed. Please try again.'))
+        );
+      }
+
+      // ===== SHARE =====
+      // A WhatsApp deep link cannot carry an attachment - wa.me accepts a number
+      // and prefilled text only. The Web Share API is the one web path that hands
+      // a real file to WhatsApp, and it exists on mobile but rarely on desktop.
+      // So: share the PDF where possible, degrade gracefully everywhere else.
+      function shareQuote() {
+        const summary = buildQuoteSummary();
+
+        return withBusyButton('btn-share', 'BUILDING...', async () => {
+          let file = null;
+          try {
+            const blob = await buildQuotePdfBlob();
+            file = new File([blob], pdfFilename(), { type: 'application/pdf' });
+          } catch (err) {
+            file = null;
+          }
+
+          // Tier 1 - native share sheet with the PDF attached (mobile).
+          if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+            try {
+              await navigator.share({
+                title: 'Grasshopper Solutions - Project Quote',
+                text: summary,
+                files: [file]
+              });
+              showToast('Quote shared.');
+              return;
+            } catch (err) {
+              if (err && err.name === 'AbortError') return; // user dismissed
+            }
+          }
+
+          // Tier 2 - share sheet without file support: send the text and link.
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: 'Grasshopper Solutions - Project Quote',
+                text: summary,
+                url: saveToURL()
+              });
+              showToast('Quote shared.');
+              return;
+            } catch (err) {
+              if (err && err.name === 'AbortError') return;
+            }
+          }
+
+          // Tier 3 - desktop: download the PDF, open WhatsApp with the summary,
+          // and tell the user to attach the file they just got.
+          try {
+            await pdfWorker().save();
+          } catch (err) {
+            /* keep going - the WhatsApp text is still useful on its own */
+          }
+          sendQuoteToWhatsApp();
+          showToast('PDF downloaded - attach it to the WhatsApp message.');
+        });
       }
 
       // ===== WHATSAPP CONTACT =====
-      function initiateContact() {
+      function buildQuoteSummary() {
         const calculatedBase = BASE_VALUE * (1 - discountPercent / 100);
         const totalDisplay = document.getElementById('total-display').textContent;
+        const d = quoteDates();
+
         let pages = ["T&C", "Privacy"];
         if (document.getElementById('page-contact').checked) pages.push("Contact");
         if (document.getElementById('page-portfolio').checked) pages.push("Portfolio");
         if (document.getElementById('page-services').checked) pages.push("Services");
         if (document.getElementById('page-about').checked) pages.push("About");
         pages = [...pages, ...customPages];
+
         let integrations = ["WhatsApp"];
         if (document.getElementById('integration-calendar').checked) integrations.push("Calendar");
         if (document.getElementById('integration-filemanager').checked) integrations.push("File Manager");
         if (document.getElementById('integration-map').checked) integrations.push("Map");
         if (document.getElementById('integration-tracking').checked) integrations.push("Tracking");
         integrations = [...integrations, ...customIntegrations];
+
         let features = [];
         if (document.getElementById('feature-seo').checked) features.push("SEO/GEO");
         if (document.getElementById('feature-domain').checked) features.push("Pro Domain");
         if (document.getElementById('feature-multilang').checked) features.push("Multilingual");
-        const summaryText = `Hi Grasshopper team! I configured my project using your Cost Calculator:
+
+        const fxNote = currentCurrency === 'LOCAL'
+          ? '\nConverted amounts are indicative, at the exchange rate on ' + d.generated + '.'
+          : '';
+
+        return `Hi Grasshopper team! I configured my project using your Cost Calculator:
 - Base Price: $${calculatedBase.toFixed(2)} USD (Discount: ${discountPercent}%)
 - Pages: ${pages.join(", ")}
 - Integrations: ${integrations.join(", ")}
 - Features: ${features.length > 0 ? features.join(", ") : "None"}
 
 *Total Estimate: ${totalDisplay}*
-(Valid for ${VALIDITY_DAYS} days)
+
+Quote generated ${d.generated}, valid until ${d.expires}.
+Prices are indicative and may be reviewed or changed without notice. Any budget generated here is valid and will be honoured for ${VALIDITY_DAYS} days from its creation date.${fxNote}
 
 I'd like to discuss launching this project!`;
-        const encodedMsg = encodeURIComponent(summaryText);
-        window.open(`https://api.whatsapp.com/send?phone=33767834576&text=${encodedMsg}`, '_blank');
+      }
+
+      function sendQuoteToWhatsApp() {
+        const summary = buildQuoteSummary();
+        if (typeof sendToWhatsApp === 'function') {
+          sendToWhatsApp(summary); // shared helper in script.js
+        } else {
+          window.open(
+            'https://api.whatsapp.com/send?phone=33767834576&text=' + encodeURIComponent(summary),
+            '_blank',
+            'noopener'
+          );
+        }
+      }
+
+      function initiateContact() {
+        sendQuoteToWhatsApp();
       }
 
       // ===== TOAST =====
@@ -1117,25 +1365,6 @@ I'd like to discuss launching this project!`;
         calculateAll();
       });
 
-      // ===== LANGUAGE SWITCHER =====
-      function switchLanguage(locale) {
-        const path = window.location.pathname;
-        const filename = path.split("/").pop() || "index.html";
-        const currentDir = path.substring(0, path.lastIndexOf("/"));
-
-        let targetPath;
-        if (currentDir.endsWith("/en-us") || currentDir.endsWith("/es-co")) {
-          const parentDir = currentDir.substring(0, currentDir.lastIndexOf("/"));
-          targetPath = parentDir + "/" + locale + "/" + filename;
-        } else if (currentDir === "" || currentDir === "/") {
-          targetPath = "/" + locale + "/" + filename;
-        } else {
-          targetPath = "/" + locale + "/" + filename;
-        }
-
-        window.location.href = targetPath;
-      }
-
       // ===== LOAD PARTIALS =====
       async function loadPartials() {
         const headerEl = document.getElementById('header-placeholder');
@@ -1146,6 +1375,8 @@ I'd like to discuss launching this project!`;
           html = html.replace(/INDEX_PATH/g, '../index.html');
           html = html.replace(/SERVICES_PATH/g, 'services.html');
           html = html.replace(/PROJECTS_PATH/g, 'projects.html');
+          html = html.replace(/CALCULATOR_PATH/g, 'project-cost-calculator.html');
+          html = html.replace(/CONTACT_PATH/g, '../index.html#contact');
           headerEl.outerHTML = html;
         }
         const footerEl = document.getElementById('footer-placeholder');
@@ -1154,6 +1385,11 @@ I'd like to discuss launching this project!`;
           let html = await response.text();
           html = html.replace(/ASSET_PATH/g, '../assets');
           footerEl.outerHTML = html;
+        }
+
+        // Partials are in the DOM now — bind everything that lives inside them.
+        if (typeof initPartialDependentUI === 'function') {
+          initPartialDependentUI();
         }
         if (typeof lucide !== 'undefined') lucide.createIcons();
         const menuBtn = document.getElementById('mobile-menu-btn');
@@ -1168,5 +1404,6 @@ I'd like to discuss launching this project!`;
       document.addEventListener('DOMContentLoaded', loadPartials);
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <script src="../script.js"></script>
   </body>
 </html>
