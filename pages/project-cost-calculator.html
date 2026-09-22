@@ -509,22 +509,16 @@
               </div>
             </div>
 
-            <!-- Currency Toggle + Validity -->
-            <div class="flex items-center justify-between gap-2 mb-4">
-              <!-- Currency Toggle -->
+            <!-- Currency + Validity -->
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <!-- Currency Selector -->
               <div class="flex items-center gap-2">
                 <span class="text-[10px] font-mono text-gray-600">CURRENCY:</span>
-                <button 
-                  id="currency-usd" 
-                  onclick="setCurrency('USD')" 
-                  class="px-2 py-0.5 text-[10px] font-mono rounded border border-grass-green/30 bg-grass-green/10 text-grass-green transition"
-                >USD</button>
-                <button 
-                  id="currency-local" 
-                  onclick="setCurrency('LOCAL')" 
-                  class="hidden px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition"
-                >LOCAL</button>
-                <span class="text-[9px] text-gray-600 font-mono" id="exchange-rate-display"></span>
+                <select
+                  id="currency-select"
+                  onchange="setCurrency(this.value)"
+                  class="bg-code-gray border border-white/10 text-grass-green text-[10px] font-mono rounded px-2 py-1 focus:outline-none focus:border-grass-green/40 cursor-pointer"
+                ></select>
               </div>
               <!-- Validity Period (Fixed) -->
               <div class="flex items-center gap-1">
@@ -532,6 +526,10 @@
                 <span class="text-[10px] font-mono text-grass-green bg-grass-green/10 px-1.5 py-0.5 rounded border border-grass-green/20">15 days</span>
               </div>
             </div>
+            <p class="text-[9px] text-gray-600 font-mono mb-4" id="exchange-rate-display"></p>
+            <p class="text-[9px] text-gray-600 font-mono leading-relaxed mb-4 -mt-2">
+              Base price is USD. Other currencies are converted at the current exchange rate — an estimate, not a locked-in price.
+            </p>
 
             <!-- Base details -->
             <div class="mb-4">
@@ -850,13 +848,14 @@
       }
 
       // ===== CURRENCY =====
-      // Rates come from open.er-api.com: keyless, CORS-enabled, one call for
-      // every currency. The previous endpoint returned 404 and was CORS-blocked,
-      // so conversion silently fell back to a hardcoded rate.
+      // Rates come from open.er-api.com: keyless, CORS-enabled, one call
+      // returns every currency at once, so the visitor can pick ANY of them
+      // from the dropdown without a fresh request per switch.
       const RATES_ENDPOINT = 'https://open.er-api.com/v6/latest/USD';
       const RATE_CACHE_MS = 24 * 60 * 60 * 1000;
 
-      // Region -> currency. Deliberately small: unknown regions just stay USD.
+      // Region -> currency, used only to preselect a sensible default in the
+      // dropdown. The visitor can change it to anything afterwards.
       const REGION_CURRENCY = {
         US: 'USD', GB: 'GBP', CA: 'CAD', AU: 'AUD', NZ: 'NZD', CH: 'CHF',
         PT: 'EUR', ES: 'EUR', FR: 'EUR', DE: 'EUR', IT: 'EUR', IE: 'EUR',
@@ -871,8 +870,33 @@
         AE: 'AED', SA: 'SAR', IL: 'ILS'
       };
 
-      let localCurrency = null;   // e.g. 'EUR'; null when the visitor is USD/unknown
-      let rateIsFallback = false; // true when the live rate could not be fetched
+      // Human-readable labels for the dropdown. Any currency missing here
+      // still works fine (falls back to showing just the code).
+      const CURRENCY_LABELS = {
+        USD: 'US Dollar', EUR: 'Euro', GBP: 'British Pound', CAD: 'Canadian Dollar',
+        AUD: 'Australian Dollar', NZD: 'New Zealand Dollar', CHF: 'Swiss Franc',
+        COP: 'Colombian Peso', MXN: 'Mexican Peso', BRL: 'Brazilian Real',
+        ARS: 'Argentine Peso', CLP: 'Chilean Peso', PEN: 'Peruvian Sol',
+        UYU: 'Uruguayan Peso', CRC: 'Costa Rican Colon', DOP: 'Dominican Peso',
+        GTQ: 'Guatemalan Quetzal', SEK: 'Swedish Krona', NOK: 'Norwegian Krone',
+        DKK: 'Danish Krone', PLN: 'Polish Zloty', CZK: 'Czech Koruna',
+        RON: 'Romanian Leu', HUF: 'Hungarian Forint', BGN: 'Bulgarian Lev',
+        UAH: 'Ukrainian Hryvnia', TRY: 'Turkish Lira', RUB: 'Russian Ruble',
+        JPY: 'Japanese Yen', CNY: 'Chinese Yuan', INR: 'Indian Rupee',
+        KRW: 'South Korean Won', SGD: 'Singapore Dollar', HKD: 'Hong Kong Dollar',
+        THB: 'Thai Baht', IDR: 'Indonesian Rupiah', MYR: 'Malaysian Ringgit',
+        PHP: 'Philippine Peso', VND: 'Vietnamese Dong', ZAR: 'South African Rand',
+        NGN: 'Nigerian Naira', KES: 'Kenyan Shilling', EGP: 'Egyptian Pound',
+        MAD: 'Moroccan Dirham', AED: 'UAE Dirham', SAR: 'Saudi Riyal',
+        ILS: 'Israeli Shekel'
+      };
+
+      // USD first, then every currency REGION_CURRENCY knows about, deduped
+      // (Set preserves first-seen order, so USD stays on top).
+      const SUPPORTED_CURRENCIES = [...new Set(['USD', ...Object.values(REGION_CURRENCY)])];
+
+      let allRates = null;     // full { CODE: rate } table once fetched
+      let rateIsFallback = false; // true when the live rates could not be fetched
 
       function detectLocalCurrency() {
         try {
@@ -885,89 +909,77 @@
             const parts = tag.split('-');
             region = parts.length > 1 ? parts[parts.length - 1] : null;
           }
-          const cur = REGION_CURRENCY[String(region || '').toUpperCase()];
-          return cur && cur !== 'USD' ? cur : null;
+          return REGION_CURRENCY[String(region || '').toUpperCase()] || null;
         } catch (err) {
           return null;
         }
       }
 
+      function populateCurrencySelect() {
+        const select = document.getElementById('currency-select');
+        if (!select) return;
+        select.innerHTML = SUPPORTED_CURRENCIES.map((code) => {
+          const label = CURRENCY_LABELS[code] ? (code + ' - ' + CURRENCY_LABELS[code]) : code;
+          return '<option value="' + code + '">' + label + '</option>';
+        }).join('');
+      }
+
       async function fetchExchangeRate() {
-        localCurrency = detectLocalCurrency();
-        const localBtn = document.getElementById('currency-local');
-
-        // Visitor is already in USD (or we cannot tell) - keep it simple.
-        if (!localCurrency) {
-          if (localBtn) localBtn.classList.add('hidden');
-          return;
-        }
-
-        if (localBtn) {
-          localBtn.textContent = localCurrency;
-          localBtn.classList.remove('hidden');
-        }
-
-        const cached = localStorage.getItem('gh_exchange_rate');
-        const cachedCur = localStorage.getItem('gh_exchange_currency');
-        const cachedTime = localStorage.getItem('gh_exchange_rate_time');
+        const cachedRaw = localStorage.getItem('gh_exchange_rates');
+        const cachedTime = localStorage.getItem('gh_exchange_rates_time');
         if (
-          cached && cachedCur === localCurrency && cachedTime &&
+          cachedRaw && cachedTime &&
           Date.now() - parseInt(cachedTime, 10) < RATE_CACHE_MS
         ) {
-          exchangeRate = parseFloat(cached);
-          rateIsFallback = false;
-          updateExchangeRateDisplay();
-          return;
+          try {
+            allRates = JSON.parse(cachedRaw);
+            rateIsFallback = false;
+            setCurrency(currentCurrency); // refresh now that rates exist
+            return;
+          } catch (err) {
+            // fall through to a live fetch if the cached JSON is bad
+          }
         }
 
         try {
           const resp = await fetch(RATES_ENDPOINT);
           if (!resp.ok) throw new Error('HTTP ' + resp.status);
           const data = await resp.json();
-          const rate = data && data.rates ? data.rates[localCurrency] : null;
-          if (!rate) throw new Error('no rate for ' + localCurrency);
+          if (!data || !data.rates) throw new Error('no rates in response');
 
-          exchangeRate = rate;
+          allRates = data.rates;
           rateIsFallback = false;
-          localStorage.setItem('gh_exchange_rate', String(exchangeRate));
-          localStorage.setItem('gh_exchange_currency', localCurrency);
-          localStorage.setItem('gh_exchange_rate_time', String(Date.now()));
+          localStorage.setItem('gh_exchange_rates', JSON.stringify(allRates));
+          localStorage.setItem('gh_exchange_rates_time', String(Date.now()));
         } catch (err) {
-          // Never break the calculator because a third party is down: fall back
-          // to USD only, and say so rather than showing an invented rate.
-          exchangeRate = null;
+          // Never break the calculator because a third party is down: fall
+          // back to USD only, and say so rather than showing an invented rate.
+          allRates = null;
           rateIsFallback = true;
-          if (currentCurrency === 'LOCAL') setCurrency('USD');
         }
-        updateExchangeRateDisplay();
+        setCurrency(currentCurrency);
       }
 
       function updateExchangeRateDisplay() {
         const el = document.getElementById('exchange-rate-display');
         if (!el) return;
-        if (rateIsFallback) {
-          el.textContent = '(live rate unavailable - showing USD)';
-        } else if (currentCurrency === 'LOCAL' && exchangeRate && localCurrency) {
-          const pretty = exchangeRate.toLocaleString(undefined, { maximumFractionDigits: 2 });
-          el.textContent = '(1 USD ~ ' + pretty + ' ' + localCurrency + ' - indicative)';
-        } else {
+        if (currentCurrency === 'USD') {
           el.textContent = '';
+        } else if (rateIsFallback || !exchangeRate) {
+          el.textContent = 'Live exchange rates are unavailable right now - showing USD instead.';
+        } else {
+          const pretty = exchangeRate.toLocaleString(undefined, { maximumFractionDigits: 4 });
+          el.textContent = '1 USD \u2248 ' + pretty + ' ' + currentCurrency + ' (indicative, updated within the last 24h)';
         }
       }
 
-      function setCurrency(currency) {
-        if (currency === 'LOCAL' && (!localCurrency || !exchangeRate)) return;
-        currentCurrency = currency;
+      function setCurrency(code) {
+        if (!code) return;
+        currentCurrency = code;
+        exchangeRate = (code !== 'USD' && allRates) ? (allRates[code] || null) : null;
 
-        const usdBtn = document.getElementById('currency-usd');
-        const localBtn = document.getElementById('currency-local');
-        const on = 'px-2 py-0.5 text-[10px] font-mono rounded border border-grass-green/30 bg-grass-green/10 text-grass-green transition';
-        const off = 'px-2 py-0.5 text-[10px] font-mono rounded border border-white/10 bg-code-gray text-gray-500 transition';
-
-        if (usdBtn) usdBtn.className = currency === 'USD' ? on : off;
-        if (localBtn) {
-          localBtn.className = (currency === 'USD' ? off : on) + (localCurrency ? '' : ' hidden');
-        }
+        const select = document.getElementById('currency-select');
+        if (select && select.value !== code) select.value = code;
 
         updateExchangeRateDisplay();
         updateValidity();
@@ -975,15 +987,15 @@
       }
 
       function formatCurrency(amountUSD) {
-        if (currentCurrency === 'LOCAL' && exchangeRate && localCurrency) {
+        if (currentCurrency !== 'USD' && exchangeRate) {
           try {
             return new Intl.NumberFormat(navigator.language, {
               style: 'currency',
-              currency: localCurrency,
+              currency: currentCurrency,
               maximumFractionDigits: 0
             }).format(amountUSD * exchangeRate);
           } catch (err) {
-            return Math.round(amountUSD * exchangeRate).toLocaleString() + ' ' + localCurrency;
+            return Math.round(amountUSD * exchangeRate).toLocaleString() + ' ' + currentCurrency;
           }
         }
         return '$' + amountUSD.toFixed(2) + ' USD';
@@ -1014,7 +1026,7 @@
 
         // Only claim the FX caveat when a converted figure is actually shown.
         const fx = document.getElementById('fx-terms');
-        if (fx) fx.classList.toggle('hidden', currentCurrency !== 'LOCAL');
+        if (fx) fx.classList.toggle('hidden', currentCurrency === 'USD' || !exchangeRate);
       }
 
       // ===== CUSTOM PAGE CHIPS =====
@@ -1285,9 +1297,10 @@
             document.getElementById('discount-range').value = Math.min(state.d, 90);
             updateDiscountUI();
           }
-          // Older shared links carry 'COP'; the toggle is generic now, so map
-          // any legacy non-USD value onto the visitor's detected currency.
-          if (state.cur) setCurrency(state.cur === 'USD' ? 'USD' : 'LOCAL');
+          // state.cur is a real ISO currency code (e.g. 'EUR', 'COP') -
+          // apply it directly; setCurrency() no-ops gracefully on anything
+          // it doesn't recognise.
+          if (state.cur) setCurrency(state.cur);
 
           if (state.p_c !== undefined) document.getElementById('page-contact').checked = state.p_c;
           if (state.p_p !== undefined) document.getElementById('page-portfolio').checked = state.p_p;
@@ -1458,7 +1471,7 @@
         if (document.getElementById('feature-domain').checked) features.push("Pro Domain");
         if (document.getElementById('feature-multilang').checked) features.push("Multilingual");
 
-        const fxNote = currentCurrency === 'LOCAL'
+        const fxNote = (currentCurrency !== 'USD' && exchangeRate)
           ? '\nConverted amounts are indicative, at the exchange rate on ' + d.generated + '.'
           : '';
 
@@ -1509,7 +1522,11 @@ I'd like to discuss launching this project!`;
       window.addEventListener('DOMContentLoaded', () => {
         const today = new Date();
         document.getElementById('quote-timestamp').textContent = `DATE: ${today.toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'})}`;
-        fetchExchangeRate();
+
+        populateCurrencySelect();
+        setCurrency(detectLocalCurrency() || 'USD'); // best-guess default; rate arrives async
+        fetchExchangeRate(); // fire-and-forget - re-applies currentCurrency once rates land
+
         const fromURL = loadFromURL();
         if (!fromURL) loadFromLocalStorage();
         updateValidity();

@@ -117,15 +117,39 @@ function initCarousel(containerId, prevId, nextId) {
   const nextBtn = document.getElementById(nextId);
   if (!container || !prevBtn || !nextBtn) return;
 
+  // Scroll by roughly one card's width (+ gap) rather than a fixed guess, so
+  // the arrows always reveal exactly the next card regardless of viewport.
+  const stepFor = () => {
+    const card = container.querySelector(":scope > *");
+    const gap = parseFloat(getComputedStyle(container).columnGap || "16") || 16;
+    return card ? card.getBoundingClientRect().width + gap : 340;
+  };
+
   nextBtn.addEventListener("click", () =>
-    container.scrollBy({ left: 400, behavior: "smooth" })
+    container.scrollBy({ left: stepFor(), behavior: "smooth" })
   );
   prevBtn.addEventListener("click", () =>
-    container.scrollBy({ left: -400, behavior: "smooth" })
+    container.scrollBy({ left: -stepFor(), behavior: "smooth" })
   );
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   initCarousel("carousel-container", "slide-prev", "slide-next");
   initCarousel("app-carousel-container", "app-slide-prev", "app-slide-next");
+  initCarousel("ext-carousel-container", "ext-slide-prev", "ext-slide-next");
 });
+
+// ===== PROJECT CARD DESCRIPTION TOGGLE =====
+// Desktop reveals the description on hover (group-hover:block in markup);
+// this handles the tap-to-expand path for touch devices, where hover isn't
+// a thing. Collapsed by default either way.
+function toggleCardDesc(btn) {
+  const card = btn.closest(".project-card");
+  const panel = card ? card.querySelector(".desc-panel") : null;
+  if (!panel) return;
+
+  const nowHidden = panel.classList.toggle("hidden");
+  btn.setAttribute("aria-expanded", String(!nowHidden));
+  const icon = btn.querySelector(".desc-toggle-icon");
+  if (icon) icon.classList.toggle("rotate-180", !nowHidden);
+}
